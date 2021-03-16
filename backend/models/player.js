@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-//const uniqueValidator = require('mongoose-unique-validator')
+const uniqueValidator = require('mongoose-unique-validator')
 
 const url = process.env.MONGODB_URI
 
@@ -24,9 +24,10 @@ const playerSchema = new mongoose.Schema({
   apiId: {
     type: Number,
     required: true,
+    unique: true,
   },
 })
-//playerSchema.plugin(uniqueValidator)
+playerSchema.plugin(uniqueValidator)
 
 playerSchema.set('toJSON', {
   transform: (document, returnedObject) => {
