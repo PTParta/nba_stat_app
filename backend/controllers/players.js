@@ -13,14 +13,15 @@ playersRouter.get('/playersfromapitodatabase', async (_req, _res) => {
       console.log(`getting players, page ${apiPageNumber}`)
       let playersOnOnePage = await axios.get(`${baseUrl}?per_page=${apiPerPage}&page=${apiPageNumber}`)
       players = players.concat(playersOnOnePage.data.data)
-      //timer to prevent status code 429 (Too Many Requests)
       apiPageNumber = apiPageNumber + 1
+      //timer to prevent status code 429 (Too Many Requests)
       setTimeout(() => 100)
     }
     return players
   }
   const putPlayersToDatabase = async (players) => {
-    const newPlayers = players.map(({ first_name: firstName, last_name: lastName, id: apiId }) => ({ firstName, lastName, apiId }))
+    const newPlayers = players.map(({ first_name: firstName, last_name: lastName, id: apiId, team: team }) =>
+      ({ firstName, lastName, apiId, team }))
     console.log('saving players to database...')
     await Player.insertMany(newPlayers)
     console.log('finished saving players to database')

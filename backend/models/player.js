@@ -16,8 +16,10 @@ const playerSchema = new mongoose.Schema({
     unique: true,
   },
   team: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Team'
+    id: Number,
+    abbreviation: String,
+    city: String,
+    name: String
   }
 })
 playerSchema.plugin(uniqueValidator)
