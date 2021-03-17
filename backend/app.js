@@ -7,6 +7,7 @@ const app = express()
 const Player = require('./models/player')
 const playerRouter = require('./controllers/players')
 const teamRouter = require('./controllers/teams')
+const statRouter = require('./controllers/stats')
 const healthRouter = require('./controllers/health')
 const mongoose = require('mongoose')
 
@@ -29,6 +30,7 @@ app.use(express.static('build'))
 
 app.use('/api/players', playerRouter)
 app.use('/api/teams', teamRouter)
+app.use('/api/stats', statRouter)
 app.use('/api/health', healthRouter)
 
 
