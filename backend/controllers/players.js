@@ -3,7 +3,7 @@ const Player = require('../models/player')
 const axios = require('axios')
 const baseUrl = 'https://www.balldontlie.io/api/v1/players'
 
-playersRouter.get('/playersfromapitodatabase', async (_req, _res) => {
+playersRouter.get('/playersfromapitodatabase', async (_request, _response) => {
   const getPlayers = async () => {
     let players = []
     let apiPageNumber = 1
@@ -30,6 +30,10 @@ playersRouter.get('/playersfromapitodatabase', async (_req, _res) => {
   await putPlayersToDatabase(players)
 })
 
+playersRouter.get('/', async (_request, response) => {
+  const players = await Player.find({})
+  response.json(players)
+})
 
 
 module.exports = playersRouter

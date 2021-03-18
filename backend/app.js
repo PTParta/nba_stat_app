@@ -9,6 +9,8 @@ const playerRouter = require('./controllers/players')
 const teamRouter = require('./controllers/teams')
 const statRouter = require('./controllers/stats')
 const healthRouter = require('./controllers/health')
+const middleware = require('./utils/middleware')
+const logger = require('./utils/logger')
 const mongoose = require('mongoose')
 
 const url = process.env.MONGODB_URI
@@ -25,8 +27,10 @@ mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true, useFind
 const cors = require('cors')
 app.use(cors())
 
-app.use(express.json())
 app.use(express.static('build'))
+app.use(express.json())
+app.use(middleware.requestLogger)
+//app.use(middleware.tokenExtractor)
 
 app.use('/api/players', playerRouter)
 app.use('/api/teams', teamRouter)
@@ -35,7 +39,7 @@ app.use('/api/health', healthRouter)
 
 
 // invalid address handling
-const unknownEndpoint = (_req, res) => {
+/* const unknownEndpoint = (_req, res) => {
   res.status(404).send({ error: 'unknown endpoint' })
 }
 app.use(unknownEndpoint)
@@ -49,8 +53,11 @@ const errorHandler = (error, req, res, next) => {
   }
   next(error)
 }
-app.use(errorHandler)
+app.use(errorHandler) */
 
+
+app.use(middleware.unknownEndpoint)
+app.use(middleware.errorHandler)
 /* const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
