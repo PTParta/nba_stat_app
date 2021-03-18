@@ -33,3 +33,19 @@ The following libraries will be used:
    status code 429 (Too Many Requests). If there more than one user
    on the website there will be for sure this error because it's
    happening with one user already.
+
+## Data migration from API to Atlas MongoDB
+
+ - 1 page from the API contains 100 entries
+ - 100 pages from API takes 110 seconds with a 1.1 s delay to prevent status code 429 (Too Many Requests).
+ - The request limit in the API is 60 requests / minute
+ - Saving those 100 pages of data to MongoDB takes 3 min 25 s
+ - Total time it takes to fetch 100 pages of data is 4 min 35 s
+ - There is 11298 pages of data in total so 11298 / 100 = 113 request-database saves are required
+ - total time to migrate the entire data from API do database is 4 min 35 s * 113 = 31075 s = 518 min = 8.6 h
+ - 6000 pages were migrated which equates to about 340MB of data. The limit in Atlas MongoDB free in 512MB
+   so all the data is not going to fit unless the account is upgraded to cluster tier M2 which is 9$/month 
+   and gives 2 GB of storage which should be enough for all the stats (playoffs included) and possible
+   indexing.
+ - The cluster tier M2 was subscribed so all the data can be migrated to the database. Also this way the app
+   is not so dependent on the API. Also it's good practice to use the database.
