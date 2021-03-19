@@ -49,3 +49,10 @@ The following libraries will be used:
    indexing.
  - The cluster tier M2 was subscribed so all the data can be migrated to the database. Also this way the app
    is not so dependent on the API. Also it's good practice to use the database.
+
+## Database management
+
+ - To manage the active database connections maybe it would be good to open the connection when data is needed
+   and close the connection when the data is delivered. If the user is constantly connected to the database
+   then the maximum allowed connections to Atlas MongoDB can be reached quite quickly. The limit for cluster
+   tier M2 is 500 connections
