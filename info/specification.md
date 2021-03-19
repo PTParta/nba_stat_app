@@ -55,4 +55,5 @@ The following libraries will be used:
  - To manage the active database connections maybe it would be good to open the connection when data is needed
    and close the connection when the data is delivered. If the user is constantly connected to the database
    then the maximum allowed connections to Atlas MongoDB can be reached quite quickly. The limit for cluster
-   tier M2 is 500 connections
+   tier M2 is 500 connections. EDIT: THIS IS NOT A VALID POINT SINCE I THINK A CONNECTION MEANS A QUERY FROM
+   USER AND IT'S NOT NEEDED TO HANDLE THOSE IN THE APP. ATLAS MONGODB TAKES CARE OF IT.

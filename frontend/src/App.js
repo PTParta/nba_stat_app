@@ -28,9 +28,9 @@ function App() {
   const getPlayerStats = (playerFullName, seasons) => {
 
     const searchedPlayer = players.find(player => player.fullName === playerFullName)
-    console.log('searched player: ', searchedPlayer)
-    console.log('getting stats for', playerFullName)
-    playerStatService.getPlayerStats(seasons, searchedPlayer.apiId)
+    //console.log('searched player: ', searchedPlayer)
+    //console.log('getting stats for', playerFullName)
+    playerStatService.getPlayerStatsFromApi(seasons, searchedPlayer.apiId)
       .then((response) => {
         setPlayerStats(response.sort((a, b) =>
           new Date(a.game.date).getTime() - new Date(b.game.date).getTime())
@@ -51,16 +51,15 @@ function App() {
   //console.log('seasonSelect', seasonSelect)
 
   const handleSelectedPlayerChange = (playerFullName) => {
-    //event.preventDefault()
-    console.log('playerFullName', playerFullName)
+    //console.log('playerFullName', playerFullName)
     setSelectedPlayer(playerFullName)
-    console.log('selectedPlayer', selectedPlayer)
+    //console.log('selectedPlayer', selectedPlayer)
   }
 
   const handleSelectedSeasonsChange = (selectedSeasons) => {
-    console.log('selectedSeasons', selectedSeasons)
+    //console.log('selectedSeasons', selectedSeasons)
     setSelectedSeasons(selectedSeasons)
-    console.log('selectedSeasons state', selectedSeasons)
+    //console.log('selectedSeasons state', selectedSeasons)
     //event.preventDefault()
     /* console.log('season', season)
     const newSelectedSeasons = selectedSeasons

@@ -1,8 +1,8 @@
 import axios from 'axios'
 const baseUrl = 'https://www.balldontlie.io/api/v1/stats'
 
-const getPlayerStats = async (seasons, playerId) => {
-  console.log('seasons to api', seasons)
+const getPlayerStatsFromApi = async (seasons, playerId) => {
+  //console.log('seasons to api', seasons)
   let seasonsVariable = ''
 
   for (let i = 0; i < seasons.length; i++) {
@@ -10,7 +10,7 @@ const getPlayerStats = async (seasons, playerId) => {
     seasonsVariable += seasons[i]
 
   }
-  console.log('seasonsVariable', seasonsVariable)
+  //console.log('seasonsVariable', seasonsVariable)
 
   const playerStats = await axios.get(`${baseUrl}?seasons[]=${seasonsVariable}&player_ids[]=${playerId}&per_page=100`)
   //playerStats.sort((a, b) => a.game.date - b.game.date)
@@ -30,6 +30,6 @@ const getPlayerStats = async (seasons, playerId) => {
   return playerStatsAllPages
 }
 
-const playerStatService = { getPlayerStats }
+const playerStatService = { getPlayerStatsFromApi }
 
 export default playerStatService
