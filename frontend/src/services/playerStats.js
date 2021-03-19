@@ -7,6 +7,6 @@ const getPlayerStats = async (season, playerId) => {
   return playerStats.data
 }
 
-const playerStatsService = {getPlayerStats}
+const playerStatService = {getPlayerStats}
 
-export default playerStatsService
+export default playerStatService
