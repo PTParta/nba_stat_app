@@ -28,17 +28,19 @@ function App() {
   const getPlayerStats = (playerFullName, seasons) => {
 
     const searchedPlayer = players.find(player => player.fullName === playerFullName)
-    //console.log('searched player: ', searchedPlayer)
-    //console.log('getting stats for', playerFullName)
-    playerStatService.getPlayerStatsFromApi(seasons, searchedPlayer.apiId)
+    /* playerStatService.getPlayerStatsFromApi(seasons, searchedPlayer.apiId)
       .then((response) => {
         setPlayerStats(response.sort((a, b) =>
           new Date(a.game.date).getTime() - new Date(b.game.date).getTime())
         )
+      }) */
+    playerStatService.getPlayerStatsFromDB(seasons, searchedPlayer.apiId)
+      .then((response) => {
+        setPlayerStats(response.data.sort((a, b) =>
+          new Date(a.game.date).getTime() - new Date(b.game.date).getTime())
+        )
       })
   }
-  //(Date(a.game.date) > Date(b.game.date)) ? 1 : (Date(b.game.date) > Date(a.game.date)) ? -1 : 0
-  /* setPlayerStats(response.sort((a, b) => a.game.id - b.game.id */
   const playerSelect = players.map(player => ({ label: player.fullName, value: player.fullName }))
 
   let season = 2020
@@ -48,24 +50,12 @@ function App() {
     season--
   }
 
-  //console.log('seasonSelect', seasonSelect)
-
   const handleSelectedPlayerChange = (playerFullName) => {
-    //console.log('playerFullName', playerFullName)
     setSelectedPlayer(playerFullName)
-    //console.log('selectedPlayer', selectedPlayer)
   }
 
   const handleSelectedSeasonsChange = (selectedSeasons) => {
-    //console.log('selectedSeasons', selectedSeasons)
     setSelectedSeasons(selectedSeasons)
-    //console.log('selectedSeasons state', selectedSeasons)
-    //event.preventDefault()
-    /* console.log('season', season)
-    const newSelectedSeasons = selectedSeasons
-    newSelectedSeasons.push(season)
-    setSelectedSeasons(newSelectedSeasons)
-    console.log('selectedSeasons', selectedSeasons) */
   }
 
   return (
@@ -77,7 +67,6 @@ function App() {
       <Select
         options={playerSelect}
         onChange={(option) => handleSelectedPlayerChange(option.value)}
-        //onChange={(option) => getPlayerStats(option.value)}
         placeholder='Select player'
       />
       <br></br>
@@ -85,10 +74,12 @@ function App() {
         isMulti
         options={seasonSelect}
         onChange={(options) => handleSelectedSeasonsChange(options.map(option => option.value))}
-        //value={selectedSeason}
         closeMenuOnSelect={false}
         placeholder='Select season(s)'
       />
+      <br></br>
+      <button onClick={() => getPlayerStats(selectedPlayer, selectedSeasons)}>Get stats</button>
+      <br></br>
       <br></br>
       <div>selectedPlayer: {selectedPlayer}</div>
       <br></br>
@@ -98,8 +89,7 @@ function App() {
         </div>)}
 
       </div>
-      <br></br>
-      <button onClick={() => getPlayerStats(selectedPlayer, selectedSeasons)}>Get stats</button>
+
     </div>
 
 
