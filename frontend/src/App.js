@@ -6,54 +6,14 @@ import PlayerStats from './components/PlayerStats'
 import Teams from './components/Teams'
 import Select from 'react-select';
 
-const Players = ({ players, playerFilter/* , handleRemove */ }) => {
-  const filteredPlayers = players.filter(player =>
-    player.fullName.toLowerCase().includes(playerFilter.toLowerCase()))
-
-  return (
-    < div >
-      {filteredPlayers.map(player =>
-        <div key={player.id} >
-          <table>
-            <tbody>
-              <tr>
-                <td>{player.apiId} {player.firstName} {player.lastName}</td>
-                <td>
-                  {/* <button onClick={() => {
-                      if (window.confirm(`Delete ${person.name} ?`)) {
-                        handleRemove(person.id)
-                      }
-                    }}>delete</button> */}
-                </td>
-              </tr>
-            </tbody>
-
-          </table>
-        </div>
-      )}
-    </div >
-  )
-}
-/* const PlayerFilter = ({ handleFilterChange }) => {
-  return (
-    <div>filter shown with <input onChange={handleFilterChange} /></div>
-  )
-} */
-
-
-
-
 function App() {
   const [players, setPlayers] = useState([])
-  //const [playerFilter, setPlayerFilter] = useState('')
   const [playerStats, setPlayerStats] = useState([])
   const [teams, setTeams] = useState([])
+  const [selectedPlayer, setSelectedPlayer] = useState('')
+  const [selectedSeasons, setSelectedSeasons] = useState([])
 
   useEffect(() => {
-    /* playerService.getPlayerStats(2020, 237)
-      .then((response) => {
-        setPlayerStats(response.data.sort((a, b) => a.game.id - b.game.id))
-      })*/
     teamService.getTeams()
       .then((response) => {
         setTeams(response.data)
@@ -63,73 +23,86 @@ function App() {
         setPlayers(response.map(player => ({ ...player, fullName: `${player.firstName} ${player.lastName}` }))
           .sort((a, b) => (a.lastName > b.lastName) ? 1 : ((b.lastName > a.lastName) ? -1 : 0)))
       })
-    /*  const playersWithFullNames = players.map(player => ({ ...player, fullName: `${player.firstName} ${player.lastName}` }))
-     setPlayers(playersWithFullNames) */
-
   }, [])
-  /* console.log('players')
-  console.log(players) */
 
-
-
-  /* console.log('playerStats')
-  console.log(playerStats)
-  console.log()
-  console.log()
-  console.log('teams')
-  console.log(teams)
-  console.log()
-  console.log() */
-  /* console.log('players')
-  console.log(players) */
-
-  const getPlayerStats = (playerFullName) => {
+  const getPlayerStats = (playerFullName, seasons) => {
 
     const searchedPlayer = players.find(player => player.fullName === playerFullName)
     console.log('searched player: ', searchedPlayer)
     console.log('getting stats for', playerFullName)
-    playerStatService.getPlayerStats(2020, searchedPlayer.apiId)
+    playerStatService.getPlayerStats(seasons, searchedPlayer.apiId)
       .then((response) => {
-        setPlayerStats(response.data.sort((a, b) => a.game.id - b.game.id))
+        setPlayerStats(response.sort((a, b) =>
+          new Date(a.game.date).getTime() - new Date(b.game.date).getTime())
+        )
       })
   }
+  //(Date(a.game.date) > Date(b.game.date)) ? 1 : (Date(b.game.date) > Date(a.game.date)) ? -1 : 0
+  /* setPlayerStats(response.sort((a, b) => a.game.id - b.game.id */
+  const playerSelect = players.map(player => ({ label: player.fullName, value: player.fullName }))
 
-  /* const handleFilterChange = (event) => {
-    //console.log(event.target.value)
-    setPlayerFilter(event.target.value)
-  } */
+  let season = 2020
+  const seasonSelect = []
+  while (season >= 1980) {
+    seasonSelect.push({ label: season.toString(), value: season.toString() })
+    season--
+  }
 
-  const playersSelect = players.map(player => ({ label: player.fullName, value: player.fullName }))
+  //console.log('seasonSelect', seasonSelect)
+
+  const handleSelectedPlayerChange = (playerFullName) => {
+    //event.preventDefault()
+    console.log('playerFullName', playerFullName)
+    setSelectedPlayer(playerFullName)
+    console.log('selectedPlayer', selectedPlayer)
+  }
+
+  const handleSelectedSeasonsChange = (selectedSeasons) => {
+    console.log('selectedSeasons', selectedSeasons)
+    setSelectedSeasons(selectedSeasons)
+    console.log('selectedSeasons state', selectedSeasons)
+    //event.preventDefault()
+    /* console.log('season', season)
+    const newSelectedSeasons = selectedSeasons
+    newSelectedSeasons.push(season)
+    setSelectedSeasons(newSelectedSeasons)
+    console.log('selectedSeasons', selectedSeasons) */
+  }
 
   return (
     <div className="App">
-      {/* {playerStats.map(playerStat =>
-        <div key={playerStat.id}>{playerStat.game.date}</div>)} */}
-      {/* {teams.length > 0
-        ? <Teams teams={teams} />
-        : <></>} */}
-
       {playerStats.length > 0
         ? <PlayerStats playerStats={playerStats} teams={teams} />
         : <></>}
-      {/* {players.length > 0
-        ? <div>{players[0].firstName}</div>
-        : <></>
-      }
-      {players.map(player =>
-        <div key={player.id}>
-          <p>{player.firstName} {player.lastName}</p>
-        </div>)} */}
-      {/* <PlayerFilter handleFilterChange={handleFilterChange} />
       <br></br>
-      <Players players={players} playerFilter={playerFilter} /> */}
-
       <Select
-        options={playersSelect}
-        onChange={(option) => getPlayerStats(option.value)}
+        options={playerSelect}
+        onChange={(option) => handleSelectedPlayerChange(option.value)}
+        //onChange={(option) => getPlayerStats(option.value)}
+        placeholder='Select player'
       />
+      <br></br>
+      <Select
+        isMulti
+        options={seasonSelect}
+        onChange={(options) => handleSelectedSeasonsChange(options.map(option => option.value))}
+        //value={selectedSeason}
+        closeMenuOnSelect={false}
+        placeholder='Select season(s)'
+      />
+      <br></br>
+      <div>selectedPlayer: {selectedPlayer}</div>
+      <br></br>
+      <div>selectedSeasons: {selectedSeasons.map(season =>
+        <div key={season}>
+          <p>{season}</p>
+        </div>)}
 
+      </div>
+      <br></br>
+      <button onClick={() => getPlayerStats(selectedPlayer, selectedSeasons)}>Get stats</button>
     </div>
+
 
   );
 }
