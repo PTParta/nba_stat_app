@@ -57,3 +57,7 @@ The following libraries will be used:
    then the maximum allowed connections to Atlas MongoDB can be reached quite quickly. The limit for cluster
    tier M2 is 500 connections. EDIT: THIS IS NOT A VALID POINT SINCE I THINK A CONNECTION MEANS A QUERY FROM
    USER AND IT'S NOT NEEDED TO HANDLE THOSE IN THE APP. ATLAS MONGODB TAKES CARE OF IT.
+
+## Features to do
+
+ - Moving averages to the stats: https://stackoverflow.com/questions/19981713/html5-js-chart-with-moving-average
