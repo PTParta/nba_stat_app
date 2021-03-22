@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Line, Bar, Scatter } from 'react-chartjs-2'
+import React from 'react'
+import { Line } from 'react-chartjs-2'
 const PlayerStats = ({ playerStats, teams, selectedSeasons }) => {
 
   const seasonsNumberFormat = selectedSeasons.map(season => Number(season))
@@ -62,20 +62,17 @@ const PlayerStats = ({ playerStats, teams, selectedSeasons }) => {
       },
     ],
   }
-
   return (
     <div>
       <br></br>
-      <h3>{playerStats[0].player.first_name} {playerStats[0].player.last_name} {Math.min.apply(Math, seasonsNumberFormat)} - {Math.max.apply(Math, seasonsNumberFormat)}
+      <h3 style={{ color: 'white', paddingLeft: '30px' }} >{playerStats[0].player.first_name} {playerStats[0].player.last_name} {Math.min.apply(Math, seasonsNumberFormat)} - {Math.max.apply(Math, seasonsNumberFormat)}
       </h3>
-
       <div className='chart'>
         <Line
           data={data}
         />
       </div>
       <div>
-
       </div>
     </div>
   )
