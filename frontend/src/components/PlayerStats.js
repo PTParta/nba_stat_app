@@ -1,8 +1,12 @@
 import React from 'react'
 import { Line } from 'react-chartjs-2'
 import trailingMeanService from '../services/trailingMeans'
+//import { Button } from 'react-bootstrap'
+
 const PlayerStats = ({ playerStats, teams, selectedSeasons }) => {
 
+  //const [statsData, setStatsData] = useState()
+  //const [showAll, setShowAll] = useState(true)
 
   const seasonsNumberFormat = selectedSeasons.map(season => Number(season))
   const data = {
@@ -15,17 +19,18 @@ const PlayerStats = ({ playerStats, teams, selectedSeasons }) => {
         backgroundColor: 'rgb(255, 99, 132)',
         borderColor: 'rgba(255, 99, 132, 0.2)',
         pointBackgroundColor: 'rgba(255, 99, 132, 0.3)',
-        showLine: false
+        showLine: false,
       },
       {
-        label: 'trailing mean',
-        data: trailingMeanService.pts(playerStats),
+        label: 'pts trailing mean',
+
         fill: false,
         backgroundColor: 'rgb(255, 99, 132)',
         borderColor: 'rgba(255, 99, 132, 0.7)',
         pointBackgroundColor: 'rgba(255, 99, 132, 1.0)',
         showLine: true,
-        pointRadius: 0
+        pointRadius: 0,
+        data: trailingMeanService.pts(playerStats),
       },
       {
         label: 'ast',
@@ -37,14 +42,15 @@ const PlayerStats = ({ playerStats, teams, selectedSeasons }) => {
         showLine: false
       },
       {
-        label: 'trailing mean',
-        data: trailingMeanService.ast(playerStats),
+        label: 'ast trailing mean',
+
         fill: false,
         backgroundColor: 'rgb(255, 99, 132)',
         borderColor: 'rgba(0, 255, 30, 1.0)',
         pointBackgroundColor: 'rgba(0, 255, 30, 1.0)',
         showLine: true,
-        pointRadius: 0
+        pointRadius: 0,
+        data: trailingMeanService.ast(playerStats),
       },
       {
         label: 'reb',
@@ -56,14 +62,15 @@ const PlayerStats = ({ playerStats, teams, selectedSeasons }) => {
         showLine: false
       },
       {
-        label: 'trailing mean',
-        data: trailingMeanService.reb(playerStats),
+        label: 'reb trailing mean',
+
         fill: false,
         backgroundColor: 'rgb(255, 99, 132)',
         borderColor: 'rgba(255, 230, 0, 1.0)',
         pointBackgroundColor: 'rgba(0, 255, 30, 1.0)',
         showLine: true,
-        pointRadius: 0
+        pointRadius: 0,
+        data: trailingMeanService.reb(playerStats),
       },
       {
         label: 'blk',
@@ -75,14 +82,15 @@ const PlayerStats = ({ playerStats, teams, selectedSeasons }) => {
         showLine: false
       },
       {
-        label: 'trailing mean',
-        data: trailingMeanService.blk(playerStats),
+        label: 'blk trailing mean',
+
         fill: false,
         backgroundColor: 'rgb(255, 99, 132)',
         borderColor: 'rgba(255, 0, 0, 1.0)',
         pointBackgroundColor: 'rgba(0, 255, 30, 1.0)',
         showLine: true,
-        pointRadius: 0
+        pointRadius: 0,
+        data: trailingMeanService.blk(playerStats),
       },
       {
         label: 'stl',
@@ -94,14 +102,15 @@ const PlayerStats = ({ playerStats, teams, selectedSeasons }) => {
         showLine: false
       },
       {
-        label: 'trailing mean',
-        data: trailingMeanService.stl(playerStats),
+        label: 'stl trailing mean',
+
         fill: false,
         backgroundColor: 'rgb(255, 99, 132)',
         borderColor: 'rgba(0, 247, 255, 1.0)',
         pointBackgroundColor: 'rgba(0, 255, 30, 1.0)',
         showLine: true,
-        pointRadius: 0
+        pointRadius: 0,
+        data: trailingMeanService.stl(playerStats),
       },
       {
         label: 'turnover',
@@ -113,15 +122,16 @@ const PlayerStats = ({ playerStats, teams, selectedSeasons }) => {
         showLine: false
       },
       {
-        label: 'trailing mean',
-        data: trailingMeanService.turnover(playerStats),
+        label: 'turnover trailing mean',
+
         fill: false,
         backgroundColor: 'rgb(255, 99, 132)',
         borderColor: 'rgba(255, 0, 255, 1.0)',
         pointBackgroundColor: 'rgba(0, 255, 30, 1.0)',
         showLine: true,
-        pointRadius: 0
-      },
+        pointRadius: 0,
+        data: trailingMeanService.turnover(playerStats),
+      }
     ],
   }
   return (
@@ -130,6 +140,11 @@ const PlayerStats = ({ playerStats, teams, selectedSeasons }) => {
       <h3 style={{ color: 'white', paddingLeft: '30px' }} >{playerStats[0].player.first_name} {playerStats[0].player.last_name} {Math.min.apply(Math, seasonsNumberFormat)} - {Math.max.apply(Math, seasonsNumberFormat)}
       </h3>
       <div className='chart'>
+
+        {/*  {statsData ? <Line
+          data={statsData}
+        /> : <></>} */}
+
         <Line
           data={data}
         />

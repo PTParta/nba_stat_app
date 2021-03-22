@@ -1,5 +1,5 @@
 
-const trailingGames = 10
+const trailingGames = 20
 
 const countTrailingMean = (playerStats, statCategory) => {
   let trailingAverage = []
