@@ -100,7 +100,7 @@ function App() {
           </Navbar.Collapse>
         </Navbar>
         {playerStats.length > 0
-          ? <PlayerStats playerStats={playerStats} teams={teams} />
+          ? <PlayerStats playerStats={playerStats} teams={teams} selectedSeasons={selectedSeasons} />
           : <></>}
         <br></br>
         <Select
@@ -120,13 +120,13 @@ function App() {
         <Button variant='primary' onClick={() => getPlayerStats(selectedPlayer, selectedSeasons)}>Get stats</Button>
         <br></br>
         <br></br>
-        <div>selectedPlayer: {selectedPlayer}</div>
+        {/* <div>selectedPlayer: {selectedPlayer}</div>
         <br></br>
         <div>selectedSeasons: {selectedSeasons.map(season =>
           <div key={season}>
             <p>{season}</p>
           </div>)}
-        </div>
+        </div> */}
       </div>
     </Router>
   );
