@@ -7,7 +7,6 @@ const SelectPlayer = ({ players, setSelectedPlayer }) => {
   const handleSelectedPlayerChange = (playerFullName) => {
     setSelectedPlayer(playerFullName)
   }
-
   return (
     <div>
       <Select
