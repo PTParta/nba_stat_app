@@ -3,7 +3,7 @@ import { Line } from 'react-chartjs-2'
 import trailingMeanService from '../services/trailingMeans'
 //import { Button } from 'react-bootstrap'
 
-const PlayerStats = ({ playerStats, teams, selectedSeasons/* , regularSeasonSelected, postSeasonSelected */ }) => {
+const PlayerStats = ({ playerStats, teams, selectedSeasons, regularSeasonSelected, postSeasonSelected }) => {
 
   //const [statsData, setStatsData] = useState()
   //const [showAll, setShowAll] = useState(true)
@@ -161,8 +161,19 @@ const PlayerStats = ({ playerStats, teams, selectedSeasons/* , regularSeasonSele
   return (
     <div>
       <br></br>
-      <h3 style={{ color: 'white', paddingLeft: '30px' }} >{playerStats[0].player.first_name} {playerStats[0].player.last_name} {Math.min.apply(Math, seasonsNumberFormat)} - {Math.max.apply(Math, seasonsNumberFormat)}
+      <h3 style={{ color: 'white', paddingLeft: '30px' }} >
+        {playerStats[0].player.first_name} {playerStats[0].player.last_name}
       </h3>
+      <h5 style={{ color: 'white', paddingLeft: '30px' }}>
+        {Math.min.apply(Math, seasonsNumberFormat)} - {Math.max.apply(Math, seasonsNumberFormat)}
+      </h5>
+      {regularSeasonSelected ? <h5 style={{ color: 'white', paddingLeft: '30px' }}>
+        Regular seasons
+      </h5> : <></>}
+      {postSeasonSelected ? <h5 style={{ color: 'white', paddingLeft: '30px' }}>
+        Post seasons
+      </h5> : <></>}
+
       <div className='chart'>
 
         {/*  {statsData ? <Line

@@ -52,6 +52,8 @@ function App() {
               playerStats={playerStats}
               teams={teams}
               selectedSeasons={selectedSeasons}
+              regularSeasonSelected={regularSeasonSelected}
+              postSeasonSelected={postSeasonSelected}
             />
             : <></>}
           <br></br>
