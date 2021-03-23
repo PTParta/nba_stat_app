@@ -6,6 +6,7 @@ import SelectPlayer from './components/SelectPlayer'
 import SelectSeasons from './components/SelectSeasons'
 import NavigationBar from './components/NavigationBar'
 import GetStats from './components/GetStats'
+import { Form } from 'react-bootstrap'
 //import Teams from './components/Teams'
 
 import {
@@ -25,6 +26,8 @@ function App() {
   const [teams, setTeams] = useState([])
   const [selectedPlayer, setSelectedPlayer] = useState('')
   const [selectedSeasons, setSelectedSeasons] = useState([])
+  const [regularSeasonSelected, setRegularSeasonSelected] = useState(false)
+  const [postSeasonSelected, setPostSeasonSelected] = useState(false)
 
   useEffect(() => {
     teamService.getTeams()
@@ -39,20 +42,53 @@ function App() {
       })
   }, [])
 
+  const handleRegularSeasonSelectedChange = (event) => {
+    setRegularSeasonSelected(!regularSeasonSelected)
+  }
+
+  const handlePostSeasonSelectedChange = (event) => {
+    setPostSeasonSelected(!postSeasonSelected)
+  }
+
   return (
     <Router>
       <div style={{ backgroundColor: "#17202A" }}>
         <div className="container" style={{ backgroundColor: "#17202A" }} >
           <NavigationBar />
           {playerStats.length > 0
-            ? <PlayerStats playerStats={playerStats} teams={teams} selectedSeasons={selectedSeasons} />
+            ? <PlayerStats
+              playerStats={playerStats}
+              teams={teams}
+              selectedSeasons={selectedSeasons}
+              /* regularSeasonSelected={regularSeasonSelected}
+              postSeasonSelected={postSeasonSelected} */ />
             : <></>}
           <br></br>
-          <SelectPlayer players={players} setSelectedPlayer={setSelectedPlayer} />
+          <SelectPlayer
+            players={players}
+            setSelectedPlayer={setSelectedPlayer} />
           <br></br>
-          <SelectSeasons setSelectedSeasons={setSelectedSeasons} />
+          <SelectSeasons
+            setSelectedSeasons={setSelectedSeasons} />
           <br></br>
-          <GetStats selectedPlayer={selectedPlayer} selectedSeasons={selectedSeasons} players={players} setPlayerStats={setPlayerStats} />
+          <Form.Check
+            onChange={() => handleRegularSeasonSelectedChange()}
+            style={{ color: 'white' }}
+            type="checkbox"
+            label="Regular season" />
+          <Form.Check
+            onChange={() => handlePostSeasonSelectedChange()}
+            style={{ color: 'white' }}
+            type="checkbox"
+            label="Post season" />
+          <br></br>
+          <GetStats
+            selectedPlayer={selectedPlayer}
+            selectedSeasons={selectedSeasons}
+            players={players}
+            setPlayerStats={setPlayerStats}
+            regularSeasonSelected={regularSeasonSelected}
+            postSeasonSelected={postSeasonSelected} />
           <br></br>
           <br></br>
         </div>

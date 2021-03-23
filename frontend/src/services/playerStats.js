@@ -31,14 +31,14 @@ const getPlayerStatsFromApi = async (seasons, playerId) => {
   return playerStatsAllPages
 }
 
-const getPlayerStatsFromDB = async (seasons, playerId) => {
+const getPlayerStatsFromDB = async (seasons, playerId, regularSeasonSelected, postSeasonSelected) => {
   let seasonHelper = ''
   seasons.forEach(season => {
     seasonHelper += `${season},`
   })
   
   console.log('seasonHelper', seasonHelper)
-  const playerStats = await axios.get(`${baseUrlDB}/${playerId}/${seasonHelper}`)
+  const playerStats = await axios.get(`${baseUrlDB}/${playerId}/${seasonHelper}/${regularSeasonSelected}/${postSeasonSelected}`)
   return playerStats
 }
 

@@ -3,14 +3,19 @@ import { Line } from 'react-chartjs-2'
 import trailingMeanService from '../services/trailingMeans'
 //import { Button } from 'react-bootstrap'
 
-const PlayerStats = ({ playerStats, teams, selectedSeasons }) => {
+const PlayerStats = ({ playerStats, teams, selectedSeasons/* , regularSeasonSelected, postSeasonSelected */ }) => {
 
   //const [statsData, setStatsData] = useState()
   //const [showAll, setShowAll] = useState(true)
 
   const seasonsNumberFormat = selectedSeasons.map(season => Number(season))
   const data = {
-    labels: playerStats.map(playerStat => playerStat.game.date.split('T')[0].concat('\n').concat(teams.find(team => team.id === playerStat.game.visitor_team_id).abbreviation).concat('@').concat(teams.find(team => team.id === playerStat.game.home_team_id).abbreviation)),
+    labels: playerStats.map(playerStat => playerStat.game.date.split('T')[0]
+      .concat('\n')
+      .concat(teams.find(team => team.id === playerStat.game.visitor_team_id).abbreviation)
+      .concat('@')
+      .concat(teams.find(team => team.id === playerStat.game.home_team_id).abbreviation)
+      .concat(playerStat.game.postseason ? ' POST' : ' REG')),
     datasets: [
       {
         label: 'pts',
@@ -20,6 +25,7 @@ const PlayerStats = ({ playerStats, teams, selectedSeasons }) => {
         borderColor: 'rgba(255, 99, 132, 0.2)',
         pointBackgroundColor: 'rgba(255, 99, 132, 0.3)',
         showLine: false,
+
       },
       {
         label: 'pts trailing mean',
