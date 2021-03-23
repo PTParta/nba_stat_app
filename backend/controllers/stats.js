@@ -5,14 +5,15 @@ const baseUrl = 'https://www.balldontlie.io/api/v1/stats'
 
 statsRouter.get('/statsfromapitodatabase', async (_req, _res) => {
 
-  let apiPageNumber = 11298
+  let apiPageNumber = 11295
   //1-11298
   //11298-11301
+  //11301-11311
   const getStats = async () => {
     let stats = []
     //let apiPageNumber = 1
     const apiPerPage = 100
-    const total_pages = 11301
+    const total_pages = 11312
     while (apiPageNumber <= total_pages) {
       console.log(`getting stats, page ${apiPageNumber}`)
       let statsOnOnePage = await axios.get(`${baseUrl}?per_page=${apiPerPage}&page=${apiPageNumber}`)
@@ -24,8 +25,9 @@ statsRouter.get('/statsfromapitodatabase', async (_req, _res) => {
           const options = { upsert: true }
           const updateDoc = { $set: stat }
           const savedStat = await Stat.updateOne(filter, updateDoc, options)
-          console.log('updated / added', savedStat.id, 'to database')
+          //console.log('updated / added', savedStat, 'to database')
         }
+        stats = []
         console.log('finished saving stats to database')
         /* console.log('saving stats to database...')
         await Stat.insertMany(stats)

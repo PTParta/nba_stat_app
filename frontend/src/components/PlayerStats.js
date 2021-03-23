@@ -123,7 +123,6 @@ const PlayerStats = ({ playerStats, teams, selectedSeasons }) => {
       },
       {
         label: 'turnover trailing mean',
-
         fill: false,
         backgroundColor: 'rgb(255, 99, 132)',
         borderColor: 'rgba(255, 0, 255, 1.0)',
@@ -131,7 +130,26 @@ const PlayerStats = ({ playerStats, teams, selectedSeasons }) => {
         showLine: true,
         pointRadius: 0,
         data: trailingMeanService.turnover(playerStats),
-      }
+      },
+      {
+        label: 'min',
+        data: playerStats.map(playerStat => playerStat.min ? Number(playerStat.min.split(':')[0]) : null),
+        fill: false,
+        backgroundColor: 'rgb(255, 99, 132)',
+        borderColor: 'rgba(255, 140, 0, 0.2)',
+        pointBackgroundColor: 'rgba(255, 140, 0 0.3)',
+        showLine: false
+      },
+      {
+        label: 'min trailing mean',
+        fill: false,
+        backgroundColor: 'rgb(255, 99, 132)',
+        borderColor: 'rgba(255, 140, 0, 1.0)',
+        pointBackgroundColor: 'rgba(255, 140, 0, 1.0)',
+        showLine: true,
+        pointRadius: 0,
+        data: trailingMeanService.min(playerStats),
+      },
     ],
   }
   return (

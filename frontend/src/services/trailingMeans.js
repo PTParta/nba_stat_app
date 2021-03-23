@@ -34,6 +34,10 @@ const stl = (playerStats) => {
 const turnover = (playerStats) => {
   return countTrailingMean(playerStats, 'turnover')
 }
-const trailingMeanService = { pts, ast, reb, blk, stl, turnover }
+const min = (playerStats) => {
+  playerStats = playerStats.map(playerStat => ({ ...playerStat, min: playerStat.min ? Number(playerStat.min.split(':')[0]) : null }))
+  return countTrailingMean(playerStats, 'min')
+}
+const trailingMeanService = { pts, ast, reb, blk, stl, turnover, min }
 
 export default trailingMeanService
