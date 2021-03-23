@@ -10,7 +10,7 @@ statDBRouter.get('/statsfromdb/:playerid/:seasons', async (request, response) =>
   const seasonsArray = request.params.seasons.split(",")
   console.log('seasonsArray', seasonsArray)
   let startTime = new Date().getTime()
-  const stats = await Stat.find({ 'player.id': request.params.playerid, 'game.season': seasonsArray })
+  const stats = await Stat.find({ 'player.id': request.params.playerid, 'game.season': { $in: seasonsArray }, 'min': { $ne: null } })
   let endTime = new Date().getTime()
   console.log('finished retrieving data from database')
   console.log(`time ${endTime - startTime} ms`)
