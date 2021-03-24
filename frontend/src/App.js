@@ -44,7 +44,12 @@ function App() {
 
   return (
     <Router>
-      <div style={{ backgroundColor: "#17202A" }}>
+      <div style={{
+        backgroundColor: "#17202A",
+        height: '100vh',
+        display: 'flex',
+        flexDirection: 'column'
+      }}>
         <div className="container" style={{ backgroundColor: "#17202A" }} >
           <NavigationBar />
           {playerStats.length > 0
@@ -84,6 +89,7 @@ function App() {
           <br></br>
           <br></br>
         </div>
+
       </div>
     </Router>
   );
