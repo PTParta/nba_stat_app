@@ -8,7 +8,7 @@ const PlayerStats = ({ playerStats, teams, selectedSeasons, regularSeasonSelecte
   //const [statsData, setStatsData] = useState()
   //const [showAll, setShowAll] = useState(true)
 
-  const seasonsNumberFormat = selectedSeasons.map(season => Number(season))
+  //const seasonsNumberFormat = selectedSeasons.map(season => Number(season))
   const data = {
     labels: playerStats.map(playerStat => playerStat.game.date.split('T')[0]
       .concat('\n')
@@ -25,7 +25,7 @@ const PlayerStats = ({ playerStats, teams, selectedSeasons, regularSeasonSelecte
         borderColor: 'rgba(255, 99, 132, 0.2)',
         pointBackgroundColor: 'rgba(255, 99, 132, 0.3)',
         showLine: false,
-
+        //hidden: true
       },
       {
         label: 'pts trailing mean',
@@ -37,6 +37,7 @@ const PlayerStats = ({ playerStats, teams, selectedSeasons, regularSeasonSelecte
         showLine: true,
         pointRadius: 0,
         data: trailingMeanService.pts(playerStats),
+        //hidden:true
       },
       {
         label: 'ast',
@@ -144,7 +145,7 @@ const PlayerStats = ({ playerStats, teams, selectedSeasons, regularSeasonSelecte
         backgroundColor: 'rgb(255, 99, 132)',
         borderColor: 'rgba(255, 140, 0, 0.2)',
         pointBackgroundColor: 'rgba(255, 140, 0 0.3)',
-        showLine: false
+        showLine: false,
       },
       {
         label: 'min trailing mean',

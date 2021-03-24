@@ -7,6 +7,7 @@ import SelectSeasons from './components/SelectSeasons'
 import NavigationBar from './components/NavigationBar'
 import GetStats from './components/GetStats'
 import SelectRegularPost from './components/SelectRegularPost'
+import SelectStats from './components/SelectStats'
 //import Teams from './components/Teams'
 
 import {
@@ -28,6 +29,25 @@ function App() {
   const [selectedSeasons, setSelectedSeasons] = useState([])
   const [regularSeasonSelected, setRegularSeasonSelected] = useState(false)
   const [postSeasonSelected, setPostSeasonSelected] = useState(false)
+
+  const [ptsSelected, setPtsSelected] = useState(false)
+  const [astSelected, setAstSelected] = useState(false)
+  const [rebSelected, setRebSelected] = useState(false)
+  const [drebSelected, setDrebSelected] = useState(false)
+  const [orebSelected, setOrebSelected] = useState(false)
+  const [blkSelected, setBlkSelected] = useState(false)
+  const [stlSelected, setStlSelected] = useState(false)
+  const [turnoverSelected, setTurnoverSelected] = useState(false)
+  const [fgaSelected, setFgaSelected] = useState(false)
+  const [fgmSelected, setFgmSelected] = useState(false)
+  const [fg_pctSelected, setFg_pctSelected] = useState(false)
+  const [fg3aSelected, setFg3aSelected] = useState(false)
+  const [fg3mSelected, setFg3mSelected] = useState(false)
+  const [fg3_pctSelected, setFg3_pctSelected] = useState(false)
+  const [ftaSelected, setFtaSelected] = useState(false)
+  const [ftmSelected, setFtmSelected] = useState(false)
+  const [ft_pctSelected, setFt_pctSelected] = useState(false)
+  const [pfSelected, setPfSelected] = useState(false)
 
   useEffect(() => {
     teamService.getTeams()
@@ -78,6 +98,44 @@ function App() {
             setPostSeasonSelected={setPostSeasonSelected}
           />
           <br></br>
+          <SelectStats
+            ptsSelected={ptsSelected}
+            setPtsSelected={setPtsSelected}
+            astSelected={astSelected}
+            setAstSelected={setAstSelected}
+            rebSelected={rebSelected}
+            setRebSelected={setRebSelected}
+            drebSelected={drebSelected}
+            setDrebSelected={setDrebSelected}
+            orebSelected={orebSelected}
+            setOrebSelected={setOrebSelected}
+            blkSelected={blkSelected}
+            setBlkSelected={setBlkSelected}
+            stlSelected={stlSelected}
+            setStlSelected={setStlSelected}
+            turnoverSelected={turnoverSelected}
+            setTurnoverSelected={setTurnoverSelected}
+            fgaSelected={fgaSelected}
+            setFgaSelected={setFgaSelected}
+            fgmSelected={fgmSelected}
+            setFgmSelected={setFgmSelected}
+            fg_pctSelected={fg_pctSelected}
+            setFg_pctSelected={setFg_pctSelected}
+            fg3aSelected={fg3aSelected}
+            setFg3aSelected={setFg3aSelected}
+            fg3mSelected={fg3mSelected}
+            setFg3mSelected={setFg3mSelected}
+            fg3_pctSelected={fg3_pctSelected}
+            setFg3_pctSelected={setFg3_pctSelected}
+            ftaSelected={ftaSelected}
+            setFtaSelected={setFtaSelected}
+            ftmSelected={ftmSelected}
+            setFtmSelected={setFtmSelected}
+            ft_pctSelected={ft_pctSelected}
+            setFt_pctSelected={setFt_pctSelected}
+            pfSelected={pfSelected}
+            setPfSelected={setPfSelected} />
+
           <GetStats
             selectedPlayer={selectedPlayer}
             selectedSeasons={selectedSeasons}

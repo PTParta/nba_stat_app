@@ -14,15 +14,17 @@ const SelectRegularPost = ({ regularSeasonSelected, postSeasonSelected, setRegul
   return (
     <div>
       <Form.Check
+        inline={true}
         onChange={() => handleRegularSeasonSelectedChange()}
         style={{ color: 'white' }}
         type="checkbox"
-        label="Regular season" />
+        label="regular season" />
       <Form.Check
+        inline={true}
         onChange={() => handlePostSeasonSelectedChange()}
         style={{ color: 'white' }}
         type="checkbox"
-        label="Post season" />
+        label="post season" />
     </div>
 
   )
