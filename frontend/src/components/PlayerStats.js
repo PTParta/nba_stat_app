@@ -1,7 +1,6 @@
 import React from 'react'
 import { Line } from 'react-chartjs-2'
 import trailingMeanService from '../services/trailingMeans'
-//import { Button } from 'react-bootstrap'
 
 const PlayerStats = (
   {
@@ -11,50 +10,27 @@ const PlayerStats = (
     regularSeasonSelected,
     postSeasonSelected,
     ptsSelected,
-    setPtsSelected,
     astSelected,
-    setAstSelected,
     rebSelected,
-    setRebSelected,
     drebSelected,
-    setDrebSelected,
     orebSelected,
-    setOrebSelected,
     blkSelected,
-    setBlkSelected,
     stlSelected,
-    setStlSelected,
     turnoverSelected,
-    setTurnoverSelected,
     fgaSelected,
-    setFgaSelected,
     fgmSelected,
-    setFgmSelected,
     fg_pctSelected,
-    setFg_pctSelected,
     fg3aSelected,
-    setFg3aSelected,
     fg3mSelected,
-    setFg3mSelected,
     fg3_pctSelected,
-    setFg3_pctSelected,
     ftaSelected,
-    setFtaSelected,
     ftmSelected,
-    setFtmSelected,
     ft_pctSelected,
-    setFt_pctSelected,
     pfSelected,
     minSelected,
-    setMinSelected,
     setPfSelected
   }
 ) => {
-  console.log('ptsSelected in playerStats', ptsSelected)
-  //const [statsData, setStatsData] = useState()
-  //const [showAll, setShowAll] = useState(true)
-
-  //const seasonsNumberFormat = selectedSeasons.map(season => Number(season))
 
   const colors = {
     'maroonDot': 'rgba(128,0,0,0.3)',
@@ -101,9 +77,13 @@ const PlayerStats = (
     'whiteLine': 'rgba(255,255,255,1.0)'
   }
 
-
-
-
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    legend: {
+      onClick: (e) => e.stopPropagation()
+    }
+  }
   const data = {
     labels: playerStats.map(playerStat => playerStat.game.date.split('T')[0]
       .concat('\n')
@@ -116,11 +96,8 @@ const PlayerStats = (
         label: 'pts',
         data: playerStats.map(playerStat => playerStat.pts),
         fill: false,
-        //backgroundColor: 'rgb(255, 99, 132)',
         borderColor: colors.maroonDot,
         pointBackgroundColor: colors.maroonDot,
-        /* borderColor: 'rgba(255, 99, 132, 0.3)',
-        pointBackgroundColor: 'rgba(255, 99, 132, 0.3)', */
         showLine: false,
         hidden: !ptsSelected
       },
@@ -128,7 +105,6 @@ const PlayerStats = (
         label: 'pts trailing mean',
 
         fill: false,
-        //backgroundColor: 'rgb(255, 99, 132)',
         borderColor: colors.maroonLine,
         pointBackgroundColor: colors.maroonLine,
         showLine: true,
@@ -140,7 +116,6 @@ const PlayerStats = (
         label: 'ast',
         data: playerStats.map(playerStat => playerStat.ast),
         fill: false,
-        //backgroundColor: 'rgb(255, 99, 132)',
         borderColor: colors.brownDot,
         pointBackgroundColor: colors.brownDot,
         showLine: false,
@@ -150,7 +125,6 @@ const PlayerStats = (
         label: 'ast trailing mean',
 
         fill: false,
-        //backgroundColor: 'rgb(255, 99, 132)',
         borderColor: colors.brownLine,
         pointBackgroundColor: colors.brownLine,
         showLine: true,
@@ -162,7 +136,6 @@ const PlayerStats = (
         label: 'reb',
         data: playerStats.map(playerStat => playerStat.reb),
         fill: false,
-        //backgroundColor: 'rgb(255, 99, 132)',
         borderColor: colors.oliveDot,
         pointBackgroundColor: colors.oliveDot,
         showLine: false,
@@ -172,7 +145,6 @@ const PlayerStats = (
         label: 'reb trailing mean',
 
         fill: false,
-        //backgroundColor: 'rgb(255, 99, 132)',
         borderColor: colors.oliveLine,
         pointBackgroundColor: colors.oliveLine,
         showLine: true,
@@ -184,7 +156,6 @@ const PlayerStats = (
         label: 'blk',
         data: playerStats.map(playerStat => playerStat.blk),
         fill: false,
-        //backgroundColor: 'rgb(255, 99, 132)',
         borderColor: colors.tealDot,
         pointBackgroundColor: colors.tealDot,
         showLine: false,
@@ -194,7 +165,6 @@ const PlayerStats = (
         label: 'blk trailing mean',
 
         fill: false,
-        //backgroundColor: 'rgb(255, 99, 132)',
         borderColor: colors.tealLine,
         pointBackgroundColor: colors.tealLine,
         showLine: true,
@@ -206,7 +176,6 @@ const PlayerStats = (
         label: 'stl',
         data: playerStats.map(playerStat => playerStat.stl),
         fill: false,
-        //backgroundColor: 'rgb(255, 99, 132)',
         borderColor: colors.navyDot,
         pointBackgroundColor: colors.navyDot,
         showLine: false,
@@ -216,7 +185,6 @@ const PlayerStats = (
         label: 'stl trailing mean',
 
         fill: false,
-        //backgroundColor: 'rgb(255, 99, 132)',
         borderColor: colors.navyLine,
         pointBackgroundColor: colors.navyLine,
         showLine: true,
@@ -228,7 +196,6 @@ const PlayerStats = (
         label: 'turnover',
         data: playerStats.map(playerStat => playerStat.turnover),
         fill: false,
-        //backgroundColor: 'rgb(255, 99, 132)',
         borderColor: colors.redDot,
         pointBackgroundColor: colors.redDot,
         showLine: false,
@@ -237,7 +204,6 @@ const PlayerStats = (
       {
         label: 'turnover trailing mean',
         fill: false,
-        //backgroundColor: 'rgb(255, 99, 132)',
         borderColor: colors.redLine,
         pointBackgroundColor: colors.redLine,
         showLine: true,
@@ -249,7 +215,6 @@ const PlayerStats = (
         label: 'min',
         data: playerStats.map(playerStat => playerStat.min ? Number(playerStat.min.split(':')[0]) : null),
         fill: false,
-        //backgroundColor: 'rgb(255, 99, 132)',
         borderColor: colors.orangeDot,
         pointBackgroundColor: colors.orangeDot,
         showLine: false,
@@ -258,7 +223,6 @@ const PlayerStats = (
       {
         label: 'min trailing mean',
         fill: false,
-        //backgroundColor: 'rgb(255, 99, 132)',
         borderColor: colors.orangeLine,
         pointBackgroundColor: colors.orangeLine,
         showLine: true,
@@ -274,24 +238,11 @@ const PlayerStats = (
       <h3 style={{ color: 'white', paddingLeft: '30px' }} >
         {playerStats[0].player.first_name} {playerStats[0].player.last_name}
       </h3>
-      {/* <h5 style={{ color: 'white', paddingLeft: '30px' }}>
-        {Math.min.apply(Math, seasonsNumberFormat)} - {Math.max.apply(Math, seasonsNumberFormat)}
-      </h5>
-      {regularSeasonSelected ? <h5 style={{ color: 'white', paddingLeft: '30px' }}>
-        Regular seasons
-      </h5> : <></>}
-      {postSeasonSelected ? <h5 style={{ color: 'white', paddingLeft: '30px' }}>
-        Post seasons
-      </h5> : <></>} */}
       <br></br>
       <div className='chart'>
-
-        {/*  {statsData ? <Line
-          data={statsData}
-        /> : <></>} */}
-
         <Line
           data={data}
+          options={options}
         />
       </div>
       <div>
