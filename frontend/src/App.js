@@ -48,6 +48,7 @@ function App() {
   const [ftmSelected, setFtmSelected] = useState(false)
   const [ft_pctSelected, setFt_pctSelected] = useState(false)
   const [pfSelected, setPfSelected] = useState(false)
+  const [minSelected, setMinSelected] = useState(false)
 
   useEffect(() => {
     teamService.getTeams()
@@ -79,6 +80,25 @@ function App() {
               selectedSeasons={selectedSeasons}
               regularSeasonSelected={regularSeasonSelected}
               postSeasonSelected={postSeasonSelected}
+              ptsSelected={ptsSelected}
+              astSelected={astSelected}
+              rebSelected={rebSelected}
+              drebSelected={drebSelected}
+              orebSelected={orebSelected}
+              blkSelected={blkSelected}
+              stlSelected={stlSelected}
+              turnoverSelected={turnoverSelected}
+              fgaSelected={fgaSelected}
+              fgmSelected={fgmSelected}
+              fg_pctSelected={fg_pctSelected}
+              fg3aSelected={fg3aSelected}
+              fg3mSelected={fg3mSelected}
+              fg3_pctSelected={fg3_pctSelected}
+              ftaSelected={ftaSelected}
+              ftmSelected={ftmSelected}
+              ft_pctSelected={ft_pctSelected}
+              pfSelected={pfSelected}
+              minSelected={minSelected}
             />
             : <></>}
           <br></br>
@@ -134,7 +154,9 @@ function App() {
             ft_pctSelected={ft_pctSelected}
             setFt_pctSelected={setFt_pctSelected}
             pfSelected={pfSelected}
-            setPfSelected={setPfSelected} />
+            setPfSelected={setPfSelected}
+            minSelected={minSelected}
+            setMinSelected={setMinSelected} />
 
           <GetStats
             selectedPlayer={selectedPlayer}

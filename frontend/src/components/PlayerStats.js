@@ -3,12 +3,107 @@ import { Line } from 'react-chartjs-2'
 import trailingMeanService from '../services/trailingMeans'
 //import { Button } from 'react-bootstrap'
 
-const PlayerStats = ({ playerStats, teams, selectedSeasons, regularSeasonSelected, postSeasonSelected }) => {
-
+const PlayerStats = (
+  {
+    playerStats,
+    teams,
+    selectedSeasons,
+    regularSeasonSelected,
+    postSeasonSelected,
+    ptsSelected,
+    setPtsSelected,
+    astSelected,
+    setAstSelected,
+    rebSelected,
+    setRebSelected,
+    drebSelected,
+    setDrebSelected,
+    orebSelected,
+    setOrebSelected,
+    blkSelected,
+    setBlkSelected,
+    stlSelected,
+    setStlSelected,
+    turnoverSelected,
+    setTurnoverSelected,
+    fgaSelected,
+    setFgaSelected,
+    fgmSelected,
+    setFgmSelected,
+    fg_pctSelected,
+    setFg_pctSelected,
+    fg3aSelected,
+    setFg3aSelected,
+    fg3mSelected,
+    setFg3mSelected,
+    fg3_pctSelected,
+    setFg3_pctSelected,
+    ftaSelected,
+    setFtaSelected,
+    ftmSelected,
+    setFtmSelected,
+    ft_pctSelected,
+    setFt_pctSelected,
+    pfSelected,
+    minSelected,
+    setMinSelected,
+    setPfSelected
+  }
+) => {
+  console.log('ptsSelected in playerStats', ptsSelected)
   //const [statsData, setStatsData] = useState()
   //const [showAll, setShowAll] = useState(true)
 
   //const seasonsNumberFormat = selectedSeasons.map(season => Number(season))
+
+  const colors = {
+    'maroonDot': 'rgba(128,0,0,0.3)',
+    'maroonLine': 'rgba(128,0,0,1.0)',
+    'brownDot': 'rgba(170,110,40,0.3)',
+    'brownLine': 'rgba(170,110,40,1.0)',
+    'oliveDot': 'rgba(128,128,0,0.3)',
+    'oliveLine': 'rgba(128,128,0,1.0)',
+    'tealDot': 'rgba(0,128,128,0.3)',
+    'tealLine': 'rgba(0,128,128,1.0)',
+    'navyDot': 'rgba(0,0,128,0.3)',
+    'navyLine': 'rgba(0,0,128,1.0)',
+    'redDot': 'rgba(230,25,75,0.3)',
+    'redLine': 'rgba(230,25,75,1.0)',
+    'orangeDot': 'rgba(245,130,48,0.3)',
+    'orangeLine': 'rgba(245,130,48,1.0)',
+    'yellowDot': 'rgba(255,225,25,0.3)',
+    'yellowLine': 'rgba(255,225,25,1.0)',
+    'limeDot': 'rgba(210,245,60,0.3)',
+    'limeLine': 'rgba(210,245,60,1.0)',
+    'greenDot': 'rgba(60,180,75,0.3)',
+    'greenLine': 'rgba(60,180,75,1.0)',
+    'cyanDot': 'rgba(70,240,240,0.3)',
+    'cyanLine': 'rgba(70,240,240,1.0)',
+    'blueDot': 'rgba(0,130,200,0.3)',
+    'blueLine': 'rgba(0,130,200,1.0)',
+    'purpleDot': 'rgba(145,30,180,0.3)',
+    'purpleLine': 'rgba(145,30,180,1.0)',
+    'magentaDot': 'rgba(240,50,230,0.3)',
+    'magentaLine': 'rgba(240,50,230,1.0)',
+    'greyDot': 'rgba(128,128,128,0.3)',
+    'greyLine': 'rgba(128,128,128,1.0)',
+    'pinkDot': 'rgba(250,190,212,0.3)',
+    'pinkLine': 'rgba(250,190,212,1.0)',
+    'apricotDot': 'rgba(255,215,180,0.3)',
+    'apricotLine': 'rgba(255,215,180,1.0)',
+    'beigeDot': 'rgba(255,250,200,0.3)',
+    'beigeLine': 'rgba(255,250,200,1.0)',
+    'mintDot': 'rgba(170,255,195,0.3)',
+    'mintLine': 'rgba(170,255,195,1.0)',
+    'lavenderDot': 'rgba(220,190,255,0.3)',
+    'lavenderLine': 'rgba(220,190,255,1.0)',
+    'whiteDot': 'rgba(255,255,255,0.3)',
+    'whiteLine': 'rgba(255,255,255,1.0)'
+  }
+
+
+
+
   const data = {
     labels: playerStats.map(playerStat => playerStat.game.date.split('T')[0]
       .concat('\n')
@@ -21,141 +116,155 @@ const PlayerStats = ({ playerStats, teams, selectedSeasons, regularSeasonSelecte
         label: 'pts',
         data: playerStats.map(playerStat => playerStat.pts),
         fill: false,
-        backgroundColor: 'rgb(255, 99, 132)',
-        borderColor: 'rgba(255, 99, 132, 0.2)',
-        pointBackgroundColor: 'rgba(255, 99, 132, 0.3)',
+        //backgroundColor: 'rgb(255, 99, 132)',
+        borderColor: colors.maroonDot,
+        pointBackgroundColor: colors.maroonDot,
+        /* borderColor: 'rgba(255, 99, 132, 0.3)',
+        pointBackgroundColor: 'rgba(255, 99, 132, 0.3)', */
         showLine: false,
-        //hidden: true
+        hidden: !ptsSelected
       },
       {
         label: 'pts trailing mean',
 
         fill: false,
-        backgroundColor: 'rgb(255, 99, 132)',
-        borderColor: 'rgba(255, 99, 132, 0.7)',
-        pointBackgroundColor: 'rgba(255, 99, 132, 1.0)',
+        //backgroundColor: 'rgb(255, 99, 132)',
+        borderColor: colors.maroonLine,
+        pointBackgroundColor: colors.maroonLine,
         showLine: true,
         pointRadius: 0,
         data: trailingMeanService.pts(playerStats),
-        //hidden:true
+        hidden: !ptsSelected
       },
       {
         label: 'ast',
         data: playerStats.map(playerStat => playerStat.ast),
         fill: false,
-        backgroundColor: 'rgb(255, 99, 132)',
-        borderColor: 'rgba(0, 255, 30, 0.2)',
-        pointBackgroundColor: 'rgba(0, 255, 30, 0.3)',
-        showLine: false
+        //backgroundColor: 'rgb(255, 99, 132)',
+        borderColor: colors.brownDot,
+        pointBackgroundColor: colors.brownDot,
+        showLine: false,
+        hidden: !astSelected
       },
       {
         label: 'ast trailing mean',
 
         fill: false,
-        backgroundColor: 'rgb(255, 99, 132)',
-        borderColor: 'rgba(0, 255, 30, 1.0)',
-        pointBackgroundColor: 'rgba(0, 255, 30, 1.0)',
+        //backgroundColor: 'rgb(255, 99, 132)',
+        borderColor: colors.brownLine,
+        pointBackgroundColor: colors.brownLine,
         showLine: true,
         pointRadius: 0,
         data: trailingMeanService.ast(playerStats),
+        hidden: !astSelected
       },
       {
         label: 'reb',
         data: playerStats.map(playerStat => playerStat.reb),
         fill: false,
-        backgroundColor: 'rgb(255, 99, 132)',
-        borderColor: 'rgba(255, 230, 0, 0.3)',
-        pointBackgroundColor: 'rgba(255, 230, 0, 0.3)',
-        showLine: false
+        //backgroundColor: 'rgb(255, 99, 132)',
+        borderColor: colors.oliveDot,
+        pointBackgroundColor: colors.oliveDot,
+        showLine: false,
+        hidden: !rebSelected
       },
       {
         label: 'reb trailing mean',
 
         fill: false,
-        backgroundColor: 'rgb(255, 99, 132)',
-        borderColor: 'rgba(255, 230, 0, 1.0)',
-        pointBackgroundColor: 'rgba(0, 255, 30, 1.0)',
+        //backgroundColor: 'rgb(255, 99, 132)',
+        borderColor: colors.oliveLine,
+        pointBackgroundColor: colors.oliveLine,
         showLine: true,
         pointRadius: 0,
         data: trailingMeanService.reb(playerStats),
+        hidden: !rebSelected
       },
       {
         label: 'blk',
         data: playerStats.map(playerStat => playerStat.blk),
         fill: false,
-        backgroundColor: 'rgb(255, 99, 132)',
-        borderColor: 'rgba(255, 0, 0, 0.3)',
-        pointBackgroundColor: 'rgba(255, 0, 0, 1.0)',
-        showLine: false
+        //backgroundColor: 'rgb(255, 99, 132)',
+        borderColor: colors.tealDot,
+        pointBackgroundColor: colors.tealDot,
+        showLine: false,
+        hidden: !blkSelected
       },
       {
         label: 'blk trailing mean',
 
         fill: false,
-        backgroundColor: 'rgb(255, 99, 132)',
-        borderColor: 'rgba(255, 0, 0, 1.0)',
-        pointBackgroundColor: 'rgba(0, 255, 30, 1.0)',
+        //backgroundColor: 'rgb(255, 99, 132)',
+        borderColor: colors.tealLine,
+        pointBackgroundColor: colors.tealLine,
         showLine: true,
         pointRadius: 0,
         data: trailingMeanService.blk(playerStats),
+        hidden: !blkSelected
       },
       {
         label: 'stl',
         data: playerStats.map(playerStat => playerStat.stl),
         fill: false,
-        backgroundColor: 'rgb(255, 99, 132)',
-        borderColor: 'rgba(0, 247, 255, 0.2)',
-        pointBackgroundColor: 'rgba(0, 247, 255, 0.3)',
-        showLine: false
+        //backgroundColor: 'rgb(255, 99, 132)',
+        borderColor: colors.navyDot,
+        pointBackgroundColor: colors.navyDot,
+        showLine: false,
+        hidden: !stlSelected
       },
       {
         label: 'stl trailing mean',
 
         fill: false,
-        backgroundColor: 'rgb(255, 99, 132)',
-        borderColor: 'rgba(0, 247, 255, 1.0)',
-        pointBackgroundColor: 'rgba(0, 255, 30, 1.0)',
+        //backgroundColor: 'rgb(255, 99, 132)',
+        borderColor: colors.navyLine,
+        pointBackgroundColor: colors.navyLine,
         showLine: true,
         pointRadius: 0,
         data: trailingMeanService.stl(playerStats),
+        hidden: !stlSelected
       },
       {
         label: 'turnover',
         data: playerStats.map(playerStat => playerStat.turnover),
         fill: false,
-        backgroundColor: 'rgb(255, 99, 132)',
-        borderColor: 'rgba(255, 0, 255, 0.2)',
-        pointBackgroundColor: 'rgba(255, 0, 255, 0.3)',
-        showLine: false
+        //backgroundColor: 'rgb(255, 99, 132)',
+        borderColor: colors.redDot,
+        pointBackgroundColor: colors.redDot,
+        showLine: false,
+        hidden: !turnoverSelected
       },
       {
         label: 'turnover trailing mean',
         fill: false,
-        backgroundColor: 'rgb(255, 99, 132)',
-        borderColor: 'rgba(255, 0, 255, 1.0)',
-        pointBackgroundColor: 'rgba(0, 255, 30, 1.0)',
+        //backgroundColor: 'rgb(255, 99, 132)',
+        borderColor: colors.redLine,
+        pointBackgroundColor: colors.redLine,
         showLine: true,
         pointRadius: 0,
         data: trailingMeanService.turnover(playerStats),
+        hidden: !turnoverSelected
       },
       {
         label: 'min',
         data: playerStats.map(playerStat => playerStat.min ? Number(playerStat.min.split(':')[0]) : null),
         fill: false,
-        backgroundColor: 'rgb(255, 99, 132)',
-        borderColor: 'rgba(255, 140, 0, 0.2)',
-        pointBackgroundColor: 'rgba(255, 140, 0 0.3)',
+        //backgroundColor: 'rgb(255, 99, 132)',
+        borderColor: colors.orangeDot,
+        pointBackgroundColor: colors.orangeDot,
         showLine: false,
+        hidden: !minSelected
       },
       {
         label: 'min trailing mean',
         fill: false,
-        backgroundColor: 'rgb(255, 99, 132)',
-        borderColor: 'rgba(255, 140, 0, 1.0)',
-        pointBackgroundColor: 'rgba(255, 140, 0, 1.0)',
+        //backgroundColor: 'rgb(255, 99, 132)',
+        borderColor: colors.orangeLine,
+        pointBackgroundColor: colors.orangeLine,
         showLine: true,
         pointRadius: 0,
         data: trailingMeanService.min(playerStats),
+        hidden: !minSelected
       },
     ],
   }

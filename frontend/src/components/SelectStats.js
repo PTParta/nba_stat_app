@@ -39,6 +39,8 @@ const SelectStats = (
     ft_pctSelected,
     setFt_pctSelected,
     pfSelected,
+    minSelected,
+    setMinSelected,
     setPfSelected
   }
 ) => {
@@ -81,6 +83,11 @@ const SelectStats = (
           onChange={() => setPfSelected(!pfSelected)}
           type="checkbox"
           label="pf" />
+        <Form.Check
+          inline={true}
+          onChange={() => setMinSelected(!minSelected)}
+          type="checkbox"
+          label="min" />
       </Form>
       <br></br>
       <Form>
@@ -154,6 +161,7 @@ const SelectStats = (
       <p>blk:{blkSelected.toString()}</p>
       <p>stl:{stlSelected.toString()}</p>
       <p>turnover:{turnoverSelected.toString()}</p>
+      <p>min:{minSelected.toString()}</p>
       <p>pf:{pfSelected.toString()}</p>
       <br></br>
       <p>dreb:{drebSelected.toString()}</p>
