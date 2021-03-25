@@ -78,8 +78,8 @@ const PlayerStats = (
   }
 
   const options = {
-    responsive: true,
-    maintainAspectRatio: false,
+    //responsive: true,
+    //maintainAspectRatio: false,
     legend: {
       onClick: (e) => e.stopPropagation()
     }
@@ -93,8 +93,9 @@ const PlayerStats = (
       .concat(playerStat.game.postseason ? ' POST' : ' REG')),
     datasets: [
       {
+        //data: playerStats.map(playerStat => (playerStat.pts && playerStat.game.postseason === true)),
         label: 'pts',
-        data: playerStats.map(playerStat => playerStat.pts),
+        data: playerStats/* .filter(playerStat => playerStat.game.postseason === true) */.map(playerStat => playerStat.pts),
         fill: false,
         borderColor: colors.maroonDot,
         pointBackgroundColor: colors.maroonDot,

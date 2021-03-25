@@ -8,6 +8,7 @@ import NavigationBar from './components/NavigationBar'
 import GetStats from './components/GetStats'
 import SelectRegularPost from './components/SelectRegularPost'
 import SelectStats from './components/SelectStats'
+
 //import Teams from './components/Teams'
 
 import {
@@ -27,7 +28,7 @@ function App() {
   const [teams, setTeams] = useState([])
   const [selectedPlayer, setSelectedPlayer] = useState('')
   const [selectedSeasons, setSelectedSeasons] = useState([])
-  const [regularSeasonSelected, setRegularSeasonSelected] = useState(false)
+  const [regularSeasonSelected, setRegularSeasonSelected] = useState(true)
   const [postSeasonSelected, setPostSeasonSelected] = useState(false)
 
   const [ptsSelected, setPtsSelected] = useState(false)
