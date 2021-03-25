@@ -1,5 +1,5 @@
-import { Form, Button } from 'react-bootstrap'
-import React, { useState, useEffect } from 'react'
+import { Form } from 'react-bootstrap'
+import React from 'react'
 //import { AllCheckerCheckbox, Checkbox, CheckboxGroup } from '@createnl/grouped-checkboxes'
 
 const SelectStats = (
@@ -182,73 +182,3 @@ const SelectStats = (
 }
 
 export default SelectStats
-
-/* const [ptsSelected, setPtsSelected] = useState(false)
-const [astSelected, setAstSelected] = useState(false)
-const [rebSelected, setRebSelected] = useState(false)
-const [drebSelected, setDrebSelected] = useState(false)
-const [orebSelected, setOrebSelected] = useState(false)
-const [blkSelected, setBlkSelected] = useState(false)
-const [stlSelected, setStlSelected] = useState(false)
-const [turnoverSelected, setTurnoverSelected] = useState(false)
-const [fgaSelected, setFgaSelected] = useState(false)
-const [fgmSelected, setFgmSelected] = useState(false)
-const [fg_pctSelected, setFg_pctSelected] = useState(false)
-const [fg3aSelected, setFg3aSelected] = useState(false)
-const [fg3mSelected, setFg3mSelected] = useState(false)
-const [fg3_pctSelected, setFg3_pctSelected] = useState(false)
-const [ftaSelected, setFtaSelected] = useState(false)
-const [ftmSelected, setFtmSelected] = useState(false)
-const [ft_pctSelected, setFt_pctSelected] = useState(false)
-const [pfSelected, setPfSelected] = useState(false) */
-
-
-
-
-  //const [selectAllActive, setSelectAllActive] = useState(false)
-/* const [statSelection, setStatSelection] = useState(
-  {
-    'pts': false,
-    'ast': false,
-    'reb': false,
-    'dreb': false,
-    'oreb': false,
-    'blk': false,
-    'stl': false,
-    'turnover': false,
-    'fga': false,
-    'fgm': false,
-    'fg_pct': false,
-    'fg3a': false,
-    'fg3m': false,
-    'fg3_pct': false,
-    'fta': false,
-    'ftm': false,
-    'ft_pct': false,
-    'pf': false
-  }
-) */
-
-  //console.log('statSelection at start', statSelection)
-  //console.log('selectAllActive at start', selectAllActive)
-
-/* const statCategories = [
-  'pts',
-  'ast',
-  'reb',
-  'dreb',
-  'oreb',
-  'blk',
-  'stl',
-  'turnover',
-  'fga',
-  'fgm',
-  'fg_pct',
-  'fg3a',
-  'fg3m',
-  'fg3_pct',
-  'fta',
-  'ftm',
-  'ft_pct',
-  'pf'
-] */

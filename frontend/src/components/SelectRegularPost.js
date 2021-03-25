@@ -1,8 +1,8 @@
 
-import { Form, ButtonGroup, ToggleButton } from 'react-bootstrap'
+import { ButtonGroup, ToggleButton } from 'react-bootstrap'
 import { useState } from 'react'
 
-const SelectRegularPost = ({ regularSeasonSelected, postSeasonSelected, setRegularSeasonSelected, setPostSeasonSelected }) => {
+const SelectRegularPost = ({ setRegularSeasonSelected, setPostSeasonSelected }) => {
 
   //const [checked, setChecked] = useState(false);
   const [radioValue, setRadioValue] = useState('1');
@@ -13,8 +13,6 @@ const SelectRegularPost = ({ regularSeasonSelected, postSeasonSelected, setRegul
   ];
 
   const handleRegularPostChange = (e) => {
-    console.log('handling regular post toggle')
-    console.log('radio.value', e.currentTarget.value)
     if (e.currentTarget.value === '1') {
       setRegularSeasonSelected(true)
       setPostSeasonSelected(false)
@@ -24,13 +22,10 @@ const SelectRegularPost = ({ regularSeasonSelected, postSeasonSelected, setRegul
       setPostSeasonSelected(true)
     }
     setRadioValue(e.currentTarget.value)
-
   }
 
   return (
     <div>
-
-      <br />
       <ButtonGroup toggle size="sm">
         {radios.map((radio, idx) => (
           <ToggleButton
@@ -52,9 +47,7 @@ const SelectRegularPost = ({ regularSeasonSelected, postSeasonSelected, setRegul
         <p>reg: {regularSeasonSelected.toString()}</p>
         <p>post: {postSeasonSelected.toString()}</p>
       </div> */}
-
     </div>
-
   )
 }
 
