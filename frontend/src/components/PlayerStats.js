@@ -354,7 +354,10 @@ const PlayerStats = (
         showLine: true,
         pointRadius: 0,
         data: trailingMeanService.ft_pct(playerStatsFiltered
-          .map(playerStat => ({ ...playerStat, ft_pct: playerStat.ft_pct <= 1 ? playerStat.ft_pct * 100 : playerStat.ft_pct }))),
+          .map(playerStat => ({
+            ...playerStat,
+            ft_pct: /* playerStat.fta === 0 ? 0 : */ (playerStat.ft_pct <= 1 ? playerStat.ft_pct * 100 : playerStat.ft_pct)
+          }))),
         hidden: !ft_pctSelected
       },
       {
