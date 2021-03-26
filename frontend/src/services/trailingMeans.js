@@ -16,16 +16,16 @@ const countTrailingMean = (playerStats, statCategory) => {
   }
   return trailingAverage
 }
-const countTrailingMeanPct = (playerStats, statCategory) => {
+const countTrailingMeanPct = (playerStats, statCategory, attemptsInStatCategory) => {
   let trailingAverage = []
   for (let i = 0; i < trailingGames; i++) {
     trailingAverage[i] = null
   }
   for (let i = trailingGames; i < playerStats.length; i++) {
 
-    if (playerStats[i].fta === 0) {
+    if (playerStats[i][attemptsInStatCategory] === 0) {
       trailingAverage.push(trailingAverage[i - 1])
-      playerStats[i].ft_pct = trailingAverage[i - 1]
+      playerStats[i][statCategory] = trailingAverage[i - 1]
     } else {
       let statsInTrailingGames = 0
       for (let j = 1; j <= trailingGames; j++) {
@@ -70,13 +70,13 @@ const oreb = (playerStats) => {
   return countTrailingMean(playerStats, 'oreb')
 }
 const fg_pct = (playerStats) => {
-  return countTrailingMean(playerStats, 'fg_pct')
+  return countTrailingMeanPct(playerStats, 'fg_pct', 'fga')
 }
 const fg3_pct = (playerStats) => {
-  return countTrailingMean(playerStats, 'fg3_pct')
+  return countTrailingMeanPct(playerStats, 'fg3_pct', 'fg3a')
 }
 const ft_pct = (playerStats) => {
-  return countTrailingMeanPct(playerStats, 'ft_pct')
+  return countTrailingMeanPct(playerStats, 'ft_pct', 'fta')
 }
 const fga = (playerStats) => {
   return countTrailingMean(playerStats, 'fga')
