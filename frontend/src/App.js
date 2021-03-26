@@ -9,6 +9,10 @@ import GetStats from './components/GetStats'
 import SelectRegularPost from './components/SelectRegularPost'
 import SelectStats from './components/SelectStats'
 
+//import Slider from 'range-sliders'
+import ReactSlider from 'react-slider'
+
+
 //import Teams from './components/Teams'
 
 import {
@@ -112,12 +116,7 @@ function App() {
             setSelectedSeasons={setSelectedSeasons}
           />
           <br></br>
-          <SelectRegularPost
-            regularSeasonSelected={regularSeasonSelected}
-            postSeasonSelected={postSeasonSelected}
-            setRegularSeasonSelected={setRegularSeasonSelected}
-            setPostSeasonSelected={setPostSeasonSelected}
-          />
+          <br></br>
           <br></br>
           <SelectStats
             ptsSelected={ptsSelected}
@@ -159,6 +158,14 @@ function App() {
             minSelected={minSelected}
             setMinSelected={setMinSelected} />
 
+          <SelectRegularPost
+            regularSeasonSelected={regularSeasonSelected}
+            postSeasonSelected={postSeasonSelected}
+            setRegularSeasonSelected={setRegularSeasonSelected}
+            setPostSeasonSelected={setPostSeasonSelected}
+          />
+          <br></br>
+
           <GetStats
             selectedPlayer={selectedPlayer}
             selectedSeasons={selectedSeasons}
@@ -169,8 +176,20 @@ function App() {
           />
           <br></br>
           <br></br>
-        </div>
 
+        </div>
+        <ReactSlider
+          style={{ background: 'white' }}
+          className="horizontal-slider"
+          thumbClassName="example-thumb"
+          trackClassName="example-track"
+          defaultValue={[0, 100]}
+          ariaLabel={['Lower thumb', 'Upper thumb']}
+          ariaValuetext={state => `Thumb value ${state.valueNow}`}
+          renderThumb={(props, state) => <div {...props}>{state.valueNow}</div>}
+          pearling
+          minDistance={10}
+        />
       </div>
     </Router>
   );
