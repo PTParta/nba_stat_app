@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+//import { Container } from 'react-bootstrap'
 import teamService from './services/teams'
 import playerService from './services/players'
 import PlayerStats from './components/PlayerStats'
@@ -68,16 +69,20 @@ function App() {
   }, [])
 
   return (
+
     <Router>
       <div style={{
         backgroundColor: "#17202A",
         height: '100vh',
         display: 'flex',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        /* textAlign: 'center' */
       }}>
-        <div className="container" style={{ backgroundColor: "#17202A" }} >
+        <div className="container" style={{ paddingTop:'5vh', backgroundColor: "#17202A" }} >
           {playerStats.length === 0
-            ? <Logo />
+            ? <div style={{ paddingLeft: '100px'/* textAlign: 'center' */ }}>
+              <Logo />
+            </div>
             : <></>}
 
           <br></br>
@@ -208,7 +213,9 @@ function App() {
         </div>
       </div>
     </Router >
-  );
+
+
+  )
 }
 
 export default App;

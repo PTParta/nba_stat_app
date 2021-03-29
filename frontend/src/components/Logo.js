@@ -1,18 +1,22 @@
-import ball_logo from '../images/ball_logo.png'
+import ball_logo from '../images/ball_logov3.png'
 
 
 const Logo = () => {
 
-  
+
   return (
     <img
-        src={ball_logo}
-        alt='ball_logo'
-        style={{
-          marginLeft: 'auto',
-          marginRight: 'auto',
-          width: '50%'
-        }} />
+      class="card-img-top mb-3 w-auto"
+      src={ball_logo}
+      alt='ball_logo'
+      /* style={{
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        width: '25%',
+        minWidth:'30%',
+        maxWidth: '30%',
+        height: 'auto'
+      }} */ />
   )
 }
 

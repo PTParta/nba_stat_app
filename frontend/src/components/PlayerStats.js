@@ -1,7 +1,9 @@
 import React from 'react'
+import { Container, Row, Col } from 'react-bootstrap'
 import { Line } from 'react-chartjs-2'
 import trailingMeanService from '../services/trailingMeans'
 import colors from '../styling/colors'
+import Logo from '../components/Logo'
 
 const PlayerStats = (
   {
@@ -463,8 +465,31 @@ const PlayerStats = (
 
   return (
     <div>
-      <br></br>
-      <h3 style={{ color: 'white', paddingLeft: '30px' }} >
+
+
+      <Container style={{ color: 'white', paddingLeft: '30px' }}>
+        <Row>
+          <Col><h3 style={{ color: 'white', paddingLeft: '30px' }} >
+            {playerStats[0].player.first_name} {playerStats[0].player.last_name}
+          </h3>
+            <h5 style={{ color: 'white', paddingLeft: '30px' }} >
+              {startSeasonToShow} - {endSeasonToShow}
+            </h5>
+            {!postSeasonSelected
+              ? <h5 style={{ color: 'white', paddingLeft: '30px' }} >
+                {games} games
+        </h5>
+              : <h5 style={{ color: 'white', paddingLeft: '30px' }} >
+                {games} games
+        </h5>}</Col>
+       {/*  <Col></Col>
+          <Col><Logo /></Col> */}
+        </Row>
+
+      </Container>
+
+              <br></br>
+      {/* <h3 style={{ color: 'white', paddingLeft: '30px' }} >
         {playerStats[0].player.first_name} {playerStats[0].player.last_name}
       </h3>
       <h5 style={{ color: 'white', paddingLeft: '30px' }} >
@@ -477,7 +502,7 @@ const PlayerStats = (
         : <h5 style={{ color: 'white', paddingLeft: '30px' }} >
           {games} games
         </h5>}
-      <br></br>
+      <br></br> */}
       <div className='chart'>
         <Line
           data={data}
