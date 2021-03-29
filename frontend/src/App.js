@@ -4,10 +4,12 @@ import playerService from './services/players'
 import PlayerStats from './components/PlayerStats'
 import SelectPlayer from './components/SelectPlayer'
 import SelectSeasons from './components/SelectSeasons'
-import NavigationBar from './components/NavigationBar'
+//import NavigationBar from './components/NavigationBar'
 import GetStats from './components/GetStats'
 import SelectRegularPost from './components/SelectRegularPost'
 import SelectStats from './components/SelectStats'
+import Logo from './components/Logo'
+
 
 //import Teams from './components/Teams'
 
@@ -74,7 +76,12 @@ function App() {
         flexDirection: 'column'
       }}>
         <div className="container" style={{ backgroundColor: "#17202A" }} >
-          <NavigationBar />
+          {playerStats.length === 0
+            ? <Logo />
+            : <></>}
+
+          <br></br>
+          {/* <NavigationBar /> */}
           {playerStats.length > 0
             ? <PlayerStats
               playerStats={playerStats}
