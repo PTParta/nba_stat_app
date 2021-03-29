@@ -1,5 +1,5 @@
 import React from 'react'
-import { Chart, Line } from 'react-chartjs-2'
+import { Line } from 'react-chartjs-2'
 import trailingMeanService from '../services/trailingMeans'
 import colors from '../styling/colors'
 

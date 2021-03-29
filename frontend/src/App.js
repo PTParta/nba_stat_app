@@ -9,10 +9,6 @@ import GetStats from './components/GetStats'
 import SelectRegularPost from './components/SelectRegularPost'
 import SelectStats from './components/SelectStats'
 
-//import Slider from 'range-sliders'
-import ReactSlider from 'react-slider'
-
-
 //import Teams from './components/Teams'
 
 import {
@@ -84,7 +80,6 @@ function App() {
             ? <PlayerStats
               playerStats={playerStats}
               teams={teams}
-              /* selectedSeasons={selectedSeasons} */
               regularSeasonSelected={regularSeasonSelected}
               postSeasonSelected={postSeasonSelected}
               ptsSelected={ptsSelected}
@@ -111,18 +106,46 @@ function App() {
             />
             : <></>}
           <br></br>
-          <SelectPlayer
-            players={players}
-            setSelectedPlayer={setSelectedPlayer}
-          />
-          <br></br>
-          <SelectSeasons
-            /* setSelectedSeasons={setSelectedSeasons} */
-            setSelectedFirstSeason={setSelectedFirstSeason}
-            setSelectedLastSeason={setSelectedLastSeason}
-            selectedFirstSeason={selectedFirstSeason}
-            selectedLastSeason={selectedLastSeason}
-          />
+          <table>
+            <tbody>
+              <tr>
+                <td >
+                  <SelectPlayer
+                    players={players}
+                    setSelectedPlayer={setSelectedPlayer}
+                  />
+                </td>
+                <td >
+                  <GetStats
+                    selectedPlayer={selectedPlayer}
+                    players={players}
+                    setPlayerStats={setPlayerStats}
+                    regularSeasonSelected={regularSeasonSelected}
+                    postSeasonSelected={postSeasonSelected}
+                  />
+                </td>
+              </tr>
+              <br></br>
+              <tr>
+                <td>
+                  <SelectSeasons
+                    setSelectedFirstSeason={setSelectedFirstSeason}
+                    setSelectedLastSeason={setSelectedLastSeason}
+                    selectedFirstSeason={selectedFirstSeason}
+                    selectedLastSeason={selectedLastSeason}
+                  />
+                </td>
+                <td>
+                  <SelectRegularPost
+                    regularSeasonSelected={regularSeasonSelected}
+                    postSeasonSelected={postSeasonSelected}
+                    setRegularSeasonSelected={setRegularSeasonSelected}
+                    setPostSeasonSelected={setPostSeasonSelected}
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </table>
           <br></br>
           <SelectStats
             ptsSelected={ptsSelected}
@@ -163,25 +186,6 @@ function App() {
             setPfSelected={setPfSelected}
             minSelected={minSelected}
             setMinSelected={setMinSelected} />
-
-          <SelectRegularPost
-            regularSeasonSelected={regularSeasonSelected}
-            postSeasonSelected={postSeasonSelected}
-            setRegularSeasonSelected={setRegularSeasonSelected}
-            setPostSeasonSelected={setPostSeasonSelected}
-          />
-          <br></br>
-
-          <GetStats
-            selectedPlayer={selectedPlayer}
-            /* selectedSeasons={selectedSeasons} */
-            players={players}
-            setPlayerStats={setPlayerStats}
-            regularSeasonSelected={regularSeasonSelected}
-            postSeasonSelected={postSeasonSelected}
-          />
-          <br></br>
-          <br></br>
         </div>
       </div>
     </Router>

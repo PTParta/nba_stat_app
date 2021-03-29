@@ -4,10 +4,10 @@ import playerStatService from '../services/playerStats'
 
 const GetStats = ({ selectedPlayer, selectedSeasons, players, setPlayerStats, regularSeasonSelected, postSeasonSelected }) => {
 
-  const getPlayerStats = (playerFullName, /* seasons, */ /* regularSeasonSelected, postSeasonSelected */) => {
+  const getPlayerStats = (playerFullName) => {
     const searchedPlayer = players.find(player => player.fullName === playerFullName)
     console.log('searched player', searchedPlayer)
-    playerStatService.getPlayerStatsFromDB(/* seasons, */ searchedPlayer.apiId/* , regularSeasonSelected, postSeasonSelected */)
+    playerStatService.getPlayerStatsFromDB(searchedPlayer.apiId)
       .then((response) => {
         setPlayerStats(response.data.sort((a, b) =>
           new Date(a.game.date).getTime() - new Date(b.game.date).getTime())
@@ -15,8 +15,10 @@ const GetStats = ({ selectedPlayer, selectedSeasons, players, setPlayerStats, re
       })
   }
   return (
-    <Button variant='primary'
-      onClick={() => getPlayerStats(selectedPlayer, /* selectedSeasons, */ /* regularSeasonSelected, postSeasonSelected */)}>Get stats</Button>
+    <Button
+      style={{ width: '160px' }}
+      variant='primary'
+      onClick={() => getPlayerStats(selectedPlayer)}>Get stats</Button>
   )
 }
 

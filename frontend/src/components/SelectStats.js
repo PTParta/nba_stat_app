@@ -54,7 +54,7 @@ const SelectStats = (
         <table>
           <tbody>
             <tr>
-              <td style={{width:cellWidth, backgroundColor: colors.maroonLine, color:'black' }}>
+              <td style={{ width: cellWidth, backgroundColor: colors.maroonLine, color: 'white' }}>
                 <Form.Check
                   inline={true}
                   onChange={() => setPtsSelected(!ptsSelected)}
@@ -62,49 +62,49 @@ const SelectStats = (
                   label="pts"
                   background={colors.maroonLine} />
               </td>
-              <td style={{width:cellWidth, backgroundColor: colors.brownLine, color:'black' }}>
+              <td style={{ width: cellWidth, backgroundColor: colors.brownLine, color: 'black' }}>
                 <Form.Check
                   inline={true}
                   onChange={() => setAstSelected(!astSelected)}
                   type="checkbox"
                   label="ast" />
               </td>
-              <td style={{width:cellWidth, backgroundColor: colors.oliveLine, color:'black' }}>
+              <td style={{ width: cellWidth, backgroundColor: colors.oliveLine, color: 'black' }}>
                 <Form.Check
                   inline={true}
                   onChange={() => setRebSelected(!rebSelected)}
                   type="checkbox"
                   label="reb" />
               </td>
-              <td style={{width:cellWidth, backgroundColor: colors.tealLine, color:'black' }}>
+              <td style={{ width: cellWidth, backgroundColor: colors.tealLine, color: 'black' }}>
                 <Form.Check
                   inline={true}
                   onChange={() => setBlkSelected(!blkSelected)}
                   type="checkbox"
                   label="blk" />
               </td>
-              <td style={{width:cellWidth, backgroundColor: colors.navyLine/* , color:'black' */ }}>
+              <td style={{ width: cellWidth, backgroundColor: colors.navyLine/* , color:'black' */ }}>
                 <Form.Check
                   inline={true}
                   onChange={() => setStlSelected(!stlSelected)}
                   type="checkbox"
                   label="stl" />
               </td>
-              <td style={{width:cellWidth, backgroundColor: colors.redLine, color:'black' }}>
+              <td style={{ width: cellWidth, backgroundColor: colors.redLine, color: 'black' }}>
                 <Form.Check
                   inline={true}
                   onChange={() => setTurnoverSelected(!turnoverSelected)}
                   type="checkbox"
                   label="to" />
               </td>
-              <td style={{width:cellWidth, backgroundColor: colors.yellowLine, color:'black' }}>
+              <td style={{ width: cellWidth, backgroundColor: colors.yellowLine, color: 'black' }}>
                 <Form.Check
                   inline={true}
                   onChange={() => setPfSelected(!pfSelected)}
                   type="checkbox"
                   label="pf" />
               </td>
-              <td style={{width:cellWidth, backgroundColor: colors.orangeLine }}>
+              <td style={{ width: cellWidth, backgroundColor: colors.orangeLine }}>
                 <Form.Check
                   inline={true}
                   onChange={() => setMinSelected(!minSelected)}
@@ -115,20 +115,19 @@ const SelectStats = (
           </tbody>
         </table>
       </Form>
-
       <br></br>
       <Form>
         <table>
           <tbody>
             <tr>
-              <td style={{width:cellWidth, backgroundColor: colors.limeLine, color:'black' }}>
+              <td style={{ width: cellWidth, backgroundColor: colors.limeLine, color: 'black' }}>
                 <Form.Check
                   inline={true}
                   onChange={() => setDrebSelected(!drebSelected)}
                   type="checkbox"
                   label="dreb" />
               </td>
-              <td style={{width:cellWidth, backgroundColor: colors.greenLine, color:'black' }}>
+              <td style={{ width: cellWidth, backgroundColor: colors.greenLine, color: 'black' }}>
                 <Form.Check
                   inline={true}
                   onChange={() => setOrebSelected(!orebSelected)}
@@ -141,27 +140,26 @@ const SelectStats = (
           </tbody>
         </table>
       </Form>
-
       <br></br>
       <Form>
         <table>
           <tbody>
             <tr>
-              <td style={{width:cellWidth, backgroundColor: colors.cyanLine, color:'black' }}>
+              <td style={{ width: cellWidth, backgroundColor: colors.cyanLine, color: 'black' }}>
                 <Form.Check
                   inline={true}
                   onChange={() => setFg_pctSelected(!fg_pctSelected)}
                   type="checkbox"
                   label="fg_pct" />
               </td>
-              <td style={{width:cellWidth, backgroundColor: colors.blueLine, color:'black' }}>
+              <td style={{ width: cellWidth, backgroundColor: colors.blueLine, color: 'black' }}>
                 <Form.Check
                   inline={true}
                   onChange={() => setFg3_pctSelected(!fg3_pctSelected)}
                   type="checkbox"
                   label="fg3_pct" />
               </td>
-              <td style={{width:cellWidth, backgroundColor: colors.purpleLine, color:'black' }}>
+              <td style={{ width: cellWidth, backgroundColor: colors.purpleLine, color: 'black' }}>
                 <Form.Check
                   inline={true}
                   onChange={() => setFt_pctSelected(!ft_pctSelected)}
@@ -173,48 +171,47 @@ const SelectStats = (
           </tbody>
         </table>
       </Form>
-
       <br></br>
       <Form>
         <table>
           <tbody>
             <tr>
-              <td style={{width:cellWidth, backgroundColor: colors.magentaLine, color:'black' }}>
+              <td style={{ width: cellWidth, backgroundColor: colors.magentaLine, color: 'black' }}>
                 <Form.Check
                   inline={true}
                   onChange={() => setFgaSelected(!fgaSelected)}
                   type="checkbox"
                   label="fga" />
               </td>
-              <td style={{width:cellWidth, backgroundColor: colors.greyLine, color:'black' }}>
+              <td style={{ width: cellWidth, backgroundColor: colors.greyLine, color: 'black' }}>
                 <Form.Check
                   inline={true}
                   onChange={() => setFgmSelected(!fgmSelected)}
                   type="checkbox"
                   label="fgm" />
               </td>
-              <td style={{width:cellWidth, backgroundColor: colors.pinkLine, color:'black' }}>
+              <td style={{ width: cellWidth, backgroundColor: colors.pinkLine, color: 'black' }}>
                 <Form.Check
                   inline={true}
                   onChange={() => setFg3aSelected(!fg3aSelected)}
                   type="checkbox"
                   label="fg3a" />
               </td>
-              <td style={{width:cellWidth, backgroundColor: colors.apricotLine, color:'black' }}>
+              <td style={{ width: cellWidth, backgroundColor: colors.apricotLine, color: 'black' }}>
                 <Form.Check
                   inline={true}
                   onChange={() => setFg3mSelected(!fg3mSelected)}
                   type="checkbox"
                   label="fg3m" />
               </td>
-              <td style={{width:cellWidth, backgroundColor: colors.beigeLine, color:'black' }}>
+              <td style={{ width: cellWidth, backgroundColor: colors.beigeLine, color: 'black' }}>
                 <Form.Check
                   inline={true}
                   onChange={() => setFtaSelected(!ftaSelected)}
                   type="checkbox"
                   label="fta" />
               </td>
-              <td style={{width:cellWidth, backgroundColor: colors.mintLine, color:'black' }}>
+              <td style={{ width: cellWidth, backgroundColor: colors.mintLine, color: 'black' }}>
                 <Form.Check
                   inline={true}
                   onChange={() => setFtmSelected(!ftmSelected)}

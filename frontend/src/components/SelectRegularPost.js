@@ -4,7 +4,6 @@ import { useState } from 'react'
 
 const SelectRegularPost = ({ setRegularSeasonSelected, setPostSeasonSelected }) => {
 
-  //const [checked, setChecked] = useState(false);
   const [radioValue, setRadioValue] = useState('1');
 
   const radios = [
@@ -26,13 +25,13 @@ const SelectRegularPost = ({ setRegularSeasonSelected, setPostSeasonSelected }) 
 
   return (
     <div>
-      <ButtonGroup toggle size="sm">
+      <ButtonGroup toggle size="md" /* styles={{ marginLeft: '10px' }} */ >
         {radios.map((radio, idx) => (
           <ToggleButton
             style={{ width: '75px', marginRight: '10px' }}
             key={idx}
             type="radio"
-            variant="outline-primary"
+            variant="outline-secondary"
             name="radio"
             value={radio.value}
             checked={radioValue === radio.value}
