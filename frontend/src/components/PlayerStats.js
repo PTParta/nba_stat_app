@@ -42,12 +42,18 @@ const PlayerStats = (
     },
     scales: {
       xAxes: [{
-          ticks: {
-              display: false
-          }
+        ticks: {
+          display: false
+        }
       }]
+    }
   }
-  }
+
+
+  const seasons = playerStats.map(playerStat => playerStat.game.season)
+  const startOfCareerSeason = Math.min.apply(Math, seasons)
+  const endOfCareerSeason = Math.max.apply(Math, seasons)
+
 
   const playerStatsFiltered = playerStats.filter(playerStat => playerStat.game.postseason === postSeasonSelected)
 
@@ -443,6 +449,9 @@ const PlayerStats = (
       <h3 style={{ color: 'white', paddingLeft: '30px' }} >
         {playerStats[0].player.first_name} {playerStats[0].player.last_name}
       </h3>
+      <h5 style={{ color: 'white', paddingLeft: '30px' }} >
+        {startOfCareerSeason} - {endOfCareerSeason}
+      </h5>
       <br></br>
       <div className='chart'>
         <Line
