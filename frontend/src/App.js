@@ -115,7 +115,10 @@ function App() {
                       setSelectedPlayer={setSelectedPlayer}
                     />
                   </td>
-                  <td>____</td>
+                  {/* <div style={{ color: '#17202A' }}>
+                    <td >____</td>
+                  </div> */}
+
                   <td>
                     <GetStats
                       selectedPlayer={selectedPlayer}
@@ -126,7 +129,11 @@ function App() {
                     />
                   </td>
                 </tr>
-                <br></br>
+                {/* <tr>
+                  <div style={{ color: '#17202A' }}>
+                    <td >____</td>
+                  </div>
+                </tr> */}
                 <tr>
                   <td>
                     <SelectSeasons
@@ -136,7 +143,9 @@ function App() {
                       selectedLastSeason={selectedLastSeason}
                     />
                   </td>
-                  <td>____</td>
+                  {/* <div style={{ color: '#17202A' }}>
+                    <td >____</td>
+                  </div> */}
                   <td>
                     <SelectRegularPost
                       regularSeasonSelected={regularSeasonSelected}

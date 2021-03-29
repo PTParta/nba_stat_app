@@ -28,7 +28,7 @@ const SelectRegularPost = ({ setRegularSeasonSelected, setPostSeasonSelected }) 
       <ButtonGroup toggle size="md" /* styles={{ marginLeft: '10px' }} */ >
         {radios.map((radio, idx) => (
           <ToggleButton
-            style={{ width: '75px', marginRight: '10px' }}
+            style={{ width: '95px', marginRight: '10px' }}
             key={idx}
             type="radio"
             variant="outline-secondary"

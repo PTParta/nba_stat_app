@@ -16,7 +16,7 @@ const GetStats = ({ selectedPlayer, selectedSeasons, players, setPlayerStats, re
   }
   return (
     <Button
-      style={{ width: '160px' }}
+      style={{ width: '200px' }}
       variant='primary'
       onClick={() => getPlayerStats(selectedPlayer)}>Get stats</Button>
   )

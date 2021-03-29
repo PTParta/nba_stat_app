@@ -49,13 +49,31 @@ const PlayerStats = (
     }
   }
 
+  const playerStatsFiltered = playerStats.filter(playerStat => playerStat.game.postseason === postSeasonSelected)
 
-  const seasons = playerStats.map(playerStat => playerStat.game.season)
+  const seasons = playerStatsFiltered.map(playerStat => playerStat.game.season)
   const startOfCareerSeason = Math.min.apply(Math, seasons)
   const endOfCareerSeason = Math.max.apply(Math, seasons)
 
+  let startSeasonToShow
+  let endSeasonToShow
 
-  const playerStatsFiltered = playerStats.filter(playerStat => playerStat.game.postseason === postSeasonSelected)
+  if (selectedFirstSeason > startOfCareerSeason) {
+    startSeasonToShow = selectedFirstSeason
+  } else {
+    startSeasonToShow = startOfCareerSeason
+  }
+
+  if (selectedLastSeason < endOfCareerSeason) {
+    endSeasonToShow = selectedLastSeason
+  } else {
+    endSeasonToShow = endOfCareerSeason
+  }
+
+
+  const games = playerStatsFiltered.filter(playerStat => playerStat.game.season >= selectedFirstSeason && playerStat.game.season <= selectedLastSeason).length
+
+  //const postSeasonGames = playerStatsFiltered.filter(playerStat => playerStat.game.postseason === true).length
 
   const data = {
     labels: playerStatsFiltered
@@ -450,8 +468,15 @@ const PlayerStats = (
         {playerStats[0].player.first_name} {playerStats[0].player.last_name}
       </h3>
       <h5 style={{ color: 'white', paddingLeft: '30px' }} >
-        {startOfCareerSeason} - {endOfCareerSeason}
+        {startSeasonToShow} - {endSeasonToShow}
       </h5>
+      {!postSeasonSelected
+        ? <h5 style={{ color: 'white', paddingLeft: '30px' }} >
+          {games} games
+        </h5>
+        : <h5 style={{ color: 'white', paddingLeft: '30px' }} >
+          {games} games
+        </h5>}
       <br></br>
       <div className='chart'>
         <Line
