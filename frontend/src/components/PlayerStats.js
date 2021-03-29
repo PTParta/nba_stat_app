@@ -78,9 +78,11 @@ const PlayerStats = (
 
   const options = {
     //responsive: true,
-    //maintainAspectRatio: false,
+    maintainAspectRatio: false,
+    aspectRatio: 0.5,
     legend: {
-      onClick: (e) => e.stopPropagation()
+      onClick: (e) => e.stopPropagation(),
+      display:false
     }
   }
 
