@@ -106,6 +106,8 @@ function App() {
               ft_pctSelected={ft_pctSelected}
               pfSelected={pfSelected}
               minSelected={minSelected}
+              selectedFirstSeason={selectedFirstSeason}
+              selectedLastSeason={selectedLastSeason}
             />
             : <></>}
           <br></br>
@@ -121,8 +123,6 @@ function App() {
             selectedFirstSeason={selectedFirstSeason}
             selectedLastSeason={selectedLastSeason}
           />
-          <br></br>
-          <br></br>
           <br></br>
           <SelectStats
             ptsSelected={ptsSelected}

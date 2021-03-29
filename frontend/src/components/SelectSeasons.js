@@ -1,7 +1,6 @@
 import Select from 'react-select'
 
 const SelectSeasons = ({
-  /* setSelectedSeasons, */
   setSelectedFirstSeason,
   setSelectedLastSeason,
   selectedFirstSeason,
@@ -20,60 +19,21 @@ const SelectSeasons = ({
     seasonSelectAscending.push({ label: seasonAscending.toString(), value: seasonAscending.toString() })
     seasonAscending++
   }
-  /*  const handleSelectedSeasonsChange = (selectedSeasons) => {
-     setSelectedSeasons(selectedSeasons)
-   } */
 
-  const handleSelectedFromSeasonsChange = (event) => {
-    console.log(event.value)
-  }
-
-  const customStyles = {
-    /* control: styles => ({
-      ...styles,
-
-    }),
-    option: styles => ({
-      ...styles,
-
-    }), */
-    menu: styles => ({
-      ...styles,
-      width: '10'
-    })
-
-  }
   return (
     <div>
-      {/* <Select
-        isMulti
-        options={seasonSelect}
-        onChange={(options) => handleSelectedSeasonsChange(options.map(option => option.value))}
-        closeMenuOnSelect={false}
-        placeholder='Select season(s)'
-      /> */}
-
-      {/* <p style={{ color: 'white' }}>from: </p> */}
-
-
-
-
       <table>
         <tbody>
           <tr>
             <td width={'150px'}><Select
-              /* styles={customStyles} */
-              /* isMulti */
               options={seasonSelectAscending}
-              onChange={(event) => handleSelectedFromSeasonsChange(event)}
+              onChange={(event) => setSelectedFirstSeason(event.value)}
               closeMenuOnSelect={true}
               placeholder={selectedFirstSeason.toString()}
             /></td>
             <td width={'150px'}><Select
-              /* styles={customStyles} */
-              /* isMulti */
               options={seasonSelectDescending}
-              /* onChange={(options) => handleSelectedSeasonsChange(options.map(option => option.value))} */
+              onChange={(event) => setSelectedLastSeason(event.value)}
               closeMenuOnSelect={true}
               placeholder={selectedLastSeason}
             /></td>
@@ -81,11 +41,6 @@ const SelectSeasons = ({
         </tbody>
       </table>
     </div>
-
-
-
-
-
   )
 }
 

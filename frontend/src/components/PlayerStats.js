@@ -6,8 +6,6 @@ const PlayerStats = (
   {
     playerStats,
     teams,
-    selectedSeasons,
-    regularSeasonSelected,
     postSeasonSelected,
     ptsSelected,
     astSelected,
@@ -28,7 +26,8 @@ const PlayerStats = (
     ft_pctSelected,
     pfSelected,
     minSelected,
-    setPfSelected
+    selectedFirstSeason,
+    selectedLastSeason
   }
 ) => {
 
@@ -88,12 +87,14 @@ const PlayerStats = (
   const playerStatsFiltered = playerStats.filter(playerStat => playerStat.game.postseason === postSeasonSelected)
 
   const data = {
-    labels: playerStatsFiltered.map(playerStat => playerStat.game.date.split('T')[0]
-      .concat('\n')
-      .concat(teams.find(team => team.id === playerStat.game.visitor_team_id).abbreviation)
-      .concat('@')
-      .concat(teams.find(team => team.id === playerStat.game.home_team_id).abbreviation)
-      .concat(playerStat.game.postseason ? ' POST' : ' REG')),
+    labels: playerStatsFiltered
+      .filter(playerStat => playerStat.game.season >= selectedFirstSeason && playerStat.game.season <= selectedLastSeason)
+      .map(playerStat => playerStat.game.date.split('T')[0]
+        .concat('\n')
+        .concat(teams.find(team => team.id === playerStat.game.visitor_team_id).abbreviation)
+        .concat('@')
+        .concat(teams.find(team => team.id === playerStat.game.home_team_id).abbreviation)
+        .concat(playerStat.game.postseason ? ' POST' : ' REG')),
     datasets: [
       {
         //data: playerStats.map(playerStat => (playerStat.pts && playerStat.game.postseason === true)),
@@ -234,12 +235,6 @@ const PlayerStats = (
         data: trailingMeanService.min(playerStatsFiltered),
         hidden: !minSelected
       },
-
-
-
-
-
-
       {
         label: 'pf',
         data: playerStatsFiltered.map(playerStat => playerStat.pf),
@@ -356,7 +351,7 @@ const PlayerStats = (
         data: trailingMeanService.ft_pct(playerStatsFiltered
           .map(playerStat => ({
             ...playerStat,
-            ft_pct: /* playerStat.fta === 0 ? 0 : */ (playerStat.ft_pct <= 1 ? playerStat.ft_pct * 100 : playerStat.ft_pct)
+            ft_pct: (playerStat.ft_pct <= 1 ? playerStat.ft_pct * 100 : playerStat.ft_pct)
           }))),
         hidden: !ft_pctSelected
       },
