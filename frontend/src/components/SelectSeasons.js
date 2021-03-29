@@ -1,16 +1,28 @@
 import Select from 'react-select'
 
-const SelectSeasons = ({ setSelectedSeasons }) => {
+const SelectSeasons = ({
+  /* setSelectedSeasons, */
+  setSelectedFirstSeason,
+  setSelectedLastSeason,
+  selectedFirstSeason,
+  selectedLastSeason }) => {
 
-  let season = 2020
-  const seasonSelect = []
-  while (season >= 1980) {
-    seasonSelect.push({ label: season.toString(), value: season.toString() })
-    season--
+  let seasonDescending = 2020
+  const seasonSelectDescending = []
+  while (seasonDescending >= 1980) {
+    seasonSelectDescending.push({ label: seasonDescending.toString(), value: seasonDescending.toString() })
+    seasonDescending--
   }
-  const handleSelectedSeasonsChange = (selectedSeasons) => {
-    setSelectedSeasons(selectedSeasons)
+
+  let seasonAscending = 1980
+  const seasonSelectAscending = []
+  while (seasonAscending <= 2020) {
+    seasonSelectAscending.push({ label: seasonAscending.toString(), value: seasonAscending.toString() })
+    seasonAscending++
   }
+  /*  const handleSelectedSeasonsChange = (selectedSeasons) => {
+     setSelectedSeasons(selectedSeasons)
+   } */
 
   const handleSelectedFromSeasonsChange = (event) => {
     console.log(event.value)
@@ -41,25 +53,33 @@ const SelectSeasons = ({ setSelectedSeasons }) => {
         placeholder='Select season(s)'
       /> */}
 
-      <p style={{ color: 'white' }}>from: </p>
-      <Select
-        /* styles={customStyles} */
-        /* isMulti */
-        options={seasonSelect}
-        onChange={(event) => handleSelectedFromSeasonsChange(event)}
-        closeMenuOnSelect={true}
-        placeholder='Select season'
-      />
-      <br></br>
-      <p style={{ color: 'white' }}>to: </p>
-      <Select
-        /* styles={customStyles} */
-        /* isMulti */
-        options={seasonSelect}
-        /* onChange={(options) => handleSelectedSeasonsChange(options.map(option => option.value))} */
-        closeMenuOnSelect={true}
-        placeholder='Select season'
-      />
+      {/* <p style={{ color: 'white' }}>from: </p> */}
+
+
+
+
+      <table>
+        <tbody>
+          <tr>
+            <td width={'150px'}><Select
+              /* styles={customStyles} */
+              /* isMulti */
+              options={seasonSelectAscending}
+              onChange={(event) => handleSelectedFromSeasonsChange(event)}
+              closeMenuOnSelect={true}
+              placeholder={selectedFirstSeason.toString()}
+            /></td>
+            <td width={'150px'}><Select
+              /* styles={customStyles} */
+              /* isMulti */
+              options={seasonSelectDescending}
+              /* onChange={(options) => handleSelectedSeasonsChange(options.map(option => option.value))} */
+              closeMenuOnSelect={true}
+              placeholder={selectedLastSeason}
+            /></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
 

@@ -9,11 +9,20 @@ const SelectPlayer = ({ players, setSelectedPlayer }) => {
   }
   return (
     <div>
-      <Select
-        options={playerSelect}
-        onChange={(option) => handleSelectedPlayerChange(option.value)}
-        placeholder='Select player'
-      />
+
+      <table>
+        <tbody>
+          <tr>
+            <td width={'300px'}>
+              <Select
+                options={playerSelect}
+                onChange={(option) => handleSelectedPlayerChange(option.value)}
+                placeholder='Select player'
+              />
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   )
 }

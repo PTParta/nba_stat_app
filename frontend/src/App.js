@@ -31,7 +31,9 @@ function App() {
   const [playerStats, setPlayerStats] = useState([])
   const [teams, setTeams] = useState([])
   const [selectedPlayer, setSelectedPlayer] = useState('')
-  const [selectedSeasons, setSelectedSeasons] = useState([])
+  //const [selectedSeasons, setSelectedSeasons] = useState([])
+  const [selectedFirstSeason, setSelectedFirstSeason] = useState(1980)
+  const [selectedLastSeason, setSelectedLastSeason] = useState(2020)
   const [regularSeasonSelected, setRegularSeasonSelected] = useState(true)
   const [postSeasonSelected, setPostSeasonSelected] = useState(false)
 
@@ -82,7 +84,7 @@ function App() {
             ? <PlayerStats
               playerStats={playerStats}
               teams={teams}
-              selectedSeasons={selectedSeasons}
+              /* selectedSeasons={selectedSeasons} */
               regularSeasonSelected={regularSeasonSelected}
               postSeasonSelected={postSeasonSelected}
               ptsSelected={ptsSelected}
@@ -113,7 +115,11 @@ function App() {
           />
           <br></br>
           <SelectSeasons
-            setSelectedSeasons={setSelectedSeasons}
+            /* setSelectedSeasons={setSelectedSeasons} */
+            setSelectedFirstSeason={setSelectedFirstSeason}
+            setSelectedLastSeason={setSelectedLastSeason}
+            selectedFirstSeason={selectedFirstSeason}
+            selectedLastSeason={selectedLastSeason}
           />
           <br></br>
           <br></br>
@@ -168,7 +174,7 @@ function App() {
 
           <GetStats
             selectedPlayer={selectedPlayer}
-            selectedSeasons={selectedSeasons}
+            /* selectedSeasons={selectedSeasons} */
             players={players}
             setPlayerStats={setPlayerStats}
             regularSeasonSelected={regularSeasonSelected}
@@ -176,20 +182,7 @@ function App() {
           />
           <br></br>
           <br></br>
-
         </div>
-        <ReactSlider
-          style={{ background: 'white' }}
-          className="horizontal-slider"
-          thumbClassName="example-thumb"
-          trackClassName="example-track"
-          defaultValue={[0, 100]}
-          ariaLabel={['Lower thumb', 'Upper thumb']}
-          ariaValuetext={state => `Thumb value ${state.valueNow}`}
-          renderThumb={(props, state) => <div {...props}>{state.valueNow}</div>}
-          pearling
-          minDistance={10}
-        />
       </div>
     </Router>
   );
