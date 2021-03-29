@@ -40,6 +40,13 @@ const PlayerStats = (
       onClick: (e) => e.stopPropagation(),
       display: false
     },
+    scales: {
+      xAxes: [{
+          ticks: {
+              display: false
+          }
+      }]
+  }
   }
 
   const playerStatsFiltered = playerStats.filter(playerStat => playerStat.game.postseason === postSeasonSelected)
