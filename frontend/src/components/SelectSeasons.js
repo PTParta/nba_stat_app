@@ -24,6 +24,10 @@ const SelectSeasons = ({
     <div>
       <table>
         <tbody>
+          <tr style={{ color: 'white' }}>
+            <td style={{ paddingLeft: '10px' }}>start</td>
+            <td style={{ paddingLeft: '10px' }}>end</td>
+          </tr>
           <tr>
             <td width={'150px'}><Select
               options={seasonSelectAscending}
