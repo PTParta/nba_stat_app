@@ -46,7 +46,7 @@ const SelectStats = (
   }
 ) => {
 
-  const cellWidth = 75
+  const cellWidth = 100
 
   return (
     <div style={{ color: 'white' }}>
@@ -83,6 +83,15 @@ const SelectStats = (
                   type="checkbox"
                   label="blk" />
               </td>
+            </tr>
+          </tbody>
+        </table>
+      </Form>
+      <br></br>
+      <Form>
+        <table>
+          <tbody>
+            <tr>
               <td style={{ width: cellWidth, backgroundColor: colors.navyLine/* , color:'black' */ }}>
                 <Form.Check
                   inline={true}
@@ -120,31 +129,6 @@ const SelectStats = (
         <table>
           <tbody>
             <tr>
-              <td style={{ width: cellWidth, backgroundColor: colors.limeLine, color: 'black' }}>
-                <Form.Check
-                  inline={true}
-                  onChange={() => setDrebSelected(!drebSelected)}
-                  type="checkbox"
-                  label="dreb" />
-              </td>
-              <td style={{ width: cellWidth, backgroundColor: colors.greenLine, color: 'black' }}>
-                <Form.Check
-                  inline={true}
-                  onChange={() => setOrebSelected(!orebSelected)}
-                  type="checkbox"
-                  label="oreb" />
-              </td>
-
-            </tr>
-
-          </tbody>
-        </table>
-      </Form>
-      <br></br>
-      <Form>
-        <table>
-          <tbody>
-            <tr>
               <td style={{ width: cellWidth, backgroundColor: colors.cyanLine, color: 'black' }}>
                 <Form.Check
                   inline={true}
@@ -152,30 +136,6 @@ const SelectStats = (
                   type="checkbox"
                   label="fg_pct" />
               </td>
-              <td style={{ width: cellWidth, backgroundColor: colors.blueLine, color: 'black' }}>
-                <Form.Check
-                  inline={true}
-                  onChange={() => setFg3_pctSelected(!fg3_pctSelected)}
-                  type="checkbox"
-                  label="fg3_pct" />
-              </td>
-              <td style={{ width: cellWidth, backgroundColor: colors.purpleLine, color: 'black' }}>
-                <Form.Check
-                  inline={true}
-                  onChange={() => setFt_pctSelected(!ft_pctSelected)}
-                  type="checkbox"
-                  label="ft_pct" />
-              </td>
-            </tr>
-
-          </tbody>
-        </table>
-      </Form>
-      <br></br>
-      <Form>
-        <table>
-          <tbody>
-            <tr>
               <td style={{ width: cellWidth, backgroundColor: colors.magentaLine, color: 'black' }}>
                 <Form.Check
                   inline={true}
@@ -190,6 +150,23 @@ const SelectStats = (
                   type="checkbox"
                   label="fgm" />
               </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </Form>
+      <br></br>
+      <Form>
+        <table>
+          <tbody>
+            <tr>
+              <td style={{ width: cellWidth, backgroundColor: colors.blueLine, color: 'black' }}>
+                <Form.Check
+                  inline={true}
+                  onChange={() => setFg3_pctSelected(!fg3_pctSelected)}
+                  type="checkbox"
+                  label="fg3_pct" />
+              </td>
               <td style={{ width: cellWidth, backgroundColor: colors.pinkLine, color: 'black' }}>
                 <Form.Check
                   inline={true}
@@ -203,6 +180,23 @@ const SelectStats = (
                   onChange={() => setFg3mSelected(!fg3mSelected)}
                   type="checkbox"
                   label="fg3m" />
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </Form>
+      <br></br>
+      <Form>
+        <table>
+          <tbody>
+            <tr>
+              <td style={{ width: cellWidth, backgroundColor: colors.purpleLine, color: 'black' }}>
+                <Form.Check
+                  inline={true}
+                  onChange={() => setFt_pctSelected(!ft_pctSelected)}
+                  type="checkbox"
+                  label="ft_pct" />
               </td>
               <td style={{ width: cellWidth, backgroundColor: colors.beigeLine, color: 'black' }}>
                 <Form.Check
@@ -223,7 +217,29 @@ const SelectStats = (
           </tbody>
         </table>
       </Form>
-
+      <br></br>
+      <Form>
+        <table>
+          <tbody>
+            <tr>
+              <td style={{ width: cellWidth, backgroundColor: colors.limeLine, color: 'black' }}>
+                <Form.Check
+                  inline={true}
+                  onChange={() => setDrebSelected(!drebSelected)}
+                  type="checkbox"
+                  label="dreb" />
+              </td>
+              <td style={{ width: cellWidth, backgroundColor: colors.greenLine, color: 'black' }}>
+                <Form.Check
+                  inline={true}
+                  onChange={() => setOrebSelected(!orebSelected)}
+                  type="checkbox"
+                  label="oreb" />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </Form>
       <br></br>
       {/* test to check that the states change correctly */}
       {/* <p>pts: {ptsSelected.toString()}</p>

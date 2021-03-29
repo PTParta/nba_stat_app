@@ -27,7 +27,6 @@ function App() {
   const [playerStats, setPlayerStats] = useState([])
   const [teams, setTeams] = useState([])
   const [selectedPlayer, setSelectedPlayer] = useState('')
-  //const [selectedSeasons, setSelectedSeasons] = useState([])
   const [selectedFirstSeason, setSelectedFirstSeason] = useState(1980)
   const [selectedLastSeason, setSelectedLastSeason] = useState(2020)
   const [regularSeasonSelected, setRegularSeasonSelected] = useState(true)
@@ -106,8 +105,8 @@ function App() {
             />
             : <></>}
           <br></br>
-          <table>
-            <tbody>
+          <table >
+            <tbody >
               <tr>
                 <td >
                   <SelectPlayer
@@ -115,7 +114,8 @@ function App() {
                     setSelectedPlayer={setSelectedPlayer}
                   />
                 </td>
-                <td >
+                <td>____</td>
+                <td>
                   <GetStats
                     selectedPlayer={selectedPlayer}
                     players={players}
@@ -135,6 +135,7 @@ function App() {
                     selectedLastSeason={selectedLastSeason}
                   />
                 </td>
+                <td>____</td>
                 <td>
                   <SelectRegularPost
                     regularSeasonSelected={regularSeasonSelected}
@@ -188,7 +189,7 @@ function App() {
             setMinSelected={setMinSelected} />
         </div>
       </div>
-    </Router>
+    </Router >
   );
 }
 

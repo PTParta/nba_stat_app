@@ -13,7 +13,7 @@ const SelectPlayer = ({ players, setSelectedPlayer }) => {
       <table>
         <tbody>
           <tr>
-            <td width={'300px'}>
+            <td width={'200px'}>
               <Select
                 options={playerSelect}
                 onChange={(option) => handleSelectedPlayerChange(option.value)}

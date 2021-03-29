@@ -25,13 +25,13 @@ const SelectSeasons = ({
       <table>
         <tbody>
           <tr>
-            <td width={'150px'}><Select
+            <td width={'100px'}><Select
               options={seasonSelectAscending}
               onChange={(event) => setSelectedFirstSeason(event.value)}
               closeMenuOnSelect={true}
               placeholder={selectedFirstSeason.toString()}
             /></td>
-            <td width={'150px'}><Select
+            <td width={'100px'}><Select
               options={seasonSelectDescending}
               onChange={(event) => setSelectedLastSeason(event.value)}
               closeMenuOnSelect={true}
