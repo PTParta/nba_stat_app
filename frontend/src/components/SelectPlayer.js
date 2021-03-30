@@ -1,7 +1,7 @@
 import Select from 'react-select'
 import playerStatService from '../services/playerStats'
 
-const SelectPlayer = ({ players, setSelectedPlayer, setPlayerStats }) => {
+const SelectPlayer = ({ players, setSelectedPlayer, setPlayerStats, setFetchingData }) => {
 
   const playerSelect = players.map(player => ({ label: player.fullName, value: player.fullName }))
 
@@ -11,6 +11,7 @@ const SelectPlayer = ({ players, setSelectedPlayer, setPlayerStats }) => {
   }
 
   const getPlayerStats = (playerFullName) => {
+    setFetchingData('loading...')
     const searchedPlayer = players.find(player => player.fullName === playerFullName)
     console.log('searched player', searchedPlayer)
     playerStatService.getPlayerStatsFromDB(searchedPlayer.apiId)
@@ -18,24 +19,17 @@ const SelectPlayer = ({ players, setSelectedPlayer, setPlayerStats }) => {
         setPlayerStats(response.data.sort((a, b) =>
           new Date(a.game.date).getTime() - new Date(b.game.date).getTime())
         )
+        setFetchingData('idle')
       })
+
   }
   return (
     <div>
-
-      {/* <table>
-        <tbody>
-          <tr>
-            <td width={'200px'}> */}
       <Select
         options={playerSelect}
         onChange={(option) => handleSelectedPlayerChange(option.value)}
         placeholder='Select player'
       />
-      {/* </td>
-          </tr>
-        </tbody>
-      </table> */}
     </div>
   )
 }

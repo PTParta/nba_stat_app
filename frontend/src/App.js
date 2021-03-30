@@ -10,6 +10,7 @@ import SelectSeasons from './components/SelectSeasons'
 import SelectRegularPost from './components/SelectRegularPost'
 import SelectStats from './components/SelectStats'
 import Logo from './components/Logo'
+import Loader from 'react-loader-spinner'
 
 
 //import Teams from './components/Teams'
@@ -54,6 +55,8 @@ function App() {
   const [ft_pctSelected, setFt_pctSelected] = useState(false)
   const [pfSelected, setPfSelected] = useState(false)
   const [minSelected, setMinSelected] = useState(false)
+
+  const [fetchingData, setFetchingData] = useState('idle')
 
   useEffect(() => {
     teamService.getTeams()
@@ -185,6 +188,19 @@ function App() {
               <Col sm={8}></Col>
             </Row>
             <br></br>
+
+            <Row>
+              <Col sm={2} ></Col>
+              <Col sm={2}>
+                {fetchingData === 'loading...'
+                  ? <>
+                    <Loader type="Grid" color="white" height="50" width="50" />
+                    <br></br>
+                  </>
+                  : <></>}
+              </Col>
+              <Col sm={8} ></Col>
+            </Row>
             <Row>
               <Col sm={2}></Col>
               <Col sm={4}>
@@ -192,6 +208,8 @@ function App() {
                   players={players}
                   setSelectedPlayer={setSelectedPlayer}
                   setPlayerStats={setPlayerStats}
+                  fetchingData={fetchingData}
+                  setFetchingData={setFetchingData}
                 />
               </Col>
               <Col sm={4}>
