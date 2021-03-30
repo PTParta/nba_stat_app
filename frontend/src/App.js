@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-//import { Container } from 'react-bootstrap'
+import { Container, Row, Col } from 'react-bootstrap'
 import teamService from './services/teams'
 import playerService from './services/players'
 import PlayerStats from './components/PlayerStats'
@@ -76,142 +76,137 @@ function App() {
         height: '100vh',
         display: 'flex',
         flexDirection: 'column',
-        /* textAlign: 'center' */
+        alignContent: 'center',
+        textAlign: 'center'
       }}>
-        <div className="container" style={{ paddingTop:'5vh', backgroundColor: "#17202A" }} >
-          {playerStats.length === 0
-            ? <div style={{ paddingLeft: '100px'/* textAlign: 'center' */ }}>
-              <Logo />
-            </div>
-            : <></>}
-
-          <br></br>
-          {/* <NavigationBar /> */}
-          {playerStats.length > 0
-            ? <PlayerStats
-              playerStats={playerStats}
-              teams={teams}
-              regularSeasonSelected={regularSeasonSelected}
-              postSeasonSelected={postSeasonSelected}
-              ptsSelected={ptsSelected}
-              astSelected={astSelected}
-              rebSelected={rebSelected}
-              drebSelected={drebSelected}
-              orebSelected={orebSelected}
-              blkSelected={blkSelected}
-              stlSelected={stlSelected}
-              turnoverSelected={turnoverSelected}
-              fgaSelected={fgaSelected}
-              fgmSelected={fgmSelected}
-              fg_pctSelected={fg_pctSelected}
-              fg3aSelected={fg3aSelected}
-              fg3mSelected={fg3mSelected}
-              fg3_pctSelected={fg3_pctSelected}
-              ftaSelected={ftaSelected}
-              ftmSelected={ftmSelected}
-              ft_pctSelected={ft_pctSelected}
-              pfSelected={pfSelected}
-              minSelected={minSelected}
-              selectedFirstSeason={selectedFirstSeason}
-              selectedLastSeason={selectedLastSeason}
-            />
-            : <></>}
-          <br></br>
-          <div style={{ marginLeft: '30px' }}>
-            <table >
-              <tbody >
-                <tr>
-                  <td >
-                    <SelectPlayer
-                      players={players}
-                      setSelectedPlayer={setSelectedPlayer}
-                    />
-                  </td>
-                  {/* <div style={{ color: '#17202A' }}>
-                    <td >____</td>
-                  </div> */}
-
-                  <td>
-                    <GetStats
-                      selectedPlayer={selectedPlayer}
-                      players={players}
-                      setPlayerStats={setPlayerStats}
-                      regularSeasonSelected={regularSeasonSelected}
-                      postSeasonSelected={postSeasonSelected}
-                    />
-                  </td>
-                </tr>
-                {/* <tr>
-                  <div style={{ color: '#17202A' }}>
-                    <td >____</td>
-                  </div>
-                </tr> */}
-                <tr>
-                  <td>
-                    <SelectSeasons
-                      setSelectedFirstSeason={setSelectedFirstSeason}
-                      setSelectedLastSeason={setSelectedLastSeason}
-                      selectedFirstSeason={selectedFirstSeason}
-                      selectedLastSeason={selectedLastSeason}
-                    />
-                  </td>
-                  {/* <div style={{ color: '#17202A' }}>
-                    <td >____</td>
-                  </div> */}
-                  <td>
-                    <SelectRegularPost
-                      regularSeasonSelected={regularSeasonSelected}
-                      postSeasonSelected={postSeasonSelected}
-                      setRegularSeasonSelected={setRegularSeasonSelected}
-                      setPostSeasonSelected={setPostSeasonSelected}
-                    />
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+        <div className="container" style={{ /* display: 'flex' *//* , alignContent: 'center' */ paddingTop: '2vh', backgroundColor: "#17202A" }} >
+          <Container>
+            <Row>
+              <Col>
+                {playerStats.length === 0
+                  ? <Logo />
+                  : <></>}
+              </Col>
+            </Row>
             <br></br>
-            <SelectStats
-              ptsSelected={ptsSelected}
-              setPtsSelected={setPtsSelected}
-              astSelected={astSelected}
-              setAstSelected={setAstSelected}
-              rebSelected={rebSelected}
-              setRebSelected={setRebSelected}
-              drebSelected={drebSelected}
-              setDrebSelected={setDrebSelected}
-              orebSelected={orebSelected}
-              setOrebSelected={setOrebSelected}
-              blkSelected={blkSelected}
-              setBlkSelected={setBlkSelected}
-              stlSelected={stlSelected}
-              setStlSelected={setStlSelected}
-              turnoverSelected={turnoverSelected}
-              setTurnoverSelected={setTurnoverSelected}
-              fgaSelected={fgaSelected}
-              setFgaSelected={setFgaSelected}
-              fgmSelected={fgmSelected}
-              setFgmSelected={setFgmSelected}
-              fg_pctSelected={fg_pctSelected}
-              setFg_pctSelected={setFg_pctSelected}
-              fg3aSelected={fg3aSelected}
-              setFg3aSelected={setFg3aSelected}
-              fg3mSelected={fg3mSelected}
-              setFg3mSelected={setFg3mSelected}
-              fg3_pctSelected={fg3_pctSelected}
-              setFg3_pctSelected={setFg3_pctSelected}
-              ftaSelected={ftaSelected}
-              setFtaSelected={setFtaSelected}
-              ftmSelected={ftmSelected}
-              setFtmSelected={setFtmSelected}
-              ft_pctSelected={ft_pctSelected}
-              setFt_pctSelected={setFt_pctSelected}
-              pfSelected={pfSelected}
-              setPfSelected={setPfSelected}
-              minSelected={minSelected}
-              setMinSelected={setMinSelected} />
-          </div>
+            <Row className="justify-content-md-center">
+              <Col>{/* <NavigationBar /> */}
+                {playerStats.length > 0
+                  ? <PlayerStats
+                    playerStats={playerStats}
+                    teams={teams}
+                    regularSeasonSelected={regularSeasonSelected}
+                    postSeasonSelected={postSeasonSelected}
+                    ptsSelected={ptsSelected}
+                    astSelected={astSelected}
+                    rebSelected={rebSelected}
+                    drebSelected={drebSelected}
+                    orebSelected={orebSelected}
+                    blkSelected={blkSelected}
+                    stlSelected={stlSelected}
+                    turnoverSelected={turnoverSelected}
+                    fgaSelected={fgaSelected}
+                    fgmSelected={fgmSelected}
+                    fg_pctSelected={fg_pctSelected}
+                    fg3aSelected={fg3aSelected}
+                    fg3mSelected={fg3mSelected}
+                    fg3_pctSelected={fg3_pctSelected}
+                    ftaSelected={ftaSelected}
+                    ftmSelected={ftmSelected}
+                    ft_pctSelected={ft_pctSelected}
+                    pfSelected={pfSelected}
+                    minSelected={minSelected}
+                    selectedFirstSeason={selectedFirstSeason}
+                    selectedLastSeason={selectedLastSeason}
+                  />
+                  : <></>}</Col>
+            </Row>
+            <br></br>
+            <Row>
+              <Col sm={2}></Col>
+              <Col sm={4}>
+                <SelectPlayer
+                  players={players}
+                  setSelectedPlayer={setSelectedPlayer}
+                />
+              </Col>
+              <Col sm={4}>
+                <GetStats
+                  selectedPlayer={selectedPlayer}
+                  players={players}
+                  setPlayerStats={setPlayerStats}
+                  regularSeasonSelected={regularSeasonSelected}
+                  postSeasonSelected={postSeasonSelected}
+                />
+              </Col>
+              <Col sm={2}></Col>
+            </Row>
+            <br></br>
+            <Row>
+              <Col sm={2}></Col>
+              <SelectSeasons
+                setSelectedFirstSeason={setSelectedFirstSeason}
+                setSelectedLastSeason={setSelectedLastSeason}
+                selectedFirstSeason={selectedFirstSeason}
+                selectedLastSeason={selectedLastSeason}
+              />
+              <SelectRegularPost
+                regularSeasonSelected={regularSeasonSelected}
+                postSeasonSelected={postSeasonSelected}
+                setRegularSeasonSelected={setRegularSeasonSelected}
+                setPostSeasonSelected={setPostSeasonSelected}
+              />
+              <Col sm={2}></Col>
+            </Row>
+            <br></br>
+            <Row>
+              <Col sm={2}></Col>
+              <Col sm={8}>
+                <SelectStats
+                  ptsSelected={ptsSelected}
+                  setPtsSelected={setPtsSelected}
+                  astSelected={astSelected}
+                  setAstSelected={setAstSelected}
+                  rebSelected={rebSelected}
+                  setRebSelected={setRebSelected}
+                  drebSelected={drebSelected}
+                  setDrebSelected={setDrebSelected}
+                  orebSelected={orebSelected}
+                  setOrebSelected={setOrebSelected}
+                  blkSelected={blkSelected}
+                  setBlkSelected={setBlkSelected}
+                  stlSelected={stlSelected}
+                  setStlSelected={setStlSelected}
+                  turnoverSelected={turnoverSelected}
+                  setTurnoverSelected={setTurnoverSelected}
+                  fgaSelected={fgaSelected}
+                  setFgaSelected={setFgaSelected}
+                  fgmSelected={fgmSelected}
+                  setFgmSelected={setFgmSelected}
+                  fg_pctSelected={fg_pctSelected}
+                  setFg_pctSelected={setFg_pctSelected}
+                  fg3aSelected={fg3aSelected}
+                  setFg3aSelected={setFg3aSelected}
+                  fg3mSelected={fg3mSelected}
+                  setFg3mSelected={setFg3mSelected}
+                  fg3_pctSelected={fg3_pctSelected}
+                  setFg3_pctSelected={setFg3_pctSelected}
+                  ftaSelected={ftaSelected}
+                  setFtaSelected={setFtaSelected}
+                  ftmSelected={ftmSelected}
+                  setFtmSelected={setFtmSelected}
+                  ft_pctSelected={ft_pctSelected}
+                  setFt_pctSelected={setFt_pctSelected}
+                  pfSelected={pfSelected}
+                  setPfSelected={setPfSelected}
+                  minSelected={minSelected}
+                  setMinSelected={setMinSelected} />
+              </Col>
+              <Col sm={2}></Col>
+            </Row>
+          </Container>
         </div>
-      </div>
+      </div >
     </Router >
 
 

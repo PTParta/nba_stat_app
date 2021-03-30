@@ -465,44 +465,24 @@ const PlayerStats = (
 
   return (
     <div>
-
-
       <Container style={{ color: 'white', paddingLeft: '30px' }}>
         <Row>
-          <Col><h3 style={{ color: 'white', paddingLeft: '30px' }} >
+          <Col><h5>
             {playerStats[0].player.first_name} {playerStats[0].player.last_name}
-          </h3>
-            <h5 style={{ color: 'white', paddingLeft: '30px' }} >
+          </h5>
+            <h5>
               {startSeasonToShow} - {endSeasonToShow}
             </h5>
             {!postSeasonSelected
-              ? <h5 style={{ color: 'white', paddingLeft: '30px' }} >
+              ? <h5>
                 {games} games
         </h5>
-              : <h5 style={{ color: 'white', paddingLeft: '30px' }} >
+              : <h5>
                 {games} games
         </h5>}</Col>
-       {/*  <Col></Col>
-          <Col><Logo /></Col> */}
         </Row>
-
       </Container>
-
-              <br></br>
-      {/* <h3 style={{ color: 'white', paddingLeft: '30px' }} >
-        {playerStats[0].player.first_name} {playerStats[0].player.last_name}
-      </h3>
-      <h5 style={{ color: 'white', paddingLeft: '30px' }} >
-        {startSeasonToShow} - {endSeasonToShow}
-      </h5>
-      {!postSeasonSelected
-        ? <h5 style={{ color: 'white', paddingLeft: '30px' }} >
-          {games} games
-        </h5>
-        : <h5 style={{ color: 'white', paddingLeft: '30px' }} >
-          {games} games
-        </h5>}
-      <br></br> */}
+      <br></br>
       <div className='chart'>
         <Line
           data={data}

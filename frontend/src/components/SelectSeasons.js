@@ -1,4 +1,5 @@
 import Select from 'react-select'
+import { /* Container,  *//* Row, */ Col } from 'react-bootstrap'
 
 const SelectSeasons = ({
   setSelectedFirstSeason,
@@ -21,8 +22,26 @@ const SelectSeasons = ({
   }
 
   return (
-    <div>
-      <table>
+    <>
+      <Col sm={2}>
+        <Select
+          options={seasonSelectAscending}
+          onChange={(event) => setSelectedFirstSeason(event.value)}
+          closeMenuOnSelect={true}
+          placeholder={selectedFirstSeason.toString()}
+        />
+      </Col>
+      <Col sm={2}>
+        <Select
+          options={seasonSelectDescending}
+          onChange={(event) => setSelectedLastSeason(event.value)}
+          closeMenuOnSelect={true}
+          placeholder={selectedLastSeason}
+        />
+      </Col>
+
+
+      {/* <table>
         <tbody>
           <tr>
             <td width={'100px'}><Select
@@ -39,8 +58,8 @@ const SelectSeasons = ({
             /></td>
           </tr>
         </tbody>
-      </table>
-    </div>
+      </table> */}
+    </>
   )
 }
 

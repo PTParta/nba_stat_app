@@ -6,7 +6,7 @@ const Logo = () => {
 
   return (
     <img
-      class="card-img-top mb-3 w-auto"
+      /* class="card-img-top mb-3 w-auto" */
       src={ball_logo}
       alt='ball_logo'
       /* style={{
