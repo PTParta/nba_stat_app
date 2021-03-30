@@ -2,7 +2,7 @@ import { Button } from 'react-bootstrap'
 import playerStatService from '../services/playerStats'
 
 
-const GetStats = ({ selectedPlayer, selectedSeasons, players, setPlayerStats, regularSeasonSelected, postSeasonSelected }) => {
+const GetStats = ({ selectedPlayer, players, setPlayerStats }) => {
 
   const getPlayerStats = (playerFullName) => {
     const searchedPlayer = players.find(player => player.fullName === playerFullName)

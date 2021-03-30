@@ -1,5 +1,5 @@
 
-import { ButtonGroup, ToggleButton, Col } from 'react-bootstrap'
+import { ButtonGroup, ToggleButton } from 'react-bootstrap'
 import { useState } from 'react'
 
 const SelectRegularPost = ({ setRegularSeasonSelected, setPostSeasonSelected }) => {
@@ -25,30 +25,26 @@ const SelectRegularPost = ({ setRegularSeasonSelected, setPostSeasonSelected }) 
 
   return (
     <>
-      <Col sm={4}>
-        <ButtonGroup toggle size="md" /* styles={{ marginLeft: '10px' }} */ >
-          {radios.map((radio, idx) => (
-            <ToggleButton
-              /* style={{ width: '95px', marginRight: '10px' }} */
-              key={idx}
-              type="radio"
-              variant="outline-secondary"
-              name="radio"
-              value={radio.value}
-              checked={radioValue === radio.value}
-              onChange={(e) => handleRegularPostChange(e)}
-            >
-              {radio.name}
-            </ToggleButton>
-          ))}
-        </ButtonGroup>
-        {/* test to check that states change correctly */}
-        {/* <div style={{ color: 'white' }}>
+      <ButtonGroup toggle size="md">
+        {radios.map((radio, idx) => (
+          <ToggleButton
+            key={idx}
+            type="radio"
+            variant="outline-secondary"
+            name="radio"
+            value={radio.value}
+            checked={radioValue === radio.value}
+            onChange={(e) => handleRegularPostChange(e)}
+          >
+            {radio.name}
+          </ToggleButton>
+        ))}
+      </ButtonGroup>
+      {/* test to check that states change correctly */}
+      {/* <div style={{ color: 'white' }}>
         <p>reg: {regularSeasonSelected.toString()}</p>
         <p>post: {postSeasonSelected.toString()}</p>
       </div> */}
-      </Col>
-
     </>
   )
 }
