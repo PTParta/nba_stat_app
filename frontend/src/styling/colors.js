@@ -40,7 +40,9 @@ const colors = {
   'lavenderDot': 'rgba(220,190,255,0.3)',
   'lavenderLine': 'rgba(220,190,255,1.0)',
   'whiteDot': 'rgba(255,255,255,0.3)',
-  'whiteLine': 'rgba(255,255,255,1.0)'
+  'whiteLine': 'rgba(255,255,255,1.0)',
+  'lightGreyDot': 'rgba(211,211,211,0.3)',
+  'lightGreyLine': 'rgba(211,211,211,1.0)'
 }
 
 export default colors

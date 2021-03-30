@@ -54,13 +54,12 @@ const SelectStats = (
         <table>
           <tbody>
             <tr>
-              <td style={{ width: cellWidth, backgroundColor: colors.maroonLine, color: 'white' }}>
+              <td style={{ width: cellWidth, backgroundColor: colors.lightGreyLine, color: 'black' }}>
                 <Form.Check
                   inline={true}
                   onChange={() => setPtsSelected(!ptsSelected)}
                   type="checkbox"
-                  label="pts"
-                  background={colors.maroonLine} />
+                  label="pts" />
               </td>
               <td style={{ width: cellWidth, backgroundColor: colors.brownLine, color: 'black' }}>
                 <Form.Check

@@ -3,7 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap'
 import { Line } from 'react-chartjs-2'
 import trailingMeanService from '../services/trailingMeans'
 import colors from '../styling/colors'
-import Logo from '../components/Logo'
+//import Logo from '../components/Logo'
 
 const PlayerStats = (
   {
@@ -92,8 +92,8 @@ const PlayerStats = (
         label: 'pts',
         data: playerStatsFiltered.map(playerStat => playerStat.pts),
         fill: false,
-        borderColor: colors.maroonDot,
-        pointBackgroundColor: colors.maroonDot,
+        borderColor: colors.lightGreyDot,
+        pointBackgroundColor: colors.lightGreyDot,
         showLine: false,
         hidden: !ptsSelected
       },
@@ -101,8 +101,8 @@ const PlayerStats = (
         label: 'pts trailing mean',
 
         fill: false,
-        borderColor: colors.maroonLine,
-        pointBackgroundColor: colors.maroonLine,
+        borderColor: colors.lightGreyLine,
+        pointBackgroundColor: colors.lightGreyLine,
         showLine: true,
         pointRadius: 0,
         data: trailingMeanService.pts(playerStatsFiltered),
@@ -482,7 +482,7 @@ const PlayerStats = (
         </h5>}</Col>
         </Row>
       </Container>
-      <br></br>
+      {/* <br></br> */}
       <div className='chart'>
         <Line
           data={data}

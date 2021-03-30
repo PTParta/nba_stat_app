@@ -5,7 +5,7 @@ import playerService from './services/players'
 import PlayerStats from './components/PlayerStats'
 import SelectPlayer from './components/SelectPlayer'
 import SelectSeasons from './components/SelectSeasons'
-import NavigationBar from './components/NavigationBar'
+//import NavigationBar from './components/NavigationBar'
 import GetStats from './components/GetStats'
 import SelectRegularPost from './components/SelectRegularPost'
 import SelectStats from './components/SelectStats'
@@ -79,12 +79,12 @@ function App() {
         alignContent: 'center',
         textAlign: 'center'
       }}>
-        <div className="container" style={{ /* paddingTop: '2vh', */ backgroundColor: "#17202A" }} >
+        <div className="container" style={{ paddingTop: '2vh', backgroundColor: "#17202A" }} >
           <Container>
             <Row>
               <Col sm={2}></Col>
               <Col sm={2}>
-                <NavigationBar />
+                {/* <NavigationBar /> */}
               </Col>
               <Col sm={4}>
                 {playerStats.length === 0
