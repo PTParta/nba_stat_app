@@ -5,7 +5,7 @@ import playerService from './services/players'
 import PlayerStats from './components/PlayerStats'
 import SelectPlayer from './components/SelectPlayer'
 import SelectSeasons from './components/SelectSeasons'
-//import NavigationBar from './components/NavigationBar'
+import NavigationBar from './components/NavigationBar'
 import GetStats from './components/GetStats'
 import SelectRegularPost from './components/SelectRegularPost'
 import SelectStats from './components/SelectStats'
@@ -79,16 +79,21 @@ function App() {
         alignContent: 'center',
         textAlign: 'center'
       }}>
-        <div className="container" style={{ /* display: 'flex' *//* , alignContent: 'center' */ paddingTop: '2vh', backgroundColor: "#17202A" }} >
+        <div className="container" style={{ /* paddingTop: '2vh', */ backgroundColor: "#17202A" }} >
           <Container>
             <Row>
-              <Col>
+              <Col sm={2}></Col>
+              <Col sm={2}>
+                <NavigationBar />
+              </Col>
+              <Col sm={4}>
                 {playerStats.length === 0
                   ? <Logo />
                   : <></>}
               </Col>
+              <Col sm={4}></Col>
             </Row>
-            <br></br>
+            {/* <br></br> */}
             <Row className="justify-content-md-center">
               <Col>{/* <NavigationBar /> */}
                 {playerStats.length > 0
@@ -122,6 +127,51 @@ function App() {
                   : <></>}</Col>
             </Row>
             <br></br>
+            <Row >
+              <Col sm={2} ></Col>
+              <Col sm={8} >
+                <SelectStats
+                  ptsSelected={ptsSelected}
+                  setPtsSelected={setPtsSelected}
+                  astSelected={astSelected}
+                  setAstSelected={setAstSelected}
+                  rebSelected={rebSelected}
+                  setRebSelected={setRebSelected}
+                  drebSelected={drebSelected}
+                  setDrebSelected={setDrebSelected}
+                  orebSelected={orebSelected}
+                  setOrebSelected={setOrebSelected}
+                  blkSelected={blkSelected}
+                  setBlkSelected={setBlkSelected}
+                  stlSelected={stlSelected}
+                  setStlSelected={setStlSelected}
+                  turnoverSelected={turnoverSelected}
+                  setTurnoverSelected={setTurnoverSelected}
+                  fgaSelected={fgaSelected}
+                  setFgaSelected={setFgaSelected}
+                  fgmSelected={fgmSelected}
+                  setFgmSelected={setFgmSelected}
+                  fg_pctSelected={fg_pctSelected}
+                  setFg_pctSelected={setFg_pctSelected}
+                  fg3aSelected={fg3aSelected}
+                  setFg3aSelected={setFg3aSelected}
+                  fg3mSelected={fg3mSelected}
+                  setFg3mSelected={setFg3mSelected}
+                  fg3_pctSelected={fg3_pctSelected}
+                  setFg3_pctSelected={setFg3_pctSelected}
+                  ftaSelected={ftaSelected}
+                  setFtaSelected={setFtaSelected}
+                  ftmSelected={ftmSelected}
+                  setFtmSelected={setFtmSelected}
+                  ft_pctSelected={ft_pctSelected}
+                  setFt_pctSelected={setFt_pctSelected}
+                  pfSelected={pfSelected}
+                  setPfSelected={setPfSelected}
+                  minSelected={minSelected}
+                  setMinSelected={setMinSelected} />
+              </Col>
+              <Col sm={2}></Col>
+            </Row>
             <Row>
               <Col sm={2}></Col>
               <Col sm={4}>
@@ -159,7 +209,7 @@ function App() {
               <Col sm={2}></Col>
             </Row>
             <br></br>
-            <Row>
+            {/* <Row>
               <Col sm={2}></Col>
               <Col sm={8}>
                 <SelectStats
@@ -203,7 +253,7 @@ function App() {
                   setMinSelected={setMinSelected} />
               </Col>
               <Col sm={2}></Col>
-            </Row>
+            </Row> */}
           </Container>
         </div>
       </div >

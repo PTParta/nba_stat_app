@@ -87,7 +87,7 @@ const SelectStats = (
           </tbody>
         </table>
       </Form>
-      <br></br>
+      {/* <br></br> */}
       <Form>
         <table>
           <tbody>
@@ -124,7 +124,7 @@ const SelectStats = (
           </tbody>
         </table>
       </Form>
-      <br></br>
+      {/* <br></br> */}
       <Form>
         <table>
           <tbody>
@@ -155,7 +155,7 @@ const SelectStats = (
           </tbody>
         </table>
       </Form>
-      <br></br>
+      {/* <br></br> */}
       <Form>
         <table>
           <tbody>
@@ -186,7 +186,7 @@ const SelectStats = (
           </tbody>
         </table>
       </Form>
-      <br></br>
+      {/* <br></br> */}
       <Form>
         <table>
           <tbody>
@@ -217,7 +217,7 @@ const SelectStats = (
           </tbody>
         </table>
       </Form>
-      <br></br>
+      {/* <br></br> */}
       <Form>
         <table>
           <tbody>

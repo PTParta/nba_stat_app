@@ -9,14 +9,10 @@ const Logo = () => {
       /* class="card-img-top mb-3 w-auto" */
       src={ball_logo}
       alt='ball_logo'
-      /* style={{
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        width: '25%',
-        minWidth:'30%',
-        maxWidth: '30%',
-        height: 'auto'
-      }} */ />
+      style={{
+        width: '150px',
+        height: '150px'
+      }} />
   )
 }
 
