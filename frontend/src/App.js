@@ -10,6 +10,7 @@ import SelectSeasons from './components/SelectSeasons'
 import SelectRegularPost from './components/SelectRegularPost'
 import SelectStats from './components/SelectStats'
 import Logo from './components/Logo'
+import Instructions from './components/Instructions'
 import Loader from 'react-loader-spinner'
 
 
@@ -79,27 +80,49 @@ function App() {
         height: '100vh',
         display: 'flex',
         flexDirection: 'column',
-        alignContent: 'center',
-        textAlign: 'center'
+        alignContent: 'center'/* ,
+        textAlign: 'center' */
       }}>
         <div className="container" style={{ paddingTop: '2vh', backgroundColor: "#17202A" }} >
           <Container>
-            <Row>
-              <Col sm={2}></Col>
-              <Col sm={2}>
-                {/* <NavigationBar /> */}
-              </Col>
-              <Col sm={4}>
-                {playerStats.length === 0 && !fetchingData
-                  ? <Logo />
-                  : <></>}
+            {playerStats.length === 0 && !fetchingData
+              ? <>
+                <Row style={{ textAlign: 'center' }}>
+                  <Col sm={5} xs={1}></Col>
+                  <Col sm={2} xs={10}>
+                    <Logo />
+                  </Col>
+                  <Col sm={5} xs={1}></Col>
+                </Row>
+                <br></br>
+                <Row float='center'>
+                  <Col sm={4} xs={1}></Col>
+                  <Col sm={8} xs={10}>
+                    <Instructions />
+                  </Col>
+                  <Col /* sm={2} */ xs={1}></Col>
+                </Row>
+              </>
+              : <></>}
+            {/* <Col sm={2}>
+                <NavigationBar />
+              </Col> */}
+            <Row style={{ textAlign: 'center' }}>
+              <Col sm={5} xs={4}></Col>
+              <Col sm={2} xs={4}>
                 {fetchingData && playerStats.length === 0
-                  ? <Loader type="Grid" color="white" height="50" width="50" />
+                  ? <>
+                    <br></br>
+                    <br></br>
+                    <Loader type="Grid" color="white" height="100" width="100" />
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                  </>
                   : <></>}
               </Col>
-              <Col sm={4}></Col>
+              <Col sm={5} xs={4}></Col>
             </Row>
-            {/* <br></br> */}
             <Row className="justify-content-md-center">
               <Col>{/* <NavigationBar /> */}
                 {playerStats.length > 0
@@ -135,8 +158,8 @@ function App() {
             </Row>
             <br></br>
             <Row >
-              <Col sm={2} ></Col>
-              <Col sm={8} >
+              <Col sm={4} ></Col>
+              <Col sm={4} >
                 <SelectStats
                   ptsSelected={ptsSelected}
                   setPtsSelected={setPtsSelected}
@@ -177,11 +200,11 @@ function App() {
                   minSelected={minSelected}
                   setMinSelected={setMinSelected} />
               </Col>
-              <Col sm={2}></Col>
+              <Col sm={4}></Col>
             </Row>
             <Row>
-              <Col sm={2}></Col>
-              <Col sm={2}>
+              <Col sm={4}></Col>
+              <Col sm={4}>
                 <SelectRegularPost
                   regularSeasonSelected={regularSeasonSelected}
                   postSeasonSelected={postSeasonSelected}
@@ -189,24 +212,11 @@ function App() {
                   setPostSeasonSelected={setPostSeasonSelected}
                 />
               </Col>
-              <Col sm={8}></Col>
+              <Col sm={4}></Col>
             </Row>
             <br></br>
-
             <Row>
-              <Col sm={2} ></Col>
-              <Col sm={2}>
-                {fetchingData
-                  ? <>
-                    {/* <Loader type="Grid" color="white" height="50" width="50" /> */}
-                    <br></br>
-                  </>
-                  : <></>}
-              </Col>
-              <Col sm={8} ></Col>
-            </Row>
-            <Row>
-              <Col sm={2}></Col>
+              <Col sm={4}></Col>
               <Col sm={4}>
                 <SelectPlayer
                   players={players}
@@ -216,16 +226,7 @@ function App() {
                   setFetchingData={setFetchingData}
                 />
               </Col>
-              <Col sm={4}>
-                {/* <GetStats
-                  selectedPlayer={selectedPlayer}
-                  players={players}
-                  setPlayerStats={setPlayerStats}
-                  regularSeasonSelected={regularSeasonSelected}
-                  postSeasonSelected={postSeasonSelected}
-                /> */}
-              </Col>
-              <Col sm={2}></Col>
+              <Col sm={4}></Col>
             </Row>
             <SelectSeasons
               setSelectedFirstSeason={setSelectedFirstSeason}

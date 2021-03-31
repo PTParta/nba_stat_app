@@ -24,7 +24,7 @@ const SelectSeasons = ({
   return (
     <>
       <Row>
-        <Col sm={2}></Col>
+        <Col sm={4}></Col>
         <Col sm={4}>
           <Select
             options={seasonSelectAscending}
@@ -33,10 +33,10 @@ const SelectSeasons = ({
             placeholder={selectedFirstSeason.toString()}
           />
         </Col>
-        <Col sm={2}></Col>
+        <Col sm={4}></Col>
       </Row>
       <Row>
-        <Col sm={2}></Col>
+        <Col sm={4}></Col>
         <Col sm={4}>
           <Select
             options={seasonSelectDescending}
@@ -45,7 +45,7 @@ const SelectSeasons = ({
             placeholder={selectedLastSeason}
           />
         </Col>
-        <Col sm={2}></Col>
+        <Col sm={4}></Col>
       </Row>
     </>
   )

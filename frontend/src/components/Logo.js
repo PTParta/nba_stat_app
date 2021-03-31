@@ -10,8 +10,8 @@ const Logo = () => {
       src={ball_logo}
       alt='ball_logo'
       style={{
-        width: '150px',
-        height: '150px'
+        width: '75px',
+        height: '75px'
       }} />
   )
 }

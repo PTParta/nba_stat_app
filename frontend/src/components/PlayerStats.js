@@ -476,9 +476,9 @@ const PlayerStats = (
             </Col>
             : <>
               <Col>
-                <p>
+                <div>
                   {playerStats[0].player.first_name} {playerStats[0].player.last_name}, {startSeasonToShow} - {endSeasonToShow}, {games} games
-              </p>
+              </div>
               </Col>
             </>}
         </Row>
