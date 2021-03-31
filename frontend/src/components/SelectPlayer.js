@@ -11,7 +11,7 @@ const SelectPlayer = ({ players, setSelectedPlayer, setPlayerStats, setFetchingD
   }
 
   const getPlayerStats = (playerFullName) => {
-    setFetchingData('loading...')
+    setFetchingData(true)
     const searchedPlayer = players.find(player => player.fullName === playerFullName)
     console.log('searched player', searchedPlayer)
     playerStatService.getPlayerStatsFromDB(searchedPlayer.apiId)
@@ -19,7 +19,7 @@ const SelectPlayer = ({ players, setSelectedPlayer, setPlayerStats, setFetchingD
         setPlayerStats(response.data.sort((a, b) =>
           new Date(a.game.date).getTime() - new Date(b.game.date).getTime())
         )
-        setFetchingData('idle')
+        setFetchingData(false)
       })
 
   }

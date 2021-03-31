@@ -56,7 +56,7 @@ function App() {
   const [pfSelected, setPfSelected] = useState(false)
   const [minSelected, setMinSelected] = useState(false)
 
-  const [fetchingData, setFetchingData] = useState('idle')
+  const [fetchingData, setFetchingData] = useState(false)
 
   useEffect(() => {
     teamService.getTeams()
@@ -90,8 +90,11 @@ function App() {
                 {/* <NavigationBar /> */}
               </Col>
               <Col sm={4}>
-                {playerStats.length === 0
+                {playerStats.length === 0 && !fetchingData
                   ? <Logo />
+                  : <></>}
+                {fetchingData && playerStats.length === 0
+                  ? <Loader type="Grid" color="white" height="50" width="50" />
                   : <></>}
               </Col>
               <Col sm={4}></Col>
@@ -126,6 +129,7 @@ function App() {
                     minSelected={minSelected}
                     selectedFirstSeason={selectedFirstSeason}
                     selectedLastSeason={selectedLastSeason}
+                    fetchingData={fetchingData}
                   />
                   : <></>}</Col>
             </Row>
@@ -192,9 +196,9 @@ function App() {
             <Row>
               <Col sm={2} ></Col>
               <Col sm={2}>
-                {fetchingData === 'loading...'
+                {fetchingData
                   ? <>
-                    <Loader type="Grid" color="white" height="50" width="50" />
+                    {/* <Loader type="Grid" color="white" height="50" width="50" /> */}
                     <br></br>
                   </>
                   : <></>}

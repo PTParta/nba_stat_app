@@ -3,6 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap'
 import { Line } from 'react-chartjs-2'
 import trailingMeanService from '../services/trailingMeans'
 import colors from '../styling/colors'
+import Loader from 'react-loader-spinner'
 //import Logo from '../components/Logo'
 
 const PlayerStats = (
@@ -30,7 +31,8 @@ const PlayerStats = (
     pfSelected,
     minSelected,
     selectedFirstSeason,
-    selectedLastSeason
+    selectedLastSeason,
+    fetchingData
   }
 ) => {
 
@@ -467,29 +469,25 @@ const PlayerStats = (
     <div>
       <Container style={{ color: 'white', paddingLeft: '30px' }}>
         <Row>
-          <Col><h5>
-            {playerStats[0].player.first_name} {playerStats[0].player.last_name}
-          </h5>
-            <h5>
-              {startSeasonToShow} - {endSeasonToShow}
-            </h5>
-            {!postSeasonSelected
-              ? <h5>
-                {games} games
-        </h5>
-              : <h5>
-                {games} games
-        </h5>}</Col>
+          {fetchingData
+            ? <Col>
+              <Loader type="Grid" color="white" height="25" width="25" />
+              <br></br>
+            </Col>
+            : <>
+              <Col>
+                <p>
+                  {playerStats[0].player.first_name} {playerStats[0].player.last_name}, {startSeasonToShow} - {endSeasonToShow}, {games} games
+              </p>
+              </Col>
+            </>}
         </Row>
       </Container>
-      {/* <br></br> */}
       <div className='chart'>
         <Line
           data={data}
           options={options}
         />
-      </div>
-      <div>
       </div>
     </div>
   )
