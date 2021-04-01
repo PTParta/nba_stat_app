@@ -2,24 +2,25 @@ name: Periodic health check
 
 on:
   schedule:
+    # https://crontab.guru/examples.html
     # * is a special character in YAML so you have to quote this string
     #- cron:  '*/30 * * * *' every thirty minutes
     #- cron:  '0 0 * * *' once a day
-    - cron: '*/1 * * * *'
+    - cron: '*/0 * * * *'
 
 jobs:
-  healthcheck:
+  check_if_new_data_exists_in_API_and_transfer_it_to_database:
     runs-on: ubuntu-18.04
     steps:
       - name: Check the deployed service URL
         uses: jtalk/url-health-check-action@v1.5
         with:
           # Check the following URLs one by one sequentially
-          url: [https://bballchart.herokuapp.com, https://bballchart.herokuapp.com/api/stats/statsfromapitodatabase]
+          url: http://bballchart.com/api/stats/statsfromapitodatabase
           # Follow redirects, or just report success on 3xx status codes
           follow-redirect: no # Optional, defaults to "no"
           # Fail this action after this many failed attempts
-          max-attempts: 1 # Optional, defaults to 1
+          max-attempts: 2 # Optional, defaults to 1
           # Delay between retries
           retry-delay: 30s # Optional, only applicable to max-attempts > 1
           # Retry all errors, including 404
