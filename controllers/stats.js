@@ -17,6 +17,10 @@ statsRouter.get('/statsfromapitodatabase', async (_req, res) => {
     const totalAmountDocumentsInApi = statsOnFirstPage.data.meta.total_count
     console.log('total amount of documents in API:', totalAmountDocumentsInApi)
 
+    if(documentsCountInDatabaseBeforeAdding === totalAmountDocumentsInApi){
+      return 'Database is up to date. No need to transfer data from API to database'
+    }
+
     const totalPages = statsOnFirstPage.data.meta.total_pages + 1
     let startingPageNumber = totalPages - Math.floor((totalAmountDocumentsInApi - documentsCountInDatabaseBeforeAdding) / 100) - 2
     let stats = []
