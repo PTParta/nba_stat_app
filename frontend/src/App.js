@@ -10,7 +10,7 @@ import SelectSeasons from './components/SelectSeasons'
 import SelectRegularPost from './components/SelectRegularPost'
 import SelectStats from './components/SelectStats'
 import Logo from './components/Logo'
-import Instructions from './components/Instructions'
+//import Instructions from './components/Instructions'
 import Loader from 'react-loader-spinner'
 
 
@@ -31,7 +31,7 @@ function App() {
   const [players, setPlayers] = useState([])
   const [playerStats, setPlayerStats] = useState([])
   const [teams, setTeams] = useState([])
-  const [selectedPlayer, setSelectedPlayer] = useState('')
+  const [/* selectedPlayer */, setSelectedPlayer] = useState('')
   const [selectedFirstSeason, setSelectedFirstSeason] = useState(1980)
   const [selectedLastSeason, setSelectedLastSeason] = useState(2020)
   const [regularSeasonSelected, setRegularSeasonSelected] = useState(true)
@@ -73,7 +73,6 @@ function App() {
   }, [])
 
   return (
-
     <Router>
       <div style={{
         backgroundColor: "#17202A",
@@ -233,7 +232,6 @@ function App() {
               <Col sm={4}></Col>
             </Row>
             <br></br>
-
           </Container>
         </div>
       </div >

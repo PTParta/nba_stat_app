@@ -13,7 +13,6 @@ statsRouter.get('/statsfromapitodatabase', async (_req, _res) => {
     const documentsCountInDatabaseBeforeAdding = await Stat.count()
     console.log('documents in database before adding:', documentsCountInDatabaseBeforeAdding)
 
-
     let statsOnFirstPage = await axios.get(`${baseUrl}?per_page=${apiPerPage}`)
     const totalAmountDocumentsInApi = statsOnFirstPage.data.meta.total_count
     console.log('total amount of documents in API:', totalAmountDocumentsInApi)
