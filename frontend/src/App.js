@@ -85,6 +85,26 @@ function App() {
       }}>
         <div className="container" style={{ paddingTop: '2vh', backgroundColor: "#17202A" }} >
           <Container>
+            <Row>
+              <Col sm={4}></Col>
+              <Col sm={4}>
+                <SelectPlayer
+                  players={players}
+                  setSelectedPlayer={setSelectedPlayer}
+                  setPlayerStats={setPlayerStats}
+                  fetchingData={fetchingData}
+                  setFetchingData={setFetchingData}
+                />
+              </Col>
+              <Col sm={4}></Col>
+            </Row>
+            <SelectSeasons
+              setSelectedFirstSeason={setSelectedFirstSeason}
+              setSelectedLastSeason={setSelectedLastSeason}
+              selectedFirstSeason={selectedFirstSeason}
+              selectedLastSeason={selectedLastSeason}
+            />
+            <br></br>
             {playerStats.length === 0 && !fetchingData
               ? <>
                 <Row style={{ textAlign: 'center' }}>
@@ -95,13 +115,13 @@ function App() {
                   <Col sm={5} xs={1}></Col>
                 </Row>
                 <br></br>
-                <Row float='center'>
+                {/* <Row float='center'>
                   <Col sm={4} xs={1}></Col>
                   <Col sm={8} xs={10}>
                     <Instructions />
                   </Col>
-                  <Col /* sm={2} */ xs={1}></Col>
-                </Row>
+                  <Col  xs={1}></Col>
+                </Row> */}
               </>
               : <></>}
             {/* <Col sm={2}>
@@ -113,9 +133,7 @@ function App() {
                 {fetchingData && playerStats.length === 0
                   ? <>
                     <br></br>
-                    <br></br>
-                    <Loader type="Grid" color="white" height="100" width="100" />
-                    <br></br>
+                    <Loader type="Grid" color="white" height="75" width="75" />
                     <br></br>
                     <br></br>
                   </>
@@ -215,26 +233,7 @@ function App() {
               <Col sm={4}></Col>
             </Row>
             <br></br>
-            <Row>
-              <Col sm={4}></Col>
-              <Col sm={4}>
-                <SelectPlayer
-                  players={players}
-                  setSelectedPlayer={setSelectedPlayer}
-                  setPlayerStats={setPlayerStats}
-                  fetchingData={fetchingData}
-                  setFetchingData={setFetchingData}
-                />
-              </Col>
-              <Col sm={4}></Col>
-            </Row>
-            <SelectSeasons
-              setSelectedFirstSeason={setSelectedFirstSeason}
-              setSelectedLastSeason={setSelectedLastSeason}
-              selectedFirstSeason={selectedFirstSeason}
-              selectedLastSeason={selectedLastSeason}
-            />
-            <br></br>
+
           </Container>
         </div>
       </div >
