@@ -2,9 +2,9 @@ const statsRouter = require('express').Router()
 const Stat = require('../models/stat')
 const axios = require('axios')
 const baseUrl = 'https://www.balldontlie.io/api/v1/stats'
-const colors = require('colors')
+//const colors = require('colors')
 
-statsRouter.get('/statsfromapitodatabase', async (_req, _res) => {
+statsRouter.get('/statsfromapitodatabase', async (_req, res) => {
 
   const getStats = async () => {
 
@@ -43,14 +43,18 @@ statsRouter.get('/statsfromapitodatabase', async (_req, _res) => {
     }
     const documentsCountInDatabaseAfterAdding = await Stat.count()
 
+    let statusMessage = ''
     if (documentsCountInDatabaseAfterAdding === totalAmountDocumentsInApi) {
-      console.log('Data successfully moved from API to database. Document count in API and database are the same.'.green)
+      statusMessage = 'Data successfully moved from API to database. Document count in API and database are the same.'
+      //console.log('Data successfully moved from API to database. Document count in API and database are the same.'.green)
     } else {
-      console.log('Error in moving data from API to database. Document count in API and database is not the same.'.red)
+      statusMessage = 'Error in moving data from API to database. Document count in API and database is not the same.'
+      //console.log('Error in moving data from API to database. Document count in API and database is not the same.'.red)
     }
-    return stats
+    console.log(statusMessage)
+    return statusMessage
   }
-  await getStats()
+  res.send(await getStats())
 })
 
 module.exports = statsRouter
