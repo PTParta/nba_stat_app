@@ -5,8 +5,8 @@ on:
     # https://crontab.guru/examples.html
     # * is a special character in YAML so you have to quote this string
     #- cron:  '*/30 * * * *' every thirty minutes
-    #- cron:  '0 0 * * *' once a day
-    - cron: '0 * * * *'
+    - cron:  '0 0 * * *' once a day
+    #- cron: '0 * * * *' once an hour
 
 jobs:
   check_if_new_data_exists_in_API_and_transfer_it_to_database:
