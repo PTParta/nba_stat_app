@@ -42,20 +42,6 @@ const countTrailingMeanPct = (playerStats, statCategory, attemptsInStatCategory,
   }
   return percentages
 }
-/* 
-const countPct = (playerStats, statCategory, attemptsInStatCategory) => {
-
-  let totalMadeBaskets = 0
-  let totalAttemptedBaskets = 0
-  let percentages = []
-
-  playerStats.forEach(playerStat => {
-    totalMadeBaskets += playerStat[statCategory]
-    totalAttemptedBaskets += playerStat[attemptsInStatCategory]
-    percentages.push(totalMadeBaskets / totalAttemptedBaskets * 100)
-  })
-  return percentages
-} */
 
 const pts = (playerStats, trailingGames) => {
   return countTrailingMean(playerStats, 'pts', trailingGames)

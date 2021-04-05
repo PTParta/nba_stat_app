@@ -365,7 +365,7 @@ const PlayerStats = (
         pointBackgroundColor: colors.magentaLine,
         showLine: true,
         pointRadius: 0,
-        data: trailingMeanService.fga(playerStatsFiltered),
+        data: trailingMeanService.fga(playerStatsFiltered,trailingAverage),
         hidden: !fgaSelected
       },
       {
@@ -384,7 +384,7 @@ const PlayerStats = (
         pointBackgroundColor: colors.greyLine,
         showLine: true,
         pointRadius: 0,
-        data: trailingMeanService.fgm(playerStatsFiltered),
+        data: trailingMeanService.fgm(playerStatsFiltered,trailingAverage),
         hidden: !fgmSelected
       },
       {
@@ -403,7 +403,7 @@ const PlayerStats = (
         pointBackgroundColor: colors.pinkLine,
         showLine: true,
         pointRadius: 0,
-        data: trailingMeanService.fg3a(playerStatsFiltered),
+        data: trailingMeanService.fg3a(playerStatsFiltered,trailingAverage),
         hidden: !fg3aSelected
       },
       {
@@ -422,7 +422,7 @@ const PlayerStats = (
         pointBackgroundColor: colors.apricotLine,
         showLine: true,
         pointRadius: 0,
-        data: trailingMeanService.fg3m(playerStatsFiltered),
+        data: trailingMeanService.fg3m(playerStatsFiltered,trailingAverage),
         hidden: !fg3mSelected
       },
       {
@@ -441,7 +441,7 @@ const PlayerStats = (
         pointBackgroundColor: colors.beigeLine,
         showLine: true,
         pointRadius: 0,
-        data: trailingMeanService.fta(playerStatsFiltered),
+        data: trailingMeanService.fta(playerStatsFiltered,trailingAverage),
         hidden: !ftaSelected
       },
       {
@@ -460,7 +460,7 @@ const PlayerStats = (
         pointBackgroundColor: colors.mintLine,
         showLine: true,
         pointRadius: 0,
-        data: trailingMeanService.ftm(playerStatsFiltered),
+        data: trailingMeanService.ftm(playerStatsFiltered,trailingAverage),
         hidden: !ftmSelected
       },
     ],
