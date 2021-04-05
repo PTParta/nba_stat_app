@@ -20,6 +20,7 @@ statsRouter.get('/statsfromapitodatabase', async (_req, res) => {
 
     if (documentsCountInDatabaseBeforeAdding === totalAmountDocumentsInApi) {
       statusMessage = 'Database is up to date. No need to transfer data from API to database'
+      console.log(statusMessage)
       return statusMessage
     }
 
