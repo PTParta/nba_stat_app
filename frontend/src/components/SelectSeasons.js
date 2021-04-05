@@ -2,10 +2,11 @@ import Select from 'react-select'
 import { /* Container,  */Row, Col } from 'react-bootstrap'
 
 const SelectSeasons = ({
-  setSelectedFirstSeason,
-  setSelectedLastSeason,
   selectedFirstSeason,
-  selectedLastSeason }) => {
+  selectedLastSeason,
+  setSelectedFirstSeason,
+  setSelectedLastSeason
+}) => {
 
   let seasonDescending = 2020
   const seasonSelectDescending = []
@@ -21,6 +22,24 @@ const SelectSeasons = ({
     seasonAscending++
   }
 
+  const handleSelectedFirstSeasonChange = (event) => {
+    if (event.value > selectedLastSeason) {
+      setSelectedFirstSeason(selectedLastSeason)
+      setSelectedLastSeason(event.value)
+    } else {
+      setSelectedFirstSeason(event.value)
+    }
+  }
+
+  const handleSelectedLastSeasonChange = (event) => {
+    if (event.value < selectedFirstSeason) {
+      setSelectedLastSeason(selectedFirstSeason)
+      setSelectedFirstSeason(event.value)
+    } else {
+      setSelectedLastSeason(event.value)
+    }
+  }
+
   return (
     <>
       <Row>
@@ -28,7 +47,8 @@ const SelectSeasons = ({
         <Col sm={4}>
           <Select
             options={seasonSelectAscending}
-            onChange={(event) => setSelectedFirstSeason(event.value)}
+            /* onChange={(event) => setSelectedFirstSeason(event.value)} */
+            onChange={(event) => handleSelectedFirstSeasonChange(event)}
             closeMenuOnSelect={true}
             placeholder={selectedFirstSeason.toString()}
           />
@@ -40,7 +60,8 @@ const SelectSeasons = ({
         <Col sm={4}>
           <Select
             options={seasonSelectDescending}
-            onChange={(event) => setSelectedLastSeason(event.value)}
+            /* onChange={(event) => setSelectedLastSeason(event.value)} */
+            onChange={(event) => handleSelectedLastSeasonChange(event)}
             closeMenuOnSelect={true}
             placeholder={selectedLastSeason}
           />

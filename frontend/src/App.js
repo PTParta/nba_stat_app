@@ -226,6 +226,7 @@ function App() {
             <Row>
               <Col sm={4}></Col>
               <Col sm={4}>
+                <div style={{color:'white'}}>trailing average</div>
                 <SelectTrailingAverage
                   setTrailingAverage={setTrailingAverage} />
               </Col>
