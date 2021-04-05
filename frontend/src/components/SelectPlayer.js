@@ -13,7 +13,7 @@ const SelectPlayer = ({ players, setSelectedPlayer, setPlayerStats, setFetchingD
   const getPlayerStats = (playerFullName) => {
     setFetchingData(true)
     const searchedPlayer = players.find(player => player.fullName === playerFullName)
-    console.log('searched player', searchedPlayer)
+    //console.log('searched player', searchedPlayer)
     playerStatService.getPlayerStatsFromDB(searchedPlayer.apiId)
       .then((response) => {
         setPlayerStats(response.data.sort((a, b) =>
