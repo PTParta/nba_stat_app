@@ -16,28 +16,40 @@ const countTrailingMean = (playerStats, statCategory) => {
   }
   return trailingAverage
 }
+
 const countTrailingMeanPct = (playerStats, statCategory, attemptsInStatCategory) => {
-  let trailingAverage = []
+  let percentages = []
   for (let i = 0; i < trailingGames; i++) {
-    trailingAverage[i] = null
+    percentages[i] = null
   }
   for (let i = trailingGames; i < playerStats.length; i++) {
+    let totalMadeBaskets = 0
+    let totalAttemptedBaskets = 0
 
-    if (playerStats[i][attemptsInStatCategory] === 0) {
-      trailingAverage.push(trailingAverage[i - 1])
-      playerStats[i][statCategory] = trailingAverage[i - 1]
-    } else {
-      let statsInTrailingGames = 0
-      for (let j = 1; j <= trailingGames; j++) {
-        statsInTrailingGames += playerStats[i - trailingGames + j][statCategory];
-      }
-      const mean = statsInTrailingGames / trailingGames
-      trailingAverage.push(mean)
+    for (let j = 1; j <= trailingGames; j++) {
+      totalMadeBaskets += playerStats[i - trailingGames + j][statCategory]
+      totalAttemptedBaskets += playerStats[i - trailingGames + j][attemptsInStatCategory]
     }
+    const trailingPercentage = totalMadeBaskets / totalAttemptedBaskets * 100
+    percentages.push(trailingPercentage)
   }
-
-  return trailingAverage
+  return percentages
 }
+/* 
+const countPct = (playerStats, statCategory, attemptsInStatCategory) => {
+
+  let totalMadeBaskets = 0
+  let totalAttemptedBaskets = 0
+  let percentages = []
+
+  playerStats.forEach(playerStat => {
+    totalMadeBaskets += playerStat[statCategory]
+    totalAttemptedBaskets += playerStat[attemptsInStatCategory]
+    percentages.push(totalMadeBaskets / totalAttemptedBaskets * 100)
+  })
+  return percentages
+} */
+
 const pts = (playerStats) => {
   return countTrailingMean(playerStats, 'pts')
 }
@@ -70,14 +82,23 @@ const oreb = (playerStats) => {
   return countTrailingMean(playerStats, 'oreb')
 }
 const fg_pct = (playerStats) => {
-  return countTrailingMeanPct(playerStats, 'fg_pct', 'fga')
+  return countTrailingMeanPct(playerStats, 'fgm', 'fga')
 }
 const fg3_pct = (playerStats) => {
-  return countTrailingMeanPct(playerStats, 'fg3_pct', 'fg3a')
+  return countTrailingMeanPct(playerStats, 'fg3m', 'fg3a')
 }
 const ft_pct = (playerStats) => {
-  return countTrailingMeanPct(playerStats, 'ft_pct', 'fta')
+  return countTrailingMeanPct(playerStats, 'ftm', 'fta')
 }
+/* const fg_pct = (playerStats) => {
+  return countPct(playerStats, 'fgm', 'fga')
+}
+const fg3_pct = (playerStats) => {
+  return countPct(playerStats, 'fg3m', 'fg3a')
+}
+const ft_pct = (playerStats) => {
+  return countPct(playerStats, 'ftm', 'fta')
+} */
 const fga = (playerStats) => {
   return countTrailingMean(playerStats, 'fga')
 }
