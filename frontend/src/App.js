@@ -12,6 +12,7 @@ import SelectStats from './components/SelectStats'
 import Logo from './components/Logo'
 import SelectTrailingAverage from './components/SelectTrailingAverage'
 import Instructions from './components/Instructions'
+import Tips from './components/Tips'
 import Loader from 'react-loader-spinner'
 
 
@@ -79,7 +80,7 @@ function App() {
     <Router>
       <div style={{
         backgroundColor: "#17202A",
-        height: '100vh',
+        height: '130vh',
         display: 'flex',
         flexDirection: 'column',
         alignContent: 'center'/* ,
@@ -226,7 +227,7 @@ function App() {
             <Row>
               <Col sm={4}></Col>
               <Col sm={4}>
-                <div style={{color:'white'}}>trailing average</div>
+                <div style={{ color: 'white' }}>trailing average</div>
                 <SelectTrailingAverage
                   setTrailingAverage={setTrailingAverage} />
               </Col>
@@ -250,12 +251,20 @@ function App() {
             <br></br>
             <br></br>
             <Row float='center'>
-                  <Col sm={4} xs={1}></Col>
-                  <Col sm={8} xs={10}>
-                    <Instructions />
-                  </Col>
-                  <Col  xs={1}></Col>
-                </Row>
+              <Col sm={2} xs={1}></Col>
+              <Col sm={8} xs={10}>
+                <Instructions />
+              </Col>
+              <Col sm={2} xs={1}></Col>
+            </Row>
+            <br></br>
+            <Row float='center'>
+              <Col sm={2} xs={1}></Col>
+              <Col sm={8} xs={10}>
+                <Tips />
+              </Col>
+              <Col sm={2} xs={1}></Col>
+            </Row>
           </Container>
         </div>
       </div >
