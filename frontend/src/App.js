@@ -80,7 +80,7 @@ function App() {
     <Router>
       <div style={{
         backgroundColor: "#17202A",
-        height: '130vh',
+        height: '150vh',
         display: 'flex',
         flexDirection: 'column',
         alignContent: 'center'/* ,
