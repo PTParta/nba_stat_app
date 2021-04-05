@@ -29,7 +29,8 @@ const countTrailingMeanPct = (playerStats, statCategory, attemptsInStatCategory,
       //playerStats[i][statCategory] = percentages[i - 1]
     } else {
       for (let j = 1; j <= trailingGames; j++) {
-        if (playerStats[i - trailingGames + j][attemptsInStatCategory] === 0) {
+        if (playerStats[i - trailingGames + j][attemptsInStatCategory] === 0
+          || playerStats[i - trailingGames + j][attemptsInStatCategory] < playerStats[i - trailingGames + j][statCategory]) {
           continue
         }
         totalMadeBaskets += playerStats[i - trailingGames + j][statCategory]

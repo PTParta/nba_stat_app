@@ -2,9 +2,23 @@ const Instructions = () => {
 
   return (
     <div style={{ color: 'white' }}>
-      <div><strong>Instructions</strong></div>
+      <strong>Instructions</strong>
       <br></br>
-      <table striped>
+      <br></br>
+      <ul>
+        <li>Select player, data starts loading</li>
+        <br></br>
+        <li>Select seasons. Default is 1979-2020</li>
+        <br></br>
+        <li>Select stats</li>
+        <br></br>
+        <li>Select the amount of games to be counted into the trailing average</li>
+        <br></br>
+        <li>Select regular or post season</li>
+      </ul>
+      {/*  <div><strong>Instructions</strong></div>
+      <br></br>
+      <table>
         <tbody>
           <tr>
             <td>- Select player, data starts loading</td>
@@ -30,7 +44,7 @@ const Instructions = () => {
           <br></br>
           <br></br>
         </tbody>
-      </table>
+      </table> */}
     </div>
   )
 }
