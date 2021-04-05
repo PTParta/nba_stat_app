@@ -33,7 +33,7 @@ function App() {
   const [playerStats, setPlayerStats] = useState([])
   const [teams, setTeams] = useState([])
   const [/* selectedPlayer */, setSelectedPlayer] = useState('')
-  const [selectedFirstSeason, setSelectedFirstSeason] = useState(1980)
+  const [selectedFirstSeason, setSelectedFirstSeason] = useState(1979)
   const [selectedLastSeason, setSelectedLastSeason] = useState(2020)
   const [regularSeasonSelected, setRegularSeasonSelected] = useState(true)
   const [postSeasonSelected, setPostSeasonSelected] = useState(false)

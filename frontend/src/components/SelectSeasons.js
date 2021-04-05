@@ -10,12 +10,12 @@ const SelectSeasons = ({
 
   let seasonDescending = 2020
   const seasonSelectDescending = []
-  while (seasonDescending >= 1980) {
+  while (seasonDescending >= 1979) {
     seasonSelectDescending.push({ label: seasonDescending.toString(), value: seasonDescending.toString() })
     seasonDescending--
   }
 
-  let seasonAscending = 1980
+  let seasonAscending = 1979
   const seasonSelectAscending = []
   while (seasonAscending <= 2020) {
     seasonSelectAscending.push({ label: seasonAscending.toString(), value: seasonAscending.toString() })
