@@ -8,6 +8,7 @@ statsRouter.get('/statsfromapitodatabase', async (_req, res) => {
 
   const getStats = async () => {
 
+    let statusMessage = ''
     const apiPerPage = 100
 
     const documentsCountInDatabaseBeforeAdding = await Stat.count()
@@ -17,8 +18,9 @@ statsRouter.get('/statsfromapitodatabase', async (_req, res) => {
     const totalAmountDocumentsInApi = statsOnFirstPage.data.meta.total_count
     console.log('total amount of documents in API:', totalAmountDocumentsInApi)
 
-    if(documentsCountInDatabaseBeforeAdding === totalAmountDocumentsInApi){
-      return 'Database is up to date. No need to transfer data from API to database'
+    if (documentsCountInDatabaseBeforeAdding === totalAmountDocumentsInApi) {
+      statusMessage = 'Database is up to date. No need to transfer data from API to database'
+      return statusMessage
     }
 
     const totalPages = statsOnFirstPage.data.meta.total_pages + 1
@@ -47,7 +49,7 @@ statsRouter.get('/statsfromapitodatabase', async (_req, res) => {
     }
     const documentsCountInDatabaseAfterAdding = await Stat.count()
 
-    let statusMessage = ''
+
     if (documentsCountInDatabaseAfterAdding === totalAmountDocumentsInApi) {
       statusMessage = 'Data successfully moved from API to database. Document count in API and database are the same.'
     } else {
