@@ -10,6 +10,7 @@ import SelectSeasons from './components/SelectSeasons'
 import SelectRegularPost from './components/SelectRegularPost'
 import SelectStats from './components/SelectStats'
 import Logo from './components/Logo'
+import SelectTrailingAverage from './components/SelectTrailingAverage'
 //import Instructions from './components/Instructions'
 import Loader from 'react-loader-spinner'
 
@@ -58,6 +59,8 @@ function App() {
   const [minSelected, setMinSelected] = useState(false)
 
   const [fetchingData, setFetchingData] = useState(false)
+
+  const [trailingAverage, setTrailingAverage] = useState(25)
 
   useEffect(() => {
     teamService.getTeams()
@@ -170,6 +173,7 @@ function App() {
                     selectedFirstSeason={selectedFirstSeason}
                     selectedLastSeason={selectedLastSeason}
                     fetchingData={fetchingData}
+                    trailingAverage={trailingAverage}
                   />
                   : <></>}</Col>
             </Row>
@@ -219,6 +223,15 @@ function App() {
               </Col>
               <Col sm={4}></Col>
             </Row>
+            <Row>
+              <Col sm={4}></Col>
+              <Col sm={4}>
+                <SelectTrailingAverage
+                  setTrailingAverage={setTrailingAverage} />
+              </Col>
+              <Col sm={4}></Col>
+            </Row>
+            <br></br>
             <Row>
               <Col sm={4}></Col>
               <Col sm={4}>

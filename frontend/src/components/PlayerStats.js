@@ -32,7 +32,8 @@ const PlayerStats = (
     minSelected,
     selectedFirstSeason,
     selectedLastSeason,
-    fetchingData
+    fetchingData,
+    trailingAverage
   }
 ) => {
 
@@ -107,7 +108,7 @@ const PlayerStats = (
         pointBackgroundColor: colors.lightGreyLine,
         showLine: true,
         pointRadius: 0,
-        data: trailingMeanService.pts(playerStatsFiltered),
+        data: trailingMeanService.pts(playerStatsFiltered, trailingAverage),
         hidden: !ptsSelected
       },
       {
@@ -127,7 +128,7 @@ const PlayerStats = (
         pointBackgroundColor: colors.brownLine,
         showLine: true,
         pointRadius: 0,
-        data: trailingMeanService.ast(playerStatsFiltered),
+        data: trailingMeanService.ast(playerStatsFiltered, trailingAverage),
         hidden: !astSelected
       },
       {
@@ -147,7 +148,7 @@ const PlayerStats = (
         pointBackgroundColor: colors.oliveLine,
         showLine: true,
         pointRadius: 0,
-        data: trailingMeanService.reb(playerStatsFiltered),
+        data: trailingMeanService.reb(playerStatsFiltered, trailingAverage),
         hidden: !rebSelected
       },
       {
@@ -167,7 +168,7 @@ const PlayerStats = (
         pointBackgroundColor: colors.tealLine,
         showLine: true,
         pointRadius: 0,
-        data: trailingMeanService.blk(playerStatsFiltered),
+        data: trailingMeanService.blk(playerStatsFiltered, trailingAverage),
         hidden: !blkSelected
       },
       {
@@ -187,7 +188,7 @@ const PlayerStats = (
         pointBackgroundColor: colors.navyLine,
         showLine: true,
         pointRadius: 0,
-        data: trailingMeanService.stl(playerStatsFiltered),
+        data: trailingMeanService.stl(playerStatsFiltered, trailingAverage),
         hidden: !stlSelected
       },
       {
@@ -206,7 +207,7 @@ const PlayerStats = (
         pointBackgroundColor: colors.redLine,
         showLine: true,
         pointRadius: 0,
-        data: trailingMeanService.turnover(playerStatsFiltered),
+        data: trailingMeanService.turnover(playerStatsFiltered, trailingAverage),
         hidden: !turnoverSelected
       },
       {
@@ -225,7 +226,7 @@ const PlayerStats = (
         pointBackgroundColor: colors.orangeLine,
         showLine: true,
         pointRadius: 0,
-        data: trailingMeanService.min(playerStatsFiltered),
+        data: trailingMeanService.min(playerStatsFiltered, trailingAverage),
         hidden: !minSelected
       },
       {
@@ -244,7 +245,7 @@ const PlayerStats = (
         pointBackgroundColor: colors.yellowLine,
         showLine: true,
         pointRadius: 0,
-        data: trailingMeanService.pf(playerStatsFiltered),
+        data: trailingMeanService.pf(playerStatsFiltered, trailingAverage),
         hidden: !pfSelected
       },
       {
@@ -263,7 +264,7 @@ const PlayerStats = (
         pointBackgroundColor: colors.limeLine,
         showLine: true,
         pointRadius: 0,
-        data: trailingMeanService.dreb(playerStatsFiltered),
+        data: trailingMeanService.dreb(playerStatsFiltered, trailingAverage),
         hidden: !drebSelected
       },
       {
@@ -282,7 +283,7 @@ const PlayerStats = (
         pointBackgroundColor: colors.greenLine,
         showLine: true,
         pointRadius: 0,
-        data: trailingMeanService.oreb(playerStatsFiltered),
+        data: trailingMeanService.oreb(playerStatsFiltered, trailingAverage),
         hidden: !orebSelected
       },
       {
@@ -302,7 +303,7 @@ const PlayerStats = (
         showLine: true,
         pointRadius: 0,
         data: trailingMeanService.fg_pct(playerStatsFiltered
-          .map(playerStat => ({ ...playerStat, fg_pct: playerStat.fg_pct <= 1 ? playerStat.fg_pct * 100 : playerStat.fg_pct }))),
+          .map(playerStat => ({ ...playerStat, fg_pct: playerStat.fg_pct <= 1 ? playerStat.fg_pct * 100 : playerStat.fg_pct })), trailingAverage),
         hidden: !fg_pctSelected
       },
       {
@@ -322,7 +323,7 @@ const PlayerStats = (
         showLine: true,
         pointRadius: 0,
         data: trailingMeanService.fg3_pct(playerStatsFiltered
-          .map(playerStat => ({ ...playerStat, fg3_pct: playerStat.fg3_pct <= 1 ? playerStat.fg3_pct * 100 : playerStat.fg3_pct }))),
+          .map(playerStat => ({ ...playerStat, fg3_pct: playerStat.fg3_pct <= 1 ? playerStat.fg3_pct * 100 : playerStat.fg3_pct })), trailingAverage),
         hidden: !fg3_pctSelected
       },
       {
@@ -345,7 +346,7 @@ const PlayerStats = (
           .map(playerStat => ({
             ...playerStat,
             ft_pct: (playerStat.ft_pct <= 1 ? playerStat.ft_pct * 100 : playerStat.ft_pct)
-          }))),
+          })), trailingAverage),
         hidden: !ft_pctSelected
       },
       {
