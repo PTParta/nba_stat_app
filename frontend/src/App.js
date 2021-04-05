@@ -11,7 +11,7 @@ import SelectRegularPost from './components/SelectRegularPost'
 import SelectStats from './components/SelectStats'
 import Logo from './components/Logo'
 import SelectTrailingAverage from './components/SelectTrailingAverage'
-//import Instructions from './components/Instructions'
+import Instructions from './components/Instructions'
 import Loader from 'react-loader-spinner'
 
 
@@ -246,6 +246,16 @@ function App() {
               <Col sm={4}></Col>
             </Row>
             <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <Row float='center'>
+                  <Col sm={4} xs={1}></Col>
+                  <Col sm={8} xs={10}>
+                    <Instructions />
+                  </Col>
+                  <Col  xs={1}></Col>
+                </Row>
           </Container>
         </div>
       </div >
