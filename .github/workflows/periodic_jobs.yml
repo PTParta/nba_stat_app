@@ -1,4 +1,4 @@
-name: Periodic health check
+name: Periodic data check and transfer from api to database
 
 on:
   schedule:
