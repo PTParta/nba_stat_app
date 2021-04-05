@@ -1,4 +1,4 @@
-name: Periodic data check and transfer from api to database
+name: Periodic data poll from api to database
 
 on:
   schedule:
