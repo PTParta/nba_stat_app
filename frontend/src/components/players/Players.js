@@ -14,7 +14,7 @@ import Instructions from './Instructions'
 import Tips from './Tips'
 import Loader from 'react-loader-spinner'
 
-const Players = () => {
+const Players = ({ fetchingData, setFetchingData }) => {
 
   const [players, setPlayers] = useState([])
   const [playerStats, setPlayerStats] = useState([])
@@ -45,7 +45,7 @@ const Players = () => {
   const [pfSelected, setPfSelected] = useState(false)
   const [minSelected, setMinSelected] = useState(false)
 
-  const [fetchingData, setFetchingData] = useState(false)
+
 
   const [trailingAverage, setTrailingAverage] = useState(25)
 

@@ -4,9 +4,10 @@ import SelectTeam from './SelectTeam'
 import TeamStats from './TeamStats'
 import SelectSeason from './SelectSeason'
 import teamService from '../../services/teams'
+import Loader from 'react-loader-spinner'
 
 
-const Teams = () => {
+const Teams = ({ fetchingData, setFetchingData }) => {
 
   const [teams, setTeams] = useState([])
   const [selectedTeam, setSelectedTeam] = useState('')
@@ -29,11 +30,12 @@ const Teams = () => {
             teams={teams}
             setSelectedTeam={setSelectedTeam}
             setTeamStats={setTeamStats}
+            setFetchingData={setFetchingData}
           />
         </Col>
         <Col sm={4}></Col>
       </Row>
-      {selectedTeam != ''
+      {selectedTeam !== ''
         ? <Row>
           <Col sm={4}></Col>
           <Col sm={4}>
@@ -43,12 +45,26 @@ const Teams = () => {
               selectedTeam={selectedTeam}
               setTeamStats={setTeamStats}
               teams={teams}
+              setFetchingData={setFetchingData}
             />
           </Col>
           <Col sm={4}></Col>
         </Row>
         : <></>}
+      {fetchingData ? <>
+        <Row style={{ textAlign: 'center' }}>
+          <Col sm={4}></Col>
+          <Col sm={4}>
+            <br></br>
+            <Loader type="Grid" color="white" height="75" width="75" />
+            <br></br>
+            <br></br>
+          </Col>
+          <Col sm={4}></Col>
+        </Row>
 
+      </>
+        : <></>}
       <Row>
         <Col sm={4}></Col>
         <Col sm={4}>

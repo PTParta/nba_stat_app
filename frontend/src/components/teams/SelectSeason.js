@@ -2,12 +2,15 @@ import Select from 'react-select'
 import playerStatService from '../../services/playerStats'
 import { /* Container,  */Row, Col } from 'react-bootstrap'
 
+
 const SelectSeason = ({
   selectedSeason,
   setSelectedSeason,
   selectedTeam,
   setTeamStats,
-  teams
+  teams,
+  fetchingData,
+  setFetchingData
 }) => {
 
   let seasonDescending = 2020
@@ -21,14 +24,14 @@ const SelectSeason = ({
 
   const handleSelectedSeasonChange = (event) => {
     setSelectedSeason(event.value)
-    /* setFetchingData(true) */
+    setFetchingData(true)
     const searchedTeam = teams.find(team => team.name === selectedTeam)
     playerStatService.getTeamStatsFromDB(searchedTeam.id, event.value)
       .then((response) => {
         setTeamStats(response.data.sort((a, b) =>
           new Date(a.game.date).getTime() - new Date(b.game.date).getTime())
         )
-        /* setFetchingData(false) */
+        setFetchingData(false)
       })
   }
 

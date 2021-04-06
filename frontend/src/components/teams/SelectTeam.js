@@ -1,7 +1,7 @@
 import Select from 'react-select'
 import playerStatService from '../../services/playerStats'
 
-const SelectTeam = ({ teams, setSelectedTeam, setTeamStats, /* setFetchingData */ }) => {
+const SelectTeam = ({ teams, setSelectedTeam, setTeamStats, setFetchingData }) => {
 
   //const playerSelect = players.map(player => ({ label: player.fullName, value: player.fullName }))
 
@@ -13,14 +13,14 @@ const SelectTeam = ({ teams, setSelectedTeam, setTeamStats, /* setFetchingData *
   }
 
   const getTeamStats = (teamName) => {
-    /* setFetchingData(true) */
+    setFetchingData(true)
     const searchedTeam = teams.find(team => team.name === teamName)
     playerStatService.getTeamStatsFromDB(searchedTeam.id, 2020)
       .then((response) => {
         setTeamStats(response.data.sort((a, b) =>
           new Date(a.game.date).getTime() - new Date(b.game.date).getTime())
         )
-        /* setFetchingData(false) */
+        setFetchingData(false)
       })
 
   }
