@@ -1,6 +1,6 @@
 import { Form } from 'react-bootstrap'
 import React from 'react'
-import colors from '../styling/colors'
+import colors from '../../styling/colors'
 //import { AllCheckerCheckbox, Checkbox, CheckboxGroup } from '@createnl/grouped-checkboxes'
 
 const SelectStats = (

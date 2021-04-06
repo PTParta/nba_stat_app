@@ -1,5 +1,5 @@
 import Select from 'react-select'
-import playerStatService from '../services/playerStats'
+import playerStatService from '../../services/playerStats'
 
 const SelectPlayer = ({ players, setSelectedPlayer, setPlayerStats, setFetchingData }) => {
 

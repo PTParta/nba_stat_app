@@ -1,5 +1,5 @@
 import { Button } from 'react-bootstrap'
-import playerStatService from '../services/playerStats'
+import playerStatService from '../../services/playerStats'
 
 
 const GetStats = ({ selectedPlayer, players, setPlayerStats }) => {
