@@ -15,7 +15,6 @@ const Teams = () => {
       })
   }, [])
 
-
   return (
     <div>
       <Row>
