@@ -23,28 +23,19 @@ statDBRouter.get('/statsfromdb/:playerid', async (request, response) => {
 
 statDBRouter.get('/teamstatsfromdb/:teamid/:season', async (request, response) => {
   console.log('getting stats from database')
-  //console.log(':playerid', request.params.playerid)
+  console.log(':teamId', request.params.teamid)
+  console.log(':season', request.params.season)
 
   let startTime = new Date().getTime()
 
   const stats = await Stat.find({
-    '$or': [
+    /* '$or': [
       { 'game.home_team_id': request.params.teamid },
       { 'game.visitor_team_id': request.params.teamid }
-    ],
+    ], */
+    'team.id': request.params.teamid,
     'game.season': request.params.season
   })
-
-  /* const statsHomeTeam = await Stat.find({
-    'game.home_team_id': request.params.teamid,
-    'game.season': request.params.season
-  })
-  const statsVisitorTeam = await Stat.find({
-    'game.visitor_team_id': request.params.teamid,
-    'game.season': request.params.season
-  })
-
-  const stats = statsHomeTeam.concat(statsVisitorTeam) */
 
   let endTime = new Date().getTime()
   console.log('finished retrieving data from database')

@@ -1,1 +1,1 @@
-GET http://localhost:3001/api/statsdb/teamstatsfromdb/1/2020
+GET http://localhost:3001/api/statsdb/teamstatsfromdb/10/2019
