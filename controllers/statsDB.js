@@ -29,10 +29,6 @@ statDBRouter.get('/teamstatsfromdb/:teamid/:season', async (request, response) =
   let startTime = new Date().getTime()
 
   const stats = await Stat.find({
-    /* '$or': [
-      { 'game.home_team_id': request.params.teamid },
-      { 'game.visitor_team_id': request.params.teamid }
-    ], */
     'team.id': request.params.teamid,
     'game.season': request.params.season
   })

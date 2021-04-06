@@ -7,6 +7,7 @@ const Teams = () => {
 
   const [teams, setTeams] = useState([])
   const [selectedTeam, setSelectedTeam] = useState('')
+  const [teamStats, setTeamStats] = useState([])
 
   useEffect(() => {
     teamService.getTeams()
@@ -23,6 +24,7 @@ const Teams = () => {
           <SelectTeam
             teams={teams}
             setSelectedTeam={setSelectedTeam}
+            setTeamStats={setTeamStats}
           />
         </Col>
         <Col sm={4}></Col>
