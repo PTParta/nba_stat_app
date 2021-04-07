@@ -10,8 +10,8 @@ import SelectRegularPost from './SelectRegularPost'
 import SelectStats from './SelectStats'
 import Logo from '../Logo'
 import SelectTrailingAverage from './SelectTrailingAverage'
-import Instructions from './Instructions'
-import Tips from './Tips'
+/* import Instructions from './Instructions'
+import Tips from './Tips' */
 import Loader from 'react-loader-spinner'
 
 const Players = ({ fetchingData, setFetchingData }) => {

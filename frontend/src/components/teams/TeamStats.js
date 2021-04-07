@@ -100,7 +100,7 @@ const TeamStats = (
     playerTotalStats = playerTotalStats.map(s => s.name === playerTotalStat.name ? updatedPlayer : s)
     //playerTotalStats = playerTotalStats.sort((a, b) => b.pts - a.pts)
   })
-  console.log('playerTotalStats', playerTotalStats.slice(0, 5)/* .map(playerTotalStat => playerTotalStat.name) */)
+  //console.log('playerTotalStats', playerTotalStats.slice(0, 5)/* .map(playerTotalStat => playerTotalStat.name) */)
 
 
   const legend = {
