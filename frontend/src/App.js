@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import NavigationBar from './components/NavigationBar'
 import Players from './components/players/Players'
@@ -15,10 +15,22 @@ import {
   Redirect,
   useHistory */
 } from 'react-router-dom'
+import ReactGa from 'react-ga'
+require('dotenv').config()
+
 
 function App() {
 
   const [fetchingData, setFetchingData] = useState(false)
+
+  useEffect(() => {
+
+    ReactGa.initialize(process.env.GA_TRACKING_CODE)
+    ReactGa.pageview(window.location.pathname/*  + window.location.search */)
+
+  }, [])
+
+
 
   return (
     <Router>
