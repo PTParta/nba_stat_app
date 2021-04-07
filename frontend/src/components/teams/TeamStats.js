@@ -12,7 +12,9 @@ const TeamStats = (
   {
     selectedTeam,
     teamStats,
-    postSeasonSelected
+    postSeasonSelected,
+    perGameSelected,
+    totalSelected
   }
 ) => {
 
@@ -635,7 +637,7 @@ const TeamStats = (
   return (
     <div>
       <div className='chart'>
-        {teamStats.length > 0
+        {teamStats.length > 0 && totalSelected
           ? <>
             <Row>
               <Col sm={4}>
@@ -717,7 +719,7 @@ const TeamStats = (
           : <></>}
 
 
-        {teamStats.length > 0
+        {teamStats.length > 0 && perGameSelected
           ? <>
             <Row>
               <Col sm={4}>

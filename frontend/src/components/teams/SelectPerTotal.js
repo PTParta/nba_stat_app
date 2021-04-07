@@ -2,7 +2,7 @@
 import { ButtonGroup, ToggleButton } from 'react-bootstrap'
 import { useState } from 'react'
 
-const SelectPerTotal = ({ setRegularSeasonSelected, setPostSeasonSelected }) => {
+const SelectPerTotal = ({ setPerGameSelected, setTotalSelected }) => {
 
   const [radioValue, setRadioValue] = useState('1');
 
@@ -11,14 +11,14 @@ const SelectPerTotal = ({ setRegularSeasonSelected, setPostSeasonSelected }) => 
     { name: 'total', value: '2' }
   ];
 
-  const handleRegularPostChange = (e) => {
+  const handlePerGameChange = (e) => {
     if (e.currentTarget.value === '1') {
-      setRegularSeasonSelected(true)
-      setPostSeasonSelected(false)
+      setPerGameSelected(true)
+      setTotalSelected(false)
     }
     if (e.currentTarget.value === '2') {
-      setRegularSeasonSelected(false)
-      setPostSeasonSelected(true)
+      setPerGameSelected(false)
+      setTotalSelected(true)
     }
     setRadioValue(e.currentTarget.value)
   }
@@ -34,7 +34,7 @@ const SelectPerTotal = ({ setRegularSeasonSelected, setPostSeasonSelected }) => 
             name="radio"
             value={radio.value}
             checked={radioValue === radio.value}
-            onChange={(e) => handleRegularPostChange(e)}
+            onChange={(e) => handlePerGameChange(e)}
           >
             {radio.name}
           </ToggleButton>

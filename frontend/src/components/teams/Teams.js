@@ -17,6 +17,8 @@ const Teams = ({ fetchingData, setFetchingData }) => {
   const [selectedSeason, setSelectedSeason] = useState(2020)
   const [regularSeasonSelected, setRegularSeasonSelected] = useState(true)
   const [postSeasonSelected, setPostSeasonSelected] = useState(false)
+  const [perGameSelected, setPerGameSelected] = useState(true)
+  const [totalSelected, setTotalSelected] = useState(false)
 
   useEffect(() => {
     teamService.getTeams()
@@ -40,7 +42,11 @@ const Teams = ({ fetchingData, setFetchingData }) => {
         </Col>
         <Col sm={4}>
           {selectedTeam !== ''
-            ? <SelectPerTotal />
+            ? <SelectPerTotal
+              setPerGameSelected={setPerGameSelected}
+              setTotalSelected={setTotalSelected}
+            />
+
             : <></>}
 
         </Col>
@@ -85,6 +91,8 @@ const Teams = ({ fetchingData, setFetchingData }) => {
         selectedTeam={selectedTeam}
         teamStats={teamStats}
         postSeasonSelected={postSeasonSelected}
+        perGameSelected={perGameSelected}
+        totalSelected={totalSelected}
       />
 
       {/* </Row> */}
