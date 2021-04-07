@@ -1,4 +1,4 @@
-import ball_logo from '../images/ball_logov3.png'
+import ball_logo from '../images/ball_logov6.png'
 
 
 const Logo = () => {

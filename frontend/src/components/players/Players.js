@@ -224,7 +224,7 @@ const Players = ({ fetchingData, setFetchingData }) => {
         : <></>}
       <br></br>
       <br></br>
-      <Row float='center'>
+      {/* <Row float='center'>
         <Col sm={2} xs={1}></Col>
         <Col sm={8} xs={10}>
           <Instructions />
@@ -238,7 +238,7 @@ const Players = ({ fetchingData, setFetchingData }) => {
           <Tips />
         </Col>
         <Col sm={2} xs={1}></Col>
-      </Row>
+      </Row> */}
     </>
   )
 }
