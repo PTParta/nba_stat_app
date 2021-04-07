@@ -3,6 +3,7 @@ import ball_logo from '../images/ball_logov3.png'
 
 const Logo = () => {
 
+const logoSize = '150px'
 
   return (
     <img
@@ -10,8 +11,8 @@ const Logo = () => {
       src={ball_logo}
       alt='ball_logo'
       style={{
-        width: '75px',
-        height: '75px'
+        width: logoSize,
+        height: logoSize
       }} />
   )
 }
