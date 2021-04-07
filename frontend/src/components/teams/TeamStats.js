@@ -30,7 +30,9 @@ const TeamStats = (
   const teamStatsFiltered = teamStats.filter(teamStat => teamStat.game.postseason === postSeasonSelected)
 
   playerTotalStats.forEach(playerTotalStat => {
-    const playerStats = teamStatsFiltered.filter(teamStat => `${teamStat.player.first_name} ${teamStat.player.last_name}` === playerTotalStat.name)
+    let playedGames = 0
+    const playerStats = teamStatsFiltered
+      .filter(teamStat => `${teamStat.player.first_name} ${teamStat.player.last_name}` === playerTotalStat.name)
 
     const totalPts = playerStats.reduce((accumulator, currentValue) => {
       return accumulator + currentValue.pts
@@ -54,12 +56,17 @@ const TeamStats = (
       return accumulator + currentValue.pf
     }, 0)
     const totalMin = playerStats.reduce((accumulator, currentValue) => {
-      if (currentValue === null) {
+      /* if (currentValue === null) {
         currentValue = 0
-      }
+      } */
+      let minutes = 0
       const timeSplit = currentValue.min.split(':')
-      const seconds = Number(timeSplit[0]) * 60 + Number(timeSplit[1])
-      let minutes = Math.floor(seconds / 60)
+      if (timeSplit.length === 1) {
+        minutes = Number(currentValue.min)
+      } else {
+        const seconds = Number(timeSplit[0]) * 60 + Number(timeSplit[1])
+        minutes = Math.floor(seconds / 60)
+      }
       if (isNaN(minutes)) {
         minutes = 0
       }

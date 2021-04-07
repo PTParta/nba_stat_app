@@ -4,6 +4,7 @@ import SelectTeam from './SelectTeam'
 import TeamStats from './TeamStats'
 import SelectSeason from './SelectSeason'
 import SelectRegularPost from './SelectRegularPost'
+import SelectPerTotal from './SelectPerTotal'
 import teamService from '../../services/teams'
 import Loader from 'react-loader-spinner'
 
@@ -37,7 +38,12 @@ const Teams = ({ fetchingData, setFetchingData }) => {
             selectedSeason={selectedSeason}
           />
         </Col>
-        <Col sm={4}></Col>
+        <Col sm={4}>
+          {selectedTeam !== ''
+            ? <SelectPerTotal />
+            : <></>}
+
+        </Col>
       </Row>
       {selectedTeam !== ''
         ? <Row>
@@ -54,10 +60,10 @@ const Teams = ({ fetchingData, setFetchingData }) => {
           </Col>
           <Col sm={4}>
             <SelectRegularPost
-             regularSeasonSelected={regularSeasonSelected}
-             postSeasonSelected={postSeasonSelected}
-             setRegularSeasonSelected={setRegularSeasonSelected}
-             setPostSeasonSelected={setPostSeasonSelected}
+              regularSeasonSelected={regularSeasonSelected}
+              postSeasonSelected={postSeasonSelected}
+              setRegularSeasonSelected={setRegularSeasonSelected}
+              setPostSeasonSelected={setPostSeasonSelected}
             />
           </Col>
         </Row>
