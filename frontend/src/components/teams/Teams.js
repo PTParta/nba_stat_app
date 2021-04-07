@@ -66,16 +66,14 @@ const Teams = ({ fetchingData, setFetchingData }) => {
 
       </>
         : <></>}
-      <Row>
-        <Col sm={2}></Col>
-        <Col sm={8}>
-          <TeamStats
-            selectedTeam={selectedTeam}
-            teamStats={teamStats}
-          />
-        </Col>
-        <Col sm={2}></Col>
-      </Row>
+      {/* <Row> */}
+
+        <TeamStats
+          selectedTeam={selectedTeam}
+          teamStats={teamStats}
+        />
+
+      {/* </Row> */}
     </div>
   )
 }

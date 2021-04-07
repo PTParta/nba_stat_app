@@ -1,5 +1,5 @@
 import React from 'react'
-/* import { Container, Row, Col } from 'react-bootstrap' */
+import { Row, Col } from 'react-bootstrap'
 import { Doughnut } from 'react-chartjs-2'
 /* import trailingMeanService from '../../services/trailingMeans'
 import colors from '../../styling/colors'
@@ -354,45 +354,88 @@ const TeamStats = (
       <div className='chart'>
         {teamStats.length > 0
           ? <>
-            <Doughnut
-              data={dataTotalPoints}
-              options={optionsTotalPoints}
-            />
+            <Row>
+              <Col sm={4}>
+                <Doughnut
+                  data={dataTotalPoints}
+                  options={optionsTotalPoints}
+                /></Col>
+              {/* <br></br> */}
+              <Col sm={4}>
+                <Doughnut
+                  data={dataTotalAssists}
+                  options={optionsTotalAssists}
+                /></Col>
+              <Col sm={4}>
+                <Doughnut
+                  data={dataTotalRebounds}
+                  options={optionsTotalRebounds}
+                />
+              </Col>
+            </Row>
             <br></br>
-            <Doughnut
-              data={dataTotalAssists}
-              options={optionsTotalAssists}
-            />
             <br></br>
-            <Doughnut
-              data={dataTotalRebounds}
-              options={optionsTotalRebounds}
-            />
             <br></br>
-            <Doughnut
-              data={dataTotalBlocks}
-              options={optionsTotalBlocks}
-            />
+            <Row>
+              <Col sm={4}>
+                <Doughnut
+                  data={dataTotalBlocks}
+                  options={optionsTotalBlocks}
+                />
+              </Col>
+              <Col sm={4}>
+                <Doughnut
+                  data={dataTotalSteals}
+                  options={optionsTotalSteals}
+                />
+              </Col>
+              <Col sm={4}>
+                <Doughnut
+                  data={dataTotalTurnovers}
+                  options={optionsTotalTurnovers}
+                />
+              </Col>
+            </Row>
             <br></br>
-            <Doughnut
-              data={dataTotalSteals}
-              options={optionsTotalSteals}
-            />
             <br></br>
-            <Doughnut
-              data={dataTotalTurnovers}
-              options={optionsTotalTurnovers}
-            />
             <br></br>
-            <Doughnut
-              data={dataTotalPersonalFouls}
-              options={optionsTotalPersonalFouls}
-            />
+            <Row>
+              <Col sm={4}>
+                <Doughnut
+                  data={dataTotalPersonalFouls}
+                  options={optionsTotalPersonalFouls}
+                />
+              </Col>
+              <Col sm={4}>
+                <Doughnut
+                  data={dataTotalMinutes}
+                  options={optionsTotalMinutes}
+                />
+              </Col>
+              <Col sm={4}>
+
+              </Col>
+            </Row>
+            <Row>
+              <Col sm={4}>
+
+              </Col>
+              <Col sm={4}>
+
+              </Col>
+              <Col sm={4}>
+
+              </Col>
+            </Row>
+
             <br></br>
-            <Doughnut
-              data={dataTotalMinutes}
-              options={optionsTotalMinutes}
-            />
+
+            <br></br>
+
+            <br></br>
+
+            <br></br>
+
           </>
           : <></>}
 
