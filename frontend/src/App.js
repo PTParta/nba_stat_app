@@ -7,7 +7,8 @@ import Teams from './components/teams/Teams'
 import {
   BrowserRouter as Router,
   Switch,
-  Route
+  Route,
+  Redirect
   /* Link,
   Redirect,
   useRouteMatch,
@@ -51,6 +52,9 @@ function App() {
                   fetchingData={fetchingData}
                   setFetchingData={setFetchingData}
                 />
+              </Route>
+              <Route path='/'>
+                <Redirect to='/players' />
               </Route>
             </Switch>
             <br></br>
