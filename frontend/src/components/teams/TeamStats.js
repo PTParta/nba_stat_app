@@ -5,6 +5,8 @@ import { Doughnut } from 'react-chartjs-2'
 import colors from '../../styling/colors'
 import Loader from 'react-loader-spinner' */
 //import Logo from '../components/Logo'
+import 'chartjs-plugin-labels'
+import colors from '../../styling/colors'
 
 const TeamStats = (
   {
@@ -74,50 +76,60 @@ const TeamStats = (
     playerTotalStats = playerTotalStats.map(s => s.name === playerTotalStat.name ? updatedPlayer : s)
     playerTotalStats = playerTotalStats.sort((a, b) => b.pts - a.pts)
   })
-  console.log('playerTotalStats', playerTotalStats)
+  console.log('playerTotalStats', playerTotalStats.slice(0, 5).map(playerTotalStat => playerTotalStat.name))
 
-  players.forEach(player => {
-    const playerStats = teamStats.filter(teamStat => `${teamStat.player.first_name} ${teamStat.player.last_name}` === player)
-    let totalPointsOnePlayer = 0
-    playerStats.forEach(playerStat => {
-      totalPointsOnePlayer += playerStat.pts
-    })
-    totalPoints.push(totalPointsOnePlayer)
-  })
 
-  const getPlayerTotalPoints = (player) => {
-    const playerStats = teamStats.filter(teamStat => `${teamStat.player.first_name} ${teamStat.player.last_name}` === player)
-    let totalPointsOnePlayer = 0
-    playerStats.forEach(playerStat => {
-      totalPointsOnePlayer += playerStat.pts
-    })
-    totalPoints.push(totalPointsOnePlayer)
-    return totalPointsOnePlayer
+  const options = {
+    //responsive: true,
+    /* maintainAspectRatio: false, */
+    //aspectRatio: 1,
+    legend: {
+      labels: {
+        fontColor: 'white',
+        fontSize: 12
+      },
+      /* fullWidth: false, */
+      position: 'right'
+    },
+    plugins: {
+      labels: {
+        render: 'value',
+        fontSize: 16,
+        fontColor: 'black'
+      }
+    }
+    /*  pieceLabel: {
+       mode: 'value' */
   }
 
+
   const data = {
-    labels: ['Jayson Tatum', 'Tristan Thompson', 'Daniel Theis'],
+    /* labels: ['Jayson Tatum', 'Tristan Thompson', 'Daniel Theis'], */
+    labels: playerTotalStats.slice(0, 5).map(playerTotalStat => playerTotalStat.name),
     datasets: [{
-      label: 'My First Dataset',
-      data: [1109, 286, 397],
+      label: 'Total points',
+      /* data: [1109, 286, 397], */
+      data: playerTotalStats.slice(0, 5).map(playerTotalStat => playerTotalStat.pts),
       backgroundColor: [
-        'rgb(255, 99, 132)',
-        'rgb(54, 162, 235)',
-        'rgb(255, 205, 86)'
+        colors.orangeLine,
+        colors.yellowLine,
+        colors.greenLine,
+        colors.magentaLine,
+        colors.cyanLine,
       ],
       hoverOffset: 4
+
     }]
   }
 
   return (
     <div>
       <br></br>
-      {players.map(player =>
-        <div key={player} style={{ color: 'white', textAlign: 'center' }}>{player} {getPlayerTotalPoints(player)}</div>)}
       <br></br>
       <div className='chart'>
         <Doughnut
           data={data}
+          options={options}
         /* options={options} */
         />
       </div>
