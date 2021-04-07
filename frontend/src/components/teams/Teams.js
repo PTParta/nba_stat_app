@@ -8,7 +8,8 @@ import SelectPerTotal from './SelectPerTotal'
 import teamService from '../../services/teams'
 import Loader from 'react-loader-spinner'
 import Logo from '../Logo'
-
+import ReactGa from 'react-ga'
+require('dotenv').config()
 
 const Teams = ({ fetchingData, setFetchingData }) => {
 
@@ -22,6 +23,10 @@ const Teams = ({ fetchingData, setFetchingData }) => {
   const [totalSelected, setTotalSelected] = useState(false)
 
   useEffect(() => {
+
+    ReactGa.initialize(process.env.GA_TRACKING_CODE)
+    ReactGa.pageview('/teams')
+
     teamService.getTeams()
       .then((response) => {
         setTeams(response.data)
