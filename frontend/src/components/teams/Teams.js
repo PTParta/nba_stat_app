@@ -58,12 +58,9 @@ const Teams = ({ fetchingData, setFetchingData }) => {
           <Col sm={4}>
             <br></br>
             <Loader type="Grid" color="white" height="75" width="75" />
-            <br></br>
-            <br></br>
           </Col>
           <Col sm={4}></Col>
         </Row>
-
       </>
         : <></>}
       {/* <Row> */}

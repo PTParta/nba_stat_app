@@ -349,27 +349,32 @@ const TeamStats = (
 
   return (
     <div>
-      <br></br>
-      <br></br>
       <div className='chart'>
         {teamStats.length > 0
           ? <>
             <Row>
               <Col sm={4}>
+              </Col>
+              {/* <br></br> */}
+              <Col sm={4}>
+              </Col>
+              <Col sm={4}>
+              </Col>
+            </Row>
+            <br></br>
+            <br></br>
+            <br></br>
+            <Row>
+              <Col sm={6}>
                 <Doughnut
                   data={dataTotalPoints}
                   options={optionsTotalPoints}
-                /></Col>
-              {/* <br></br> */}
-              <Col sm={4}>
+                />
+              </Col>
+              <Col sm={6}>
                 <Doughnut
                   data={dataTotalAssists}
                   options={optionsTotalAssists}
-                /></Col>
-              <Col sm={4}>
-                <Doughnut
-                  data={dataTotalRebounds}
-                  options={optionsTotalRebounds}
                 />
               </Col>
             </Row>
@@ -377,19 +382,30 @@ const TeamStats = (
             <br></br>
             <br></br>
             <Row>
-              <Col sm={4}>
+              <Col sm={6}>
+                <Doughnut
+                  data={dataTotalRebounds}
+                  options={optionsTotalRebounds}
+                />
+              </Col>
+
+              <Col sm={6}>
                 <Doughnut
                   data={dataTotalBlocks}
                   options={optionsTotalBlocks}
                 />
               </Col>
-              <Col sm={4}>
+            </Row>
+            <br></br>
+            <br></br>
+            <br></br><Row>
+              <Col sm={6}>
                 <Doughnut
                   data={dataTotalSteals}
                   options={optionsTotalSteals}
                 />
               </Col>
-              <Col sm={4}>
+              <Col sm={6}>
                 <Doughnut
                   data={dataTotalTurnovers}
                   options={optionsTotalTurnovers}
@@ -398,47 +414,22 @@ const TeamStats = (
             </Row>
             <br></br>
             <br></br>
-            <br></br>
-            <Row>
-              <Col sm={4}>
+            <br></br><Row>
+              <Col sm={6}>
                 <Doughnut
                   data={dataTotalPersonalFouls}
                   options={optionsTotalPersonalFouls}
                 />
               </Col>
-              <Col sm={4}>
+              <Col sm={6}>
                 <Doughnut
                   data={dataTotalMinutes}
                   options={optionsTotalMinutes}
                 />
               </Col>
-              <Col sm={4}>
-
-              </Col>
             </Row>
-            <Row>
-              <Col sm={4}>
-
-              </Col>
-              <Col sm={4}>
-
-              </Col>
-              <Col sm={4}>
-
-              </Col>
-            </Row>
-
-            <br></br>
-
-            <br></br>
-
-            <br></br>
-
-            <br></br>
-
           </>
           : <></>}
-
       </div>
     </div >
   )
