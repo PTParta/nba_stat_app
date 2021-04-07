@@ -31,6 +31,7 @@ const Teams = ({ fetchingData, setFetchingData }) => {
             setSelectedTeam={setSelectedTeam}
             setTeamStats={setTeamStats}
             setFetchingData={setFetchingData}
+            selectedSeason={selectedSeason}
           />
         </Col>
         <Col sm={4}></Col>
