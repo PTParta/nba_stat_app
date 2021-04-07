@@ -11,7 +11,8 @@ import colors from '../../styling/colors'
 const TeamStats = (
   {
     selectedTeam,
-    teamStats
+    teamStats,
+    postSeasonSelected
   }
 ) => {
 
@@ -26,8 +27,10 @@ const TeamStats = (
 
   })
 
+  const teamStatsFiltered = teamStats.filter(teamStat => teamStat.game.postseason === postSeasonSelected)
+
   playerTotalStats.forEach(playerTotalStat => {
-    const playerStats = teamStats.filter(teamStat => `${teamStat.player.first_name} ${teamStat.player.last_name}` === playerTotalStat.name)
+    const playerStats = teamStatsFiltered.filter(teamStat => `${teamStat.player.first_name} ${teamStat.player.last_name}` === playerTotalStat.name)
 
     const totalPts = playerStats.reduce((accumulator, currentValue) => {
       return accumulator + currentValue.pts

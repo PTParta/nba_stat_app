@@ -3,6 +3,7 @@ import { Row, Col } from 'react-bootstrap'
 import SelectTeam from './SelectTeam'
 import TeamStats from './TeamStats'
 import SelectSeason from './SelectSeason'
+import SelectRegularPost from './SelectRegularPost'
 import teamService from '../../services/teams'
 import Loader from 'react-loader-spinner'
 
@@ -13,6 +14,8 @@ const Teams = ({ fetchingData, setFetchingData }) => {
   const [selectedTeam, setSelectedTeam] = useState('')
   const [teamStats, setTeamStats] = useState([])
   const [selectedSeason, setSelectedSeason] = useState(2020)
+  const [regularSeasonSelected, setRegularSeasonSelected] = useState(true)
+  const [postSeasonSelected, setPostSeasonSelected] = useState(false)
 
   useEffect(() => {
     teamService.getTeams()
@@ -49,7 +52,14 @@ const Teams = ({ fetchingData, setFetchingData }) => {
               setFetchingData={setFetchingData}
             />
           </Col>
-          <Col sm={4}></Col>
+          <Col sm={4}>
+            <SelectRegularPost
+             regularSeasonSelected={regularSeasonSelected}
+             postSeasonSelected={postSeasonSelected}
+             setRegularSeasonSelected={setRegularSeasonSelected}
+             setPostSeasonSelected={setPostSeasonSelected}
+            />
+          </Col>
         </Row>
         : <></>}
       {fetchingData ? <>
@@ -65,10 +75,11 @@ const Teams = ({ fetchingData, setFetchingData }) => {
         : <></>}
       {/* <Row> */}
 
-        <TeamStats
-          selectedTeam={selectedTeam}
-          teamStats={teamStats}
-        />
+      <TeamStats
+        selectedTeam={selectedTeam}
+        teamStats={teamStats}
+        postSeasonSelected={postSeasonSelected}
+      />
 
       {/* </Row> */}
     </div>
