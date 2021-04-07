@@ -1,6 +1,5 @@
 import Select from 'react-select'
 import playerStatService from '../../services/playerStats'
-import { /* Container,  */Row, Col } from 'react-bootstrap'
 
 
 const SelectSeason = ({

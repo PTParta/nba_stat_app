@@ -17,9 +17,6 @@ const TeamStats = (
 
   let playerTotalStats = []
 
-  let players = []
-  let totalPoints = []
-
   teamStats.forEach(teamStat => {
     const playerFullName = `${teamStat.player.first_name} ${teamStat.player.last_name}`
     if (playerTotalStats.find(playerTotalStat => playerTotalStat.name === playerFullName) === undefined) {
@@ -74,42 +71,120 @@ const TeamStats = (
     updatedPlayer.min = totalMin
 
     playerTotalStats = playerTotalStats.map(s => s.name === playerTotalStat.name ? updatedPlayer : s)
-    playerTotalStats = playerTotalStats.sort((a, b) => b.pts - a.pts)
+    //playerTotalStats = playerTotalStats.sort((a, b) => b.pts - a.pts)
   })
-  console.log('playerTotalStats', playerTotalStats.slice(0, 5).map(playerTotalStat => playerTotalStat.name))
+  //console.log('playerTotalStats', playerTotalStats.slice(0, 5).map(playerTotalStat => playerTotalStat.name))
 
 
-  const options = {
-    //responsive: true,
-    /* maintainAspectRatio: false, */
-    //aspectRatio: 1,
-    legend: {
-      labels: {
-        fontColor: 'white',
-        fontSize: 12
-      },
-      /* fullWidth: false, */
-      position: 'right'
+  const legend = {
+    labels: {
+      fontColor: 'white',
+      fontSize: 12
     },
-    plugins: {
-      labels: {
-        render: 'value',
-        fontSize: 16,
-        fontColor: 'black'
-      }
-    }
-    /*  pieceLabel: {
-       mode: 'value' */
+    position: 'right'
   }
 
+  const plugins = {
+    labels: {
+      render: 'value',
+      fontSize: 14,
+      fontColor: 'black'
+    }
+  }
 
-  const data = {
-    /* labels: ['Jayson Tatum', 'Tristan Thompson', 'Daniel Theis'], */
-    labels: playerTotalStats.slice(0, 5).map(playerTotalStat => playerTotalStat.name),
+  const optionsTotalPoints = {
+    legend: legend,
+    plugins: plugins,
+    title: {
+      display: true,
+      text: 'Total points',
+      fontSize: 16,
+      fontColor: 'white'
+    }
+  }
+
+  const optionsTotalAssists = {
+    legend: legend,
+    plugins: plugins,
+    title: {
+      display: true,
+      text: 'Total assists',
+      fontSize: 16,
+      fontColor: 'white'
+    }
+  }
+  const optionsTotalRebounds = {
+    legend: legend,
+    plugins: plugins,
+    title: {
+      display: true,
+      text: 'Total rebounds',
+      fontSize: 16,
+      fontColor: 'white'
+    }
+  }
+  const optionsTotalBlocks = {
+    legend: legend,
+    plugins: plugins,
+    title: {
+      display: true,
+      text: 'Total blocks',
+      fontSize: 16,
+      fontColor: 'white'
+    }
+  }
+  const optionsTotalSteals = {
+    legend: legend,
+    plugins: plugins,
+    title: {
+      display: true,
+      text: 'Total steals',
+      fontSize: 16,
+      fontColor: 'white'
+    }
+  }
+  const optionsTotalTurnovers = {
+    legend: legend,
+    plugins: plugins,
+    title: {
+      display: true,
+      text: 'Total turnovers',
+      fontSize: 16,
+      fontColor: 'white'
+    }
+  }
+  const optionsTotalPersonalFouls = {
+    legend: legend,
+    plugins: plugins,
+    title: {
+      display: true,
+      text: 'Total fouls',
+      fontSize: 16,
+      fontColor: 'white'
+    }
+  }
+  const optionsTotalMinutes = {
+    legend: legend,
+    plugins: plugins,
+    title: {
+      display: true,
+      text: 'Total minutes',
+      fontSize: 16,
+      fontColor: 'white'
+    }
+  }
+
+  const dataTotalPoints = {
+    labels: playerTotalStats
+      .sort((a, b) => b.pts - a.pts)
+      .slice(0, 5)
+      .map(playerTotalStat => playerTotalStat.name),
     datasets: [{
       label: 'Total points',
-      /* data: [1109, 286, 397], */
-      data: playerTotalStats.slice(0, 5).map(playerTotalStat => playerTotalStat.pts),
+      data: playerTotalStats
+        .sort((a, b) => b.pts - a.pts)
+        .slice(0, 5)
+        .map(playerTotalStat => playerTotalStat.pts),
       backgroundColor: [
         colors.orangeLine,
         colors.yellowLine,
@@ -118,45 +193,208 @@ const TeamStats = (
         colors.cyanLine,
       ],
       hoverOffset: 4
-
     }]
   }
+  const dataTotalAssists = {
+    labels: playerTotalStats
+      .sort((a, b) => b.ast - a.ast)
+      .slice(0, 5)
+      .map(playerTotalStat => playerTotalStat.name),
+    datasets: [{
+      label: 'Total assists',
+      data: playerTotalStats
+        .sort((a, b) => b.ast - a.ast)
+        .slice(0, 5)
+        .map(playerTotalStat => playerTotalStat.ast),
+      backgroundColor: [
+        colors.orangeLine,
+        colors.yellowLine,
+        colors.greenLine,
+        colors.magentaLine,
+        colors.cyanLine,
+      ],
+      hoverOffset: 4
+    }]
+  }
+  const dataTotalRebounds = {
+    labels: playerTotalStats
+      .sort((a, b) => b.reb - a.reb)
+      .slice(0, 5)
+      .map(playerTotalStat => playerTotalStat.name),
+    datasets: [{
+      label: 'Total rebounds',
+      data: playerTotalStats
+        .sort((a, b) => b.reb - a.reb)
+        .slice(0, 5)
+        .map(playerTotalStat => playerTotalStat.reb),
+      backgroundColor: [
+        colors.orangeLine,
+        colors.yellowLine,
+        colors.greenLine,
+        colors.magentaLine,
+        colors.cyanLine,
+      ],
+      hoverOffset: 4
+    }]
+  }
+  const dataTotalBlocks = {
+    labels: playerTotalStats
+      .sort((a, b) => b.blk - a.blk)
+      .slice(0, 5)
+      .map(playerTotalStat => playerTotalStat.name),
+    datasets: [{
+      label: 'Total blocks',
+      data: playerTotalStats
+        .sort((a, b) => b.blk - a.blk)
+        .slice(0, 5)
+        .map(playerTotalStat => playerTotalStat.blk),
+      backgroundColor: [
+        colors.orangeLine,
+        colors.yellowLine,
+        colors.greenLine,
+        colors.magentaLine,
+        colors.cyanLine,
+      ],
+      hoverOffset: 4
+    }]
+  }
+  const dataTotalSteals = {
+    labels: playerTotalStats
+      .sort((a, b) => b.stl - a.stl)
+      .slice(0, 5)
+      .map(playerTotalStat => playerTotalStat.name),
+    datasets: [{
+      label: 'Total steals',
+      data: playerTotalStats
+        .sort((a, b) => b.stl - a.stl)
+        .slice(0, 5)
+        .map(playerTotalStat => playerTotalStat.stl),
+      backgroundColor: [
+        colors.orangeLine,
+        colors.yellowLine,
+        colors.greenLine,
+        colors.magentaLine,
+        colors.cyanLine,
+      ],
+      hoverOffset: 4
+    }]
+  }
+  const dataTotalTurnovers = {
+    labels: playerTotalStats
+      .sort((a, b) => b.turnover - a.turnover)
+      .slice(0, 5)
+      .map(playerTotalStat => playerTotalStat.name),
+    datasets: [{
+      label: 'Total turnovers',
+      data: playerTotalStats
+        .sort((a, b) => b.turnover - a.turnover)
+        .slice(0, 5)
+        .map(playerTotalStat => playerTotalStat.turnover),
+      backgroundColor: [
+        colors.orangeLine,
+        colors.yellowLine,
+        colors.greenLine,
+        colors.magentaLine,
+        colors.cyanLine,
+      ],
+      hoverOffset: 4
+    }]
+  }
+  const dataTotalPersonalFouls = {
+    labels: playerTotalStats
+      .sort((a, b) => b.pf - a.pf)
+      .slice(0, 5)
+      .map(playerTotalStat => playerTotalStat.name),
+    datasets: [{
+      label: 'Total personal fouls',
+      data: playerTotalStats
+        .sort((a, b) => b.pf - a.pf)
+        .slice(0, 5)
+        .map(playerTotalStat => playerTotalStat.pf),
+      backgroundColor: [
+        colors.orangeLine,
+        colors.yellowLine,
+        colors.greenLine,
+        colors.magentaLine,
+        colors.cyanLine,
+      ],
+      hoverOffset: 4
+    }]
+  }
+  const dataTotalMinutes = {
+    labels: playerTotalStats
+      .sort((a, b) => b.min - a.min)
+      .slice(0, 5)
+      .map(playerTotalStat => playerTotalStat.name),
+    datasets: [{
+      label: 'Total minutes',
+      data: playerTotalStats
+        .sort((a, b) => b.min - a.min)
+        .slice(0, 5)
+        .map(playerTotalStat => playerTotalStat.min),
+      backgroundColor: [
+        colors.orangeLine,
+        colors.yellowLine,
+        colors.greenLine,
+        colors.magentaLine,
+        colors.cyanLine,
+      ],
+      hoverOffset: 4
+    }]
+  }
+
 
   return (
     <div>
       <br></br>
       <br></br>
       <div className='chart'>
-        <Doughnut
-          data={data}
-          options={options}
-        /* options={options} */
-        />
-      </div>
+        {teamStats.length > 0
+          ? <>
+            <Doughnut
+              data={dataTotalPoints}
+              options={optionsTotalPoints}
+            />
+            <br></br>
+            <Doughnut
+              data={dataTotalAssists}
+              options={optionsTotalAssists}
+            />
+            <br></br>
+            <Doughnut
+              data={dataTotalRebounds}
+              options={optionsTotalRebounds}
+            />
+            <br></br>
+            <Doughnut
+              data={dataTotalBlocks}
+              options={optionsTotalBlocks}
+            />
+            <br></br>
+            <Doughnut
+              data={dataTotalSteals}
+              options={optionsTotalSteals}
+            />
+            <br></br>
+            <Doughnut
+              data={dataTotalTurnovers}
+              options={optionsTotalTurnovers}
+            />
+            <br></br>
+            <Doughnut
+              data={dataTotalPersonalFouls}
+              options={optionsTotalPersonalFouls}
+            />
+            <br></br>
+            <Doughnut
+              data={dataTotalMinutes}
+              options={optionsTotalMinutes}
+            />
+          </>
+          : <></>}
 
-      {/* <Container style={{ color: 'white', paddingLeft: '30px' }}>
-        <Row>
-          {fetchingData
-            ? <Col>
-              <Loader type="Grid" color="white" height="25" width="25" />
-              <br></br>
-            </Col>
-            : <>
-              <Col>
-                <div>
-                  {playerStats[0].player.first_name} {playerStats[0].player.last_name}, {startSeasonToShow} - {endSeasonToShow}, {games} games
-              </div>
-              </Col>
-            </>}
-        </Row>
-      </Container>
-      <div className='chart'>
-        <Line
-          data={data}
-          options={options}
-        />
-      </div> */}
-    </div>
+      </div>
+    </div >
   )
 }
 

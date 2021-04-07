@@ -23,7 +23,7 @@ function App() {
     <Router>
       <div style={{
         backgroundColor: "#17202A",
-        height: '150vh',
+        height: '300vh',
         display: 'flex',
         flexDirection: 'column',
         alignContent: 'center'/* ,

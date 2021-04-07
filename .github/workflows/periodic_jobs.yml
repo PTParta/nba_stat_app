@@ -7,7 +7,7 @@ on:
     # - cron:  '*/30 * * * *' every thirty minutes
     # - cron:  '0 0 * * *' once a day
     # - cron: '0 * * * *' once an hour
-    - cron:  '0 */2 * * *' # every 6th hour
+    - cron:  '0 */12 * * *' # every 12th hour
 
 jobs:
   check_if_new_data_exists_in_API_and_transfer_it_to_database:
