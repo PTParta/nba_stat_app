@@ -127,7 +127,6 @@ const TeamStats = (
       fontColor: 'white'
     }
   }
-
   const optionsTotalAssists = {
     legend: legend,
     plugins: plugins,
@@ -369,6 +368,270 @@ const TeamStats = (
   }
 
 
+
+
+
+
+
+
+
+
+  const optionsPerPoints = {
+    legend: legend,
+    plugins: plugins,
+    title: {
+      display: true,
+      text: 'Points per game',
+      fontSize: 16,
+      fontColor: 'white'
+    }
+  }
+  const optionsPerAssists = {
+    legend: legend,
+    plugins: plugins,
+    title: {
+      display: true,
+      text: 'Assists per game',
+      fontSize: 16,
+      fontColor: 'white'
+    }
+  }
+  const optionsPerRebounds = {
+    legend: legend,
+    plugins: plugins,
+    title: {
+      display: true,
+      text: 'Rebounds per game',
+      fontSize: 16,
+      fontColor: 'white'
+    }
+  }
+  const optionsPerBlocks = {
+    legend: legend,
+    plugins: plugins,
+    title: {
+      display: true,
+      text: 'Blocks per game',
+      fontSize: 16,
+      fontColor: 'white'
+    }
+  }
+  const optionsPerSteals = {
+    legend: legend,
+    plugins: plugins,
+    title: {
+      display: true,
+      text: 'Steals per game',
+      fontSize: 16,
+      fontColor: 'white'
+    }
+  }
+  const optionsPerTurnovers = {
+    legend: legend,
+    plugins: plugins,
+    title: {
+      display: true,
+      text: 'Turnovers per game',
+      fontSize: 16,
+      fontColor: 'white'
+    }
+  }
+  const optionsPerPersonalFouls = {
+    legend: legend,
+    plugins: plugins,
+    title: {
+      display: true,
+      text: 'Fouls per game',
+      fontSize: 16,
+      fontColor: 'white'
+    }
+  }
+  const optionsPerMinutes = {
+    legend: legend,
+    plugins: plugins,
+    title: {
+      display: true,
+      text: 'Minutes per game',
+      fontSize: 16,
+      fontColor: 'white'
+    }
+  }
+
+  const dataPerPoints = {
+    labels: playerTotalStats
+      .sort((a, b) => b.ptsPer - a.ptsPer)
+      .slice(0, 5)
+      .map(playerTotalStat => playerTotalStat.name),
+    datasets: [{
+      label: 'Points per game',
+      data: playerTotalStats
+        .sort((a, b) => b.ptsPer - a.ptsPer)
+        .slice(0, 5)
+        .map(playerTotalStat => playerTotalStat.ptsPer),
+      backgroundColor: [
+        colors.orangeLine,
+        colors.yellowLine,
+        colors.greenLine,
+        colors.magentaLine,
+        colors.cyanLine,
+      ],
+      hoverOffset: 4
+    }]
+  }
+  const dataPerAssists = {
+    labels: playerTotalStats
+      .sort((a, b) => b.astPer - a.astPer)
+      .slice(0, 5)
+      .map(playerTotalStat => playerTotalStat.name),
+    datasets: [{
+      label: 'Assists per game',
+      data: playerTotalStats
+        .sort((a, b) => b.astPer - a.astPer)
+        .slice(0, 5)
+        .map(playerTotalStat => playerTotalStat.astPer),
+      backgroundColor: [
+        colors.orangeLine,
+        colors.yellowLine,
+        colors.greenLine,
+        colors.magentaLine,
+        colors.cyanLine,
+      ],
+      hoverOffset: 4
+    }]
+  }
+  const dataPerRebounds = {
+    labels: playerTotalStats
+      .sort((a, b) => b.rebPer - a.rebPer)
+      .slice(0, 5)
+      .map(playerTotalStat => playerTotalStat.name),
+    datasets: [{
+      label: 'Rebounds per game',
+      data: playerTotalStats
+        .sort((a, b) => b.rebPer - a.rebPer)
+        .slice(0, 5)
+        .map(playerTotalStat => playerTotalStat.rebPer),
+      backgroundColor: [
+        colors.orangeLine,
+        colors.yellowLine,
+        colors.greenLine,
+        colors.magentaLine,
+        colors.cyanLine,
+      ],
+      hoverOffset: 4
+    }]
+  }
+  const dataPerBlocks = {
+    labels: playerTotalStats
+      .sort((a, b) => b.blkPer - a.blkPer)
+      .slice(0, 5)
+      .map(playerTotalStat => playerTotalStat.name),
+    datasets: [{
+      label: 'Blocks per game',
+      data: playerTotalStats
+        .sort((a, b) => b.blkPer - a.blkPer)
+        .slice(0, 5)
+        .map(playerTotalStat => playerTotalStat.blkPer),
+      backgroundColor: [
+        colors.orangeLine,
+        colors.yellowLine,
+        colors.greenLine,
+        colors.magentaLine,
+        colors.cyanLine,
+      ],
+      hoverOffset: 4
+    }]
+  }
+  const dataPerSteals = {
+    labels: playerTotalStats
+      .sort((a, b) => b.stlPer - a.stlPer)
+      .slice(0, 5)
+      .map(playerTotalStat => playerTotalStat.name),
+    datasets: [{
+      label: 'Steals per game',
+      data: playerTotalStats
+        .sort((a, b) => b.stlPer - a.stlPer)
+        .slice(0, 5)
+        .map(playerTotalStat => playerTotalStat.stlPer),
+      backgroundColor: [
+        colors.orangeLine,
+        colors.yellowLine,
+        colors.greenLine,
+        colors.magentaLine,
+        colors.cyanLine,
+      ],
+      hoverOffset: 4
+    }]
+  }
+  const dataPerTurnovers = {
+    labels: playerTotalStats
+      .sort((a, b) => b.turnoverPer - a.turnoverPer)
+      .slice(0, 5)
+      .map(playerTotalStat => playerTotalStat.name),
+    datasets: [{
+      label: 'Turnovers per game',
+      data: playerTotalStats
+        .sort((a, b) => b.turnoverPer - a.turnoverPer)
+        .slice(0, 5)
+        .map(playerTotalStat => playerTotalStat.turnoverPer),
+      backgroundColor: [
+        colors.orangeLine,
+        colors.yellowLine,
+        colors.greenLine,
+        colors.magentaLine,
+        colors.cyanLine,
+      ],
+      hoverOffset: 4
+    }]
+  }
+  const dataPerPersonalFouls = {
+    labels: playerTotalStats
+      .sort((a, b) => b.pfPer - a.pfPer)
+      .slice(0, 5)
+      .map(playerTotalStat => playerTotalStat.name),
+    datasets: [{
+      label: 'Personal fouls per game',
+      data: playerTotalStats
+        .sort((a, b) => b.pfPer - a.pfPer)
+        .slice(0, 5)
+        .map(playerTotalStat => playerTotalStat.pfPer),
+      backgroundColor: [
+        colors.orangeLine,
+        colors.yellowLine,
+        colors.greenLine,
+        colors.magentaLine,
+        colors.cyanLine,
+      ],
+      hoverOffset: 4
+    }]
+  }
+  const dataPerMinutes = {
+    labels: playerTotalStats
+      .sort((a, b) => b.minPer - a.minPer)
+      .slice(0, 5)
+      .map(playerTotalStat => playerTotalStat.name),
+    datasets: [{
+      label: 'Minutes per game',
+      data: playerTotalStats
+        .sort((a, b) => b.minPer - a.minPer)
+        .slice(0, 5)
+        .map(playerTotalStat => playerTotalStat.minPer),
+      backgroundColor: [
+        colors.orangeLine,
+        colors.yellowLine,
+        colors.greenLine,
+        colors.magentaLine,
+        colors.cyanLine,
+      ],
+      hoverOffset: 4
+    }]
+  }
+
+
+
+
+
+
+
   return (
     <div>
       <div className='chart'>
@@ -452,6 +715,92 @@ const TeamStats = (
             </Row>
           </>
           : <></>}
+
+
+        {teamStats.length > 0
+          ? <>
+            <Row>
+              <Col sm={4}>
+              </Col>
+              {/* <br></br> */}
+              <Col sm={4}>
+              </Col>
+              <Col sm={4}>
+              </Col>
+            </Row>
+            <br></br>
+            <br></br>
+            <br></br>
+            <Row>
+              <Col sm={6}>
+                <Doughnut
+                  data={dataPerPoints}
+                  options={optionsPerPoints}
+                />
+              </Col>
+              <Col sm={6}>
+                <Doughnut
+                  data={dataPerAssists}
+                  options={optionsPerAssists}
+                />
+              </Col>
+            </Row>
+            <br></br>
+            <br></br>
+            <br></br>
+            <Row>
+              <Col sm={6}>
+                <Doughnut
+                  data={dataPerRebounds}
+                  options={optionsPerRebounds}
+                />
+              </Col>
+
+              <Col sm={6}>
+                <Doughnut
+                  data={dataPerBlocks}
+                  options={optionsPerBlocks}
+                />
+              </Col>
+            </Row>
+            <br></br>
+            <br></br>
+            <br></br><Row>
+              <Col sm={6}>
+                <Doughnut
+                  data={dataPerSteals}
+                  options={optionsPerSteals}
+                />
+              </Col>
+              <Col sm={6}>
+                <Doughnut
+                  data={dataPerTurnovers}
+                  options={optionsPerTurnovers}
+                />
+              </Col>
+            </Row>
+            <br></br>
+            <br></br>
+            <br></br><Row>
+              <Col sm={6}>
+                <Doughnut
+                  data={dataPerPersonalFouls}
+                  options={optionsPerPersonalFouls}
+                />
+              </Col>
+              <Col sm={6}>
+                <Doughnut
+                  data={dataPerMinutes}
+                  options={optionsPerMinutes}
+                />
+              </Col>
+            </Row>
+          </>
+          : <></>}
+
+
+
+
       </div>
     </div >
   )
