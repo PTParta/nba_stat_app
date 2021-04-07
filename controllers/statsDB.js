@@ -30,7 +30,8 @@ statDBRouter.get('/teamstatsfromdb/:teamid/:season', async (request, response) =
 
   const stats = await Stat.find({
     'team.id': request.params.teamid,
-    'game.season': request.params.season
+    'game.season': request.params.season,
+    'min': { $ne: null }
   })
 
   let endTime = new Date().getTime()

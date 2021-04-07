@@ -51,6 +51,9 @@ const TeamStats = (
       return accumulator + currentValue.pf
     }, 0)
     const totalMin = playerStats.reduce((accumulator, currentValue) => {
+      if (currentValue === null) {
+        currentValue = 0
+      }
       const timeSplit = currentValue.min.split(':')
       const seconds = Number(timeSplit[0]) * 60 + Number(timeSplit[1])
       let minutes = Math.floor(seconds / 60)
