@@ -70,6 +70,9 @@ const TeamStats = (
       if (isNaN(minutes)) {
         minutes = 0
       }
+      if (minutes !== 0) {
+        playedGames++
+      }
       return accumulator + minutes
     }, 0)
 
@@ -83,10 +86,19 @@ const TeamStats = (
     updatedPlayer.pf = totalPf
     updatedPlayer.min = totalMin
 
+    updatedPlayer.ptsPer = Math.round(totalPts / playedGames * 10) / 10
+    updatedPlayer.astPer = Math.round(totalAst / playedGames * 10) / 10
+    updatedPlayer.rebPer = Math.round(totalReb / playedGames * 10) / 10
+    updatedPlayer.stlPer = Math.round(totalStl / playedGames * 10) / 10
+    updatedPlayer.blkPer = Math.round(totalBlk / playedGames * 10) / 10
+    updatedPlayer.turnoverPer = Math.round(totalTurnover / playedGames * 10) / 10
+    updatedPlayer.pfPer = Math.round(totalPf / playedGames * 10) / 10
+    updatedPlayer.minPer = Math.round(totalMin / playedGames * 10) / 10
+
     playerTotalStats = playerTotalStats.map(s => s.name === playerTotalStat.name ? updatedPlayer : s)
     //playerTotalStats = playerTotalStats.sort((a, b) => b.pts - a.pts)
   })
-  //console.log('playerTotalStats', playerTotalStats.slice(0, 5).map(playerTotalStat => playerTotalStat.name))
+  console.log('playerTotalStats', playerTotalStats.slice(0, 5)/* .map(playerTotalStat => playerTotalStat.name) */)
 
 
   const legend = {
