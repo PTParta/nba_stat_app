@@ -21,6 +21,7 @@ const Teams = ({ fetchingData, setFetchingData }) => {
   const [postSeasonSelected, setPostSeasonSelected] = useState(false)
   const [perGameSelected, setPerGameSelected] = useState(true)
   const [totalSelected, setTotalSelected] = useState(false)
+  const [per36Selected, setPer36Selected] = useState(false)
 
   useEffect(() => {
 
@@ -53,6 +54,7 @@ const Teams = ({ fetchingData, setFetchingData }) => {
             ? <SelectPerTotal
               setPerGameSelected={setPerGameSelected}
               setTotalSelected={setTotalSelected}
+              setPer36Selected={setPer36Selected}
             />
 
             : <></>}
@@ -112,6 +114,7 @@ const Teams = ({ fetchingData, setFetchingData }) => {
         postSeasonSelected={postSeasonSelected}
         perGameSelected={perGameSelected}
         totalSelected={totalSelected}
+        per36Selected={per36Selected}
       />
 
       {/* </Row> */}

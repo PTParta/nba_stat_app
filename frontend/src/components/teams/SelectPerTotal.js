@@ -2,23 +2,32 @@
 import { ButtonGroup, ToggleButton } from 'react-bootstrap'
 import { useState } from 'react'
 
-const SelectPerTotal = ({ setPerGameSelected, setTotalSelected }) => {
+const SelectPerTotal = ({ setPerGameSelected, setTotalSelected, setPer36Selected }) => {
 
   const [radioValue, setRadioValue] = useState('1');
 
   const radios = [
     { name: 'per game', value: '1' },
-    { name: 'total', value: '2' }
+    { name: 'total', value: '2' },
+    { name: 'per 36 min', value: '3' },
+
   ];
 
   const handlePerGameChange = (e) => {
     if (e.currentTarget.value === '1') {
       setPerGameSelected(true)
       setTotalSelected(false)
+      setPer36Selected(false)
     }
     if (e.currentTarget.value === '2') {
       setPerGameSelected(false)
       setTotalSelected(true)
+      setPer36Selected(false)
+    }
+    if (e.currentTarget.value === '3') {
+      setPerGameSelected(false)
+      setTotalSelected(false)
+      setPer36Selected(true)
     }
     setRadioValue(e.currentTarget.value)
   }

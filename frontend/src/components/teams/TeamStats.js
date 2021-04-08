@@ -10,11 +10,11 @@ import colors from '../../styling/colors'
 
 const TeamStats = (
   {
-    selectedTeam,
     teamStats,
     postSeasonSelected,
     perGameSelected,
-    totalSelected
+    totalSelected,
+    per36Selected
   }
 ) => {
 
@@ -78,6 +78,7 @@ const TeamStats = (
     }, 0)
 
     const updatedPlayer = playerTotalStat
+
     updatedPlayer.pts = totalPts
     updatedPlayer.ast = totalAst
     updatedPlayer.reb = totalReb
@@ -95,6 +96,14 @@ const TeamStats = (
     updatedPlayer.turnoverPer = Math.round(totalTurnover / playedGames * 10) / 10
     updatedPlayer.pfPer = Math.round(totalPf / playedGames * 10) / 10
     updatedPlayer.minPer = Math.round(totalMin / playedGames * 10) / 10
+
+    updatedPlayer.ptsPer36 = Math.round(updatedPlayer.ptsPer / updatedPlayer.minPer * 36 * 10) / 10
+    updatedPlayer.astPer36 = Math.round(updatedPlayer.astPer / updatedPlayer.minPer * 36 * 10) / 10
+    updatedPlayer.rebPer36 = Math.round(updatedPlayer.rebPer / updatedPlayer.minPer * 36 * 10) / 10
+    updatedPlayer.stlPer36 = Math.round(updatedPlayer.stlPer / updatedPlayer.minPer * 36 * 10) / 10
+    updatedPlayer.blkPer36 = Math.round(updatedPlayer.blkPer / updatedPlayer.minPer * 36 * 10) / 10
+    updatedPlayer.turnoverPer36 = Math.round(updatedPlayer.turnoverPer / updatedPlayer.minPer * 36 * 10) / 10
+    updatedPlayer.pfPer36 = Math.round(updatedPlayer.pfPer / updatedPlayer.minPer * 36 * 10) / 10
 
     playerTotalStats = playerTotalStats.map(s => s.name === playerTotalStat.name ? updatedPlayer : s)
   })
@@ -366,14 +375,7 @@ const TeamStats = (
     }]
   }
 
-
-
-
-
-
-
-
-
+  //////////////////////////////////////////////////////////////////////
 
   const optionsPerPoints = {
     legend: legend,
@@ -626,6 +628,234 @@ const TeamStats = (
   }
 
 
+  //////////////////////////////////////////////////////////////////////////
+
+
+  const optionsPer36Points = {
+    legend: legend,
+    plugins: plugins,
+    title: {
+      display: true,
+      text: 'Points per 36 min',
+      fontSize: 16,
+      fontColor: 'white'
+    }
+  }
+  const optionsPer36Assists = {
+    legend: legend,
+    plugins: plugins,
+    title: {
+      display: true,
+      text: 'Assists per 36 min',
+      fontSize: 16,
+      fontColor: 'white'
+    }
+  }
+  const optionsPer36Rebounds = {
+    legend: legend,
+    plugins: plugins,
+    title: {
+      display: true,
+      text: 'Rebounds per 36 min',
+      fontSize: 16,
+      fontColor: 'white'
+    }
+  }
+  const optionsPer36Blocks = {
+    legend: legend,
+    plugins: plugins,
+    title: {
+      display: true,
+      text: 'Blocks per 36 min',
+      fontSize: 16,
+      fontColor: 'white'
+    }
+  }
+  const optionsPer36Steals = {
+    legend: legend,
+    plugins: plugins,
+    title: {
+      display: true,
+      text: 'Steals per 36 min',
+      fontSize: 16,
+      fontColor: 'white'
+    }
+  }
+  const optionsPer36Turnovers = {
+    legend: legend,
+    plugins: plugins,
+    title: {
+      display: true,
+      text: 'Turnovers per 36 min',
+      fontSize: 16,
+      fontColor: 'white'
+    }
+  }
+  const optionsPer36PersonalFouls = {
+    legend: legend,
+    plugins: plugins,
+    title: {
+      display: true,
+      text: 'Fouls per 36 min',
+      fontSize: 16,
+      fontColor: 'white'
+    }
+  }
+
+  const dataPer36Points = {
+    labels: playerTotalStats
+      .sort((a, b) => b.ptsPer36 - a.ptsPer36)
+      .slice(0, 5)
+      .map(playerTotalStat => playerTotalStat.name),
+    datasets: [{
+      label: 'Points per 36 min',
+      data: playerTotalStats
+        .sort((a, b) => b.ptsPer36 - a.ptsPer36)
+        .slice(0, 5)
+        .map(playerTotalStat => playerTotalStat.ptsPer36),
+      backgroundColor: [
+        colors.orangeLine,
+        colors.yellowLine,
+        colors.greenLine,
+        colors.magentaLine,
+        colors.cyanLine,
+      ],
+      hoverOffset: 4
+    }]
+  }
+  const dataPer36Assists = {
+    labels: playerTotalStats
+      .sort((a, b) => b.astPer36 - a.astPer36)
+      .slice(0, 5)
+      .map(playerTotalStat => playerTotalStat.name),
+    datasets: [{
+      label: 'Assists per 36 min',
+      data: playerTotalStats
+        .sort((a, b) => b.astPer36 - a.astPer36)
+        .slice(0, 5)
+        .map(playerTotalStat => playerTotalStat.astPer36),
+      backgroundColor: [
+        colors.orangeLine,
+        colors.yellowLine,
+        colors.greenLine,
+        colors.magentaLine,
+        colors.cyanLine,
+      ],
+      hoverOffset: 4
+    }]
+  }
+  const dataPer36Rebounds = {
+    labels: playerTotalStats
+      .sort((a, b) => b.rebPer36 - a.rebPer36)
+      .slice(0, 5)
+      .map(playerTotalStat => playerTotalStat.name),
+    datasets: [{
+      label: 'Rebounds per 36 min',
+      data: playerTotalStats
+        .sort((a, b) => b.rebPer36 - a.rebPer36)
+        .slice(0, 5)
+        .map(playerTotalStat => playerTotalStat.rebPer36),
+      backgroundColor: [
+        colors.orangeLine,
+        colors.yellowLine,
+        colors.greenLine,
+        colors.magentaLine,
+        colors.cyanLine,
+      ],
+      hoverOffset: 4
+    }]
+  }
+  const dataPer36Blocks = {
+    labels: playerTotalStats
+      .sort((a, b) => b.blkPer36 - a.blkPer36)
+      .slice(0, 5)
+      .map(playerTotalStat => playerTotalStat.name),
+    datasets: [{
+      label: 'Blocks per 36 min',
+      data: playerTotalStats
+        .sort((a, b) => b.blkPer36 - a.blkPer36)
+        .slice(0, 5)
+        .map(playerTotalStat => playerTotalStat.blkPer36),
+      backgroundColor: [
+        colors.orangeLine,
+        colors.yellowLine,
+        colors.greenLine,
+        colors.magentaLine,
+        colors.cyanLine,
+      ],
+      hoverOffset: 4
+    }]
+  }
+  const dataPer36Steals = {
+    labels: playerTotalStats
+      .sort((a, b) => b.stlPer36 - a.stlPer36)
+      .slice(0, 5)
+      .map(playerTotalStat => playerTotalStat.name),
+    datasets: [{
+      label: 'Steals per 36 min',
+      data: playerTotalStats
+        .sort((a, b) => b.stlPer36 - a.stlPer36)
+        .slice(0, 5)
+        .map(playerTotalStat => playerTotalStat.stlPer36),
+      backgroundColor: [
+        colors.orangeLine,
+        colors.yellowLine,
+        colors.greenLine,
+        colors.magentaLine,
+        colors.cyanLine,
+      ],
+      hoverOffset: 4
+    }]
+  }
+  const dataPer36Turnovers = {
+    labels: playerTotalStats
+      .sort((a, b) => b.turnoverPer36 - a.turnoverPer36)
+      .slice(0, 5)
+      .map(playerTotalStat => playerTotalStat.name),
+    datasets: [{
+      label: 'Turnovers per 36 min',
+      data: playerTotalStats
+        .sort((a, b) => b.turnoverPer36 - a.turnoverPer36)
+        .slice(0, 5)
+        .map(playerTotalStat => playerTotalStat.turnoverPer36),
+      backgroundColor: [
+        colors.orangeLine,
+        colors.yellowLine,
+        colors.greenLine,
+        colors.magentaLine,
+        colors.cyanLine,
+      ],
+      hoverOffset: 4
+    }]
+  }
+  const dataPer36PersonalFouls = {
+    labels: playerTotalStats
+      .sort((a, b) => b.pfPer36 - a.pfPer36)
+      .slice(0, 5)
+      .map(playerTotalStat => playerTotalStat.name),
+    datasets: [{
+      label: 'Personal fouls per 36 min',
+      data: playerTotalStats
+        .sort((a, b) => b.pfPer36 - a.pfPer36)
+        .slice(0, 5)
+        .map(playerTotalStat => playerTotalStat.pfPer36),
+      backgroundColor: [
+        colors.orangeLine,
+        colors.yellowLine,
+        colors.greenLine,
+        colors.magentaLine,
+        colors.cyanLine,
+      ],
+      hoverOffset: 4
+    }]
+  }
+
+
+
+
+
+
+
 
 
 
@@ -797,7 +1027,80 @@ const TeamStats = (
           </>
           : <></>}
 
+        {teamStats.length > 0 && per36Selected
+          ? <>
+            <Row>
+              <Col sm={4}>
+              </Col>
+              {/* <br></br> */}
+              <Col sm={4}>
+              </Col>
+              <Col sm={4}>
+              </Col>
+            </Row>
+            <br></br>
+            <br></br>
+            <br></br>
+            <Row>
+              <Col sm={6}>
+                <Doughnut
+                  data={dataPer36Points}
+                  options={optionsPer36Points}
+                />
+              </Col>
+              <Col sm={6}>
+                <Doughnut
+                  data={dataPer36Assists}
+                  options={optionsPer36Assists}
+                />
+              </Col>
+            </Row>
+            <br></br>
+            <br></br>
+            <br></br>
+            <Row>
+              <Col sm={6}>
+                <Doughnut
+                  data={dataPer36Rebounds}
+                  options={optionsPer36Rebounds}
+                />
+              </Col>
 
+              <Col sm={6}>
+                <Doughnut
+                  data={dataPer36Blocks}
+                  options={optionsPer36Blocks}
+                />
+              </Col>
+            </Row>
+            <br></br>
+            <br></br>
+            <br></br><Row>
+              <Col sm={6}>
+                <Doughnut
+                  data={dataPer36Steals}
+                  options={optionsPer36Steals}
+                />
+              </Col>
+              <Col sm={6}>
+                <Doughnut
+                  data={dataPer36Turnovers}
+                  options={optionsPer36Turnovers}
+                />
+              </Col>
+            </Row>
+            <br></br>
+            <br></br>
+            <br></br><Row>
+              <Col sm={6}>
+                <Doughnut
+                  data={dataPer36PersonalFouls}
+                  options={optionsPer36PersonalFouls}
+                />
+              </Col>
+            </Row>
+          </>
+          : <></>}
 
 
       </div>
