@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 //import NavigationBar from './components/NavigationBar'
 import Players from './components/players/Players'
@@ -10,10 +10,10 @@ import {
   Route,
   Redirect,
   Link
- /*  Redirect,
-  useRouteMatch,
-  Redirect,
-  useHistory */
+  /*  Redirect,
+   useRouteMatch,
+   Redirect,
+   useHistory */
 } from 'react-router-dom'
 
 function App() {
@@ -40,14 +40,14 @@ function App() {
               <Col sm={2}></Col>
             </Row> */}
             <Row>
-              <Col></Col>
-              <Col>
-              <Link to='/players'>players</Link>
+              <Col sm={4}></Col>
+              <Col sm={1} xs={3}>
+                <Link to='/players'>players</Link>
               </Col>
-              <Col>
-              <Link to='/teams'>teams</Link>
+              <Col sm={1} xs={3}>
+                <Link to='/teams'>teams</Link>
               </Col>
-              <Col></Col>
+              <Col sm={4}></Col>
             </Row>
             <br></br>
             <Switch>
