@@ -132,7 +132,7 @@ const Players = ({ fetchingData, setFetchingData }) => {
           {fetchingData && playerStats.length === 0
             ? <>
               <br></br>
-              <Loader type="Grid" color="white" height="75" width="75" />
+              <Loader type="Grid" color="white" height="25" width="25" />
               <br></br>
               <br></br>
             </>

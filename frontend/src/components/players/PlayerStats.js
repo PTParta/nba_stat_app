@@ -469,7 +469,7 @@ const PlayerStats = (
   return (
     <div>
       <Container style={{ color: 'white', paddingLeft: '30px' }}>
-        <Row>
+        <Row style={{ textAlign: 'center' }}>
           {fetchingData
             ? <Col>
               <Loader type="Grid" color="white" height="25" width="25" />
