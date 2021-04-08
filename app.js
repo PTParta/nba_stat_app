@@ -48,7 +48,7 @@ app.use(middleware.unknownEndpoint)
 app.use(middleware.errorHandler)
 
 app.get('*', (_req, res) => {
-  res.sendFile(path.join(__dirname, '/build/index.html'));
+  res.sendFile(path.join(__dirname, '/frontend/build/index.html'));
 });
 
 module.exports = app
