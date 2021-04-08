@@ -10,6 +10,7 @@ const teamRouter = require('./controllers/teams')
 const statRouter = require('./controllers/stats')
 const statDBRouter = require('./controllers/statsDB')
 const healthRouter = require('./controllers/health')
+const teamDBRouter = require('./controllers/teamsDB')
 const middleware = require('./utils/middleware')
 const logger = require('./utils/logger')
 const mongoose = require('mongoose')
@@ -38,31 +39,9 @@ app.use('/api/teams', teamRouter)
 app.use('/api/stats', statRouter)
 app.use('/api/statsdb', statDBRouter)
 app.use('/api/health', healthRouter)
-
-
-// invalid address handling
-/* const unknownEndpoint = (_req, res) => {
-  res.status(404).send({ error: 'unknown endpoint' })
-}
-app.use(unknownEndpoint)
-
-const errorHandler = (error, req, res, next) => {
-  console.error(error.message)
-  if (error.name === 'CastError') {
-    return res.status(400).send({ error: 'malformatted id' })
-  } else if (error.name === 'ValidationError') {
-    return res.status(400).json({ error: error.message })
-  }
-  next(error)
-}
-app.use(errorHandler) */
-
+app.use('/api/teamsdb', teamDBRouter)
 
 app.use(middleware.unknownEndpoint)
 app.use(middleware.errorHandler)
-/* const PORT = process.env.PORT || 3001
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`)
-}) */
 
 module.exports = app

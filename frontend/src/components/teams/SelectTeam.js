@@ -15,7 +15,7 @@ const SelectTeam = ({ teams, setSelectedTeam, setTeamStats, setFetchingData, sel
   const getTeamStats = (teamName) => {
     setFetchingData(true)
     const searchedTeam = teams.find(team => team.name === teamName)
-    playerStatService.getTeamStatsFromDB(searchedTeam.id, selectedSeason)
+    playerStatService.getTeamStatsFromDB(searchedTeam.apiId, selectedSeason)
       .then((response) => {
         setTeamStats(response.data.sort((a, b) =>
           new Date(a.game.date).getTime() - new Date(b.game.date).getTime())

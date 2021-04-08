@@ -25,7 +25,7 @@ const SelectSeason = ({
     setSelectedSeason(event.value)
     setFetchingData(true)
     const searchedTeam = teams.find(team => team.name === selectedTeam)
-    playerStatService.getTeamStatsFromDB(searchedTeam.id, event.value)
+    playerStatService.getTeamStatsFromDB(searchedTeam.apiId, event.value)
       .then((response) => {
         setTeamStats(response.data.sort((a, b) =>
           new Date(a.game.date).getTime() - new Date(b.game.date).getTime())

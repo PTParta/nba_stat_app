@@ -28,9 +28,10 @@ const Teams = ({ fetchingData, setFetchingData }) => {
     ReactGa.pageview(window.location.pathname + window.location.search)
     //console.log('pathname:', window.location.pathname)
 
-    teamService.getTeams()
+    teamService.getTeamsFromDatabase()
       .then((response) => {
-        setTeams(response.data)
+        //console.log(response)
+        setTeams(response)
       })
   }, [])
 
