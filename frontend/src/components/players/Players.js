@@ -13,8 +13,8 @@ import SelectTrailingAverage from './SelectTrailingAverage'
 /* import Instructions from './Instructions'
 import Tips from './Tips' */
 import Loader from 'react-loader-spinner'
-/* import ReactGa from 'react-ga'
-require('dotenv').config() */
+import ReactGa from 'react-ga'
+require('dotenv').config()
 
 
 const Players = ({ fetchingData, setFetchingData }) => {
@@ -53,6 +53,10 @@ const Players = ({ fetchingData, setFetchingData }) => {
   const [trailingAverage, setTrailingAverage] = useState(25)
 
   useEffect(() => {
+
+    ReactGa.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS_TRACKING_CODE)
+    ReactGa.pageview(window.location.pathname + window.location.search)
+    //console.log('pathname:', window.location.pathname)
 
     teamService.getTeams()
       .then((response) => {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
-import NavigationBar from './components/NavigationBar'
+//import NavigationBar from './components/NavigationBar'
 import Players from './components/players/Players'
 import Teams from './components/teams/Teams'
 
@@ -8,29 +8,17 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect
-  /* Link,
   Redirect,
+  Link
+ /*  Redirect,
   useRouteMatch,
   Redirect,
   useHistory */
 } from 'react-router-dom'
-import ReactGa from 'react-ga'
-require('dotenv').config()
-
 
 function App() {
 
   const [fetchingData, setFetchingData] = useState(false)
-
-  useEffect(() => {
-
-    ReactGa.initialize(process.env.GA_TRACKING_CODE)
-    ReactGa.pageview(window.location.pathname/*  + window.location.search */)
-
-  }, [])
-
-
 
   return (
     <Router>
@@ -44,12 +32,22 @@ function App() {
       }}>
         <div className="container" style={{ paddingTop: '2vh', backgroundColor: "#17202A" }} >
           <Container>
-            <Row>
+            {/* <Row>
               <Col sm={2}></Col>
               <Col sm={8}>
                 <NavigationBar />
               </Col>
               <Col sm={2}></Col>
+            </Row> */}
+            <Row>
+              <Col></Col>
+              <Col>
+              <Link to='/players'>players</Link>
+              </Col>
+              <Col>
+              <Link to='/teams'>teams</Link>
+              </Col>
+              <Col></Col>
             </Row>
             <br></br>
             <Switch>
