@@ -47,8 +47,12 @@ app.use('/api/teamsdb', teamDBRouter)
 app.use(middleware.unknownEndpoint)
 app.use(middleware.errorHandler)
 
-/* app.get('*', (req, res) => {
+app.get('/players', (req, res) => {
   res.sendFile(path.join(__dirname, '/frontend/build/index.html'));
-}); */
+});
+
+app.get('/teams', (req, res) => {
+  res.sendFile(path.join(__dirname, '/frontend/build/index.html'));
+});
 
 module.exports = app
