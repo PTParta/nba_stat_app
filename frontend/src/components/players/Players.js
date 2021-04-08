@@ -9,6 +9,8 @@ import SelectSeasons from './SelectSeasons'
 import SelectRegularPost from './SelectRegularPost'
 import SelectStats from './SelectStats'
 import Logo from '../Logo'
+import Title from '../Title'
+import Description from '../Description'
 import SelectTrailingAverage from './SelectTrailingAverage'
 /* import Instructions from './Instructions'
 import Tips from './Tips' */
@@ -108,8 +110,30 @@ const Players = ({ fetchingData, setFetchingData }) => {
             <Col sm={5} xs={1}></Col>
           </Row>
           <br></br>
+          <br></br>
+          <Row style={{ textAlign: 'center' }}>
+            <Col sm={4} xs={1}></Col>
+            <Col sm={4} xs={10}>
+              <Title />
+            </Col>
+            <Col sm={4} xs={1}></Col>
+          </Row>
+          <Row style={{ textAlign: 'center' }}>
+            <Col sm={4} xs={1}></Col>
+            <Col sm={4} xs={10}>
+              <Description />
+            </Col>
+            <Col sm={4} xs={1}></Col>
+          </Row>
         </>
         : <></>}
+
+
+
+
+
+
+
       <Row style={{ textAlign: 'center' }}>
         <Col sm={5} xs={4}></Col>
         <Col sm={2} xs={4}>

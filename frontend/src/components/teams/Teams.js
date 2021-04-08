@@ -5,6 +5,8 @@ import TeamStats from './TeamStats'
 import SelectSeason from './SelectSeason'
 import SelectRegularPost from './SelectRegularPost'
 import SelectPerTotal from './SelectPerTotal'
+import Title from '../Title'
+import Description from '../Description'
 import teamService from '../../services/teams'
 import Loader from 'react-loader-spinner'
 import Logo from '../Logo'
@@ -93,7 +95,22 @@ const Teams = ({ fetchingData, setFetchingData }) => {
             </Col>
             <Col sm={4}></Col>
           </Row>
-
+          <br></br>
+          <br></br>
+          <Row style={{ textAlign: 'center' }}>
+            <Col sm={4} xs={1}></Col>
+            <Col sm={4} xs={10}>
+              <Title />
+            </Col>
+            <Col sm={4} xs={1}></Col>
+          </Row>
+          <Row style={{ textAlign: 'center' }}>
+            <Col sm={4} xs={1}></Col>
+            <Col sm={4} xs={10}>
+              <Description />
+            </Col>
+            <Col sm={4} xs={1}></Col>
+          </Row>
         </>}
       {fetchingData ? <>
         <Row style={{ textAlign: 'center' }}>

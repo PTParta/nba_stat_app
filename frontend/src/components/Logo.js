@@ -3,7 +3,7 @@ import ball_logo from '../images/ball_logov6.png'
 
 const Logo = () => {
 
-const logoSize = '150px'
+  const logoSize = '150px'
 
   return (
     <img
@@ -14,6 +14,7 @@ const logoSize = '150px'
         width: logoSize,
         height: logoSize
       }} />
+
   )
 }
 
