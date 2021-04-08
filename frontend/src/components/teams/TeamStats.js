@@ -18,6 +18,9 @@ const TeamStats = (
   }
 ) => {
 
+  //filter out bad data where player is not defined
+  teamStats = teamStats.filter(teamStat => teamStat.player !== undefined)
+
   let playerTotalStats = []
 
   teamStats.forEach(teamStat => {
@@ -26,7 +29,6 @@ const TeamStats = (
       const player = { name: playerFullName }
       playerTotalStats.push(player)
     }
-
   })
 
   const teamStatsFiltered = teamStats.filter(teamStat => teamStat.game.postseason === postSeasonSelected)
@@ -58,9 +60,6 @@ const TeamStats = (
       return accumulator + currentValue.pf
     }, 0)
     const totalMin = playerStats.reduce((accumulator, currentValue) => {
-      /* if (currentValue === null) {
-        currentValue = 0
-      } */
       let minutes = 0
       const timeSplit = currentValue.min.split(':')
       if (timeSplit.length === 1) {
@@ -98,9 +97,7 @@ const TeamStats = (
     updatedPlayer.minPer = Math.round(totalMin / playedGames * 10) / 10
 
     playerTotalStats = playerTotalStats.map(s => s.name === playerTotalStat.name ? updatedPlayer : s)
-    //playerTotalStats = playerTotalStats.sort((a, b) => b.pts - a.pts)
   })
-  //console.log('playerTotalStats', playerTotalStats.slice(0, 5)/* .map(playerTotalStat => playerTotalStat.name) */)
 
 
   const legend = {
