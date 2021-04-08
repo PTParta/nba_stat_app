@@ -14,6 +14,7 @@ const teamDBRouter = require('./controllers/teamsDB')
 const middleware = require('./utils/middleware')
 const logger = require('./utils/logger')
 const mongoose = require('mongoose')
+const path = require('path')
 
 const url = process.env.MONGODB_URI
 
@@ -34,6 +35,8 @@ app.use(express.json())
 app.use(middleware.requestLogger)
 //app.use(middleware.tokenExtractor)
 
+
+
 app.use('/api/players', playerRouter)
 app.use('/api/teams', teamRouter)
 app.use('/api/stats', statRouter)
@@ -43,5 +46,9 @@ app.use('/api/teamsdb', teamDBRouter)
 
 app.use(middleware.unknownEndpoint)
 app.use(middleware.errorHandler)
+
+app.get('*', (_req, res) => {
+  res.sendFile(path.join(__dirname, '/build/index.html'));
+});
 
 module.exports = app
