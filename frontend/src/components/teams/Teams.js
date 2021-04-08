@@ -41,7 +41,13 @@ const Teams = ({ fetchingData, setFetchingData }) => {
   return (
     <div>
       <Row>
-        <Col sm={4}></Col>
+        <Col sm={4} style={{ textAlign: 'center' }}>
+          {/* {fetchingData ? <>
+            <Loader type="Grid" color="white" height="25" width="25" />
+            <br></br>
+          </>
+            : <></>} */}
+        </Col>
         <Col sm={4}>
           <SelectTeam
             teams={teams}
@@ -65,7 +71,12 @@ const Teams = ({ fetchingData, setFetchingData }) => {
       </Row>
       {selectedTeam !== ''
         ? <Row>
-          <Col sm={4}></Col>
+          <Col sm={4} style={{ textAlign: 'center' }}>
+            {/* {fetchingData ? <>
+              <Loader type="Grid" color="white" height="40" width="40" />
+            </>
+              : <></>} */}
+          </Col>
           <Col sm={4}>
             <SelectSeason
               selectedSeason={selectedSeason}
@@ -117,7 +128,7 @@ const Teams = ({ fetchingData, setFetchingData }) => {
           <Col sm={4}></Col>
           <Col sm={4}>
             <br></br>
-            <Loader type="Grid" color="white" height="75" width="75" />
+            <Loader type="Grid" color="white" height="25" width="25" />
           </Col>
           <Col sm={4}></Col>
         </Row>

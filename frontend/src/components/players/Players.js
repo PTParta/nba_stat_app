@@ -97,7 +97,6 @@ const Players = ({ fetchingData, setFetchingData }) => {
           />
         </>
         : <></>}
-
       <br></br>
       {playerStats.length === 0 && !fetchingData
         ? <>
@@ -127,13 +126,6 @@ const Players = ({ fetchingData, setFetchingData }) => {
           </Row>
         </>
         : <></>}
-
-
-
-
-
-
-
       <Row style={{ textAlign: 'center' }}>
         <Col sm={5} xs={4}></Col>
         <Col sm={2} xs={4}>
@@ -254,23 +246,6 @@ const Players = ({ fetchingData, setFetchingData }) => {
           </Row>
         </>
         : <></>}
-      <br></br>
-      <br></br>
-      {/* <Row float='center'>
-        <Col sm={2} xs={1}></Col>
-        <Col sm={8} xs={10}>
-          <Instructions />
-        </Col>
-        <Col sm={2} xs={1}></Col>
-      </Row>
-      <br></br>
-      <Row float='center'>
-        <Col sm={2} xs={1}></Col>
-        <Col sm={8} xs={10}>
-          <Tips />
-        </Col>
-        <Col sm={2} xs={1}></Col>
-      </Row> */}
     </>
   )
 }

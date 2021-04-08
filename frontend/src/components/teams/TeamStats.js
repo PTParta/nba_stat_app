@@ -854,33 +854,11 @@ const TeamStats = (
     }]
   }
 
-
-
-
-
-
-
-
-
-
-
-
   return (
     <div>
       <div className='chart'>
         {teamStats.length > 0 && totalSelected
           ? <>
-            <Row>
-              <Col sm={4}>
-              </Col>
-              {/* <br></br> */}
-              <Col sm={4}>
-              </Col>
-              <Col sm={4}>
-              </Col>
-            </Row>
-            <br></br>
-            <br></br>
             <br></br>
             <Row>
               <Col sm={6}>
@@ -952,17 +930,6 @@ const TeamStats = (
 
         {teamStats.length > 0 && perGameSelected
           ? <>
-            <Row>
-              <Col sm={4}>
-              </Col>
-              {/* <br></br> */}
-              <Col sm={4}>
-              </Col>
-              <Col sm={4}>
-              </Col>
-            </Row>
-            <br></br>
-            <br></br>
             <br></br>
             <Row>
               <Col sm={6}>
@@ -1033,17 +1000,6 @@ const TeamStats = (
 
         {teamStats.length > 0 && per36Selected
           ? <>
-            <Row>
-              <Col sm={4}>
-              </Col>
-              {/* <br></br> */}
-              <Col sm={4}>
-              </Col>
-              <Col sm={4}>
-              </Col>
-            </Row>
-            <br></br>
-            <br></br>
             <br></br>
             <Row>
               <Col sm={6}>
