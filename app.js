@@ -44,9 +44,6 @@ app.use('/api/statsdb', statDBRouter)
 app.use('/api/health', healthRouter)
 app.use('/api/teamsdb', teamDBRouter)
 
-app.use(middleware.unknownEndpoint)
-app.use(middleware.errorHandler)
-
 app.get('/players', (req, res) => {
   console.log('players')
   res.sendFile(path.join(__dirname, '/build/index.html'));
@@ -56,5 +53,10 @@ app.get('/teams', (req, res) => {
   console.log('teams')
   res.sendFile(path.join(__dirname, '/build/index.html'));
 });
+
+app.use(middleware.unknownEndpoint)
+app.use(middleware.errorHandler)
+
+
 
 module.exports = app
