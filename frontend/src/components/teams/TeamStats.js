@@ -97,13 +97,17 @@ const TeamStats = (
     updatedPlayer.pfPer = Math.round(totalPf / playedGames * 10) / 10
     updatedPlayer.minPer = Math.round(totalMin / playedGames * 10) / 10
 
-    updatedPlayer.ptsPer36 = Math.round(updatedPlayer.ptsPer / updatedPlayer.minPer * 36 * 10) / 10
-    updatedPlayer.astPer36 = Math.round(updatedPlayer.astPer / updatedPlayer.minPer * 36 * 10) / 10
-    updatedPlayer.rebPer36 = Math.round(updatedPlayer.rebPer / updatedPlayer.minPer * 36 * 10) / 10
-    updatedPlayer.stlPer36 = Math.round(updatedPlayer.stlPer / updatedPlayer.minPer * 36 * 10) / 10
-    updatedPlayer.blkPer36 = Math.round(updatedPlayer.blkPer / updatedPlayer.minPer * 36 * 10) / 10
-    updatedPlayer.turnoverPer36 = Math.round(updatedPlayer.turnoverPer / updatedPlayer.minPer * 36 * 10) / 10
-    updatedPlayer.pfPer36 = Math.round(updatedPlayer.pfPer / updatedPlayer.minPer * 36 * 10) / 10
+    //Don't calculate per 36 min stats if minutes per game is too low
+    if (updatedPlayer.minPer >= 10) {
+      updatedPlayer.ptsPer36 = Math.round(updatedPlayer.ptsPer / updatedPlayer.minPer * 36 * 10) / 10
+      updatedPlayer.astPer36 = Math.round(updatedPlayer.astPer / updatedPlayer.minPer * 36 * 10) / 10
+      updatedPlayer.rebPer36 = Math.round(updatedPlayer.rebPer / updatedPlayer.minPer * 36 * 10) / 10
+      updatedPlayer.stlPer36 = Math.round(updatedPlayer.stlPer / updatedPlayer.minPer * 36 * 10) / 10
+      updatedPlayer.blkPer36 = Math.round(updatedPlayer.blkPer / updatedPlayer.minPer * 36 * 10) / 10
+      updatedPlayer.turnoverPer36 = Math.round(updatedPlayer.turnoverPer / updatedPlayer.minPer * 36 * 10) / 10
+      updatedPlayer.pfPer36 = Math.round(updatedPlayer.pfPer / updatedPlayer.minPer * 36 * 10) / 10
+    }
+
 
     playerTotalStats = playerTotalStats.map(s => s.name === playerTotalStat.name ? updatedPlayer : s)
   })
