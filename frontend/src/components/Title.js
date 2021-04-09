@@ -3,7 +3,7 @@ const Title = () => {
   return (
     <>
       <div style={{ color: 'white' }}>
-        <h1>BBallchart.com</h1>
+        <h2>BBALLCHART</h2>
       </div>
     </>
   )
