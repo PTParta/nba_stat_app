@@ -2,9 +2,27 @@ const statsRouter = require('express').Router()
 const Stat = require('../models/stat')
 const axios = require('axios')
 const baseUrl = 'https://www.balldontlie.io/api/v1/stats'
+const nodeoutlook = require('nodejs-nodemailer-outlook')
+require('dotenv').config()
 //const colors = require('colors')
 
 statsRouter.get('/statsfromapitodatabase', async (_req, res) => {
+
+  const sendEmail = (subject, text) => {
+    nodeoutlook.sendEmail({
+      auth: {
+        user: process.env.EMAIL,
+        pass: process.env.PASSWORD
+      },
+      from: process.env.EMAIL,
+      to: process.env.EMAIL,
+      subject: subject,
+      text: text,
+      onError: (e) => console.log(e),
+      onSuccess: (i) => console.log(i)
+    }
+    );
+  }
 
   const getStats = async () => {
 
@@ -21,6 +39,7 @@ statsRouter.get('/statsfromapitodatabase', async (_req, res) => {
     if (documentsCountInDatabaseBeforeAdding === totalAmountDocumentsInApi) {
       statusMessage = 'Database is up to date. No need to transfer data from API to database'
       console.log(statusMessage)
+      sendEmail('Data from api to database', statusMessage)
       return statusMessage
     }
 
@@ -50,11 +69,12 @@ statsRouter.get('/statsfromapitodatabase', async (_req, res) => {
     }
     const documentsCountInDatabaseAfterAdding = await Stat.count()
 
-
     if (documentsCountInDatabaseAfterAdding === totalAmountDocumentsInApi) {
       statusMessage = 'Data successfully moved from API to database. Document count in API and database are the same.'
+      sendEmail('Data from api to database', statusMessage)
     } else {
       statusMessage = 'Error in moving data from API to database. Document count in API and database is not the same.'
+      sendEmail('Data from api to database', statusMessage)
     }
     console.log(statusMessage)
     return statusMessage
