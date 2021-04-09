@@ -2,20 +2,15 @@ import axios from 'axios'
 const baseUrl = 'https://www.balldontlie.io/api/v1/stats'
 const baseUrlDB = '/api/statsdb/statsfromdb'
 const baseUrlDBTeam = '/api/statsdb/teamstatsfromdb'
+const baseUrlDBPlayerStatsForASeason = '/api/statsdb/playerstatsforaseasonfromdb'
 
 const getPlayerStatsFromApi = async (seasons, playerId) => {
-  //console.log('seasons to api', seasons)
   let seasonsVariable = ''
-
   for (let i = 0; i < seasons.length; i++) {
     seasonsVariable += '&seasons[]='
     seasonsVariable += seasons[i]
-
   }
-  //console.log('seasonsVariable', seasonsVariable)
-
   const playerStats = await axios.get(`${baseUrl}?seasons[]=${seasonsVariable}&player_ids[]=${playerId}&per_page=100`)
-  //playerStats.sort((a, b) => a.game.date - b.game.date)
   const totalPages = playerStats.data.meta.total_pages
   console.log('totalPages', totalPages)
 
@@ -28,19 +23,10 @@ const getPlayerStatsFromApi = async (seasons, playerId) => {
     playerStatsAllPages = playerStatsAllPages.concat(playerStatsOnePage.data.data)
   }
   console.log(playerStatsAllPages)
-  //return playerStats.data
   return playerStatsAllPages
 }
 
-const getPlayerStatsFromDB = async (/* seasons, */ playerId/* , regularSeasonSelected, postSeasonSelected */) => {
-  /* let seasonHelper = ''
-  seasons.forEach(season => {
-    seasonHelper += `${season},`
-  }) */
-
-  //console.log('seasonHelper', seasonHelper)
-  //const playerStats = await axios.get(`${baseUrlDB}/${playerId}/${seasonHelper}/${regularSeasonSelected}/${postSeasonSelected}`)
-  //const playerStats = await axios.get(`${baseUrlDB}/${playerId}/${seasonHelper}`)
+const getPlayerStatsFromDB = async (playerId) => {
   const playerStats = await axios.get(`${baseUrlDB}/${playerId}`)
   return playerStats
 }
@@ -50,6 +36,16 @@ const getTeamStatsFromDB = async (teamApiId, season) => {
   return playerStats
 }
 
-const playerStatService = { getPlayerStatsFromApi, getPlayerStatsFromDB, getTeamStatsFromDB }
+const getPlayerStatsFromDBForASeason = async (season) => {
+  const playerStats = await axios.get(`${baseUrlDBPlayerStatsForASeason}/${season}`)
+  return playerStats
+}
+
+const playerStatService = {
+  getPlayerStatsFromApi,
+  getPlayerStatsFromDB,
+  getTeamStatsFromDB,
+  getPlayerStatsFromDBForASeason
+}
 
 export default playerStatService

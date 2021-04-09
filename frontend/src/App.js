@@ -3,6 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap'
 //import NavigationBar from './components/NavigationBar'
 import Players from './components/players/Players'
 import Teams from './components/teams/Teams'
+import TopTen from './components/topTen/TopTen'
 
 import {
   BrowserRouter as Router,
@@ -24,7 +25,7 @@ function App() {
     <Router>
       <div style={{
         backgroundColor: "#17202A",
-        height: '300vh',
+        height: '400vh',
         display: 'flex',
         flexDirection: 'column',
         alignContent: 'center'/* ,
@@ -59,6 +60,12 @@ function App() {
               </Route>
               <Route path='/teams'>
                 <Teams
+                  fetchingData={fetchingData}
+                  setFetchingData={setFetchingData}
+                />
+              </Route>
+              <Route path='/topten'>
+                <TopTen
                   fetchingData={fetchingData}
                   setFetchingData={setFetchingData}
                 />

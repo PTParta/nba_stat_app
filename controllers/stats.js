@@ -71,11 +71,10 @@ statsRouter.get('/statsfromapitodatabase', async (_req, res) => {
 
     if (documentsCountInDatabaseAfterAdding === totalAmountDocumentsInApi) {
       statusMessage = 'Data successfully moved from API to database. Document count in API and database are the same.'
-      sendEmail('Data from api to database', statusMessage)
     } else {
       statusMessage = 'Error in moving data from API to database. Document count in API and database is not the same.'
-      sendEmail('Data from api to database', statusMessage)
     }
+    sendEmail('Data from api to database', statusMessage)
     console.log(statusMessage)
     return statusMessage
   }

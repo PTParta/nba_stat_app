@@ -1,25 +1,21 @@
 import React, { useState, useEffect } from 'react'
 import { Row, Col } from 'react-bootstrap'
-import SelectTeam from './SelectTeam'
-import TeamStats from './TeamStats'
-import SelectSeason from './SelectSeason'
-import SelectRegularPost from './SelectRegularPost'
-import SelectPerTotal from './SelectPerTotal'
-import DescriptionTeams from './DescriptionTeams'
+import 'chartjs-plugin-labels'
 import Title from '../Title'
 import Description from '../Description'
-import teamService from '../../services/teams'
 import Loader from 'react-loader-spinner'
 import Logo from '../Logo'
+import SelectSeason from './SelectSeason'
+import SelectRegularPost from './SelectRegularPost'
+import TopTenStats from './TopTenStats'
+import SelectPerTotal from './SelectPerTotal'
 import ReactGa from 'react-ga'
 require('dotenv').config()
 
-const Teams = ({ fetchingData, setFetchingData }) => {
+const TopTen = ({ fetchingData, setFetchingData }) => {
 
-  const [teams, setTeams] = useState([])
-  const [selectedTeam, setSelectedTeam] = useState('')
-  const [teamStats, setTeamStats] = useState([])
-  const [selectedSeason, setSelectedSeason] = useState(2020)
+  const [selectedSeason, setSelectedSeason] = useState('')
+  const [topTenStats, setTopTenStats] = useState([])
   const [regularSeasonSelected, setRegularSeasonSelected] = useState(true)
   const [postSeasonSelected, setPostSeasonSelected] = useState(false)
   const [perGameSelected, setPerGameSelected] = useState(true)
@@ -27,34 +23,25 @@ const Teams = ({ fetchingData, setFetchingData }) => {
   const [per36Selected, setPer36Selected] = useState(false)
 
   useEffect(() => {
-
     ReactGa.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS_TRACKING_CODE)
     ReactGa.pageview(window.location.pathname + window.location.search)
-    //console.log('pathname:', window.location.pathname)
-
-    teamService.getTeamsFromDatabase()
-      .then((response) => {
-        //console.log(response)
-        setTeams(response)
-      })
   }, [])
 
   return (
-    <div>
+    <>
       <Row>
         <Col sm={4} style={{ textAlign: 'center' }}>
         </Col>
         <Col sm={4}>
-          <SelectTeam
-            teams={teams}
-            setSelectedTeam={setSelectedTeam}
-            setTeamStats={setTeamStats}
-            setFetchingData={setFetchingData}
+          <SelectSeason
             selectedSeason={selectedSeason}
+            setSelectedSeason={setSelectedSeason}
+            setFetchingData={setFetchingData}
+            setTopTenStats={setTopTenStats}
           />
         </Col>
         <Col sm={4}>
-          {selectedTeam !== ''
+          {selectedSeason !== ''
             ? <SelectPerTotal
               setPerGameSelected={setPerGameSelected}
               setTotalSelected={setTotalSelected}
@@ -63,19 +50,9 @@ const Teams = ({ fetchingData, setFetchingData }) => {
             : <></>}
         </Col>
       </Row>
-      {selectedTeam !== ''
+      {selectedSeason !== ''
         ? <Row>
           <Col sm={4} style={{ textAlign: 'center' }}>
-          </Col>
-          <Col sm={4}>
-            <SelectSeason
-              selectedSeason={selectedSeason}
-              setSelectedSeason={setSelectedSeason}
-              selectedTeam={selectedTeam}
-              setTeamStats={setTeamStats}
-              teams={teams}
-              setFetchingData={setFetchingData}
-            />
           </Col>
           <Col sm={4}>
             <SelectRegularPost
@@ -115,7 +92,7 @@ const Teams = ({ fetchingData, setFetchingData }) => {
           <Row style={{ textAlign: 'center' }}>
             <Col sm={4} xs={1}></Col>
             <Col sm={4} xs={10}>
-              <DescriptionTeams />
+              {/* <DescriptionTeams /> */}
             </Col>
             <Col sm={4} xs={1}></Col>
           </Row>
@@ -131,16 +108,39 @@ const Teams = ({ fetchingData, setFetchingData }) => {
         </Row>
       </>
         : <></>}
-      <TeamStats
-        selectedTeam={selectedTeam}
-        teamStats={teamStats}
+
+      {fetchingData ? <>
+        <Row style={{ textAlign: 'center' }}>
+          <Col sm={4}></Col>
+          <Col sm={4}>
+            <br></br>
+            <Loader type="Grid" color="white" height="25" width="25" />
+          </Col>
+          <Col sm={4}></Col>
+        </Row>
+      </>
+        : <></>}
+      <TopTenStats
+        topTenStats={topTenStats}
         postSeasonSelected={postSeasonSelected}
         perGameSelected={perGameSelected}
         totalSelected={totalSelected}
         per36Selected={per36Selected}
       />
-    </div>
+
+    </>
   )
+
+
+
+
+
+
+
+
+
+
+
 }
 
-export default Teams
+export default TopTen
