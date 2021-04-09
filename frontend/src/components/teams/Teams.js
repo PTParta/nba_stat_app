@@ -5,6 +5,7 @@ import TeamStats from './TeamStats'
 import SelectSeason from './SelectSeason'
 import SelectRegularPost from './SelectRegularPost'
 import SelectPerTotal from './SelectPerTotal'
+import DescriptionTeams from './DescriptionTeams'
 import Title from '../Title'
 import Description from '../Description'
 import teamService from '../../services/teams'
@@ -119,6 +120,13 @@ const Teams = ({ fetchingData, setFetchingData }) => {
             <Col sm={4} xs={1}></Col>
             <Col sm={4} xs={10}>
               <Description />
+            </Col>
+            <Col sm={4} xs={1}></Col>
+          </Row>
+          <Row style={{ textAlign: 'center' }}>
+            <Col sm={4} xs={1}></Col>
+            <Col sm={4} xs={10}>
+              <DescriptionTeams />
             </Col>
             <Col sm={4} xs={1}></Col>
           </Row>

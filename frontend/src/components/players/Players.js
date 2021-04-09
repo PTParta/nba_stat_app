@@ -8,6 +8,7 @@ import SelectSeasons from './SelectSeasons'
 //import GetStats from './components/GetStats'
 import SelectRegularPost from './SelectRegularPost'
 import SelectStats from './SelectStats'
+import DescriptionPlayers from './DescriptionPlayers'
 import Logo from '../Logo'
 import Title from '../Title'
 import Description from '../Description'
@@ -27,7 +28,7 @@ const Players = ({ fetchingData, setFetchingData }) => {
   const [selectedPlayer, setSelectedPlayer] = useState('')
   const [selectedFirstSeason, setSelectedFirstSeason] = useState(1979)
   const [selectedLastSeason, setSelectedLastSeason] = useState(2020)
-  const [regularSeasonSelected, setRegularSeasonSelected] = useState(true)
+  const [regularSeasonSelected, setRegularSeasonSelected] = useState(false)
   const [postSeasonSelected, setPostSeasonSelected] = useState(false)
 
   const [ptsSelected, setPtsSelected] = useState(false)
@@ -121,6 +122,13 @@ const Players = ({ fetchingData, setFetchingData }) => {
             <Col sm={4} xs={1}></Col>
             <Col sm={4} xs={10}>
               <Description />
+            </Col>
+            <Col sm={4} xs={1}></Col>
+          </Row>
+          <Row style={{ textAlign: 'center' }}>
+            <Col sm={4} xs={1}></Col>
+            <Col sm={4} xs={10}>
+              <DescriptionPlayers />
             </Col>
             <Col sm={4} xs={1}></Col>
           </Row>

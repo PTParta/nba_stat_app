@@ -49,11 +49,6 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '/build/index.html'));
 });
 
-/* app.get('/teams', (req, res) => {
-  console.log('teams')
-  res.sendFile(path.join(__dirname, '/build/index.html'));
-}); */
-
 app.use(middleware.unknownEndpoint)
 app.use(middleware.errorHandler)
 
