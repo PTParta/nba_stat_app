@@ -53,9 +53,9 @@ const PlayerStats = (
       }],
       yAxes: [{
         ticks: {
-          beginAtZero:true,
+          beginAtZero: true,
           fontColor: 'white',
-        fontSize: 14
+          fontSize: 14,
         }
       }]
     }
