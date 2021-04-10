@@ -23,20 +23,23 @@ const SelectSeasons = ({
   }
 
   const handleSelectedFirstSeasonChange = (event) => {
-    if (event.value > selectedLastSeason) {
+    console.log('event.value:', event.value)
+    console.log('Number(event.value):', Number(event.value))
+    console.log('selectedLastSeason:', selectedLastSeason)
+    if (Number(event.value) > selectedLastSeason) {
       setSelectedFirstSeason(selectedLastSeason)
-      setSelectedLastSeason(event.value)
+      setSelectedLastSeason(Number(event.value))
     } else {
-      setSelectedFirstSeason(event.value)
+      setSelectedFirstSeason(Number(event.value))
     }
   }
 
   const handleSelectedLastSeasonChange = (event) => {
-    if (event.value < selectedFirstSeason) {
+    if (Number(event.value) < selectedFirstSeason) {
       setSelectedLastSeason(selectedFirstSeason)
-      setSelectedFirstSeason(event.value)
+      setSelectedFirstSeason(Number(event.value))
     } else {
-      setSelectedLastSeason(event.value)
+      setSelectedLastSeason(Number(event.value))
     }
   }
 

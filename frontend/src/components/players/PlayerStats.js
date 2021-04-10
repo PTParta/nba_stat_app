@@ -77,12 +77,15 @@ const PlayerStats = (
 
 
   const games = playerStatsFiltered.filter(playerStat => playerStat.game.season >= selectedFirstSeason && playerStat.game.season <= selectedLastSeason).length
-
-  //const postSeasonGames = playerStatsFiltered.filter(playerStat => playerStat.game.postseason === true).length
+  const filteredDataToShow = playerStats.filter(
+    playerStat =>
+      playerStat.game.postseason === postSeasonSelected
+      && playerStat.game.season >= selectedFirstSeason
+      && playerStat.game.season <= selectedLastSeason
+  )
 
   const data = {
-    labels: playerStatsFiltered
-      .filter(playerStat => playerStat.game.season >= selectedFirstSeason && playerStat.game.season <= selectedLastSeason)
+    labels: filteredDataToShow
       .map(playerStat => playerStat.game.date.split('T')[0]
         .concat('\n')
         .concat(teams.find(team => team.id === playerStat.game.visitor_team_id).abbreviation)
@@ -91,9 +94,8 @@ const PlayerStats = (
         .concat(playerStat.game.postseason ? ' POST' : ' REG')),
     datasets: [
       {
-        //data: playerStats.map(playerStat => (playerStat.pts && playerStat.game.postseason === true)),
         label: 'pts',
-        data: playerStatsFiltered.map(playerStat => playerStat.pts),
+        data: filteredDataToShow.map(playerStat => playerStat.pts),
         fill: false,
         borderColor: colors.lightGreyDot,
         pointBackgroundColor: colors.lightGreyDot,
@@ -108,12 +110,12 @@ const PlayerStats = (
         pointBackgroundColor: colors.lightGreyLine,
         showLine: true,
         pointRadius: 0,
-        data: trailingMeanService.pts(playerStatsFiltered, trailingAverage),
+        data: trailingMeanService.pts(filteredDataToShow, trailingAverage),
         hidden: !ptsSelected
       },
       {
         label: 'ast',
-        data: playerStatsFiltered.map(playerStat => playerStat.ast),
+        data: filteredDataToShow.map(playerStat => playerStat.ast),
         fill: false,
         borderColor: colors.brownDot,
         pointBackgroundColor: colors.brownDot,
@@ -128,12 +130,12 @@ const PlayerStats = (
         pointBackgroundColor: colors.brownLine,
         showLine: true,
         pointRadius: 0,
-        data: trailingMeanService.ast(playerStatsFiltered, trailingAverage),
+        data: trailingMeanService.ast(filteredDataToShow, trailingAverage),
         hidden: !astSelected
       },
       {
         label: 'reb',
-        data: playerStatsFiltered.map(playerStat => playerStat.reb),
+        data: filteredDataToShow.map(playerStat => playerStat.reb),
         fill: false,
         borderColor: colors.oliveDot,
         pointBackgroundColor: colors.oliveDot,
@@ -148,12 +150,12 @@ const PlayerStats = (
         pointBackgroundColor: colors.oliveLine,
         showLine: true,
         pointRadius: 0,
-        data: trailingMeanService.reb(playerStatsFiltered, trailingAverage),
+        data: trailingMeanService.reb(filteredDataToShow, trailingAverage),
         hidden: !rebSelected
       },
       {
         label: 'blk',
-        data: playerStatsFiltered.map(playerStat => playerStat.blk),
+        data: filteredDataToShow.map(playerStat => playerStat.blk),
         fill: false,
         borderColor: colors.tealDot,
         pointBackgroundColor: colors.tealDot,
@@ -168,12 +170,12 @@ const PlayerStats = (
         pointBackgroundColor: colors.tealLine,
         showLine: true,
         pointRadius: 0,
-        data: trailingMeanService.blk(playerStatsFiltered, trailingAverage),
+        data: trailingMeanService.blk(filteredDataToShow, trailingAverage),
         hidden: !blkSelected
       },
       {
         label: 'stl',
-        data: playerStatsFiltered.map(playerStat => playerStat.stl),
+        data: filteredDataToShow.map(playerStat => playerStat.stl),
         fill: false,
         borderColor: colors.navyDot,
         pointBackgroundColor: colors.navyDot,
@@ -188,12 +190,12 @@ const PlayerStats = (
         pointBackgroundColor: colors.navyLine,
         showLine: true,
         pointRadius: 0,
-        data: trailingMeanService.stl(playerStatsFiltered, trailingAverage),
+        data: trailingMeanService.stl(filteredDataToShow, trailingAverage),
         hidden: !stlSelected
       },
       {
         label: 'turnover',
-        data: playerStatsFiltered.map(playerStat => playerStat.turnover),
+        data: filteredDataToShow.map(playerStat => playerStat.turnover),
         fill: false,
         borderColor: colors.redDot,
         pointBackgroundColor: colors.redDot,
@@ -207,12 +209,12 @@ const PlayerStats = (
         pointBackgroundColor: colors.redLine,
         showLine: true,
         pointRadius: 0,
-        data: trailingMeanService.turnover(playerStatsFiltered, trailingAverage),
+        data: trailingMeanService.turnover(filteredDataToShow, trailingAverage),
         hidden: !turnoverSelected
       },
       {
         label: 'min',
-        data: playerStatsFiltered.map(playerStat => playerStat.min ? Number(playerStat.min.split(':')[0]) : null),
+        data: filteredDataToShow.map(playerStat => playerStat.min ? Number(playerStat.min.split(':')[0]) : null),
         fill: false,
         borderColor: colors.orangeDot,
         pointBackgroundColor: colors.orangeDot,
@@ -226,12 +228,12 @@ const PlayerStats = (
         pointBackgroundColor: colors.orangeLine,
         showLine: true,
         pointRadius: 0,
-        data: trailingMeanService.min(playerStatsFiltered, trailingAverage),
+        data: trailingMeanService.min(filteredDataToShow, trailingAverage),
         hidden: !minSelected
       },
       {
         label: 'pf',
-        data: playerStatsFiltered.map(playerStat => playerStat.pf),
+        data: filteredDataToShow.map(playerStat => playerStat.pf),
         fill: false,
         borderColor: colors.yellowDot,
         pointBackgroundColor: colors.yellowDot,
@@ -245,12 +247,12 @@ const PlayerStats = (
         pointBackgroundColor: colors.yellowLine,
         showLine: true,
         pointRadius: 0,
-        data: trailingMeanService.pf(playerStatsFiltered, trailingAverage),
+        data: trailingMeanService.pf(filteredDataToShow, trailingAverage),
         hidden: !pfSelected
       },
       {
         label: 'dreb',
-        data: playerStatsFiltered.map(playerStat => playerStat.dreb),
+        data: filteredDataToShow.map(playerStat => playerStat.dreb),
         fill: false,
         borderColor: colors.limeDot,
         pointBackgroundColor: colors.limeDot,
@@ -264,12 +266,12 @@ const PlayerStats = (
         pointBackgroundColor: colors.limeLine,
         showLine: true,
         pointRadius: 0,
-        data: trailingMeanService.dreb(playerStatsFiltered, trailingAverage),
+        data: trailingMeanService.dreb(filteredDataToShow, trailingAverage),
         hidden: !drebSelected
       },
       {
         label: 'oreb',
-        data: playerStatsFiltered.map(playerStat => playerStat.oreb),
+        data: filteredDataToShow.map(playerStat => playerStat.oreb),
         fill: false,
         borderColor: colors.greenDot,
         pointBackgroundColor: colors.greenDot,
@@ -283,12 +285,12 @@ const PlayerStats = (
         pointBackgroundColor: colors.greenLine,
         showLine: true,
         pointRadius: 0,
-        data: trailingMeanService.oreb(playerStatsFiltered, trailingAverage),
+        data: trailingMeanService.oreb(filteredDataToShow, trailingAverage),
         hidden: !orebSelected
       },
       {
         label: 'fg_pct',
-        data: playerStatsFiltered.map(playerStat => playerStat.fg_pct <= 1 ? playerStat.fg_pct * 100 : playerStat.fg_pct),
+        data: filteredDataToShow.map(playerStat => playerStat.fg_pct <= 1 ? playerStat.fg_pct * 100 : playerStat.fg_pct),
         fill: false,
         borderColor: colors.cyanDot,
         pointBackgroundColor: colors.cyanDot,
@@ -302,13 +304,13 @@ const PlayerStats = (
         pointBackgroundColor: colors.cyanLine,
         showLine: true,
         pointRadius: 0,
-        data: trailingMeanService.fg_pct(playerStatsFiltered
+        data: trailingMeanService.fg_pct(filteredDataToShow
           .map(playerStat => ({ ...playerStat, fg_pct: playerStat.fg_pct <= 1 ? playerStat.fg_pct * 100 : playerStat.fg_pct })), trailingAverage),
         hidden: !fg_pctSelected
       },
       {
         label: 'fg3_pct',
-        data: playerStatsFiltered.map(playerStat => playerStat.fg3_pct <= 1 ? playerStat.fg3_pct * 100 : playerStat.fg3_pct),
+        data: filteredDataToShow.map(playerStat => playerStat.fg3_pct <= 1 ? playerStat.fg3_pct * 100 : playerStat.fg3_pct),
         fill: false,
         borderColor: colors.blueDot,
         pointBackgroundColor: colors.blueDot,
@@ -322,13 +324,13 @@ const PlayerStats = (
         pointBackgroundColor: colors.blueLine,
         showLine: true,
         pointRadius: 0,
-        data: trailingMeanService.fg3_pct(playerStatsFiltered
+        data: trailingMeanService.fg3_pct(filteredDataToShow
           .map(playerStat => ({ ...playerStat, fg3_pct: playerStat.fg3_pct <= 1 ? playerStat.fg3_pct * 100 : playerStat.fg3_pct })), trailingAverage),
         hidden: !fg3_pctSelected
       },
       {
         label: 'ft_pct',
-        data: playerStatsFiltered.map(playerStat => playerStat.ft_pct <= 1 ? playerStat.ft_pct * 100 : playerStat.ft_pct),
+        data: filteredDataToShow.map(playerStat => playerStat.ft_pct <= 1 ? playerStat.ft_pct * 100 : playerStat.ft_pct),
         fill: false,
         borderColor: colors.purpleDot,
         pointBackgroundColor: colors.purpleDot,
@@ -342,7 +344,7 @@ const PlayerStats = (
         pointBackgroundColor: colors.purpleLine,
         showLine: true,
         pointRadius: 0,
-        data: trailingMeanService.ft_pct(playerStatsFiltered
+        data: trailingMeanService.ft_pct(filteredDataToShow
           .map(playerStat => ({
             ...playerStat,
             ft_pct: (playerStat.ft_pct <= 1 ? playerStat.ft_pct * 100 : playerStat.ft_pct)
@@ -351,7 +353,7 @@ const PlayerStats = (
       },
       {
         label: 'fga',
-        data: playerStatsFiltered.map(playerStat => playerStat.fga),
+        data: filteredDataToShow.map(playerStat => playerStat.fga),
         fill: false,
         borderColor: colors.magentaDot,
         pointBackgroundColor: colors.magentaDot,
@@ -365,12 +367,12 @@ const PlayerStats = (
         pointBackgroundColor: colors.magentaLine,
         showLine: true,
         pointRadius: 0,
-        data: trailingMeanService.fga(playerStatsFiltered, trailingAverage),
+        data: trailingMeanService.fga(filteredDataToShow, trailingAverage),
         hidden: !fgaSelected
       },
       {
         label: 'fgm',
-        data: playerStatsFiltered.map(playerStat => playerStat.fgm),
+        data: filteredDataToShow.map(playerStat => playerStat.fgm),
         fill: false,
         borderColor: colors.greyDot,
         pointBackgroundColor: colors.greyDot,
@@ -384,12 +386,12 @@ const PlayerStats = (
         pointBackgroundColor: colors.greyLine,
         showLine: true,
         pointRadius: 0,
-        data: trailingMeanService.fgm(playerStatsFiltered, trailingAverage),
+        data: trailingMeanService.fgm(filteredDataToShow, trailingAverage),
         hidden: !fgmSelected
       },
       {
         label: 'fg3a',
-        data: playerStatsFiltered.map(playerStat => playerStat.fg3a),
+        data: filteredDataToShow.map(playerStat => playerStat.fg3a),
         fill: false,
         borderColor: colors.pinkDot,
         pointBackgroundColor: colors.pinkDot,
@@ -403,12 +405,12 @@ const PlayerStats = (
         pointBackgroundColor: colors.pinkLine,
         showLine: true,
         pointRadius: 0,
-        data: trailingMeanService.fg3a(playerStatsFiltered, trailingAverage),
+        data: trailingMeanService.fg3a(filteredDataToShow, trailingAverage),
         hidden: !fg3aSelected
       },
       {
         label: 'fg3m',
-        data: playerStatsFiltered.map(playerStat => playerStat.fg3m),
+        data: filteredDataToShow.map(playerStat => playerStat.fg3m),
         fill: false,
         borderColor: colors.apricotDot,
         pointBackgroundColor: colors.apricotDot,
@@ -422,12 +424,12 @@ const PlayerStats = (
         pointBackgroundColor: colors.apricotLine,
         showLine: true,
         pointRadius: 0,
-        data: trailingMeanService.fg3m(playerStatsFiltered, trailingAverage),
+        data: trailingMeanService.fg3m(filteredDataToShow, trailingAverage),
         hidden: !fg3mSelected
       },
       {
         label: 'fta',
-        data: playerStatsFiltered.map(playerStat => playerStat.fta),
+        data: filteredDataToShow.map(playerStat => playerStat.fta),
         fill: false,
         borderColor: colors.beigeDot,
         pointBackgroundColor: colors.beigeDot,
@@ -441,12 +443,12 @@ const PlayerStats = (
         pointBackgroundColor: colors.beigeLine,
         showLine: true,
         pointRadius: 0,
-        data: trailingMeanService.fta(playerStatsFiltered, trailingAverage),
+        data: trailingMeanService.fta(filteredDataToShow, trailingAverage),
         hidden: !ftaSelected
       },
       {
         label: 'ftm',
-        data: playerStatsFiltered.map(playerStat => playerStat.ftm),
+        data: filteredDataToShow.map(playerStat => playerStat.ftm),
         fill: false,
         borderColor: colors.mintDot,
         pointBackgroundColor: colors.mintDot,
@@ -460,7 +462,7 @@ const PlayerStats = (
         pointBackgroundColor: colors.mintLine,
         showLine: true,
         pointRadius: 0,
-        data: trailingMeanService.ftm(playerStatsFiltered, trailingAverage),
+        data: trailingMeanService.ftm(filteredDataToShow, trailingAverage),
         hidden: !ftmSelected
       },
     ],
