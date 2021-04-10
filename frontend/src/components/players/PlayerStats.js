@@ -50,6 +50,13 @@ const PlayerStats = (
         ticks: {
           display: false
         }
+      }],
+      yAxes: [{
+        ticks: {
+          beginAtZero:true,
+          fontColor: 'white',
+        fontSize: 14
+        }
       }]
     }
   }
