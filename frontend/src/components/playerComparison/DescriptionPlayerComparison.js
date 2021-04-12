@@ -5,7 +5,7 @@ const DescriptionPlayerComparison = () => {
       <br></br>
       <br></br>
       <p>
-        On this page you can select a season and players whose that's you'd like to compare.
+        On this page you can select a season and players whose stats you'd like to compare.
         You can select up to 20 players.
       </p>
     </div>
