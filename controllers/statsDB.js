@@ -42,15 +42,17 @@ statDBRouter.get('/teamstatsfromdb/:teamid/:season', async (request, response) =
   response.json(stats)
 })
 
-statDBRouter.get('/playerstatsforaseasonfromdb/:season', async (request, response) => {
+statDBRouter.get('/playerstatsforaseasonfromdb/:playerid/:season', async (request, response) => {
   console.log('getting season stats from database')
+  console.log(':playerid', request.params.playerid)
   console.log(':season', request.params.season)
 
   let startTime = new Date().getTime()
 
   const stats = await Stat.find({
     'game.season': request.params.season,
-    'min': { $ne: null }
+    'min': { $ne: null },
+    'player.id': request.params.playerid
   })
 
   let endTime = new Date().getTime()

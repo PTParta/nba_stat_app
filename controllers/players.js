@@ -1,5 +1,6 @@
 const playersRouter = require('express').Router()
 const Player = require('../models/player')
+const Stat = require('../models/stat')
 const axios = require('axios')
 const baseUrl = 'https://www.balldontlie.io/api/v1/players'
 
@@ -33,6 +34,22 @@ playersRouter.get('/playersfromapitodatabase', async (_request, _response) => {
 playersRouter.get('/', async (_request, response) => {
   const players = await Player.find({})
   response.json(players)
+})
+
+playersRouter.get('/:season', async (request, response) => {
+  /* const players = await Player.find({ 'season': request.params.season })
+  response.json(players) */
+  console.log('getting selected player stats for a season from database')
+  console.log(':season', request.params.season)
+
+  const distinctPlayerIds = await Stat.distinct(
+    'player.id',
+    {
+      'game.season': request.params.season,
+      'min': { $ne: null }
+    }
+  )
+  response.json(distinctPlayerIds)
 })
 
 

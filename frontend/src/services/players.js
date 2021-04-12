@@ -8,6 +8,12 @@ const getPlayers = async () => {
   return players.data
 }
 
-const playerService = { getPlayers }
+const getPlayersForASeason = async (season) => {
+  const players = await axios.get(`${baseUrl}/${season}`)
+  
+  return players.data
+}
+
+const playerService = { getPlayers, getPlayersForASeason }
 
 export default playerService

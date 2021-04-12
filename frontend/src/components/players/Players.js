@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Row, Col } from 'react-bootstrap'
 import teamService from '../../services/teams'
-import playerService from '../../services/players'
+//import playerService from '../../services/players'
 import PlayerStats from './PlayerStats'
 import SelectPlayer from './SelectPlayer'
 import SelectSeasons from './SelectSeasons'
@@ -20,9 +20,9 @@ import ReactGa from 'react-ga'
 require('dotenv').config()
 
 
-const Players = ({ fetchingData, setFetchingData }) => {
+const Players = ({ fetchingData, setFetchingData, players, setPlayers }) => {
 
-  const [players, setPlayers] = useState([])
+  //const [players, setPlayers] = useState([])
   const [playerStats, setPlayerStats] = useState([])
   const [teams, setTeams] = useState([])
   const [selectedPlayer, setSelectedPlayer] = useState('')
@@ -66,11 +66,11 @@ const Players = ({ fetchingData, setFetchingData }) => {
         setTeams(response.data)
       })
     //Player sorting should be done in the database query?
-    playerService.getPlayers()
+    /* playerService.getPlayers()
       .then((response) => {
         setPlayers(response.map(player => ({ ...player, fullName: `${player.firstName} ${player.lastName}` }))
           .sort((a, b) => (a.lastName > b.lastName) ? 1 : ((b.lastName > a.lastName) ? -1 : 0)))
-      })
+      }) */
   }, [])
 
   return (

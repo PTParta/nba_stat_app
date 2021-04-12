@@ -36,8 +36,8 @@ const getTeamStatsFromDB = async (teamApiId, season) => {
   return playerStats
 }
 
-const getPlayerStatsFromDBForASeason = async (season) => {
-  const playerStats = await axios.get(`${baseUrlDBPlayerStatsForASeason}/${season}`)
+const getPlayerStatsFromDBForASeason = async (playerId, season) => {
+  const playerStats = await axios.get(`${baseUrlDBPlayerStatsForASeason}/${playerId}/${season}`)
   return playerStats
 }
 
