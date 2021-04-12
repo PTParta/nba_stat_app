@@ -54,19 +54,21 @@ function App() {
               </Col>
               <Col sm={2}></Col>
             </Row> */}
-            <Row>
-              <Col sm={4}></Col>
-              <Col sm={1} xs={3}>
-                <Link to='/players'>players</Link>
-              </Col>
-              <Col sm={1} xs={3}>
-                <Link to='/teams'>teams</Link>
-              </Col>
-              <Col sm={1} xs={3}>
-                <Link to='/compareplayers'>compare players</Link>
-              </Col>
-              <Col sm={4}></Col>
-            </Row>
+            {/* <div style={{ backgroundColor:'white' }}> */}
+              <Row >
+                <Col sm={2}></Col>
+                <Col sm={1} xs={3}>
+                  <Link to='/players'>players</Link>
+                </Col>
+                <Col sm={1} xs={3}>
+                  <Link to='/teams'>teams</Link>
+                </Col>
+                <Col sm={3} xs={3}>
+                  <Link to='/compareplayers'>compare players</Link>
+                </Col>
+                <Col sm={4}></Col>
+              </Row>
+            {/* </div> */}
             <br></br>
             <Switch>
               <Route path='/players'>

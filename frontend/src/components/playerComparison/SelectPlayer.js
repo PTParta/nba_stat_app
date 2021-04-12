@@ -7,7 +7,10 @@ const SelectPlayer = ({ players,
   setStatsForSelectedPlayers,
   setFetchingData,
   selectedSeason,
-  statsForSelectedPlayers }) => {
+  statsForSelectedPlayers,
+  setNumberOfSelectedPlayers,
+  numberOfSelectedPlayers
+}) => {
 
   //const history = useHistory()
   const playerSelect = players.map(player => ({ label: player.fullName, value: player.fullName }))
@@ -29,6 +32,7 @@ const SelectPlayer = ({ players,
         setStatsForSelectedPlayers(updatedStats)
         //console.log(response.data)
         setFetchingData(false)
+        setNumberOfSelectedPlayers(numberOfSelectedPlayers + 1)
       })
 
 

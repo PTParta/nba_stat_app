@@ -40,7 +40,7 @@ const SelectSeason = ({
         //onChange={(event) => setSelectedSeason(event.value)}
         onChange={(event) => handleSelectedSeasonChange(event)}
         closeMenuOnSelect={true}
-        placeholder={selectedSeason}
+        placeholder='Select season'
       />
 
     </>
