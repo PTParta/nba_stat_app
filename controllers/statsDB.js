@@ -61,4 +61,27 @@ statDBRouter.get('/playerstatsforaseasonfromdb/:season', async (request, respons
   response.json(stats)
 })
 
+statDBRouter.get('/selectedplayersidsforaseasonfromdb/:season', async (request, response) => {
+  console.log('getting selected player stats for a season from database')
+  console.log(':playerid', request.params.playerid)
+  console.log(':season', request.params.season)
+
+  let startTime = new Date().getTime()
+
+  const stats = await Stat.distinct(
+    'player.id',
+    {
+      'game.season': request.params.season,
+      'min': { $ne: null }
+    }
+  )
+
+  let endTime = new Date().getTime()
+  console.log('finished retrieving data from database')
+  console.log(`time ${endTime - startTime} ms`)
+  console.log('documents:', stats.length)
+
+  response.json(stats)
+})
+
 module.exports = statDBRouter

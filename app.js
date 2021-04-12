@@ -35,8 +35,6 @@ app.use(express.json())
 app.use(middleware.requestLogger)
 //app.use(middleware.tokenExtractor)
 
-
-
 app.use('/api/players', playerRouter)
 app.use('/api/teams', teamRouter)
 app.use('/api/stats', statRouter)

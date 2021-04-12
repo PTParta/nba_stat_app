@@ -1,8 +1,10 @@
 import Select from 'react-select'
 import playerStatService from '../../services/playerStats'
+//import { useHistory } from 'react-router-dom'
 
 const SelectPlayer = ({ players, setSelectedPlayer, setPlayerStats, setFetchingData }) => {
 
+  //const history = useHistory()
   const playerSelect = players.map(player => ({ label: player.fullName, value: player.fullName }))
 
   const handleSelectedPlayerChange = (playerFullName) => {
@@ -14,8 +16,9 @@ const SelectPlayer = ({ players, setSelectedPlayer, setPlayerStats, setFetchingD
     setFetchingData(true)
     const searchedPlayer = players.find(player => player.fullName === playerFullName)
     //console.log('searched player', searchedPlayer)
-    playerStatService.getPlayerStatsFromDB(searchedPlayer.apiId)
+    playerStatService.getPlayerStatsFromDB(searchedPlayer.apiId, playerFullName)
       .then((response) => {
+        //history.push(`/players/${playerFullName}`)
         setPlayerStats(response.data.sort((a, b) =>
           new Date(a.game.date).getTime() - new Date(b.game.date).getTime())
         )
