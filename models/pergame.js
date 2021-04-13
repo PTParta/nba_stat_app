@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const uniqueValidator = require('mongoose-unique-validator')
 
-const totalSchema = new mongoose.Schema({
+const pergameSchema = new mongoose.Schema({
   id: {
     type: Number,
     required: true,
@@ -71,9 +71,9 @@ const totalSchema = new mongoose.Schema({
     type: Number
   },
 })
-totalSchema.plugin(uniqueValidator)
+pergameSchema.plugin(uniqueValidator)
 
-totalSchema.set('toJSON', {
+pergameSchema.set('toJSON', {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString()
     delete returnedObject._id
@@ -81,4 +81,4 @@ totalSchema.set('toJSON', {
   }
 })
 
-module.exports = mongoose.model('Total', totalSchema)
+module.exports = mongoose.model('Pergame', pergameSchema)

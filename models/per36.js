@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const uniqueValidator = require('mongoose-unique-validator')
 
-const averageSchema = new mongoose.Schema({
+const per36Schema = new mongoose.Schema({
   id: {
     type: Number,
     required: true,
@@ -9,6 +9,9 @@ const averageSchema = new mongoose.Schema({
   },
   player_id: {
     type: Number
+  },
+  postseason: {
+    type: Boolean
   },
   ast: {
     type: Number
@@ -68,9 +71,9 @@ const averageSchema = new mongoose.Schema({
     type: Number
   },
 })
-averageSchema.plugin(uniqueValidator)
+per36Schema.plugin(uniqueValidator)
 
-averageSchema.set('toJSON', {
+per36Schema.set('toJSON', {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString()
     delete returnedObject._id
@@ -78,4 +81,4 @@ averageSchema.set('toJSON', {
   }
 })
 
-module.exports = mongoose.model('Average', averageSchema)
+module.exports = mongoose.model('Per36', per36Schema)

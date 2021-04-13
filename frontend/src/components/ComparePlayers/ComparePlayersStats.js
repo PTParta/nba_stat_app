@@ -1,5 +1,5 @@
 import React from 'react'
-import { Row, Col } from 'react-bootstrap'
+import { Row } from 'react-bootstrap'
 import { Bar } from 'react-chartjs-2'
 import 'chartjs-plugin-labels'
 import colors from '../../styling/colors'
