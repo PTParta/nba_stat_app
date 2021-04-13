@@ -1,15 +1,12 @@
 const mongoose = require('mongoose')
-const uniqueValidator = require('mongoose-unique-validator')
+//const uniqueValidator = require('mongoose-unique-validator')
 
 const summarySchema = new mongoose.Schema({
-  id: {
+  /* playerId: {
     type: Number,
-    required: true,
     unique: true,
-  },
-  player_id: {
-    type: Number
-  },
+    required: true
+  }, */
   name: {
     type: String
   },
@@ -186,10 +183,10 @@ const summarySchema = new mongoose.Schema({
   },
   turnover_total: {
     type: Number
-  },
+  }
 
 })
-summarySchema.plugin(uniqueValidator)
+//summarySchema.plugin(uniqueValidator)
 
 summarySchema.set('toJSON', {
   transform: (document, returnedObject) => {

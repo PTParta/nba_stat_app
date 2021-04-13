@@ -1,7 +1,5 @@
 const statDBRouter = require('express').Router()
 const Stat = require('../models/stat')
-const Pergame = require('../models/pergame')
-const Per36 = require('../models/per36')
 const Summary = require('../models/summary')
 //const axios = require('axios')
 //const baseUrl = 'https://www.balldontlie.io/api/v1/stats'
@@ -104,6 +102,9 @@ statDBRouter.get('/allplayerstatsforaseasonfromdb/:season', async (request, resp
     'game.season': request.params.season,
     'min': { $ne: null }
   })
+  /* let undefinedPlayers = statsFromDB.filter(s => s.player.id === null)
+  console.log(undefinedPlayers) */
+  //console.log(statsFromDB.slice(35, 40))
 
   let endTime = new Date().getTime()
   console.log('finished retrieving data from database')
@@ -118,12 +119,14 @@ statDBRouter.get('/allplayerstatsforaseasonfromdb/:season', async (request, resp
   statsFromDB.forEach(stat => {
     const playerFullName = `${stat.player.first_name} ${stat.player.last_name}`
     if (playerStats.find(stat => stat.name === playerFullName) === undefined) {
-      const player = { name: playerFullName, player_id: stat.player.id }
+      const player = { name: playerFullName, playerId: stat.player.id }
       playerStats.push(player)
       /* console.log(i, player)
       i++ */
     }
   })
+  console.log(playerStats)
+
 
   const playerStatsFiltered = statsFromDB.filter(teamStat => teamStat.game.postseason === postseason)
 
@@ -160,7 +163,8 @@ statDBRouter.get('/allplayerstatsforaseasonfromdb/:season', async (request, resp
         minutes = Number(currentValue.min)
       } else {
         const seconds = Number(timeSplit[0]) * 60 + Number(timeSplit[1])
-        minutes = Math.floor(seconds / 60)
+        //minutes = Math.floor(seconds / 60)
+        minutes = Math.round(seconds / 60 * 10) / 10
       }
       if (isNaN(minutes)) {
         minutes = 0
@@ -170,49 +174,79 @@ statDBRouter.get('/allplayerstatsforaseasonfromdb/:season', async (request, resp
       }
       return accumulator + minutes
     }, 0)
+    //console.log(playerStat/* .playerId */)
+    let updatedPlayer = {}
+    if (playedGames > 0) {
+      //const updatedPlayer = playerStat
 
-    //const updatedPlayer = playerStat
-    const updatedPlayer = {}
 
-    //updatedPlayer.player_id = playerStat.player.id
-    updatedPlayer.name = playerStat.name
-    updatedPlayer.player_id = playerStat.player_id
-    updatedPlayer.postseason = postseason
+      //updatedPlayer.playerId = playerStat.player.id
+      updatedPlayer.name = playerStat.name
+      updatedPlayer.playerId = playerStat.playerId
+      updatedPlayer.postseason = postseason
 
-    updatedPlayer.pts_total = totalPts
-    updatedPlayer.ast_total = totalAst
-    updatedPlayer.reb_total = totalReb
-    updatedPlayer.stl_total = totalStl
-    updatedPlayer.blk_total = totalBlk
-    updatedPlayer.turnover_total = totalTurnover
-    updatedPlayer.pf_total = totalPf
-    updatedPlayer.min_total = totalMin
+      updatedPlayer.pts_total = totalPts
+      updatedPlayer.ast_total = totalAst
+      updatedPlayer.reb_total = totalReb
+      updatedPlayer.stl_total = totalStl
+      updatedPlayer.blk_total = totalBlk
+      updatedPlayer.turnover_total = totalTurnover
+      updatedPlayer.pf_total = totalPf
+      updatedPlayer.min_total = Math.floor(totalMin)
 
-    updatedPlayer.pts_pergame = Math.round(totalPts / playedGames * 10) / 10
-    updatedPlayer.ast_pergame = Math.round(totalAst / playedGames * 10) / 10
-    updatedPlayer.reb_pergame = Math.round(totalReb / playedGames * 10) / 10
-    updatedPlayer.stl_pergame = Math.round(totalStl / playedGames * 10) / 10
-    updatedPlayer.blk_pergame = Math.round(totalBlk / playedGames * 10) / 10
-    updatedPlayer.turnover_pergame = Math.round(totalTurnover / playedGames * 10) / 10
-    updatedPlayer.pf_pergame = Math.round(totalPf / playedGames * 10) / 10
-    updatedPlayer.min_pergame = Math.round(totalMin / playedGames * 10) / 10
+      updatedPlayer.pts_pergame = Math.round(totalPts / playedGames * 10) / 10
+      updatedPlayer.ast_pergame = Math.round(totalAst / playedGames * 10) / 10
+      updatedPlayer.reb_pergame = Math.round(totalReb / playedGames * 10) / 10
+      updatedPlayer.stl_pergame = Math.round(totalStl / playedGames * 10) / 10
+      updatedPlayer.blk_pergame = Math.round(totalBlk / playedGames * 10) / 10
+      updatedPlayer.turnover_pergame = Math.round(totalTurnover / playedGames * 10) / 10
+      updatedPlayer.pf_pergame = Math.round(totalPf / playedGames * 10) / 10
+      updatedPlayer.min_pergame = Math.round(totalMin / playedGames * 10) / 10
 
-    //Don't calculate per 36 min stats if minutes per game is too low
-    if (updatedPlayer.min_pergame >= 10) {
-      updatedPlayer.pts_per36 = Math.round(updatedPlayer.pts_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
-      updatedPlayer.ast_per36 = Math.round(updatedPlayer.ast_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
-      updatedPlayer.reb_per36 = Math.round(updatedPlayer.reb_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
-      updatedPlayer.stl_per36 = Math.round(updatedPlayer.stl_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
-      updatedPlayer.blk_per36 = Math.round(updatedPlayer.blk_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
-      updatedPlayer.turnover_per36 = Math.round(updatedPlayer.turnover_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
-      updatedPlayer.pf_per36 = Math.round(updatedPlayer.pf_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
+      //Don't calculate per 36 min stats if minutes per game is too low
+      if (updatedPlayer.min_pergame >= 10) {
+        updatedPlayer.pts_per36 = Math.round(updatedPlayer.pts_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
+        updatedPlayer.ast_per36 = Math.round(updatedPlayer.ast_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
+        updatedPlayer.reb_per36 = Math.round(updatedPlayer.reb_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
+        updatedPlayer.stl_per36 = Math.round(updatedPlayer.stl_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
+        updatedPlayer.blk_per36 = Math.round(updatedPlayer.blk_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
+        updatedPlayer.turnover_per36 = Math.round(updatedPlayer.turnover_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
+        updatedPlayer.pf_per36 = Math.round(updatedPlayer.pf_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
+      }
+    } else {
+      updatedPlayer.playerId = playerStat.playerId
     }
-
-    //console.log(updatedPlayer)
-
-    playerStats = playerStats.map(s => s.name === playerStat.name ? updatedPlayer : s)
+    playerStats = playerStats
+      .map(s => s.name === playerStat.name ? updatedPlayer : s)
   })
-  console.log(playerStats.slice(0, 5))
+
+  /*   playerStats.forEach(s => console.log(s.name, s.playerId))
+    playerStats = playerStats.filter(s => s.playerId !== null) */
+
+
+  //console.log(playerStats.slice(0, 5))
+  console.log('saving data to database...')
+  console.log('season:', request.params.season)
+  console.log('postseason:', postseason)
+
+  let i = 1
+  for (let playerStat of playerStats) {
+    console.log(i, playerStat.name, playerStat.playerId)
+    try {
+      let summary = new Summary(playerStat)
+      await summary.save()
+    } catch (err) {
+      console.log('Error.', err)
+    }
+    i++
+  }
+  /*  try {
+     await Summary.insertMany(playerStats)
+     console.log('Succes. Data saved to database.')
+   } catch (err) {
+     console.log('Error.', err)
+   } */
+
 
   response.send('ok')
 
