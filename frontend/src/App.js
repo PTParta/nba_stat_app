@@ -4,7 +4,7 @@ import { Container, Row, Col } from 'react-bootstrap'
 import Players from './components/players/Players'
 import Teams from './components/teams/Teams'
 import TopTen from './components/topTen/TopTen'
-import PlayerComparison from './components/playerComparison/PlayerComparison'
+import ComparePlayers from './components/ComparePlayers/ComparePlayers'
 import playerService from './services/players'
 
 import {
@@ -92,7 +92,7 @@ function App() {
                 />
               </Route>
               <Route path='/compareplayers'>
-                <PlayerComparison
+                <ComparePlayers
                   fetchingData={fetchingData}
                   setFetchingData={setFetchingData}
                   players={players}

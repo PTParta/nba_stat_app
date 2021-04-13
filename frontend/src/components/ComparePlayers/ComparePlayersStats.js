@@ -784,68 +784,72 @@ const PlayerComparisonStats = (
           ? <>
             <br></br>
             <Row>
-              <Col sm={6}>
-                <Bar
-                  data={dataTotalPoints}
-                  options={optionsTotalPoints}
-                />
-              </Col>
-              <Col sm={6}>
-                <Bar
-                  data={dataTotalAssists}
-                  options={optionsTotalAssists}
-                />
-              </Col>
+              <Bar
+                data={dataTotalPoints}
+                options={optionsTotalPoints}
+              />
             </Row>
             <br></br>
             <br></br>
             <br></br>
             <Row>
-              <Col sm={6}>
-                <Bar
-                  data={dataTotalRebounds}
-                  options={optionsTotalRebounds}
-                />
-              </Col>
-
-              <Col sm={6}>
-                <Bar
-                  data={dataTotalBlocks}
-                  options={optionsTotalBlocks}
-                />
-              </Col>
+              <Bar
+                data={dataTotalAssists}
+                options={optionsTotalAssists}
+              />
+            </Row>
+            <br></br>
+            <br></br>
+            <br></br>
+            <Row>
+              <Bar
+                data={dataTotalRebounds}
+                options={optionsTotalRebounds}
+              />
+            </Row>
+            <br></br>
+            <br></br>
+            <br></br>
+            <Row>
+              <Bar
+                data={dataTotalBlocks}
+                options={optionsTotalBlocks}
+              />
             </Row>
             <br></br>
             <br></br>
             <br></br><Row>
-              <Col sm={6}>
-                <Bar
-                  data={dataTotalSteals}
-                  options={optionsTotalSteals}
-                />
-              </Col>
-              <Col sm={6}>
-                <Bar
-                  data={dataTotalTurnovers}
-                  options={optionsTotalTurnovers}
-                />
-              </Col>
+              <Bar
+                data={dataTotalSteals}
+                options={optionsTotalSteals}
+              />
             </Row>
             <br></br>
             <br></br>
-            <br></br><Row>
-              <Col sm={6}>
-                <Bar
-                  data={dataTotalPersonalFouls}
-                  options={optionsTotalPersonalFouls}
-                />
-              </Col>
-              <Col sm={6}>
-                <Bar
-                  data={dataTotalMinutes}
-                  options={optionsTotalMinutes}
-                />
-              </Col>
+            <br></br>
+            <Row>
+              <Bar
+                data={dataTotalTurnovers}
+                options={optionsTotalTurnovers}
+              />
+            </Row>
+            <br></br>
+            <br></br>
+            <br></br>
+            <Row>
+              <Bar
+                data={dataTotalPersonalFouls}
+                options={optionsTotalPersonalFouls}
+              />
+            </Row>
+            <br></br>
+            <br></br>
+            <br></br>
+            <Row>
+              <Bar
+                data={dataTotalMinutes}
+                options={optionsTotalMinutes}
+              />
             </Row>
           </>
           : <></>}
@@ -931,62 +935,63 @@ const PlayerComparisonStats = (
           ? <>
             <br></br>
             <Row>
-              <Col sm={6}>
-                <Bar
-                  data={dataPer36Points}
-                  options={optionsPer36Points}
-                />
-              </Col>
-              <Col sm={6}>
-                <Bar
-                  data={dataPer36Assists}
-                  options={optionsPer36Assists}
-                />
-              </Col>
+              <Bar
+                data={dataPer36Points}
+                options={optionsPer36Points}
+              />
             </Row>
             <br></br>
             <br></br>
             <br></br>
             <Row>
-              <Col sm={6}>
-                <Bar
-                  data={dataPer36Rebounds}
-                  options={optionsPer36Rebounds}
-                />
-              </Col>
-
-              <Col sm={6}>
-                <Bar
-                  data={dataPer36Blocks}
-                  options={optionsPer36Blocks}
-                />
-              </Col>
+              <Bar
+                data={dataPer36Assists}
+                options={optionsPer36Assists}
+              />
+            </Row>
+            <br></br>
+            <br></br>
+            <br></br>
+            <Row>
+              <Bar
+                data={dataPer36Rebounds}
+                options={optionsPer36Rebounds}
+              />
+            </Row>
+            <br></br>
+            <br></br>
+            <br></br>
+            <Row>
+              <Bar
+                data={dataPer36Blocks}
+                options={optionsPer36Blocks}
+              />
+            </Row>
+            <br></br>
+            <br></br>
+            <br></br>
+            <Row>
+              <Bar
+                data={dataPer36Steals}
+                options={optionsPer36Steals}
+              />
+            </Row>
+            <br></br>
+            <br></br>
+            <br></br>
+            <Row>
+              <Bar
+                data={dataPer36Turnovers}
+                options={optionsPer36Turnovers}
+              />
             </Row>
             <br></br>
             <br></br>
             <br></br><Row>
-              <Col sm={6}>
-                <Bar
-                  data={dataPer36Steals}
-                  options={optionsPer36Steals}
-                />
-              </Col>
-              <Col sm={6}>
-                <Bar
-                  data={dataPer36Turnovers}
-                  options={optionsPer36Turnovers}
-                />
-              </Col>
-            </Row>
-            <br></br>
-            <br></br>
-            <br></br><Row>
-              <Col sm={6}>
-                <Bar
-                  data={dataPer36PersonalFouls}
-                  options={optionsPer36PersonalFouls}
-                />
-              </Col>
+              <Bar
+                data={dataPer36PersonalFouls}
+                options={optionsPer36PersonalFouls}
+              />
             </Row>
           </>
           : <></>}
