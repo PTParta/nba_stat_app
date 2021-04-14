@@ -3,6 +3,7 @@ const baseUrl = 'https://www.balldontlie.io/api/v1/stats'
 const baseUrlDB = '/api/statsdb/statsfromdb'
 const baseUrlDBTeam = '/api/statsdb/teamstatsfromdb'
 const baseUrlDBPlayerStatsForASeason = '/api/statsdb/playerstatsforaseasonfromdb'
+const baseUrlDBSummaryStatsForASeason = '/api/statsdb/summarystatsforaseasonfromdb'
 
 const getPlayerStatsFromApi = async (seasons, playerId) => {
   let seasonsVariable = ''
@@ -41,11 +42,17 @@ const getPlayerStatsFromDBForASeason = async (playerId, season) => {
   return playerStats
 }
 
+const getSummaryStatsFromDBForASeason = async (season) => {
+  const playerStats = await axios.get(`${baseUrlDBSummaryStatsForASeason}/${season}`)
+  return playerStats
+}
+
 const playerStatService = {
   getPlayerStatsFromApi,
   getPlayerStatsFromDB,
   getTeamStatsFromDB,
-  getPlayerStatsFromDBForASeason
+  getPlayerStatsFromDBForASeason,
+  getSummaryStatsFromDBForASeason
 }
 
 export default playerStatService

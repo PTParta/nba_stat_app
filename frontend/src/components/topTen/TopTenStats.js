@@ -1,5 +1,5 @@
 import React from 'react'
-import { Row, Col } from 'react-bootstrap'
+import { Row } from 'react-bootstrap'
 import { Bar } from 'react-chartjs-2'
 import 'chartjs-plugin-labels'
 import colors from '../../styling/colors'
@@ -14,25 +14,27 @@ const TopTenStats = (
   }
 ) => {
 
+  //console.log(topTenStats)
+  const topTenStatsFiltered = topTenStats.filter(stat => stat.postseason === postSeasonSelected)
   //filter out bad data where player is not defined
-  topTenStats = topTenStats.filter(topTenStat => topTenStat.player !== undefined)
+  /* topTenStatsFiltered = topTenStatsFiltered.filter(topTenStat => topTenStat.player !== undefined)
 
-  let playerTopTenStats = []
-  topTenStats.forEach(topTenStat => {
+  let topTenStatsFiltered = []
+  topTenStatsFiltered.forEach(topTenStat => {
     const playerFullName = `${topTenStat.player.first_name} ${topTenStat.player.last_name}`
-    if (playerTopTenStats.find(playerTotalStat => playerTotalStat.name === playerFullName) === undefined) {
+    if (topTenStatsFiltered.find(playerTotalStat => playerTotalStat.name === playerFullName) === undefined) {
       const player = { name: playerFullName }
-      playerTopTenStats.push(player)
-      /* console.log(i, player)
-      i++ */
+      topTenStatsFiltered.push(player)
+      //console.log(i, player)
+      //i++
     }
   })
 
-  const topTenStatsFiltered = topTenStats.filter(teamStat => teamStat.game.postseason === postSeasonSelected)
+  const topTenStatsFilteredFiltered = topTenStatsFiltered.filter(teamStat => teamStat.game.postseason === postSeasonSelected)
 
-  playerTopTenStats.forEach(playerTotalStat => {
+  topTenStatsFiltered.forEach(playerTotalStat => {
     let playedGames = 0
-    const playerStats = topTenStatsFiltered
+    const playerStats = topTenStatsFilteredFiltered
       .filter(teamStat => `${teamStat.player.first_name} ${teamStat.player.last_name}` === playerTotalStat.name)
 
     const totalPts = playerStats.reduce((accumulator, currentValue) => {
@@ -106,8 +108,8 @@ const TopTenStats = (
     }
 
 
-    playerTopTenStats = playerTopTenStats.map(s => s.name === playerTotalStat.name ? updatedPlayer : s)
-  })
+    topTenStatsFiltered = topTenStatsFiltered.map(s => s.name === playerTotalStat.name ? updatedPlayer : s)
+  }) */
 
 
   const legend = {
@@ -163,6 +165,83 @@ const TopTenStats = (
       colors.cyanLine,
 
     ]
+
+  const optionsFgPct = {
+    legend: legend,
+    plugins: plugins,
+    title: {
+      display: true,
+      text: 'Fg %',
+      fontSize: 16,
+      fontColor: 'white'
+    },
+    scales: scales
+  }
+  const optionsFg3Pct = {
+    legend: legend,
+    plugins: plugins,
+    title: {
+      display: true,
+      text: 'Fg3 %',
+      fontSize: 16,
+      fontColor: 'white'
+    },
+    scales: scales
+  }
+  const optionsFtPct = {
+    legend: legend,
+    plugins: plugins,
+    title: {
+      display: true,
+      text: 'Ft %',
+      fontSize: 16,
+      fontColor: 'white'
+    },
+    scales: scales
+  }
+  const optionsAstToTurnover = {
+    legend: legend,
+    plugins: plugins,
+    title: {
+      display: true,
+      text: 'Assists to turnovers',
+      fontSize: 16,
+      fontColor: 'white'
+    },
+    scales: scales
+  }
+  const dataFgPct = {
+    labels: topTenStatsFiltered
+      .sort((a, b) => b.fg_pct - a.fg_pct)
+      .slice(0, 20)
+      .map(playerTotalStat => playerTotalStat.name),
+    datasets: [{
+      label: 'Fg %',
+      data: topTenStatsFiltered
+        .sort((a, b) => b.fg_pct - a.fg_pct)
+        .slice(0, 20)
+        .map(playerTotalStat => playerTotalStat.fg_pct),
+      backgroundColor: backgroundColor,
+      hoverOffset: 4
+    }]
+  }
+  const dataFg3Pct = {
+    labels: topTenStatsFiltered
+      .sort((a, b) => b.fg3_pct - a.fg3_pct)
+      .slice(0, 20)
+      .map(playerTotalStat => playerTotalStat.name),
+    datasets: [{
+      label: 'Fg3 %',
+      data: topTenStatsFiltered
+        .sort((a, b) => b.fg3_pct - a.fg3_pct)
+        .slice(0, 20)
+        .map(playerTotalStat => playerTotalStat.fg3_pct),
+      backgroundColor: backgroundColor,
+      hoverOffset: 4
+    }]
+  }
+
+
 
   const optionsTotalPoints = {
     legend: legend,
@@ -253,122 +332,193 @@ const TopTenStats = (
     scales: scales
   }
 
+  const optionsTotalFga = {
+    legend: legend,
+    plugins: plugins,
+    title: {
+      display: true,
+      text: 'Total fga',
+      fontSize: 16,
+      fontColor: 'white'
+    },
+    scales: scales
+  }
+  const optionsTotalFgm = {
+    legend: legend,
+    plugins: plugins,
+    title: {
+      display: true,
+      text: 'Total fgm',
+      fontSize: 16,
+      fontColor: 'white'
+    },
+    scales: scales
+  }
+  const optionsTotalFg3a = {
+    legend: legend,
+    plugins: plugins,
+    title: {
+      display: true,
+      text: 'Total fg3a',
+      fontSize: 16,
+      fontColor: 'white'
+    },
+    scales: scales
+  }
+  const optionsTotalFg3m = {
+    legend: legend,
+    plugins: plugins,
+    title: {
+      display: true,
+      text: 'Total fg3m',
+      fontSize: 16,
+      fontColor: 'white'
+    },
+    scales: scales
+  }
+  const optionsTotalFta = {
+    legend: legend,
+    plugins: plugins,
+    title: {
+      display: true,
+      text: 'Total fta',
+      fontSize: 16,
+      fontColor: 'white'
+    },
+    scales: scales
+  }
+  const optionsTotalFtm = {
+    legend: legend,
+    plugins: plugins,
+    title: {
+      display: true,
+      text: 'Total ftm',
+      fontSize: 16,
+      fontColor: 'white'
+    },
+    scales: scales
+  }
+
+
+
+
+
   const dataTotalPoints = {
-    labels: playerTopTenStats
-      .sort((a, b) => b.pts - a.pts)
+    labels: topTenStatsFiltered
+      .sort((a, b) => b.pts_total - a.pts_total)
       .slice(0, 20)
       .map(playerTotalStat => playerTotalStat.name),
     datasets: [{
       label: 'Total points',
-      data: playerTopTenStats
-        .sort((a, b) => b.pts - a.pts)
+      data: topTenStatsFiltered
+        .sort((a, b) => b.pts_total - a.pts_total)
         .slice(0, 20)
-        .map(playerTotalStat => playerTotalStat.pts),
+        .map(playerTotalStat => playerTotalStat.pts_total),
       backgroundColor: backgroundColor,
       hoverOffset: 4
     }]
   }
   const dataTotalAssists = {
-    labels: playerTopTenStats
-      .sort((a, b) => b.ast - a.ast)
+    labels: topTenStatsFiltered
+      .sort((a, b) => b.ast_total - a.ast_total)
       .slice(0, 20)
       .map(playerTotalStat => playerTotalStat.name),
     datasets: [{
       label: 'Total assists',
-      data: playerTopTenStats
-        .sort((a, b) => b.ast - a.ast)
+      data: topTenStatsFiltered
+        .sort((a, b) => b.ast_total - a.ast_total)
         .slice(0, 20)
-        .map(playerTotalStat => playerTotalStat.ast),
+        .map(playerTotalStat => playerTotalStat.ast_total),
       backgroundColor: backgroundColor,
       hoverOffset: 4
     }]
   }
   const dataTotalRebounds = {
-    labels: playerTopTenStats
-      .sort((a, b) => b.reb - a.reb)
+    labels: topTenStatsFiltered
+      .sort((a, b) => b.reb_total - a.reb_total)
       .slice(0, 20)
       .map(playerTotalStat => playerTotalStat.name),
     datasets: [{
       label: 'Total rebounds',
-      data: playerTopTenStats
-        .sort((a, b) => b.reb - a.reb)
+      data: topTenStatsFiltered
+        .sort((a, b) => b.reb_total - a.reb_total)
         .slice(0, 20)
-        .map(playerTotalStat => playerTotalStat.reb),
+        .map(playerTotalStat => playerTotalStat.reb_total),
       backgroundColor: backgroundColor,
       hoverOffset: 4
     }]
   }
   const dataTotalBlocks = {
-    labels: playerTopTenStats
-      .sort((a, b) => b.blk - a.blk)
+    labels: topTenStatsFiltered
+      .sort((a, b) => b.blk_total - a.blk_total)
       .slice(0, 20)
       .map(playerTotalStat => playerTotalStat.name),
     datasets: [{
       label: 'Total blocks',
-      data: playerTopTenStats
-        .sort((a, b) => b.blk - a.blk)
+      data: topTenStatsFiltered
+        .sort((a, b) => b.blk_total - a.blk_total)
         .slice(0, 20)
-        .map(playerTotalStat => playerTotalStat.blk),
+        .map(playerTotalStat => playerTotalStat.blk_total),
       backgroundColor: backgroundColor,
       hoverOffset: 4
     }]
   }
   const dataTotalSteals = {
-    labels: playerTopTenStats
-      .sort((a, b) => b.stl - a.stl)
+    labels: topTenStatsFiltered
+      .sort((a, b) => b.stl_total - a.stl_total)
       .slice(0, 20)
       .map(playerTotalStat => playerTotalStat.name),
     datasets: [{
       label: 'Total steals',
-      data: playerTopTenStats
-        .sort((a, b) => b.stl - a.stl)
+      data: topTenStatsFiltered
+        .sort((a, b) => b.stl_total - a.stl_total)
         .slice(0, 20)
-        .map(playerTotalStat => playerTotalStat.stl),
+        .map(playerTotalStat => playerTotalStat.stl_total),
       backgroundColor: backgroundColor,
       hoverOffset: 4
     }]
   }
   const dataTotalTurnovers = {
-    labels: playerTopTenStats
-      .sort((a, b) => b.turnover - a.turnover)
+    labels: topTenStatsFiltered
+      .sort((a, b) => b.turnover_total - a.turnover_total)
       .slice(0, 20)
       .map(playerTotalStat => playerTotalStat.name),
     datasets: [{
       label: 'Total turnovers',
-      data: playerTopTenStats
-        .sort((a, b) => b.turnover - a.turnover)
+      data: topTenStatsFiltered
+        .sort((a, b) => b.turnover_total - a.turnover_total)
         .slice(0, 20)
-        .map(playerTotalStat => playerTotalStat.turnover),
+        .map(playerTotalStat => playerTotalStat.turnover_total),
       backgroundColor: backgroundColor,
       hoverOffset: 4
     }]
   }
   const dataTotalPersonalFouls = {
-    labels: playerTopTenStats
-      .sort((a, b) => b.pf - a.pf)
+    labels: topTenStatsFiltered
+      .sort((a, b) => b.pf_total - a.pf_total)
       .slice(0, 20)
       .map(playerTotalStat => playerTotalStat.name),
     datasets: [{
       label: 'Total personal fouls',
-      data: playerTopTenStats
-        .sort((a, b) => b.pf - a.pf)
+      data: topTenStatsFiltered
+        .sort((a, b) => b.pf_total - a.pf_total)
         .slice(0, 20)
-        .map(playerTotalStat => playerTotalStat.pf),
+        .map(playerTotalStat => playerTotalStat.pf_total),
       backgroundColor: backgroundColor,
       hoverOffset: 4
     }]
   }
   const dataTotalMinutes = {
-    labels: playerTopTenStats
-      .sort((a, b) => b.min - a.min)
+    labels: topTenStatsFiltered
+      .sort((a, b) => b.min_total - a.min_total)
       .slice(0, 20)
       .map(playerTotalStat => playerTotalStat.name),
     datasets: [{
       label: 'Total minutes',
-      data: playerTopTenStats
-        .sort((a, b) => b.min - a.min)
+      data: topTenStatsFiltered
+        .sort((a, b) => b.min_total - a.min_total)
         .slice(0, 20)
-        .map(playerTotalStat => playerTotalStat.min),
+        .map(playerTotalStat => playerTotalStat.min_total),
       backgroundColor: backgroundColor,
       hoverOffset: 4
     }]
@@ -464,123 +614,189 @@ const TopTenStats = (
     },
     scales: scales
   }
+  const optionsPerFga = {
+    legend: legend,
+    plugins: plugins,
+    title: {
+      display: true,
+      text: 'Fga per game',
+      fontSize: 16,
+      fontColor: 'white'
+    },
+    scales: scales
+  }
+  const optionsPerFgm = {
+    legend: legend,
+    plugins: plugins,
+    title: {
+      display: true,
+      text: 'Fgm per game',
+      fontSize: 16,
+      fontColor: 'white'
+    },
+    scales: scales
+  }
+  const optionsPerFg3a = {
+    legend: legend,
+    plugins: plugins,
+    title: {
+      display: true,
+      text: 'Fg3a per game',
+      fontSize: 16,
+      fontColor: 'white'
+    },
+    scales: scales
+  }
+  const optionsPerFg3m = {
+    legend: legend,
+    plugins: plugins,
+    title: {
+      display: true,
+      text: 'Fg3m per game',
+      fontSize: 16,
+      fontColor: 'white'
+    },
+    scales: scales
+  }
+  const optionsPerFta = {
+    legend: legend,
+    plugins: plugins,
+    title: {
+      display: true,
+      text: 'Fta per game',
+      fontSize: 16,
+      fontColor: 'white'
+    },
+    scales: scales
+  }
+  const optionsPerFtm = {
+    legend: legend,
+    plugins: plugins,
+    title: {
+      display: true,
+      text: 'Ftm per game',
+      fontSize: 16,
+      fontColor: 'white'
+    },
+    scales: scales
+  }
 
   const dataPerPoints = {
-    labels: playerTopTenStats
-      .sort((a, b) => b.ptsPer - a.ptsPer)
+    labels: topTenStatsFiltered
+      .sort((a, b) => b.pts_pergame - a.pts_pergame)
       .slice(0, 20)
       .map(playerTotalStat => playerTotalStat.name),
     datasets: [{
       label: 'Points per game',
-      data: playerTopTenStats
-        .sort((a, b) => b.ptsPer - a.ptsPer)
+      data: topTenStatsFiltered
+        .sort((a, b) => b.pts_pergame - a.pts_pergame)
         .slice(0, 20)
-        .map(playerTotalStat => playerTotalStat.ptsPer),
+        .map(playerTotalStat => playerTotalStat.pts_pergame),
       backgroundColor: backgroundColor,
       hoverOffset: 4
     }]
   }
   const dataPerAssists = {
-    labels: playerTopTenStats
-      .sort((a, b) => b.astPer - a.astPer)
+    labels: topTenStatsFiltered
+      .sort((a, b) => b.ast_pergame - a.ast_pergame)
       .slice(0, 20)
       .map(playerTotalStat => playerTotalStat.name),
     datasets: [{
       label: 'Assists per game',
-      data: playerTopTenStats
-        .sort((a, b) => b.astPer - a.astPer)
+      data: topTenStatsFiltered
+        .sort((a, b) => b.ast_pergame - a.ast_pergame)
         .slice(0, 20)
-        .map(playerTotalStat => playerTotalStat.astPer),
+        .map(playerTotalStat => playerTotalStat.ast_pergame),
       backgroundColor: backgroundColor,
       hoverOffset: 4
     }]
   }
   const dataPerRebounds = {
-    labels: playerTopTenStats
-      .sort((a, b) => b.rebPer - a.rebPer)
+    labels: topTenStatsFiltered
+      .sort((a, b) => b.reb_pergame - a.reb_pergame)
       .slice(0, 20)
       .map(playerTotalStat => playerTotalStat.name),
     datasets: [{
       label: 'Rebounds per game',
-      data: playerTopTenStats
-        .sort((a, b) => b.rebPer - a.rebPer)
+      data: topTenStatsFiltered
+        .sort((a, b) => b.reb_pergame - a.reb_pergame)
         .slice(0, 20)
-        .map(playerTotalStat => playerTotalStat.rebPer),
+        .map(playerTotalStat => playerTotalStat.reb_pergame),
       backgroundColor: backgroundColor,
       hoverOffset: 4
     }]
   }
   const dataPerBlocks = {
-    labels: playerTopTenStats
-      .sort((a, b) => b.blkPer - a.blkPer)
+    labels: topTenStatsFiltered
+      .sort((a, b) => b.blk_pergame - a.blk_pergame)
       .slice(0, 20)
       .map(playerTotalStat => playerTotalStat.name),
     datasets: [{
       label: 'Blocks per game',
-      data: playerTopTenStats
-        .sort((a, b) => b.blkPer - a.blkPer)
+      data: topTenStatsFiltered
+        .sort((a, b) => b.blk_pergame - a.blk_pergame)
         .slice(0, 20)
-        .map(playerTotalStat => playerTotalStat.blkPer),
+        .map(playerTotalStat => playerTotalStat.blk_pergame),
       backgroundColor: backgroundColor,
       hoverOffset: 4
     }]
   }
   const dataPerSteals = {
-    labels: playerTopTenStats
-      .sort((a, b) => b.stlPer - a.stlPer)
+    labels: topTenStatsFiltered
+      .sort((a, b) => b.stl_pergame - a.stl_pergame)
       .slice(0, 20)
       .map(playerTotalStat => playerTotalStat.name),
     datasets: [{
       label: 'Steals per game',
-      data: playerTopTenStats
-        .sort((a, b) => b.stlPer - a.stlPer)
+      data: topTenStatsFiltered
+        .sort((a, b) => b.stl_pergame - a.stl_pergame)
         .slice(0, 20)
-        .map(playerTotalStat => playerTotalStat.stlPer),
+        .map(playerTotalStat => playerTotalStat.stl_pergame),
       backgroundColor: backgroundColor,
       hoverOffset: 4
     }]
   }
   const dataPerTurnovers = {
-    labels: playerTopTenStats
-      .sort((a, b) => b.turnoverPer - a.turnoverPer)
+    labels: topTenStatsFiltered
+      .sort((a, b) => b.turnover_pergame - a.turnover_pergame)
       .slice(0, 20)
       .map(playerTotalStat => playerTotalStat.name),
     datasets: [{
       label: 'Turnovers per game',
-      data: playerTopTenStats
-        .sort((a, b) => b.turnoverPer - a.turnoverPer)
+      data: topTenStatsFiltered
+        .sort((a, b) => b.turnover_pergame - a.turnover_pergame)
         .slice(0, 20)
-        .map(playerTotalStat => playerTotalStat.turnoverPer),
+        .map(playerTotalStat => playerTotalStat.turnover_pergame),
       backgroundColor: backgroundColor,
       hoverOffset: 4
     }]
   }
   const dataPerPersonalFouls = {
-    labels: playerTopTenStats
-      .sort((a, b) => b.pfPer - a.pfPer)
+    labels: topTenStatsFiltered
+      .sort((a, b) => b.pf_pergame - a.pf_pergame)
       .slice(0, 20)
       .map(playerTotalStat => playerTotalStat.name),
     datasets: [{
       label: 'Personal fouls per game',
-      data: playerTopTenStats
-        .sort((a, b) => b.pfPer - a.pfPer)
+      data: topTenStatsFiltered
+        .sort((a, b) => b.pf_pergame - a.pf_pergame)
         .slice(0, 20)
-        .map(playerTotalStat => playerTotalStat.pfPer),
+        .map(playerTotalStat => playerTotalStat.pf_pergame),
       backgroundColor: backgroundColor,
       hoverOffset: 4
     }]
   }
   const dataPerMinutes = {
-    labels: playerTopTenStats
-      .sort((a, b) => b.minPer - a.minPer)
+    labels: topTenStatsFiltered
+      .sort((a, b) => b.min_pergame - a.min_pergame)
       .slice(0, 20)
       .map(playerTotalStat => playerTotalStat.name),
     datasets: [{
       label: 'Minutes per game',
-      data: playerTopTenStats
-        .sort((a, b) => b.minPer - a.minPer)
+      data: topTenStatsFiltered
+        .sort((a, b) => b.min_pergame - a.min_pergame)
         .slice(0, 20)
-        .map(playerTotalStat => playerTotalStat.minPer),
+        .map(playerTotalStat => playerTotalStat.min_pergame),
       backgroundColor: backgroundColor,
       hoverOffset: 4
     }]
@@ -667,108 +883,174 @@ const TopTenStats = (
     },
     scales: scales
   }
+  const optionsPer36Fga = {
+    legend: legend,
+    plugins: plugins,
+    title: {
+      display: true,
+      text: 'Fga per 36 min',
+      fontSize: 16,
+      fontColor: 'white'
+    },
+    scales: scales
+  }
+  const optionsPer36Fgm = {
+    legend: legend,
+    plugins: plugins,
+    title: {
+      display: true,
+      text: 'Fgm per 36 min',
+      fontSize: 16,
+      fontColor: 'white'
+    },
+    scales: scales
+  }
+  const optionsPer36Fg3a = {
+    legend: legend,
+    plugins: plugins,
+    title: {
+      display: true,
+      text: 'Fg3a per 36 min',
+      fontSize: 16,
+      fontColor: 'white'
+    },
+    scales: scales
+  }
+  const optionsPer36Fg3m = {
+    legend: legend,
+    plugins: plugins,
+    title: {
+      display: true,
+      text: 'Fg3m per 36 min',
+      fontSize: 16,
+      fontColor: 'white'
+    },
+    scales: scales
+  }
+  const optionsPer36Fta = {
+    legend: legend,
+    plugins: plugins,
+    title: {
+      display: true,
+      text: 'Fta per 36 min',
+      fontSize: 16,
+      fontColor: 'white'
+    },
+    scales: scales
+  }
+  const optionsPer36Ftm = {
+    legend: legend,
+    plugins: plugins,
+    title: {
+      display: true,
+      text: 'Ftm per 36 min',
+      fontSize: 16,
+      fontColor: 'white'
+    },
+    scales: scales
+  }
 
   const dataPer36Points = {
-    labels: playerTopTenStats
-      .sort((a, b) => b.ptsPer36 - a.ptsPer36)
+    labels: topTenStatsFiltered
+      .sort((a, b) => b.pts_per36 - a.pts_per36)
       .slice(0, 20)
       .map(playerTotalStat => playerTotalStat.name),
     datasets: [{
       label: 'Points per 36 min',
-      data: playerTopTenStats
-        .sort((a, b) => b.ptsPer36 - a.ptsPer36)
+      data: topTenStatsFiltered
+        .sort((a, b) => b.pts_per36 - a.pts_per36)
         .slice(0, 20)
-        .map(playerTotalStat => playerTotalStat.ptsPer36),
+        .map(playerTotalStat => playerTotalStat.pts_per36),
       backgroundColor: backgroundColor,
       hoverOffset: 4
     }]
   }
   const dataPer36Assists = {
-    labels: playerTopTenStats
-      .sort((a, b) => b.astPer36 - a.astPer36)
+    labels: topTenStatsFiltered
+      .sort((a, b) => b.ast_per36 - a.ast_per36)
       .slice(0, 20)
       .map(playerTotalStat => playerTotalStat.name),
     datasets: [{
       label: 'Assists per 36 min',
-      data: playerTopTenStats
-        .sort((a, b) => b.astPer36 - a.astPer36)
+      data: topTenStatsFiltered
+        .sort((a, b) => b.ast_per36 - a.ast_per36)
         .slice(0, 20)
-        .map(playerTotalStat => playerTotalStat.astPer36),
+        .map(playerTotalStat => playerTotalStat.ast_per36),
       backgroundColor: backgroundColor,
       hoverOffset: 4
     }]
   }
   const dataPer36Rebounds = {
-    labels: playerTopTenStats
-      .sort((a, b) => b.rebPer36 - a.rebPer36)
+    labels: topTenStatsFiltered
+      .sort((a, b) => b.reb_per36 - a.reb_per36)
       .slice(0, 20)
       .map(playerTotalStat => playerTotalStat.name),
     datasets: [{
       label: 'Rebounds per 36 min',
-      data: playerTopTenStats
-        .sort((a, b) => b.rebPer36 - a.rebPer36)
+      data: topTenStatsFiltered
+        .sort((a, b) => b.reb_per36 - a.reb_per36)
         .slice(0, 20)
-        .map(playerTotalStat => playerTotalStat.rebPer36),
+        .map(playerTotalStat => playerTotalStat.reb_per36),
       backgroundColor: backgroundColor,
       hoverOffset: 4
     }]
   }
   const dataPer36Blocks = {
-    labels: playerTopTenStats
-      .sort((a, b) => b.blkPer36 - a.blkPer36)
+    labels: topTenStatsFiltered
+      .sort((a, b) => b.blk_per36 - a.blk_per36)
       .slice(0, 20)
       .map(playerTotalStat => playerTotalStat.name),
     datasets: [{
       label: 'Blocks per 36 min',
-      data: playerTopTenStats
-        .sort((a, b) => b.blkPer36 - a.blkPer36)
+      data: topTenStatsFiltered
+        .sort((a, b) => b.blk_per36 - a.blk_per36)
         .slice(0, 20)
-        .map(playerTotalStat => playerTotalStat.blkPer36),
+        .map(playerTotalStat => playerTotalStat.blk_per36),
       backgroundColor: backgroundColor,
       hoverOffset: 4
     }]
   }
   const dataPer36Steals = {
-    labels: playerTopTenStats
-      .sort((a, b) => b.stlPer36 - a.stlPer36)
+    labels: topTenStatsFiltered
+      .sort((a, b) => b.stl_per36 - a.stl_per36)
       .slice(0, 20)
       .map(playerTotalStat => playerTotalStat.name),
     datasets: [{
       label: 'Steals per 36 min',
-      data: playerTopTenStats
-        .sort((a, b) => b.stlPer36 - a.stlPer36)
+      data: topTenStatsFiltered
+        .sort((a, b) => b.stl_per36 - a.stl_per36)
         .slice(0, 20)
-        .map(playerTotalStat => playerTotalStat.stlPer36),
+        .map(playerTotalStat => playerTotalStat.stl_per36),
       backgroundColor: backgroundColor,
       hoverOffset: 4
     }]
   }
   const dataPer36Turnovers = {
-    labels: playerTopTenStats
-      .sort((a, b) => b.turnoverPer36 - a.turnoverPer36)
+    labels: topTenStatsFiltered
+      .sort((a, b) => b.turnover_per36 - a.turnover_per36)
       .slice(0, 20)
       .map(playerTotalStat => playerTotalStat.name),
     datasets: [{
       label: 'Turnovers per 36 min',
-      data: playerTopTenStats
-        .sort((a, b) => b.turnoverPer36 - a.turnoverPer36)
+      data: topTenStatsFiltered
+        .sort((a, b) => b.turnover_per36 - a.turnover_per36)
         .slice(0, 20)
-        .map(playerTotalStat => playerTotalStat.turnoverPer36),
+        .map(playerTotalStat => playerTotalStat.turnover_per36),
       backgroundColor: backgroundColor,
       hoverOffset: 4
     }]
   }
   const dataPer36PersonalFouls = {
-    labels: playerTopTenStats
-      .sort((a, b) => b.pfPer36 - a.pfPer36)
+    labels: topTenStatsFiltered
+      .sort((a, b) => b.pf_per36 - a.pf_per36)
       .slice(0, 20)
       .map(playerTotalStat => playerTotalStat.name),
     datasets: [{
       label: 'Personal fouls per 36 min',
-      data: playerTopTenStats
-        .sort((a, b) => b.pfPer36 - a.pfPer36)
+      data: topTenStatsFiltered
+        .sort((a, b) => b.pf_per36 - a.pf_per36)
         .slice(0, 20)
-        .map(playerTotalStat => playerTotalStat.pfPer36),
+        .map(playerTotalStat => playerTotalStat.pf_per36),
       backgroundColor: backgroundColor,
       hoverOffset: 4
     }]
@@ -777,78 +1059,97 @@ const TopTenStats = (
   return (
     <div>
       <div className='chart'>
-        {topTenStats.length > 0 && totalSelected
+
+        <Row>
+          <Bar
+            data={dataFgPct}
+            options={optionsFgPct}
+          />
+        </Row>
+        <Row>
+          <Bar
+            data={dataFg3Pct}
+            options={optionsFg3Pct}
+          />
+        </Row>
+
+        {topTenStatsFiltered.length > 0 && totalSelected
           ? <>
             <br></br>
             <Row>
-              <Col sm={6}>
-                <Bar
-                  data={dataTotalPoints}
-                  options={optionsTotalPoints}
-                />
-              </Col>
-              <Col sm={6}>
-                <Bar
-                  data={dataTotalAssists}
-                  options={optionsTotalAssists}
-                />
-              </Col>
+              <Bar
+                data={dataTotalPoints}
+                options={optionsTotalPoints}
+              />
+            </Row>
+            <Row>
+              <br></br>
+              <br></br>
+              <br></br>
+              <Bar
+                data={dataTotalAssists}
+                options={optionsTotalAssists}
+              />
             </Row>
             <br></br>
             <br></br>
             <br></br>
             <Row>
-              <Col sm={6}>
-                <Bar
-                  data={dataTotalRebounds}
-                  options={optionsTotalRebounds}
-                />
-              </Col>
-
-              <Col sm={6}>
-                <Bar
-                  data={dataTotalBlocks}
-                  options={optionsTotalBlocks}
-                />
-              </Col>
+              <Bar
+                data={dataTotalRebounds}
+                options={optionsTotalRebounds}
+              />
+            </Row>
+            <Row>
+              <br></br>
+              <br></br>
+              <br></br>
+              <Bar
+                data={dataTotalBlocks}
+                options={optionsTotalBlocks}
+              />
             </Row>
             <br></br>
             <br></br>
-            <br></br><Row>
-              <Col sm={6}>
-                <Bar
-                  data={dataTotalSteals}
-                  options={optionsTotalSteals}
-                />
-              </Col>
-              <Col sm={6}>
-                <Bar
-                  data={dataTotalTurnovers}
-                  options={optionsTotalTurnovers}
-                />
-              </Col>
+            <br></br>
+            <Row>
+              <Bar
+                data={dataTotalSteals}
+                options={optionsTotalSteals}
+              />
+            </Row>
+            <Row>
+              <br></br>
+              <br></br>
+              <br></br>
+              <Bar
+                data={dataTotalTurnovers}
+                options={optionsTotalTurnovers}
+              />
             </Row>
             <br></br>
             <br></br>
-            <br></br><Row>
-              <Col sm={6}>
-                <Bar
-                  data={dataTotalPersonalFouls}
-                  options={optionsTotalPersonalFouls}
-                />
-              </Col>
-              <Col sm={6}>
-                <Bar
-                  data={dataTotalMinutes}
-                  options={optionsTotalMinutes}
-                />
-              </Col>
+            <br></br>
+            <Row>
+              <Bar
+                data={dataTotalPersonalFouls}
+                options={optionsTotalPersonalFouls}
+              />
+            </Row>
+            <Row>
+              <br></br>
+              <br></br>
+              <br></br>
+              <Bar
+                data={dataTotalMinutes}
+                options={optionsTotalMinutes}
+              />
             </Row>
           </>
           : <></>}
 
 
-        {topTenStats.length > 0 && perGameSelected
+        {topTenStatsFiltered.length > 0 && perGameSelected
           ? <>
             <br></br>
             <Row>
@@ -924,66 +1225,68 @@ const TopTenStats = (
           </>
           : <></>}
 
-        {topTenStats.length > 0 && per36Selected
+        {topTenStatsFiltered.length > 0 && per36Selected
           ? <>
             <br></br>
             <Row>
-              <Col sm={6}>
-                <Bar
-                  data={dataPer36Points}
-                  options={optionsPer36Points}
-                />
-              </Col>
-              <Col sm={6}>
-                <Bar
-                  data={dataPer36Assists}
-                  options={optionsPer36Assists}
-                />
-              </Col>
+              <Bar
+                data={dataPer36Points}
+                options={optionsPer36Points}
+              />
+            </Row>
+            <Row>
+              <br></br>
+              <br></br>
+              <br></br>
+              <Bar
+                data={dataPer36Assists}
+                options={optionsPer36Assists}
+              />
             </Row>
             <br></br>
             <br></br>
             <br></br>
             <Row>
-              <Col sm={6}>
-                <Bar
-                  data={dataPer36Rebounds}
-                  options={optionsPer36Rebounds}
-                />
-              </Col>
-
-              <Col sm={6}>
-                <Bar
-                  data={dataPer36Blocks}
-                  options={optionsPer36Blocks}
-                />
-              </Col>
+              <Bar
+                data={dataPer36Rebounds}
+                options={optionsPer36Rebounds}
+              />
+            </Row>
+            <Row>
+              <br></br>
+              <br></br>
+              <br></br>
+              <Bar
+                data={dataPer36Blocks}
+                options={optionsPer36Blocks}
+              />
             </Row>
             <br></br>
             <br></br>
-            <br></br><Row>
-              <Col sm={6}>
-                <Bar
-                  data={dataPer36Steals}
-                  options={optionsPer36Steals}
-                />
-              </Col>
-              <Col sm={6}>
-                <Bar
-                  data={dataPer36Turnovers}
-                  options={optionsPer36Turnovers}
-                />
-              </Col>
+            <br></br>
+            <Row>
+              <Bar
+                data={dataPer36Steals}
+                options={optionsPer36Steals}
+              />
+            </Row>
+            <Row>
+              <br></br>
+              <br></br>
+              <br></br>
+              <Bar
+                data={dataPer36Turnovers}
+                options={optionsPer36Turnovers}
+              />
             </Row>
             <br></br>
             <br></br>
-            <br></br><Row>
-              <Col sm={6}>
-                <Bar
-                  data={dataPer36PersonalFouls}
-                  options={optionsPer36PersonalFouls}
-                />
-              </Col>
+            <br></br>
+            <Row>
+              <Bar
+                data={dataPer36PersonalFouls}
+                options={optionsPer36PersonalFouls}
+              />
             </Row>
           </>
           : <></>}

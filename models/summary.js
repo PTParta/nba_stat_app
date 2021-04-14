@@ -201,6 +201,9 @@ const summarySchema = new mongoose.Schema({
   ft_pct: {
     type: Number
   },
+  ast_to_turnover: {
+    type: Number
+  }
 
 })
 summarySchema.plugin(uniqueValidator)

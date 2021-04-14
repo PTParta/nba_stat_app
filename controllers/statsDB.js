@@ -97,7 +97,7 @@ statDBRouter.get('/allplayerstatsforaseasonfromdb/:season', async (request, resp
   console.log('getting all stats for a season from database')
   console.log(':season', request.params.season)
 
-  const postseason = true
+  const postseason = false
 
   let startTime = new Date().getTime()
 
@@ -251,6 +251,12 @@ statDBRouter.get('/allplayerstatsforaseasonfromdb/:season', async (request, resp
       } else {
         updatedPlayer.ft_pct = 0
       }
+      if (totalTurnover > 0) {
+        updatedPlayer.ast_to_turnover = Math.floor(totalAst / totalTurnover * 10) / 10
+      } else {
+        updatedPlayer.ast_to_turnover = 0
+      }
+
 
 
 
@@ -349,8 +355,8 @@ statDBRouter.get('/summarystatsforaseasonfromdb/:season', async (request, respon
   let endTime = new Date().getTime()
   console.log('finished retrieving data from database')
   console.log(`time ${endTime - startTime} ms`)
-  console.log('documents:', stats.length)
+  console.log('documents:', summaryStats.length)
 
-  response.json(stats)
+  response.json(summaryStats)
 })
 module.exports = statDBRouter

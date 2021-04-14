@@ -108,18 +108,6 @@ const TopTen = ({ fetchingData, setFetchingData }) => {
         </Row>
       </>
         : <></>}
-
-      {fetchingData ? <>
-        <Row style={{ textAlign: 'center' }}>
-          <Col sm={4}></Col>
-          <Col sm={4}>
-            <br></br>
-            <Loader type="Grid" color="white" height="25" width="25" />
-          </Col>
-          <Col sm={4}></Col>
-        </Row>
-      </>
-        : <></>}
       <TopTenStats
         topTenStats={topTenStats}
         postSeasonSelected={postSeasonSelected}

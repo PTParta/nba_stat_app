@@ -19,11 +19,9 @@ const SelectSeason = ({
   const handleSelectedSeasonChange = (event) => {
     setSelectedSeason(event.value)
     setFetchingData(true)
-    playerStatService.getPlayerStatsFromDBForASeason(event.value)
+    playerStatService.getSummaryStatsFromDBForASeason(event.value)
       .then((response) => {
-        setTopTenStats(response.data.sort((a, b) =>
-          new Date(a.game.date).getTime() - new Date(b.game.date).getTime())
-        )
+        setTopTenStats(response.data)
         setFetchingData(false)
       })
   }
