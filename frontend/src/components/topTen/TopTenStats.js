@@ -212,12 +212,14 @@ const TopTenStats = (
   }
   const dataFgPct = {
     labels: topTenStatsFiltered
+      .filter(s => s.fgm_pergame >= 5)
       .sort((a, b) => b.fg_pct - a.fg_pct)
       .slice(0, 20)
       .map(playerTotalStat => playerTotalStat.name),
     datasets: [{
       label: 'Fg %',
       data: topTenStatsFiltered
+        .filter(s => s.fga_pergame >= 5)
         .sort((a, b) => b.fg_pct - a.fg_pct)
         .slice(0, 20)
         .map(playerTotalStat => playerTotalStat.fg_pct),
@@ -227,12 +229,14 @@ const TopTenStats = (
   }
   const dataFg3Pct = {
     labels: topTenStatsFiltered
+      .filter(s => s.fg3m_pergame >= 2)
       .sort((a, b) => b.fg3_pct - a.fg3_pct)
       .slice(0, 20)
       .map(playerTotalStat => playerTotalStat.name),
     datasets: [{
       label: 'Fg3 %',
       data: topTenStatsFiltered
+        .filter(s => s.fg3m_pergame >= 2)
         .sort((a, b) => b.fg3_pct - a.fg3_pct)
         .slice(0, 20)
         .map(playerTotalStat => playerTotalStat.fg3_pct),
@@ -240,7 +244,23 @@ const TopTenStats = (
       hoverOffset: 4
     }]
   }
-
+  const dataFtPct = {
+    labels: topTenStatsFiltered
+      .filter(s => s.ftm_pergame >= 2 && s.fta_total >= 30)
+      .sort((a, b) => b.ft_pct - a.ft_pct)
+      .slice(0, 20)
+      .map(playerTotalStat => playerTotalStat.name),
+    datasets: [{
+      label: 'Ft %',
+      data: topTenStatsFiltered
+        .filter(s => s.ftm_pergame >= 2 && s.fta_total >= 30)
+        .sort((a, b) => b.ft_pct - a.ft_pct)
+        .slice(0, 20)
+        .map(playerTotalStat => playerTotalStat.ft_pct),
+      backgroundColor: backgroundColor,
+      hoverOffset: 4
+    }]
+  }
 
 
   const optionsTotalPoints = {
@@ -1070,6 +1090,12 @@ const TopTenStats = (
           <Bar
             data={dataFg3Pct}
             options={optionsFg3Pct}
+          />
+        </Row>
+        <Row>
+          <Bar
+            data={dataFtPct}
+            options={optionsFtPct}
           />
         </Row>
 
