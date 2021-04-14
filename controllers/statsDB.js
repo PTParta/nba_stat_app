@@ -1,6 +1,9 @@
+const { v4: uuidv4 } = require('uuid')
+
 const statDBRouter = require('express').Router()
 const Stat = require('../models/stat')
 const Summary = require('../models/summary')
+
 //const axios = require('axios')
 //const baseUrl = 'https://www.balldontlie.io/api/v1/stats'
 
@@ -228,12 +231,17 @@ statDBRouter.get('/allplayerstatsforaseasonfromdb/:season', async (request, resp
   console.log('saving data to database...')
   console.log('season:', request.params.season)
   console.log('postseason:', postseason)
-
+  //console.log(playerStats.slice(0,5))
   let i = 1
   for (let playerStat of playerStats) {
     console.log(i, playerStat.name, playerStat.playerId)
     try {
-      let summary = new Summary(playerStat)
+      /* const filter = { playerId: playerStat.playerId }
+      const options = { upsert: true }
+      const updateDoc = { $set: playerStat }
+      await Summary.updateOne(filter, updateDoc, options) */
+      let summary = new Summary({ ...playerStat, '_id': uuidv4() })
+      //await Summary.create({ '_id': ObjectId.fromString(uuidv4()), ...playerStat })
       await summary.save()
     } catch (err) {
       console.log('Error.', err)
