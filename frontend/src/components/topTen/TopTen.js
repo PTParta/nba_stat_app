@@ -9,6 +9,7 @@ import SelectSeason from './SelectSeason'
 import SelectRegularPost from './SelectRegularPost'
 import TopTenStats from './TopTenStats'
 import SelectPerTotal from './SelectPerTotal'
+import DescriptionTop20 from './DescriptionTop20'
 import ReactGa from 'react-ga'
 require('dotenv').config()
 
@@ -94,7 +95,7 @@ const TopTen = ({ fetchingData, setFetchingData }) => {
           <Row style={{ textAlign: 'center' }}>
             <Col sm={4} xs={1}></Col>
             <Col sm={4} xs={10}>
-              {/* <DescriptionTeams /> */}
+              <DescriptionTop20 />
             </Col>
             <Col sm={4} xs={1}></Col>
           </Row>

@@ -39,7 +39,7 @@ function App() {
     <Router>
       <div style={{
         backgroundColor: "#17202A",
-        height: '400vh',
+        height: '1500vh',
         display: 'flex',
         flexDirection: 'column',
         alignContent: 'center'/* ,
@@ -55,19 +55,22 @@ function App() {
               <Col sm={2}></Col>
             </Row> */}
             {/* <div style={{ backgroundColor:'white' }}> */}
-              <Row >
-                <Col sm={2}></Col>
-                <Col sm={1} xs={3}>
-                  <Link to='/players'>players</Link>
-                </Col>
-                <Col sm={1} xs={3}>
-                  <Link to='/teams'>teams</Link>
-                </Col>
-                <Col sm={3} xs={3}>
-                  <Link to='/compareplayers'>compare players</Link>
-                </Col>
-                <Col sm={4}></Col>
-              </Row>
+            <Row >
+              <Col sm={2}></Col>
+              <Col sm={1} xs={3}>
+                <Link to='/players'>players</Link>
+              </Col>
+              <Col sm={1} xs={3}>
+                <Link to='/teams'>teams</Link>
+              </Col>
+              <Col sm={1} xs={3}>
+                <Link to='/top20'>top20</Link>
+              </Col>
+              <Col sm={3} xs={3}>
+                <Link to='/compareplayers'>compare players</Link>
+              </Col>
+              <Col sm={4}></Col>
+            </Row>
             {/* </div> */}
             <br></br>
             <Switch>
@@ -85,7 +88,7 @@ function App() {
                   setFetchingData={setFetchingData}
                 />
               </Route>
-              <Route path='/topten'>
+              <Route path='/top20'>
                 <TopTen
                   fetchingData={fetchingData}
                   setFetchingData={setFetchingData}
