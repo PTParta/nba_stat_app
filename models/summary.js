@@ -10,11 +10,13 @@ const summarySchema = new mongoose.Schema({
 
   playerId: {
     type: Number,
-    //unique: true,
     required: true
   },
   name: {
     type: String
+  },
+  season: {
+    type: Number
   },
   postseason: {
     type: Boolean

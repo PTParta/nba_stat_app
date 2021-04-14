@@ -97,7 +97,7 @@ statDBRouter.get('/allplayerstatsforaseasonfromdb/:season', async (request, resp
   console.log('getting all stats for a season from database')
   console.log(':season', request.params.season)
 
-  const postseason = false
+  const postseason = true
 
   let startTime = new Date().getTime()
 
@@ -215,6 +215,7 @@ statDBRouter.get('/allplayerstatsforaseasonfromdb/:season', async (request, resp
       updatedPlayer.name = playerStat.name
       updatedPlayer.playerId = playerStat.playerId
       updatedPlayer.postseason = postseason
+      updatedPlayer.season = Number(request.params.season)
 
       updatedPlayer.pts_total = totalPts
       updatedPlayer.ast_total = totalAst
@@ -333,4 +334,23 @@ statDBRouter.get('/allplayerstatsforaseasonfromdb/:season', async (request, resp
   //response.json(stats)
 })
 
+/////////////////////////////////////////////////////////////////////////////////////
+
+statDBRouter.get('/summarystatsforaseasonfromdb/:season', async (request, response) => {
+  console.log('getting season summary stats from database')
+  console.log(':season', request.params.season)
+
+  let startTime = new Date().getTime()
+
+  const summaryStats = await Summary.find({
+    'season': request.params.season
+  })
+
+  let endTime = new Date().getTime()
+  console.log('finished retrieving data from database')
+  console.log(`time ${endTime - startTime} ms`)
+  console.log('documents:', stats.length)
+
+  response.json(stats)
+})
 module.exports = statDBRouter
