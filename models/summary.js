@@ -28,27 +28,27 @@ const summarySchema = new mongoose.Schema({
   dreb_pergame: {
     type: Number
   },
-  fg3_pct_pergame: {
+  /* fg3_pct_pergame: {
     type: Number
-  },
+  }, */
   fg3a_pergame: {
     type: Number
   },
   fg3m_pergame: {
     type: Number
   },
-  fg_pct_pergame: {
+  /* fg_pct_pergame: {
     type: Number
-  },
+  }, */
   fga_pergame: {
     type: Number
   },
   fgm_pergame: {
     type: Number
   },
-  ft_pct_pergame: {
-    type: Number
-  },
+  /*  ft_pct_pergame: {
+     type: Number
+   }, */
   fta_pergame: {
     type: Number
   },
@@ -85,27 +85,27 @@ const summarySchema = new mongoose.Schema({
   dreb_per36: {
     type: Number
   },
-  fg3_pct_per36: {
+  /* fg3_pct_per36: {
     type: Number
-  },
+  }, */
   fg3a_per36: {
     type: Number
   },
   fg3m_per36: {
     type: Number
   },
-  fg_pct_per36: {
+  /* fg_pct_per36: {
     type: Number
-  },
+  }, */
   fga_per36: {
     type: Number
   },
   fgm_per36: {
     type: Number
   },
-  ft_pct_per36: {
+  /* ft_pct_per36: {
     type: Number
-  },
+  }, */
   fta_per36: {
     type: Number
   },
@@ -142,27 +142,27 @@ const summarySchema = new mongoose.Schema({
   dreb_total: {
     type: Number
   },
-  fg3_pct_total: {
+  /* fg3_pct_total: {
     type: Number
-  },
+  }, */
   fg3a_total: {
     type: Number
   },
   fg3m_total: {
     type: Number
   },
-  fg_pct_total: {
+  /* fg_pct_total: {
     type: Number
-  },
+  }, */
   fga_total: {
     type: Number
   },
   fgm_total: {
     type: Number
   },
-  ft_pct_total: {
+  /* ft_pct_total: {
     type: Number
-  },
+  }, */
   fta_total: {
     type: Number
   },
@@ -189,7 +189,16 @@ const summarySchema = new mongoose.Schema({
   },
   turnover_total: {
     type: Number
-  }
+  },
+  fg_pct: {
+    type: Number
+  },
+  fg3_pct: {
+    type: Number
+  },
+  ft_pct: {
+    type: Number
+  },
 
 })
 summarySchema.plugin(uniqueValidator)
