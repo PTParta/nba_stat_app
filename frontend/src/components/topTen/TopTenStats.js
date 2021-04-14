@@ -10,7 +10,8 @@ const TopTenStats = (
     postSeasonSelected,
     perGameSelected,
     totalSelected,
-    per36Selected
+    per36Selected,
+    pctSelected
   }
 ) => {
 
@@ -261,7 +262,23 @@ const TopTenStats = (
       hoverOffset: 4
     }]
   }
-
+  const dataAstToTurnover = {
+    labels: topTenStatsFiltered
+      .filter(s => s.ast_total >= 200 || s.ast_pergame >= 3)
+      .sort((a, b) => b.ast_to_turnover - a.ast_to_turnover)
+      .slice(0, 20)
+      .map(playerTotalStat => playerTotalStat.name),
+    datasets: [{
+      label: 'Ast/Turnover ratio',
+      data: topTenStatsFiltered
+        .filter(s => s.ast_total >= 200 || s.ast_pergame >= 3)
+        .sort((a, b) => b.ast_to_turnover - a.ast_to_turnover)
+        .slice(0, 20)
+        .map(playerTotalStat => playerTotalStat.ast_to_turnover),
+      backgroundColor: backgroundColor,
+      hoverOffset: 4
+    }]
+  }
 
   const optionsTotalPoints = {
     legend: legend,
@@ -1079,25 +1096,28 @@ const TopTenStats = (
   return (
     <div>
       <div className='chart'>
-
-        <Row>
-          <Bar
-            data={dataFgPct}
-            options={optionsFgPct}
-          />
-        </Row>
-        <Row>
-          <Bar
-            data={dataFg3Pct}
-            options={optionsFg3Pct}
-          />
-        </Row>
-        <Row>
-          <Bar
-            data={dataFtPct}
-            options={optionsFtPct}
-          />
-        </Row>
+        {topTenStatsFiltered.length > 0 && pctSelected
+          ? <>
+            <Row>
+              <Bar
+                data={dataFgPct}
+                options={optionsFgPct}
+              />
+            </Row>
+            <Row>
+              <Bar
+                data={dataFg3Pct}
+                options={optionsFg3Pct}
+              />
+            </Row>
+            <Row>
+              <Bar
+                data={dataFtPct}
+                options={optionsFtPct}
+              />
+            </Row>
+          </>
+          : <></>}
 
         {topTenStatsFiltered.length > 0 && totalSelected
           ? <>
@@ -1228,6 +1248,15 @@ const TopTenStats = (
               <Bar
                 data={dataPerTurnovers}
                 options={optionsPerTurnovers}
+              />
+            </Row>
+            <br></br>
+            <br></br>
+            <br></br>
+            <Row>
+              <Bar
+                data={dataAstToTurnover}
+                options={optionsAstToTurnover}
               />
             </Row>
             <br></br>

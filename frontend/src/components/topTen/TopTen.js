@@ -21,6 +21,7 @@ const TopTen = ({ fetchingData, setFetchingData }) => {
   const [perGameSelected, setPerGameSelected] = useState(true)
   const [totalSelected, setTotalSelected] = useState(false)
   const [per36Selected, setPer36Selected] = useState(false)
+  const [pctSelected, setPctSelected] = useState(false)
 
   useEffect(() => {
     ReactGa.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS_TRACKING_CODE)
@@ -46,6 +47,7 @@ const TopTen = ({ fetchingData, setFetchingData }) => {
               setPerGameSelected={setPerGameSelected}
               setTotalSelected={setTotalSelected}
               setPer36Selected={setPer36Selected}
+              setPctSelected={setPctSelected}
             />
             : <></>}
         </Col>
@@ -114,6 +116,7 @@ const TopTen = ({ fetchingData, setFetchingData }) => {
         perGameSelected={perGameSelected}
         totalSelected={totalSelected}
         per36Selected={per36Selected}
+        pctSelected={pctSelected}
       />
 
     </>
