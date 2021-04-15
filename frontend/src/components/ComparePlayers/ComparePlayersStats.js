@@ -10,7 +10,8 @@ const PlayerComparisonStats = (
     postSeasonSelected,
     perGameSelected,
     totalSelected,
-    per36Selected
+    per36Selected,
+    pctSelected
   }
 ) => {
 
@@ -780,6 +781,28 @@ const PlayerComparisonStats = (
   return (
     <div>
       <div className='chart'>
+        {/* {statsForSelectedPlayers.length > 0 && pctSelected
+          ? <>
+            <Row>
+              <Bar
+                data={dataFgPct}
+                options={optionsFgPct}
+              />
+            </Row>
+            <Row>
+              <Bar
+                data={dataFg3Pct}
+                options={optionsFg3Pct}
+              />
+            </Row>
+            <Row>
+              <Bar
+                data={dataFtPct}
+                options={optionsFtPct}
+              />
+            </Row>
+          </>
+          : <></>} */}
         {statsForSelectedPlayers.length > 0 && totalSelected
           ? <>
             <br></br>
