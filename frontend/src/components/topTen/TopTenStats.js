@@ -12,7 +12,8 @@ const TopTenStats = (
     perGameSelected,
     totalSelected,
     per36Selected,
-    pctSelected
+    pctSelected,
+    playerAmount
   }
 ) => {
 
@@ -22,22 +23,22 @@ const TopTenStats = (
   //topTenStatsFiltered = topTenStatsFiltered.filter(topTenStat => topTenStat.player !== undefined)
 
   //Pct
-  const dataFgPct = barChartDataService.fgPct(topTenStatsFilteredByPostseason)
-  const dataFg3Pct = barChartDataService.fg3Pct(topTenStatsFilteredByPostseason)
-  const dataFtPct = barChartDataService.ftPct(topTenStatsFilteredByPostseason)
+  const dataFgPct = barChartDataService.fgPct(topTenStatsFilteredByPostseason, playerAmount)
+  const dataFg3Pct = barChartDataService.fg3Pct(topTenStatsFilteredByPostseason, playerAmount)
+  const dataFtPct = barChartDataService.ftPct(topTenStatsFilteredByPostseason, playerAmount)
   const optionsFgPct = barChartOptionsService.fgPct
   const optionsFg3Pct = barChartOptionsService.fg3Pct
   const optionsFtPct = barChartOptionsService.ftPct
 
   //Total
-  const dataTotalPoints = barChartDataService.totalPoints(topTenStatsFilteredByPostseason)
-  const dataTotalAssists = barChartDataService.totalAssists(topTenStatsFilteredByPostseason)
-  const dataTotalRebounds = barChartDataService.totalRebounds(topTenStatsFilteredByPostseason)
-  const dataTotalBlocks = barChartDataService.totalBlocks(topTenStatsFilteredByPostseason)
-  const dataTotalSteals = barChartDataService.totalSteals(topTenStatsFilteredByPostseason)
-  const dataTotalTurnovers = barChartDataService.totalTurnovers(topTenStatsFilteredByPostseason)
-  const dataTotalPersonalFouls = barChartDataService.totalPF(topTenStatsFilteredByPostseason)
-  const dataTotalMinutes = barChartDataService.totalMinutes(topTenStatsFilteredByPostseason)
+  const dataTotalPoints = barChartDataService.totalPoints(topTenStatsFilteredByPostseason, playerAmount)
+  const dataTotalAssists = barChartDataService.totalAssists(topTenStatsFilteredByPostseason, playerAmount)
+  const dataTotalRebounds = barChartDataService.totalRebounds(topTenStatsFilteredByPostseason, playerAmount)
+  const dataTotalBlocks = barChartDataService.totalBlocks(topTenStatsFilteredByPostseason, playerAmount)
+  const dataTotalSteals = barChartDataService.totalSteals(topTenStatsFilteredByPostseason, playerAmount)
+  const dataTotalTurnovers = barChartDataService.totalTurnovers(topTenStatsFilteredByPostseason, playerAmount)
+  const dataTotalPersonalFouls = barChartDataService.totalPF(topTenStatsFilteredByPostseason, playerAmount)
+  const dataTotalMinutes = barChartDataService.totalMinutes(topTenStatsFilteredByPostseason, playerAmount)
   const optionsTotalPoints = barChartOptionsService.totalPoints
   const optionsTotalAssists = barChartOptionsService.totalAssists
   const optionsTotalRebounds = barChartOptionsService.totalRebounds
@@ -48,15 +49,15 @@ const TopTenStats = (
   const optionsTotalMinutes = barChartOptionsService.totalMinutes
 
   //Per game
-  const dataPerGamePoints = barChartDataService.perGamePoints(topTenStatsFilteredByPostseason)
-  const dataPerGameAssists = barChartDataService.perGameAssists(topTenStatsFilteredByPostseason)
-  const dataPerGameRebounds = barChartDataService.perGameRebounds(topTenStatsFilteredByPostseason)
-  const dataPerGameBlocks = barChartDataService.perGameBlock(topTenStatsFilteredByPostseason)
-  const dataPerGameSteals = barChartDataService.perGameSteals(topTenStatsFilteredByPostseason)
-  const dataPerGameTurnovers = barChartDataService.perGameTurnovers(topTenStatsFilteredByPostseason)
-  const dataAstToTurnover = barChartDataService.astToTurnover(topTenStatsFilteredByPostseason)
-  const dataPerGamePersonalFouls = barChartDataService.perGamePF(topTenStatsFilteredByPostseason)
-  const dataPerGameMinutes = barChartDataService.perGameMinutes(topTenStatsFilteredByPostseason)
+  const dataPerGamePoints = barChartDataService.perGamePoints(topTenStatsFilteredByPostseason, playerAmount)
+  const dataPerGameAssists = barChartDataService.perGameAssists(topTenStatsFilteredByPostseason, playerAmount)
+  const dataPerGameRebounds = barChartDataService.perGameRebounds(topTenStatsFilteredByPostseason, playerAmount)
+  const dataPerGameBlocks = barChartDataService.perGameBlock(topTenStatsFilteredByPostseason, playerAmount)
+  const dataPerGameSteals = barChartDataService.perGameSteals(topTenStatsFilteredByPostseason, playerAmount)
+  const dataPerGameTurnovers = barChartDataService.perGameTurnovers(topTenStatsFilteredByPostseason, playerAmount)
+  const dataAstToTurnover = barChartDataService.astToTurnover(topTenStatsFilteredByPostseason, playerAmount)
+  const dataPerGamePersonalFouls = barChartDataService.perGamePF(topTenStatsFilteredByPostseason, playerAmount)
+  const dataPerGameMinutes = barChartDataService.perGameMinutes(topTenStatsFilteredByPostseason, playerAmount)
   const optionsPerGamePoints = barChartOptionsService.perGamePoints
   const optionsPerGameAssists = barChartOptionsService.perGameAssists
   const optionsPerGameRebounds = barChartOptionsService.perGameRebounds
@@ -68,13 +69,13 @@ const TopTenStats = (
   const optionsPerGameMinutes = barChartOptionsService.perGameMinutes
 
   //Per 36 minutes
-  const dataPer36Points = barChartDataService.per36Points(topTenStatsFilteredByPostseason)
-  const dataPer36Assists = barChartDataService.per36Assists(topTenStatsFilteredByPostseason)
-  const dataPer36Rebounds = barChartDataService.per36Rebounds(topTenStatsFilteredByPostseason)
-  const dataPer36Blocks = barChartDataService.per36Blocks(topTenStatsFilteredByPostseason)
-  const dataPer36Steals = barChartDataService.per36Steals(topTenStatsFilteredByPostseason)
-  const dataPer36Turnovers = barChartDataService.per36Turnovers(topTenStatsFilteredByPostseason)
-  const dataPer36PersonalFouls = barChartDataService.per36PF(topTenStatsFilteredByPostseason)
+  const dataPer36Points = barChartDataService.per36Points(topTenStatsFilteredByPostseason, playerAmount)
+  const dataPer36Assists = barChartDataService.per36Assists(topTenStatsFilteredByPostseason, playerAmount)
+  const dataPer36Rebounds = barChartDataService.per36Rebounds(topTenStatsFilteredByPostseason, playerAmount)
+  const dataPer36Blocks = barChartDataService.per36Blocks(topTenStatsFilteredByPostseason, playerAmount)
+  const dataPer36Steals = barChartDataService.per36Steals(topTenStatsFilteredByPostseason, playerAmount)
+  const dataPer36Turnovers = barChartDataService.per36Turnovers(topTenStatsFilteredByPostseason, playerAmount)
+  const dataPer36PersonalFouls = barChartDataService.per36PF(topTenStatsFilteredByPostseason, playerAmount)
   const optionsPer36Points = barChartOptionsService.per36Points
   const optionsPer36Assists = barChartOptionsService.per36Assists
   const optionsPer36Rebounds = barChartOptionsService.per36Rebounds

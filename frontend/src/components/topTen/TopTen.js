@@ -10,6 +10,7 @@ import SelectRegularPost from '../common/SelectRegularPost'
 import TopTenStats from './TopTenStats'
 import SelectPerTotal from '../common/SelectPerTotal'
 import DescriptionTop20 from './DescriptionTop20'
+import SelectPlayerAmount from './SelectPlayerAmount'
 import ReactGa from 'react-ga'
 require('dotenv').config()
 
@@ -23,6 +24,7 @@ const TopTen = ({ fetchingData, setFetchingData }) => {
   const [totalSelected, setTotalSelected] = useState(false)
   const [per36Selected, setPer36Selected] = useState(false)
   const [pctSelected, setPctSelected] = useState(false)
+  const [playerAmount, setPlayerAmount] = useState(10)
 
   useEffect(() => {
     ReactGa.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS_TRACKING_CODE)
@@ -65,6 +67,13 @@ const TopTen = ({ fetchingData, setFetchingData }) => {
               setPostSeasonSelected={setPostSeasonSelected}
             />
           </Col>
+          <Col sm={4}>
+            <SelectPlayerAmount 
+            setPlayerAmount={setPlayerAmount}
+            />
+          </Col>
+
+
         </Row>
         : <>
           <br></br>
@@ -118,6 +127,7 @@ const TopTen = ({ fetchingData, setFetchingData }) => {
         totalSelected={totalSelected}
         per36Selected={per36Selected}
         pctSelected={pctSelected}
+        playerAmount={playerAmount}
       />
 
     </>

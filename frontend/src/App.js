@@ -55,21 +55,22 @@ function App() {
               <Col sm={2}></Col>
             </Row> */}
             {/* <div style={{ backgroundColor:'white' }}> */}
-            <Row >
+            <Row align="left">
               <Col sm={2}></Col>
-              <Col sm={1} xs={3}>
-                <Link to='/players'>players</Link>
+              <Col sm={2} xs={3}>
+                <Link to='/players'>player career</Link>
               </Col>
-              <Col sm={1} xs={3}>
-                <Link to='/teams'>teams</Link>
+
+              <Col sm={2} xs={3}>
+                <Link to='/top20'>top players</Link>
               </Col>
-              <Col sm={1} xs={3}>
-                <Link to='/top20'>top20</Link>
-              </Col>
-              <Col sm={3} xs={3}>
+              <Col sm={2} xs={3}>
                 <Link to='/compareplayers'>compare players</Link>
               </Col>
-              <Col sm={4}></Col>
+              <Col sm={2} xs={3} align="center">
+                <Link to='/teams'>teams</Link>
+              </Col>
+              <Col sm={2}></Col>
             </Row>
             {/* </div> */}
             <br></br>

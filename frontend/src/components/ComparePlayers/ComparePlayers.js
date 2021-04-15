@@ -8,6 +8,7 @@ import SelectRegularPost from '../common/SelectRegularPost'
 import Reset from './Reset'
 import Logo from '../Logo'
 import Title from '../Title'
+import Description from '../Description'
 import { Row, Col } from 'react-bootstrap'
 import ReactGa from 'react-ga'
 import Loader from 'react-loader-spinner'
@@ -25,7 +26,7 @@ const PlayerComparison = ({ players, fetchingData, setFetchingData }) => {
   const [totalSelected, setTotalSelected] = useState(false)
   const [per36Selected, setPer36Selected] = useState(false)
   const [pctSelected, setPctSelected] = useState(false)
-  const [numberOfSelectedPlayers,setNumberOfSelectedPlayers] = useState(0)
+  const [numberOfSelectedPlayers, setNumberOfSelectedPlayers] = useState(0)
 
   useEffect(() => {
 
@@ -88,7 +89,13 @@ const PlayerComparison = ({ players, fetchingData, setFetchingData }) => {
               </Col>
               <Col sm={4} xs={1}></Col>
             </Row>
-
+            <Row style={{ textAlign: 'center' }}>
+              <Col sm={4} xs={1}></Col>
+              <Col sm={4} xs={10}>
+                <Description />
+              </Col>
+              <Col sm={4} xs={1}></Col>
+            </Row>
             <Row style={{ textAlign: 'center' }}>
               <Col sm={4} xs={1}></Col>
               <Col sm={4} xs={10}>

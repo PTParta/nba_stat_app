@@ -5,8 +5,12 @@ const DescriptionTop20 = () => {
       <br></br>
       <br></br>
       <p>
-        This page shows top 20 players for each stat.
+        This page charts players in order on each stat.
         Start by selecting season.
+        You can select how many players are shown in the chart.
+        Per 36 minutes and % charts show only players who are
+        eligible for those stats, ie. minutes per game and
+        shot attempts are high enough.
       </p>
     </div>
   )
