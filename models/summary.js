@@ -203,6 +203,9 @@ const summarySchema = new mongoose.Schema({
   },
   ast_to_turnover: {
     type: Number
+  },
+  played_games: {
+    type: Number
   }
 
 })
