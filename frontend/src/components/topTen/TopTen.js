@@ -8,7 +8,7 @@ import Logo from '../Logo'
 import SelectSeason from './SelectSeason'
 import SelectRegularPost from './SelectRegularPost'
 import TopTenStats from './TopTenStats'
-import SelectPerTotal from './SelectPerTotal'
+import SelectPerTotal from '../common/SelectPerTotal'
 import DescriptionTop20 from './DescriptionTop20'
 import ReactGa from 'react-ga'
 require('dotenv').config()
