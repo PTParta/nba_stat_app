@@ -6,6 +6,7 @@ import Teams from './components/teams/Teams'
 import TopTen from './components/topTen/TopTen'
 import ComparePlayers from './components/ComparePlayers/ComparePlayers'
 import playerService from './services/players'
+import teamService from './services/teams'
 
 import {
   BrowserRouter as Router,
@@ -23,14 +24,18 @@ function App() {
 
   const [fetchingData, setFetchingData] = useState(false)
   const [players, setPlayers] = useState([])
+  const [teams, setTeams] = useState([])
 
   useEffect(() => {
-
     //Player sorting should be done in the database query?
     playerService.getPlayers()
       .then((response) => {
         setPlayers(response.map(player => ({ ...player, fullName: `${player.firstName} ${player.lastName}` }))
           .sort((a, b) => (a.lastName > b.lastName) ? 1 : ((b.lastName > a.lastName) ? -1 : 0)))
+      })
+    teamService.getTeamsFromDatabase()
+      .then((response) => {
+        setTeams(response)
       })
   }, [])
 
@@ -81,12 +86,14 @@ function App() {
                   setFetchingData={setFetchingData}
                   players={players}
                   setPlayers={setPlayers}
+                  teams={teams}
                 />
               </Route>
               <Route path='/teams'>
                 <Teams
                   fetchingData={fetchingData}
                   setFetchingData={setFetchingData}
+                  teams={teams}
                 />
               </Route>
               <Route path='/top20'>

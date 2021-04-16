@@ -95,9 +95,9 @@ const PlayerStats = (
     labels: filteredDataToShow
       .map(playerStat => playerStat.game.date.split('T')[0]
         .concat('\n')
-        .concat(teams.find(team => team.id === playerStat.game.visitor_team_id).abbreviation)
+        .concat(teams.find(team => team.apiId === playerStat.game.visitor_team_id).abbreviation)
         .concat('@')
-        .concat(teams.find(team => team.id === playerStat.game.home_team_id).abbreviation)
+        .concat(teams.find(team => team.apiId === playerStat.game.home_team_id).abbreviation)
         .concat(playerStat.game.postseason ? ' POST' : ' REG')),
     datasets: [
       {

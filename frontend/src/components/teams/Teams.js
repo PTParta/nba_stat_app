@@ -8,15 +8,15 @@ import SelectPerTotal from './SelectPerTotal'
 import DescriptionTeams from './DescriptionTeams'
 import Title from '../Title'
 import Description from '../Description'
-import teamService from '../../services/teams'
+//import teamService from '../../services/teams'
 import Loader from 'react-loader-spinner'
 import Logo from '../Logo'
 import ReactGa from 'react-ga'
 require('dotenv').config()
 
-const Teams = ({ fetchingData, setFetchingData }) => {
+const Teams = ({ fetchingData, setFetchingData, teams }) => {
 
-  const [teams, setTeams] = useState([])
+  //const [teams, setTeams] = useState([])
   const [selectedTeam, setSelectedTeam] = useState('')
   const [teamStats, setTeamStats] = useState([])
   const [selectedSeason, setSelectedSeason] = useState(2020)
@@ -32,12 +32,14 @@ const Teams = ({ fetchingData, setFetchingData }) => {
     ReactGa.pageview(window.location.pathname + window.location.search)
     //console.log('pathname:', window.location.pathname)
 
-    teamService.getTeamsFromDatabase()
+    /* teamService.getTeamsFromDatabase()
       .then((response) => {
         //console.log(response)
         setTeams(response)
-      })
+      }) */
   }, [])
+
+  console.log(teams)
 
   return (
     <div>

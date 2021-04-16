@@ -20,11 +20,11 @@ import ReactGa from 'react-ga'
 require('dotenv').config()
 
 
-const Players = ({ fetchingData, setFetchingData, players, setPlayers }) => {
+const Players = ({ fetchingData, setFetchingData, players, setPlayers, teams }) => {
 
   //const [players, setPlayers] = useState([])
   const [playerStats, setPlayerStats] = useState([])
-  const [teams, setTeams] = useState([])
+  //const [teams, setTeams] = useState([])
   const [selectedPlayer, setSelectedPlayer] = useState('')
   const [selectedFirstSeason, setSelectedFirstSeason] = useState(1979)
   const [selectedLastSeason, setSelectedLastSeason] = useState(2020)
@@ -61,10 +61,10 @@ const Players = ({ fetchingData, setFetchingData, players, setPlayers }) => {
     ReactGa.pageview(window.location.pathname + window.location.search)
     //console.log('pathname:', window.location.pathname)
 
-    teamService.getTeams()
+    /* teamService.getTeams()
       .then((response) => {
         setTeams(response.data)
-      })
+      }) */
     //Player sorting should be done in the database query?
     /* playerService.getPlayers()
       .then((response) => {
