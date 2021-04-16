@@ -23,7 +23,9 @@ const TopTenStats = (
         perGameSelected={perGameSelected}
         per36Selected={per36Selected}
         postSeasonSelected={postSeasonSelected}
-        playerAmount={playerAmount} />
+        playerAmount={playerAmount}
+        postSeasonFilteringDone={false}
+      />
     </div >
   )
 }

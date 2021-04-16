@@ -33,16 +33,8 @@ const Teams = ({ fetchingData, setFetchingData, teams }) => {
 
     ReactGa.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS_TRACKING_CODE)
     ReactGa.pageview(window.location.pathname + window.location.search)
-    //console.log('pathname:', window.location.pathname)
-
-    /* teamService.getTeamsFromDatabase()
-      .then((response) => {
-        //console.log(response)
-        setTeams(response)
-      }) */
   }, [])
 
-  console.log(teams)
 
   return (
     <div>

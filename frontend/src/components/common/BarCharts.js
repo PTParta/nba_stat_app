@@ -12,11 +12,18 @@ const BarCharts = (
     perGameSelected,
     per36Selected,
     postSeasonSelected,
-    playerAmount
+    playerAmount,
+    postSeasonFilteringDone
   }) => {
 
   //console.log(topTenStats)
-  const statsFilteredByPostseason = stats.filter(stat => stat.postseason === postSeasonSelected)
+  let statsFilteredByPostseason = []
+  if (!postSeasonFilteringDone) {
+    statsFilteredByPostseason = stats.filter(stat => stat.postseason === postSeasonSelected)
+  } else {
+    statsFilteredByPostseason = stats
+  }
+
   //filter out bad data where player is not defined
   //topTenStatsFiltered = topTenStatsFiltered.filter(topTenStat => topTenStat.player !== undefined)
 

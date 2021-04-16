@@ -32,7 +32,15 @@ playersRouter.get('/playersfromapitodatabase', async (_request, _response) => {
 })
 
 playersRouter.get('/', async (_request, response) => {
+  console.log('getting players from database')
+
+  let startTime = new Date().getTime()
   const players = await Player.find({})
+  let endTime = new Date().getTime()
+  console.log('finished retrieving players from database')
+  console.log(`time ${endTime - startTime} ms`)
+  console.log('documents:', players.length)
+
   response.json(players)
 })
 

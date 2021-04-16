@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Row, Col } from 'react-bootstrap'
-import teamService from '../../services/teams'
-//import playerService from '../../services/players'
 import PlayerStats from './PlayerStats'
 import SelectPlayer from './SelectPlayer'
 import SelectSeasons from './SelectSeasons'
-//import GetStats from './components/GetStats'
 import SelectRegularPost from './SelectRegularPost'
 import SelectStats from './SelectStats'
 import DescriptionPlayers from './DescriptionPlayers'
@@ -13,8 +10,6 @@ import Logo from '../Logo'
 import Title from '../Title'
 import Description from '../Description'
 import SelectTrailingAverage from './SelectTrailingAverage'
-/* import Instructions from './Instructions'
-import Tips from './Tips' */
 import Loader from 'react-loader-spinner'
 import ReactGa from 'react-ga'
 require('dotenv').config()
@@ -22,15 +17,12 @@ require('dotenv').config()
 
 const Players = ({ fetchingData, setFetchingData, players, setPlayers, teams }) => {
 
-  //const [players, setPlayers] = useState([])
   const [playerStats, setPlayerStats] = useState([])
-  //const [teams, setTeams] = useState([])
   const [selectedPlayer, setSelectedPlayer] = useState('')
   const [selectedFirstSeason, setSelectedFirstSeason] = useState(1979)
   const [selectedLastSeason, setSelectedLastSeason] = useState(2020)
   const [regularSeasonSelected, setRegularSeasonSelected] = useState(false)
   const [postSeasonSelected, setPostSeasonSelected] = useState(false)
-
   const [ptsSelected, setPtsSelected] = useState(false)
   const [astSelected, setAstSelected] = useState(false)
   const [rebSelected, setRebSelected] = useState(false)
@@ -50,27 +42,11 @@ const Players = ({ fetchingData, setFetchingData, players, setPlayers, teams }) 
   const [ft_pctSelected, setFt_pctSelected] = useState(false)
   const [pfSelected, setPfSelected] = useState(false)
   const [minSelected, setMinSelected] = useState(false)
-
-
-
   const [trailingAverage, setTrailingAverage] = useState(25)
 
   useEffect(() => {
-
     ReactGa.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS_TRACKING_CODE)
     ReactGa.pageview(window.location.pathname + window.location.search)
-    //console.log('pathname:', window.location.pathname)
-
-    /* teamService.getTeams()
-      .then((response) => {
-        setTeams(response.data)
-      }) */
-    //Player sorting should be done in the database query?
-    /* playerService.getPlayers()
-      .then((response) => {
-        setPlayers(response.map(player => ({ ...player, fullName: `${player.firstName} ${player.lastName}` }))
-          .sort((a, b) => (a.lastName > b.lastName) ? 1 : ((b.lastName > a.lastName) ? -1 : 0)))
-      }) */
   }, [])
 
   return (
