@@ -2,11 +2,11 @@ const mongoose = require('mongoose')
 const uniqueValidator = require('mongoose-unique-validator')
 
 const summarySchema = new mongoose.Schema({
-  /* _id: {
+  _id: {
     type: Object,
     unique: true,
     required: true
-  }, */
+  },
 
   playerId: {
     type: Number,

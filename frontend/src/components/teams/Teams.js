@@ -3,8 +3,10 @@ import { Row, Col } from 'react-bootstrap'
 import SelectTeam from './SelectTeam'
 import TeamStats from './TeamStats'
 import SelectSeason from './SelectSeason'
-import SelectRegularPost from './SelectRegularPost'
-import SelectPerTotal from './SelectPerTotal'
+/* import SelectRegularPost from './SelectRegularPost'
+import SelectPerTotal from './SelectPerTotal' */
+import SelectRegularPost from '../common/SelectRegularPost'
+import SelectPerTotal from '../common/SelectPerTotal'
 import DescriptionTeams from './DescriptionTeams'
 import Title from '../Title'
 import Description from '../Description'
@@ -25,6 +27,7 @@ const Teams = ({ fetchingData, setFetchingData, teams }) => {
   const [perGameSelected, setPerGameSelected] = useState(true)
   const [totalSelected, setTotalSelected] = useState(false)
   const [per36Selected, setPer36Selected] = useState(false)
+  const [pctSelected, setPctSelected] = useState(false)
 
   useEffect(() => {
 
@@ -61,6 +64,7 @@ const Teams = ({ fetchingData, setFetchingData, teams }) => {
               setPerGameSelected={setPerGameSelected}
               setTotalSelected={setTotalSelected}
               setPer36Selected={setPer36Selected}
+              setPctSelected={setPctSelected}
             />
             : <></>}
         </Col>
@@ -140,6 +144,7 @@ const Teams = ({ fetchingData, setFetchingData, teams }) => {
         perGameSelected={perGameSelected}
         totalSelected={totalSelected}
         per36Selected={per36Selected}
+        pctSelected={pctSelected}
       />
     </div>
   )
