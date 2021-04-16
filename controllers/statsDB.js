@@ -306,8 +306,7 @@ statDBRouter.get('/allplayerstatsforaseasonfromdb/:season', async (request, resp
         updatedPlayer.playerId = playerStat.playerId
       }
       updatedPlayer.played_games = playedGames
-      playerStats = playerStats
-        .map(s => s.name === playerStat.name ? updatedPlayer : s)
+      playerStats = playerStats.map(s => s.name === playerStat.name ? updatedPlayer : s)
     })
 
     /*   playerStats.forEach(s => console.log(s.name, s.playerId))
