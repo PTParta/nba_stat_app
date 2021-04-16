@@ -92,13 +92,14 @@ statDBRouter.get('/selectedplayersidsforaseasonfromdb/:season', async (request, 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-statDBRouter.get('/allplayerstatsforaseasonfromdb/:season', async (request, response) => {
+statDBRouter.get('/allplayerstatsforaseasonfromdb', async (request, response) => {
 
 
 
-  const postseason = true
+  const postseason = false
 
-  for (let season = 1983; season <= 2020; season++) {
+  //for (let season = 1983; season <= 2020; season++) {
+  for (let season = 2020; season <= 2020; season++) {
     console.log('getting all stats for a season from database')
     console.log(':season', season)
 
@@ -260,9 +261,6 @@ statDBRouter.get('/allplayerstatsforaseasonfromdb/:season', async (request, resp
           updatedPlayer.ast_to_turnover = 0
         }
 
-
-
-
         updatedPlayer.pts_pergame = Math.round(totalPts / playedGames * 10) / 10
         updatedPlayer.ast_pergame = Math.round(totalAst / playedGames * 10) / 10
         updatedPlayer.reb_pergame = Math.round(totalReb / playedGames * 10) / 10
@@ -271,17 +269,14 @@ statDBRouter.get('/allplayerstatsforaseasonfromdb/:season', async (request, resp
         updatedPlayer.turnover_pergame = Math.round(totalTurnover / playedGames * 10) / 10
         updatedPlayer.pf_pergame = Math.round(totalPf / playedGames * 10) / 10
         updatedPlayer.min_pergame = Math.round(totalMin / playedGames * 10) / 10
-
         updatedPlayer.fga_pergame = Math.round(totalFga / playedGames * 10) / 10
         updatedPlayer.fgm_pergame = Math.round(totalFgm / playedGames * 10) / 10
         updatedPlayer.fg3a_pergame = Math.round(totalFg3a / playedGames * 10) / 10
         updatedPlayer.fg3m_pergame = Math.round(totalFg3m / playedGames * 10) / 10
         updatedPlayer.fta_pergame = Math.round(totalFta / playedGames * 10) / 10
         updatedPlayer.ftm_pergame = Math.round(totalFtm / playedGames * 10) / 10
-
         updatedPlayer.oreb_pergame = Math.round(totalOreb / playedGames * 10) / 10
         updatedPlayer.dreb_pergame = Math.round(totalDreb / playedGames * 10) / 10
-
         //Don't calculate per 36 min stats if minutes per game is too low
         if (updatedPlayer.min_pergame >= 10) {
           updatedPlayer.pts_per36 = Math.round(updatedPlayer.pts_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
@@ -291,14 +286,12 @@ statDBRouter.get('/allplayerstatsforaseasonfromdb/:season', async (request, resp
           updatedPlayer.blk_per36 = Math.round(updatedPlayer.blk_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
           updatedPlayer.turnover_per36 = Math.round(updatedPlayer.turnover_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
           updatedPlayer.pf_per36 = Math.round(updatedPlayer.pf_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
-
           updatedPlayer.fga_per36 = Math.round(updatedPlayer.fga_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
           updatedPlayer.fgm_per36 = Math.round(updatedPlayer.fgm_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
           updatedPlayer.fg3a_per36 = Math.round(updatedPlayer.fg3a_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
           updatedPlayer.fg3m_per36 = Math.round(updatedPlayer.fg3m_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
           updatedPlayer.fta_per36 = Math.round(updatedPlayer.fta_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
           updatedPlayer.ftm_per36 = Math.round(updatedPlayer.ftm_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
-
           updatedPlayer.oreb_per36 = Math.round(updatedPlayer.oreb_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
           updatedPlayer.dreb_per36 = Math.round(updatedPlayer.dreb_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
         }
@@ -309,41 +302,36 @@ statDBRouter.get('/allplayerstatsforaseasonfromdb/:season', async (request, resp
       playerStats = playerStats.map(s => s.name === playerStat.name ? updatedPlayer : s)
     })
 
-    /*   playerStats.forEach(s => console.log(s.name, s.playerId))
-      playerStats = playerStats.filter(s => s.playerId !== null) */
-
-
-    //console.log(playerStats.slice(0, 5))
     console.log('saving data to database...')
     console.log('season:', season)
     console.log('postseason:', postseason)
-    //console.log(playerStats.slice(0, 3))
     let i = 1
     for (let playerStat of playerStats) {
       console.log(i, playerStat.name, playerStat.playerId)
+      //Used for updating summary stats for the ongoing season
       try {
-        let summary = new Summary({ ...playerStat, '_id': uuidv4() })
-        await summary.save()
+        const filter = { playerId: playerStat.playerId, season: 2020 }
+        const options = { upsert: true }
+        const updateDoc = { $set: playerStat }
+        await Summary.updateOne(filter, updateDoc, options)
       } catch (err) {
         console.log('Error.', err)
       }
+
+
+
+
+      //Used for putting new data to database. Shouldn't be needed anymore.
+      /*  try {
+         let summary = new Summary({ ...playerStat, '_id': uuidv4() })
+         await summary.save()
+       } catch (err) {
+         console.log('Error.', err)
+       } */
       i++
     }
   }
-
-
-  /*  try {
-     await Summary.insertMany(playerStats)
-     console.log('Succes. Data saved to database.')
-   } catch (err) {
-     console.log('Error.', err)
-   } */
-
-
   response.send('ok')
-
-
-  //response.json(stats)
 })
 
 /////////////////////////////////////////////////////////////////////////////////////

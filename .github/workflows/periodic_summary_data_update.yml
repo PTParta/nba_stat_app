@@ -7,7 +7,7 @@ on:
     # - cron:  '*/30 * * * *' every thirty minutes
     # - cron:  '0 0 * * *' once a day
     # - cron: '0 * * * *' once an hour
-    - cron:  '0 */6 * * *' # every 6th hour
+    - cron:  '0 12 * * *' # daily at 12:00
 
 jobs:
   check_if_new_data_exists_in_API_and_transfer_it_to_database:
@@ -17,12 +17,12 @@ jobs:
         uses: jtalk/url-health-check-action@v1.5
         with:
           # Check the following URLs one by one sequentially
-          url: http://www.bballchart.com/api/stats/statsfromapitodatabase
+          url: http://www.bballchart.com/api/statsdb/allplayerstatsforaseasonfromdb
           # Follow redirects, or just report success on 3xx status codes
           follow-redirect: no # Optional, defaults to "no"
           # Fail this action after this many failed attempts
           max-attempts: 2 # Optional, defaults to 1
           # Delay between retries
-          retry-delay: 30s # Optional, only applicable to max-attempts > 1
+          retry-delay: 180s # Optional, only applicable to max-attempts > 1
           # Retry all errors, including 404
           retry-all: no # Optional, defaults to "no"

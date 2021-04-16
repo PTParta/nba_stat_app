@@ -4,7 +4,7 @@ import { Container, Row, Col } from 'react-bootstrap'
 import Players from './components/players/Players'
 import Teams from './components/teams/Teams'
 import TopTen from './components/topTen/TopTen'
-import ComparePlayers from './components/ComparePlayers/ComparePlayers'
+//import ComparePlayers from './components/ComparePlayers/ComparePlayers'
 import playerService from './services/players'
 import teamService from './services/teams'
 
@@ -69,10 +69,10 @@ function App() {
               <Col sm={2} xs={3}>
                 <Link to='/top20'>top players</Link>
               </Col>
-              <Col sm={2} xs={3}>
+              {/* <Col sm={2} xs={3}>
                 <Link to='/compareplayers'>compare players</Link>
-              </Col>
-              <Col sm={2} xs={3} align="center">
+              </Col> */}
+              <Col sm={2} xs={3} align="left">
                 <Link to='/teams'>teams</Link>
               </Col>
               <Col sm={2}></Col>
@@ -102,13 +102,13 @@ function App() {
                   setFetchingData={setFetchingData}
                 />
               </Route>
-              <Route path='/compareplayers'>
+              {/* <Route path='/compareplayers'>
                 <ComparePlayers
                   fetchingData={fetchingData}
                   setFetchingData={setFetchingData}
                   players={players}
                 />
-              </Route>
+              </Route> */}
               <Route path='/'>
                 <Redirect to='/players' />
               </Route>

@@ -1,1 +1,1 @@
-GET http://localhost:3001/api/statsdb/allplayerstatsforaseasonfromdb/2018
+GET http://localhost:3001/api/statsdb/allplayerstatsforaseasonfromdb
