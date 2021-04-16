@@ -10,10 +10,10 @@ on:
     - cron:  '0 12 * * *' # daily at 12:00
 
 jobs:
-  check_if_new_data_exists_in_API_and_transfer_it_to_database:
+  calculate_new_summary_data_for_ongoing_season_and_save_to_database:
     runs-on: ubuntu-18.04
     steps:
-      - name: Check the deployed service URL
+      - name: Calculate new summary data for ongoing season and save to database
         uses: jtalk/url-health-check-action@v1.5
         with:
           # Check the following URLs one by one sequentially

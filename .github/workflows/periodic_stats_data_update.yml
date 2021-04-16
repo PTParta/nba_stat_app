@@ -13,7 +13,7 @@ jobs:
   check_if_new_data_exists_in_API_and_transfer_it_to_database:
     runs-on: ubuntu-18.04
     steps:
-      - name: Check the deployed service URL
+      - name: Stats data from api to database
         uses: jtalk/url-health-check-action@v1.5
         with:
           # Check the following URLs one by one sequentially

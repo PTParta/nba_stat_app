@@ -67,7 +67,7 @@ function App() {
               </Col>
 
               <Col sm={2} xs={3}>
-                <Link to='/top20'>top players</Link>
+                <Link to='/topplayers'>top players</Link>
               </Col>
               {/* <Col sm={2} xs={3}>
                 <Link to='/compareplayers'>compare players</Link>
@@ -96,7 +96,7 @@ function App() {
                   teams={teams}
                 />
               </Route>
-              <Route path='/top20'>
+              <Route path='/topplayers'>
                 <TopTen
                   fetchingData={fetchingData}
                   setFetchingData={setFetchingData}

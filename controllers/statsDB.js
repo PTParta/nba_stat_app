@@ -110,9 +110,6 @@ statDBRouter.get('/allplayerstatsforaseasonfromdb', async (request, response) =>
       'game.postseason': postseason,
       'min': { $ne: null }
     })
-    /* let undefinedPlayers = statsFromDB.filter(s => s.player.id === null)
-    console.log(undefinedPlayers) */
-    //console.log(statsFromDB.slice(35, 40))
 
     let endTime = new Date().getTime()
     console.log('finished retrieving data from database')
@@ -123,14 +120,11 @@ statDBRouter.get('/allplayerstatsforaseasonfromdb', async (request, response) =>
     statsFromDB = statsFromDB.filter(stat => stat.player !== undefined)
 
     let playerStats = []
-    //let i = 1
     statsFromDB.forEach(stat => {
       const playerFullName = `${stat.player.first_name} ${stat.player.last_name}`
       if (playerStats.find(stat => stat.name === playerFullName) === undefined) {
         const player = { name: playerFullName, playerId: stat.player.id }
         playerStats.push(player)
-        /* console.log(i, player)
-        i++ */
       }
     })
     console.log(playerStats)
