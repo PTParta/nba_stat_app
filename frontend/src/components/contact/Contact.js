@@ -4,6 +4,7 @@ import Title from '../common/Title'
 import Description from '../common/Description' */
 import DescriptionContact from './DescriptionContact'
 import { Row, Col, Form, Button } from 'react-bootstrap'
+import contactService from '../../services/contact'
 
 const Contact = () => {
 
@@ -13,17 +14,18 @@ const Contact = () => {
 
   const handleMessageChange = (event) => {
     setMessage(event.target.value)
-    console.log(message)
+    //console.log(message)
   }
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value)
-    console.log(email)
+    //console.log(email)
   }
 
   const handleSubmit = (event) => {
     setMessageSent(true)
     event.preventDefault()
+    contactService.sendMessage(email, message)
     console.log('message send')
     console.log(message)
     console.log(email)
