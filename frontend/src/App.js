@@ -4,6 +4,7 @@ import { Container, Row, Col } from 'react-bootstrap'
 import Players from './components/players/Players'
 import Teams from './components/teams/Teams'
 import TopTen from './components/topTen/TopTen'
+import Contact from './components/contact/Contact'
 //import ComparePlayers from './components/ComparePlayers/ComparePlayers'
 import playerService from './services/players'
 import teamService from './services/teams'
@@ -75,6 +76,10 @@ function App() {
               <Col sm={2} xs={3} align="left">
                 <Link to='/teams'>teams</Link>
               </Col>
+
+              <Col sm={2} xs={3} align="left">
+                <Link to='/contactus'>contact us</Link>
+              </Col>
               <Col sm={2}></Col>
             </Row>
             {/* </div> */}
@@ -98,6 +103,12 @@ function App() {
               </Route>
               <Route path='/topplayers'>
                 <TopTen
+                  fetchingData={fetchingData}
+                  setFetchingData={setFetchingData}
+                />
+              </Route>
+              <Route path='/contactus'>
+                <Contact
                   fetchingData={fetchingData}
                   setFetchingData={setFetchingData}
                 />
