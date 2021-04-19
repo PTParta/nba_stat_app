@@ -130,6 +130,9 @@ const BarCharts = (
               options={optionsTotalPoints}
             />
           </Row>
+          <br></br>
+          <br></br>
+          <br></br>
           <Row>
             <br></br>
             <br></br>
@@ -148,6 +151,9 @@ const BarCharts = (
               options={optionsTotalRebounds}
             />
           </Row>
+          <br></br>
+          <br></br>
+          <br></br>
           <Row>
             <br></br>
             <br></br>
@@ -166,10 +172,10 @@ const BarCharts = (
               options={optionsTotalSteals}
             />
           </Row>
+          <br></br>
+          <br></br>
+          <br></br>
           <Row>
-            <br></br>
-            <br></br>
-            <br></br>
             <Bar
               data={dataTotalTurnovers}
               options={optionsTotalTurnovers}
@@ -184,10 +190,10 @@ const BarCharts = (
               options={optionsTotalPersonalFouls}
             />
           </Row>
+          <br></br>
+          <br></br>
+          <br></br>
           <Row>
-            <br></br>
-            <br></br>
-            <br></br>
             <Bar
               data={dataTotalMinutes}
               options={optionsTotalMinutes}
@@ -291,10 +297,11 @@ const BarCharts = (
               options={optionsPer36Points}
             />
           </Row>
+          <br></br>
+          <br></br>
+          <br></br>
           <Row>
-            <br></br>
-            <br></br>
-            <br></br>
+
             <Bar
               data={dataPer36Assists}
               options={optionsPer36Assists}
@@ -309,10 +316,10 @@ const BarCharts = (
               options={optionsPer36Rebounds}
             />
           </Row>
+          <br></br>
+          <br></br>
+          <br></br>
           <Row>
-            <br></br>
-            <br></br>
-            <br></br>
             <Bar
               data={dataPer36Blocks}
               options={optionsPer36Blocks}
@@ -327,10 +334,10 @@ const BarCharts = (
               options={optionsPer36Steals}
             />
           </Row>
+          <br></br>
+          <br></br>
+          <br></br>
           <Row>
-            <br></br>
-            <br></br>
-            <br></br>
             <Bar
               data={dataPer36Turnovers}
               options={optionsPer36Turnovers}

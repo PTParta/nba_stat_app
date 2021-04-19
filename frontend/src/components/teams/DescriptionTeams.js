@@ -5,15 +5,10 @@ const DescriptionTeams = () => {
       <br></br>
       <br></br>
       <p>
-        This page shows top 5 players for each stat in a team
-        in doughnut chart form.
-
-        {/* You can select a team and a season.
-        
-        For stats you can
-        select per game, total or per 36 minutes.
-        
-        You can also select between regular and post season. */}
+        This page shows how stats are distributed among players in a team.
+        Only stats that a player has gotten in the selected team are shown,
+        ie. if a player has been traded mid season his stats from the 
+        previous team are not included. 
       </p>
     </div>
   )
