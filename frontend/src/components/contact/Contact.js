@@ -9,6 +9,7 @@ const Contact = () => {
 
   const [message, setMessage] = useState('')
   const [email, setEmail] = useState('')
+  const [messageSent, setMessageSent] = useState(false)
 
   const handleMessageChange = (event) => {
     setMessage(event.target.value)
@@ -21,6 +22,7 @@ const Contact = () => {
   }
 
   const handleSubmit = (event) => {
+    setMessageSent(true)
     event.preventDefault()
     console.log('message send')
     console.log(message)
@@ -29,49 +31,65 @@ const Contact = () => {
 
   return (
     <div>
-      <Form onSubmit={(event) => handleSubmit(event)}>
-        <Row>
-          <Col sm={4}></Col>
-          <Col sm={4}>
-            <Form.Group controlId="exampleForm.ControlInput1">
-              <Form.Control
-                type="email"
-                placeholder="optional email address"
-                onChange={(event) => handleEmailChange(event)} />
-            </Form.Group>
-          </Col>
-          <Col sm={4}></Col>
-        </Row>
-        <Row>
-          <Col sm={4}></Col>
-          <Col sm={4}>
-            <Form.Group controlId="exampleForm.ControlTextarea1">
-              <Form.Control
-                as="textarea"
-                placeholder='Please write your message here'
-                rows={10}
-                onChange={(event) => handleMessageChange(event)} />
-            </Form.Group>
-          </Col>
-          <Col sm={4}></Col>
-        </Row>
-        <Row>
-          <Col sm={4}></Col>
-          <Col sm={4}>
-            <Button type='submit'>
-              Send
+      {!messageSent
+        ? <>
+          <Form onSubmit={(event) => handleSubmit(event)}>
+            <Row>
+              <Col sm={4}></Col>
+              <Col sm={4}>
+                <Form.Group controlId="exampleForm.ControlInput1">
+                  <Form.Control
+                    type="email"
+                    placeholder="optional email address"
+                    onChange={(event) => handleEmailChange(event)} />
+                </Form.Group>
+              </Col>
+              <Col sm={4}></Col>
+            </Row>
+            <Row>
+              <Col sm={4}></Col>
+              <Col sm={4}>
+                <Form.Group controlId="exampleForm.ControlTextarea1">
+                  <Form.Control
+                    as="textarea"
+                    placeholder='Please write your message here'
+                    rows={3}
+                    onChange={(event) => handleMessageChange(event)} />
+                </Form.Group>
+              </Col>
+              <Col sm={4}></Col>
+            </Row>
+            <Row>
+              <Col sm={4}></Col>
+              <Col sm={4}>
+                <Button type='submit'>
+                  Send
       </Button>
-          </Col>
-          <Col sm={4}></Col>
-        </Row>
-      </Form>
-      <Row >
-        <Col sm={4} xs={1}></Col>
-        <Col sm={4} xs={10}>
-          <DescriptionContact />
-        </Col>
-        <Col sm={4} xs={1}></Col>
-      </Row>
+              </Col>
+              <Col sm={4}></Col>
+            </Row>
+          </Form>
+          <Row >
+            <Col sm={4} xs={1}></Col>
+            <Col sm={4} xs={10}>
+              <DescriptionContact />
+            </Col>
+            <Col sm={4} xs={1}></Col>
+          </Row>
+        </>
+        : <>
+          <br></br>
+          <br></br>
+          <br></br>
+          <Row style={{ textAlign: 'center' }}>
+            <Col sm={4}></Col>
+            <Col sm={4}>
+              <p style={{ color: 'white' }}>Thank you for your message</p>
+            </Col>
+            <Col sm={4}></Col>
+          </Row>
+        </>
+      }
     </div>
   )
 }
