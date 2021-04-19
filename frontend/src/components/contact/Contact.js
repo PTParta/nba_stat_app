@@ -106,7 +106,7 @@ const Contact = () => {
           <Row style={{ textAlign: 'center' }}>
             <Col sm={4}></Col>
             <Col sm={4}>
-              <p style={{ color: 'white' }}>Thank you for your message</p>
+              <p style={{ color: 'white' }}>Thank you for your message.</p>
             </Col>
             <Col sm={4}></Col>
           </Row>
