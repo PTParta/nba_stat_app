@@ -8,11 +8,11 @@ import SelectPerTotal from './SelectPerTotal' */
 import SelectRegularPost from '../common/SelectRegularPost'
 import SelectPerTotal from '../common/SelectPerTotal'
 import DescriptionTeams from './DescriptionTeams'
-import Title from '../Title'
-import Description from '../Description'
+import Title from '../common/Title'
+import Description from '../common/Description'
 //import teamService from '../../services/teams'
 import Loader from 'react-loader-spinner'
-import Logo from '../Logo'
+import Logo from '../common/Logo'
 import ReactGa from 'react-ga'
 require('dotenv').config()
 
