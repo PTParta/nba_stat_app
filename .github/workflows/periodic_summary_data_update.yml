@@ -1,4 +1,4 @@
-name: Periodic data poll from api to database
+name: Calculate new summary data for ongoing season and save to database
 
 on:
   schedule:
@@ -23,6 +23,6 @@ jobs:
           # Fail this action after this many failed attempts
           max-attempts: 2 # Optional, defaults to 1
           # Delay between retries
-          retry-delay: 180s # Optional, only applicable to max-attempts > 1
+          retry-delay: 300s # Optional, only applicable to max-attempts > 1
           # Retry all errors, including 404
           retry-all: no # Optional, defaults to "no"
