@@ -11,6 +11,7 @@ const Contact = () => {
   const [message, setMessage] = useState('')
   const [email, setEmail] = useState('')
   const [messageSent, setMessageSent] = useState(false)
+  const [sentEmptyMessage, setSentEmptyMessage] = useState(false)
 
   const handleMessageChange = (event) => {
     setMessage(event.target.value)
@@ -23,8 +24,12 @@ const Contact = () => {
   }
 
   const handleSubmit = (event) => {
-    setMessageSent(true)
     event.preventDefault()
+    if (message === '') {
+      setSentEmptyMessage(true)
+      return
+    }
+    setMessageSent(true)
     contactService.sendMessage(email, message)
     console.log('message send')
     console.log(message)
@@ -61,12 +66,27 @@ const Contact = () => {
               </Col>
               <Col sm={4}></Col>
             </Row>
+            {sentEmptyMessage
+              ? <>
+                <Row>
+                  <Col sm={4}></Col>
+                  <Col sm={4}>
+                    <div style={{ color: 'white' }}>
+                      <p>Before sending, please write your message.</p>
+                    </div>
+
+                  </Col>
+                  <Col sm={4}></Col>
+                </Row>
+              </>
+              : <></>}
+
             <Row>
               <Col sm={4}></Col>
               <Col sm={4}>
                 <Button type='submit'>
                   Send
-      </Button>
+                </Button>
               </Col>
               <Col sm={4}></Col>
             </Row>
