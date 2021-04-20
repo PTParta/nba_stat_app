@@ -7,7 +7,7 @@ on:
     # - cron:  '*/30 * * * *' every thirty minutes
     # - cron:  '0 0 * * *' once a day
     # - cron: '0 * * * *' once an hour
-    - cron:  '0 12 * * *' # daily at 12:00
+    #- cron:  '0 12 * * *' # daily at 12:00
 
 jobs:
   calculate_new_summary_data_for_ongoing_season_and_save_to_database:
