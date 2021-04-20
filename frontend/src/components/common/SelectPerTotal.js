@@ -7,9 +7,9 @@ const SelectPerTotal = ({ setPerGameSelected, setTotalSelected, setPer36Selected
   const [radioValue, setRadioValue] = useState('1');
 
   const radios = [
-    { name: 'per game', value: '1' },
+    { name: 'pg', value: '1' },
+    { name: 'p36m', value: '3' },
     { name: 'total', value: '2' },
-    { name: 'per 36 min', value: '3' },
     { name: '%', value: '4' }
 
   ];

@@ -33,6 +33,44 @@ const TopTen = ({ fetchingData, setFetchingData }) => {
 
   return (
     <>
+      {selectedSeason !== ''
+        ? <>
+          <Row>
+            <Col sm={2} xs={1}></Col>
+            <Col sm={8} xs={10} style={{ textAlign: 'center' }}>
+              <SelectPerTotal
+                setPerGameSelected={setPerGameSelected}
+                setTotalSelected={setTotalSelected}
+                setPer36Selected={setPer36Selected}
+                setPctSelected={setPctSelected}
+              />
+            </Col>
+            <Col sm={2} xs={1}></Col>
+          </Row>
+          <Row>
+            <Col sm={2} xs={1}></Col>
+            <Col sm={8} xs={10} style={{ textAlign: 'center' }}>
+              <SelectPlayerAmount
+                setPlayerAmount={setPlayerAmount}
+              />
+            </Col>
+            <Col sm={2} xs={1}></Col>
+          </Row>
+          <Row>
+            <Col sm={2} xs={1}></Col>
+            <Col sm={8} xs={10} style={{ textAlign: 'center' }}>
+              <SelectRegularPost
+                regularSeasonSelected={regularSeasonSelected}
+                postSeasonSelected={postSeasonSelected}
+                setRegularSeasonSelected={setRegularSeasonSelected}
+                setPostSeasonSelected={setPostSeasonSelected}
+              />
+            </Col>
+            <Col sm={2} xs={1}></Col>
+          </Row>
+          <br></br>
+        </>
+        : <></>}
       <Row>
         <Col sm={4} style={{ textAlign: 'center' }}>
         </Col>
@@ -44,7 +82,7 @@ const TopTen = ({ fetchingData, setFetchingData }) => {
             setTopTenStats={setTopTenStats}
           />
         </Col>
-        <Col sm={4}>
+        {/* <Col sm={4}>
           {selectedSeason !== ''
             ? <SelectPerTotal
               setPerGameSelected={setPerGameSelected}
@@ -53,29 +91,10 @@ const TopTen = ({ fetchingData, setFetchingData }) => {
               setPctSelected={setPctSelected}
             />
             : <></>}
-        </Col>
+        </Col> */}
       </Row>
-      {selectedSeason !== ''
-        ? <Row>
-          <Col sm={4} style={{ textAlign: 'center' }}>
-          </Col>
-          <Col sm={4}>
-            <SelectRegularPost
-              regularSeasonSelected={regularSeasonSelected}
-              postSeasonSelected={postSeasonSelected}
-              setRegularSeasonSelected={setRegularSeasonSelected}
-              setPostSeasonSelected={setPostSeasonSelected}
-            />
-          </Col>
-          <Col sm={4}>
-            <SelectPlayerAmount 
-            setPlayerAmount={setPlayerAmount}
-            />
-          </Col>
-
-
-        </Row>
-        : <>
+      {selectedSeason === ''
+        ? <>
           <br></br>
           <br></br>
           <Row style={{ textAlign: 'center' }}>
@@ -108,6 +127,8 @@ const TopTen = ({ fetchingData, setFetchingData }) => {
             </Col>
             <Col sm={4} xs={1}></Col>
           </Row>
+        </>
+        : <>
         </>}
       {fetchingData ? <>
         <Row style={{ textAlign: 'center' }}>
