@@ -649,14 +649,14 @@ const backgroundColor =
 const fgPct = (stats, playerAmount) => {
   const dataFgPct = {
     labels: stats
-      .filter(stat => stat.fgm_total >= 150)
+      .filter(stat => stat.fga_total >= 50)
       .sort((a, b) => b.fg_pct - a.fg_pct)
       .slice(0, playerAmount)
       .map(stat => stat.name),
     datasets: [{
       label: 'Fg %',
       data: stats
-        .filter(stat => stat.fgm_total >= 150)
+        .filter(stat => stat.fga_total >= 50)
         .sort((a, b) => b.fg_pct - a.fg_pct)
         .slice(0, playerAmount)
         .map(stat => stat.fg_pct),
@@ -670,14 +670,14 @@ const fgPct = (stats, playerAmount) => {
 const fg3Pct = (stats, playerAmount) => {
   const dataFg3Pct = {
     labels: stats
-      .filter(stat => stat.fg3m_pergame >= 1 && stat.fg3a_total >= 50)
+      .filter(stat => stat.fg3a_total >= 50)
       .sort((a, b) => b.fg3_pct - a.fg3_pct)
       .slice(0, playerAmount)
       .map(stat => stat.name),
     datasets: [{
       label: 'Fg3 %',
       data: stats
-        .filter(stat => stat.fg3m_pergame >= 1 && stat.fg3a_total >= 50)
+        .filter(stat => stat.fg3a_total >= 50)
         .sort((a, b) => b.fg3_pct - a.fg3_pct)
         .slice(0, playerAmount)
         .map(stat => stat.fg3_pct),
@@ -691,14 +691,14 @@ const fg3Pct = (stats, playerAmount) => {
 const ftPct = (stats, playerAmount) => {
   const dataFtPct = {
     labels: stats
-      .filter(stat => stat.ftm_total >= 125)
+      .filter(stat => stat.fta_total >= 50)
       .sort((a, b) => b.ft_pct - a.ft_pct)
       .slice(0, playerAmount)
       .map(stat => stat.name),
     datasets: [{
       label: 'Ft %',
       data: stats
-        .filter(stat => stat.ftm_total >= 125)
+        .filter(stat => stat.fta_total >= 50)
         .sort((a, b) => b.ft_pct - a.ft_pct)
         .slice(0, playerAmount)
         .map(stat => stat.ft_pct),

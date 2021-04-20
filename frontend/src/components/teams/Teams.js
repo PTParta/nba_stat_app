@@ -38,7 +38,7 @@ const Teams = ({ fetchingData, setFetchingData, teams }) => {
 
   return (
     <div>
-      {selectedTeam !== ''
+      {selectedSeason !== ''
         ? <>
           <Row>
             <Col sm={2} xs={1}></Col>
@@ -81,7 +81,8 @@ const Teams = ({ fetchingData, setFetchingData, teams }) => {
         </Col>
       </Row>
       {selectedTeam === ''
-        ? <>
+        ?
+        <>
           <br></br>
           <br></br>
           <Row style={{ textAlign: 'center' }}>
@@ -116,7 +117,20 @@ const Teams = ({ fetchingData, setFetchingData, teams }) => {
           </Row>
         </>
         : <>
-
+          <Row>
+            <Col sm={4} style={{ textAlign: 'center' }}>
+            </Col>
+            <Col sm={4}>
+              <SelectSeason
+                selectedSeason={selectedSeason}
+                setSelectedSeason={setSelectedSeason}
+                selectedTeam={selectedTeam}
+                setTeamStats={setTeamStats}
+                teams={teams}
+                setFetchingData={setFetchingData}
+              />
+            </Col>
+          </Row>
         </>}
       {fetchingData ? <>
         <Row style={{ textAlign: 'center' }}>
