@@ -1,12 +1,20 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 /* import Logo from '../common/Logo'
 import Title from '../common/Title'
 import Description from '../common/Description' */
 import DescriptionContact from './DescriptionContact'
 import { Row, Col, Form, Button } from 'react-bootstrap'
 import contactService from '../../services/contact'
+import ReactGa from 'react-ga'
+require('dotenv').config()
 
 const Contact = () => {
+
+  useEffect(() => {
+
+    ReactGa.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS_TRACKING_CODE)
+    ReactGa.pageview(window.location.pathname + window.location.search)
+  }, [])
 
   const [message, setMessage] = useState('')
   const [email, setEmail] = useState('')
