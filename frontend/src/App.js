@@ -36,7 +36,7 @@ function App() {
       })
     teamService.getTeamsFromDatabase()
       .then((response) => {
-        setTeams(response)
+        setTeams(response.sort((a, b) => (a.city > b.city) ? 1 : ((b.city > a.city) ? -1 : 0)))
       })
   }, [])
 
