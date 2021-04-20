@@ -38,7 +38,7 @@ const Teams = ({ fetchingData, setFetchingData, teams }) => {
 
   return (
     <div>
-      {selectedSeason !== ''
+      {selectedTeam !== ''
         ? <>
           <Row>
             <Col sm={2} xs={1}></Col>

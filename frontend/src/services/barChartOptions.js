@@ -35,7 +35,7 @@ const fgPct = {
   plugins: plugins,
   title: {
     display: true,
-    text: 'Fg %',
+    text: 'Fg %, min 50 fgm',
     fontSize: 16,
     fontColor: 'white'
   },
@@ -46,7 +46,7 @@ const fg3Pct = {
   plugins: plugins,
   title: {
     display: true,
-    text: 'Fg3 %',
+    text: 'Fg3 %, min 50 fg3m',
     fontSize: 16,
     fontColor: 'white'
   },
@@ -57,7 +57,7 @@ const ftPct = {
   plugins: plugins,
   title: {
     display: true,
-    text: 'Ft %',
+    text: 'Ft %, min 50 ftm',
     fontSize: 16,
     fontColor: 'white'
   },
@@ -70,7 +70,7 @@ const astToTurnover = {
   plugins: plugins,
   title: {
     display: true,
-    text: 'Assists to turnovers',
+    text: 'Assists to turnovers, min 50 assists',
     fontSize: 16,
     fontColor: 'white'
   },
@@ -398,7 +398,7 @@ const per36Points = {
   plugins: plugins,
   title: {
     display: true,
-    text: 'Points per 36 min',
+    text: 'Points per 36 minutes, min 10 minutes per game',
     fontSize: 16,
     fontColor: 'white'
   },
@@ -409,7 +409,7 @@ const per36Assists = {
   plugins: plugins,
   title: {
     display: true,
-    text: 'Assists per 36 min',
+    text: 'Assists per 36 minutes, min 10 minutes per game',
     fontSize: 16,
     fontColor: 'white'
   },
@@ -420,7 +420,7 @@ const per36Rebounds = {
   plugins: plugins,
   title: {
     display: true,
-    text: 'Rebounds per 36 min',
+    text: 'Rebounds per 36 minutes, min 10 minutes per game',
     fontSize: 16,
     fontColor: 'white'
   },
@@ -431,7 +431,7 @@ const per36Blocks = {
   plugins: plugins,
   title: {
     display: true,
-    text: 'Blocks per 36 min',
+    text: 'Blocks per 36 minutes, min 10 minutes per game',
     fontSize: 16,
     fontColor: 'white'
   },
@@ -442,7 +442,7 @@ const per36Steals = {
   plugins: plugins,
   title: {
     display: true,
-    text: 'Steals per 36 min',
+    text: 'Steals per 36 minutes, min 10 minutes per game',
     fontSize: 16,
     fontColor: 'white'
   },
@@ -453,7 +453,7 @@ const per36Turnovers = {
   plugins: plugins,
   title: {
     display: true,
-    text: 'Turnovers per 36 min',
+    text: 'Turnovers per 36 minutes, min 10 minutes per game',
     fontSize: 16,
     fontColor: 'white'
   },
@@ -464,7 +464,7 @@ const per36PF = {
   plugins: plugins,
   title: {
     display: true,
-    text: 'Fouls per 36 min',
+    text: 'Fouls per 36 minutes, min 10 minutes per game',
     fontSize: 16,
     fontColor: 'white'
   },
@@ -475,7 +475,7 @@ const per36Fga = {
   plugins: plugins,
   title: {
     display: true,
-    text: 'Fga per 36 min',
+    text: 'Fga per 36 minutes, min 10 minutes per game',
     fontSize: 16,
     fontColor: 'white'
   },
@@ -486,7 +486,7 @@ const per36Fgm = {
   plugins: plugins,
   title: {
     display: true,
-    text: 'Fgm per 36 min',
+    text: 'Fgm per 36 minutes, min 10 minutes per game',
     fontSize: 16,
     fontColor: 'white'
   },
@@ -497,7 +497,7 @@ const per36Fg3a = {
   plugins: plugins,
   title: {
     display: true,
-    text: 'Fg3a per 36 min',
+    text: 'Fg3a per 36 minutes, min 10 minutes per game',
     fontSize: 16,
     fontColor: 'white'
   },
@@ -508,7 +508,7 @@ const per36Fg3m = {
   plugins: plugins,
   title: {
     display: true,
-    text: 'Fg3m per 36 min',
+    text: 'Fg3m per 36 minutes, min 10 minutes per game',
     fontSize: 16,
     fontColor: 'white'
   },
@@ -519,7 +519,7 @@ const per36Fta = {
   plugins: plugins,
   title: {
     display: true,
-    text: 'Fta per 36 min',
+    text: 'Fta per 36 minutes, min 10 minutes per game',
     fontSize: 16,
     fontColor: 'white'
   },
@@ -530,7 +530,7 @@ const per36Ftm = {
   plugins: plugins,
   title: {
     display: true,
-    text: 'Ftm per 36 min',
+    text: 'Ftm per 36 minutes, min 10 minutes per game',
     fontSize: 16,
     fontColor: 'white'
   },

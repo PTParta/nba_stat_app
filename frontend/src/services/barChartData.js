@@ -713,14 +713,14 @@ const ftPct = (stats, playerAmount) => {
 const astToTurnover = (stats, playerAmount) => {
   const dataAstToTurnover = {
     labels: stats
-      .filter(stat => stat.ast_total >= 200 || stat.ast_pergame >= 3)
+      .filter(stat => stat.ast_total >= 50)
       .sort((a, b) => b.ast_to_turnover - a.ast_to_turnover)
       .slice(0, playerAmount)
       .map(stat => stat.name),
     datasets: [{
       label: 'Ast/Turnover ratio',
       data: stats
-        .filter(stat => stat.ast_total >= 200 || stat.ast_pergame >= 3)
+        .filter(stat => stat.ast_total >= 50)
         .sort((a, b) => b.ast_to_turnover - a.ast_to_turnover)
         .slice(0, playerAmount)
         .map(stat => stat.ast_to_turnover),
