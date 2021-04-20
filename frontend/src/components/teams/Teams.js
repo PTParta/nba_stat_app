@@ -38,6 +38,35 @@ const Teams = ({ fetchingData, setFetchingData, teams }) => {
 
   return (
     <div>
+      {selectedTeam !== ''
+        ? <>
+          <Row>
+            <Col sm={2} xs={1}></Col>
+            <Col sm={8} xs={10} style={{ textAlign: 'center' }}>
+              <SelectPerTotal
+                setPerGameSelected={setPerGameSelected}
+                setTotalSelected={setTotalSelected}
+                setPer36Selected={setPer36Selected}
+                setPctSelected={setPctSelected}
+              />
+            </Col>
+            <Col sm={2} xs={1}></Col>
+          </Row>
+          <Row>
+            <Col sm={2} xs={1}></Col>
+            <Col sm={8} xs={10} style={{ textAlign: 'center' }}>
+              <SelectRegularPost
+                regularSeasonSelected={regularSeasonSelected}
+                postSeasonSelected={postSeasonSelected}
+                setRegularSeasonSelected={setRegularSeasonSelected}
+                setPostSeasonSelected={setPostSeasonSelected}
+              />
+            </Col>
+            <Col sm={2} xs={1}></Col>
+          </Row>
+          <br></br>
+        </>
+        : <></>}
       <Row>
         <Col sm={4} style={{ textAlign: 'center' }}>
         </Col>
@@ -50,41 +79,9 @@ const Teams = ({ fetchingData, setFetchingData, teams }) => {
             selectedSeason={selectedSeason}
           />
         </Col>
-        <Col sm={4}>
-          {selectedTeam !== ''
-            ? <SelectPerTotal
-              setPerGameSelected={setPerGameSelected}
-              setTotalSelected={setTotalSelected}
-              setPer36Selected={setPer36Selected}
-              setPctSelected={setPctSelected}
-            />
-            : <></>}
-        </Col>
       </Row>
-      {selectedTeam !== ''
-        ? <Row>
-          <Col sm={4} style={{ textAlign: 'center' }}>
-          </Col>
-          <Col sm={4}>
-            <SelectSeason
-              selectedSeason={selectedSeason}
-              setSelectedSeason={setSelectedSeason}
-              selectedTeam={selectedTeam}
-              setTeamStats={setTeamStats}
-              teams={teams}
-              setFetchingData={setFetchingData}
-            />
-          </Col>
-          <Col sm={4}>
-            <SelectRegularPost
-              regularSeasonSelected={regularSeasonSelected}
-              postSeasonSelected={postSeasonSelected}
-              setRegularSeasonSelected={setRegularSeasonSelected}
-              setPostSeasonSelected={setPostSeasonSelected}
-            />
-          </Col>
-        </Row>
-        : <>
+      {selectedTeam === ''
+        ? <>
           <br></br>
           <br></br>
           <Row style={{ textAlign: 'center' }}>
@@ -117,6 +114,9 @@ const Teams = ({ fetchingData, setFetchingData, teams }) => {
             </Col>
             <Col sm={4} xs={1}></Col>
           </Row>
+        </>
+        : <>
+
         </>}
       {fetchingData ? <>
         <Row style={{ textAlign: 'center' }}>
