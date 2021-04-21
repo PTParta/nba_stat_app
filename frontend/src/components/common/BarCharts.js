@@ -21,7 +21,7 @@ const BarCharts = (
   if (!postSeasonFilteringDone) {
     statsFilteredByPostseason = stats.filter(stat => stat.postseason === postSeasonSelected)
   } else {
-    statsFilteredByPostseason = stats
+    statsFilteredByPostseason = stats.filter(stat => stat.played_games > 0)
   }
 
   //filter out bad data where player is not defined
