@@ -44,6 +44,12 @@ const BarCharts = (
   const dataTotalTurnovers = barChartDataService.totalTurnovers(statsFilteredByPostseason, playerAmount)
   const dataTotalPersonalFouls = barChartDataService.totalPF(statsFilteredByPostseason, playerAmount)
   const dataTotalMinutes = barChartDataService.totalMinutes(statsFilteredByPostseason, playerAmount)
+  const dataTotalFga = barChartDataService.totalFga(statsFilteredByPostseason, playerAmount)
+  const dataTotalFgm = barChartDataService.totalFgm(statsFilteredByPostseason, playerAmount)
+  const dataTotalFg3a = barChartDataService.totalFg3a(statsFilteredByPostseason, playerAmount)
+  const dataTotalFg3m = barChartDataService.totalFg3m(statsFilteredByPostseason, playerAmount)
+  const dataTotalFta = barChartDataService.totalFta(statsFilteredByPostseason, playerAmount)
+  const dataTotalFtm = barChartDataService.totalFtm(statsFilteredByPostseason, playerAmount)
   const optionsTotalPoints = barChartOptionsService.totalPoints
   const optionsTotalAssists = barChartOptionsService.totalAssists
   const optionsTotalRebounds = barChartOptionsService.totalRebounds
@@ -52,6 +58,12 @@ const BarCharts = (
   const optionsTotalTurnovers = barChartOptionsService.totalTurnovers
   const optionsTotalPersonalFouls = barChartOptionsService.totalPF
   const optionsTotalMinutes = barChartOptionsService.totalMinutes
+  const optionsTotalFga = barChartOptionsService.totalFga
+  const optionsTotalFgm = barChartOptionsService.totalFgm
+  const optionsTotalFg3a = barChartOptionsService.totalFg3a
+  const optionsTotalFg3m = barChartOptionsService.totalFg3m
+  const optionsTotalFta = barChartOptionsService.totalFta
+  const optionsTotalFtm = barChartOptionsService.totalFtm
 
   //Per game
   const dataPerGamePoints = barChartDataService.perGamePoints(statsFilteredByPostseason, playerAmount)
@@ -63,6 +75,12 @@ const BarCharts = (
   const dataAstToTurnover = barChartDataService.astToTurnover(statsFilteredByPostseason, playerAmount)
   const dataPerGamePersonalFouls = barChartDataService.perGamePF(statsFilteredByPostseason, playerAmount)
   const dataPerGameMinutes = barChartDataService.perGameMinutes(statsFilteredByPostseason, playerAmount)
+  const dataPerGameFga = barChartDataService.perGameFga(statsFilteredByPostseason, playerAmount)
+  const dataPerGameFgm = barChartDataService.perGameFgm(statsFilteredByPostseason, playerAmount)
+  const dataPerGameFg3a = barChartDataService.perGameFg3a(statsFilteredByPostseason, playerAmount)
+  const dataPerGameFg3m = barChartDataService.perGameFg3m(statsFilteredByPostseason, playerAmount)
+  const dataPerGameFta = barChartDataService.perGameFta(statsFilteredByPostseason, playerAmount)
+  const dataPerGameFtm = barChartDataService.perGameFtm(statsFilteredByPostseason, playerAmount)
   const optionsPerGamePoints = barChartOptionsService.perGamePoints
   const optionsPerGameAssists = barChartOptionsService.perGameAssists
   const optionsPerGameRebounds = barChartOptionsService.perGameRebounds
@@ -72,6 +90,13 @@ const BarCharts = (
   const optionsAstToTurnover = barChartOptionsService.astToTurnover
   const optionsPerGamePersonalFouls = barChartOptionsService.perGamePF
   const optionsPerGameMinutes = barChartOptionsService.perGameMinutes
+  const optionsPerGameFga = barChartOptionsService.perGameFga
+  const optionsPerGameFgm = barChartOptionsService.perGameFgm
+  const optionsPerGameFg3a = barChartOptionsService.perGameFg3a
+  const optionsPerGameFg3m = barChartOptionsService.perGameFg3m
+  const optionsPerGameFta = barChartOptionsService.perGameFta
+  const optionsPerGameFtm = barChartOptionsService.perGameFtm
+
 
   //Per 36 minutes
   const dataPer36Points = barChartDataService.per36Points(statsFilteredByPostseason, playerAmount)
@@ -81,6 +106,12 @@ const BarCharts = (
   const dataPer36Steals = barChartDataService.per36Steals(statsFilteredByPostseason, playerAmount)
   const dataPer36Turnovers = barChartDataService.per36Turnovers(statsFilteredByPostseason, playerAmount)
   const dataPer36PersonalFouls = barChartDataService.per36PF(statsFilteredByPostseason, playerAmount)
+  const dataPer36Fga = barChartDataService.per36Fga(statsFilteredByPostseason, playerAmount)
+  const dataPer36Fgm = barChartDataService.per36Fgm(statsFilteredByPostseason, playerAmount)
+  const dataPer36Fg3a = barChartDataService.per36Fg3a(statsFilteredByPostseason, playerAmount)
+  const dataPer36Fg3m = barChartDataService.per36Fg3m(statsFilteredByPostseason, playerAmount)
+  const dataPer36Fta = barChartDataService.per36Fta(statsFilteredByPostseason, playerAmount)
+  const dataPer36Ftm = barChartDataService.per36Ftm(statsFilteredByPostseason, playerAmount)
   const optionsPer36Points = barChartOptionsService.per36Points
   const optionsPer36Assists = barChartOptionsService.per36Assists
   const optionsPer36Rebounds = barChartOptionsService.per36Rebounds
@@ -88,6 +119,12 @@ const BarCharts = (
   const optionsPer36Steals = barChartOptionsService.per36Steals
   const optionsPer36Turnovers = barChartOptionsService.per36Turnovers
   const optionsPer36PersonalFouls = barChartOptionsService.per36PF
+  const optionsPer36Fga = barChartOptionsService.per36Fga
+  const optionsPer36Fgm = barChartOptionsService.per36Fgm
+  const optionsPer36Fg3a = barChartOptionsService.per36Fg3a
+  const optionsPer36Fg3m = barChartOptionsService.per36Fg3m
+  const optionsPer36Fta = barChartOptionsService.per36Fta
+  const optionsPer36Ftm = barChartOptionsService.per36Ftm
 
   return (
     <div className='chart'>
@@ -199,6 +236,61 @@ const BarCharts = (
               options={optionsTotalMinutes}
             />
           </Row>
+
+          <br></br>
+          <br></br>
+          <br></br>
+          <Row>
+            <Bar
+              data={dataTotalFga}
+              options={optionsTotalFga}
+            />
+          </Row>
+          <br></br>
+          <br></br>
+          <br></br>
+          <Row>
+            <Bar
+              data={dataTotalFgm}
+              options={optionsTotalFgm}
+            />
+          </Row>
+          <br></br>
+          <br></br>
+          <br></br>
+          <Row>
+            <Bar
+              data={dataTotalFg3a}
+              options={optionsTotalFg3a}
+            />
+          </Row>
+          <br></br>
+          <br></br>
+          <br></br>
+          <Row>
+            <Bar
+              data={dataTotalFg3m}
+              options={optionsTotalFg3m}
+            />
+          </Row>
+          <br></br>
+          <br></br>
+          <br></br>
+          <Row>
+            <Bar
+              data={dataTotalFta}
+              options={optionsTotalFta}
+            />
+          </Row>
+          <br></br>
+          <br></br>
+          <br></br>
+          <Row>
+            <Bar
+              data={dataTotalFtm}
+              options={optionsTotalFtm}
+            />
+          </Row>
         </>
         : <></>}
 
@@ -285,6 +377,60 @@ const BarCharts = (
               options={optionsPerGameMinutes}
             />
           </Row>
+          <br></br>
+          <br></br>
+          <br></br>
+          <Row>
+            <Bar
+              data={dataPerGameFga}
+              options={optionsPerGameFga}
+            />
+          </Row>
+          <br></br>
+          <br></br>
+          <br></br>
+          <Row>
+            <Bar
+              data={dataPerGameFgm}
+              options={optionsPerGameFgm}
+            />
+          </Row>
+          <br></br>
+          <br></br>
+          <br></br>
+          <Row>
+            <Bar
+              data={dataPerGameFg3a}
+              options={optionsPerGameFg3a}
+            />
+          </Row>
+          <br></br>
+          <br></br>
+          <br></br>
+          <Row>
+            <Bar
+              data={dataPerGameFg3m}
+              options={optionsPerGameFg3m}
+            />
+          </Row>
+          <br></br>
+          <br></br>
+          <br></br>
+          <Row>
+            <Bar
+              data={dataPerGameFta}
+              options={optionsPerGameFta}
+            />
+          </Row>
+          <br></br>
+          <br></br>
+          <br></br>
+          <Row>
+            <Bar
+              data={dataPerGameFtm}
+              options={optionsPerGameFtm}
+            />
+          </Row>
         </>
         : <></>}
 
@@ -350,6 +496,60 @@ const BarCharts = (
             <Bar
               data={dataPer36PersonalFouls}
               options={optionsPer36PersonalFouls}
+            />
+          </Row>
+          <br></br>
+          <br></br>
+          <br></br>
+          <Row>
+            <Bar
+              data={dataPer36Fga}
+              options={optionsPer36Fga}
+            />
+          </Row>
+          <br></br>
+          <br></br>
+          <br></br>
+          <Row>
+            <Bar
+              data={dataPer36Fgm}
+              options={optionsPer36Fgm}
+            />
+          </Row>
+          <br></br>
+          <br></br>
+          <br></br>
+          <Row>
+            <Bar
+              data={dataPer36Fg3a}
+              options={optionsPer36Fg3a}
+            />
+          </Row>
+          <br></br>
+          <br></br>
+          <br></br>
+          <Row>
+            <Bar
+              data={dataPer36Fg3m}
+              options={optionsPer36Fg3m}
+            />
+          </Row>
+          <br></br>
+          <br></br>
+          <br></br>
+          <Row>
+            <Bar
+              data={dataPer36Fta}
+              options={optionsPer36Fta}
+            />
+          </Row>
+          <br></br>
+          <br></br>
+          <br></br>
+          <Row>
+            <Bar
+              data={dataPer36Ftm}
+              options={optionsPer36Ftm}
             />
           </Row>
         </>
