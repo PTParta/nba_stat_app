@@ -9,7 +9,7 @@ const countTrailingMean = (playerStats, statCategory, trailingGames) => {
     for (let j = 1; j <= trailingGames; j++) {
       statsInTrailingGames += playerStats[i - trailingGames + j][statCategory];
     }
-    const mean = statsInTrailingGames / trailingGames
+    const mean = Math.floor(statsInTrailingGames / trailingGames * 10) / 10
     trailingAverage.push(mean)
   }
   return trailingAverage
@@ -36,7 +36,7 @@ const countTrailingMeanPct = (playerStats, statCategory, attemptsInStatCategory,
         totalMadeBaskets += playerStats[i - trailingGames + j][statCategory]
         totalAttemptedBaskets += playerStats[i - trailingGames + j][attemptsInStatCategory]
       }
-      const trailingPercentage = totalMadeBaskets / totalAttemptedBaskets * 100
+      const trailingPercentage = Math.floor(totalMadeBaskets / totalAttemptedBaskets * 100 * 10) / 10
       percentages.push(trailingPercentage)
     }
 
