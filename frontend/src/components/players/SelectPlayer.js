@@ -19,7 +19,7 @@ const SelectPlayer = ({ players, setSelectedPlayer, setPlayerStats, setFetchingD
     playerStatService.getPlayerStatsFromDB(searchedPlayer.apiId, playerFullName)
       .then((response) => {
         //history.push(`/players/${playerFullName}`)
-        setPlayerStats(response.data.sort((a, b) =>
+        setPlayerStats(response.data.filter(stat => stat.min !== '0' && stat.min !== '').sort((a, b) =>
           new Date(a.game.date).getTime() - new Date(b.game.date).getTime())
         )
         setFetchingData(false)

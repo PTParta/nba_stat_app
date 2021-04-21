@@ -15,6 +15,7 @@ statDBRouter.get('/statsfromdb/:playerid', async (request, response) => {
   const stats = await Stat.find({
     'player.id': request.params.playerid,
     'min': { $ne: null }
+    /* 'min': { $ne: [null, '0'] } */ //This query is too slow and does not work
   })
 
   let endTime = new Date().getTime()
