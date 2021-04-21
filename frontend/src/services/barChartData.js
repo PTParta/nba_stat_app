@@ -709,6 +709,10 @@ const ftPct = (stats, playerAmount) => {
   return dataFtPct
 }
 
+
+
+
+
 // Ast/turnover //////////////////////////////////////////////////////////
 const astToTurnover = (stats, playerAmount) => {
   const dataAstToTurnover = {
@@ -884,8 +888,119 @@ const totalMinutes = (stats, playerAmount) => {
   return dataTotalMinutes
 }
 
+const totalFga = (stats, playerAmount) => {
+  const dataTotalFga = {
+    labels: stats
+      .sort((a, b) => b.fga_total - a.fga_total)
+      .slice(0, playerAmount)
+      .map(stat => stat.name),
+    datasets: [{
+      label: 'Total fga',
+      data: stats
+        .sort((a, b) => b.fga_total - a.fga_total)
+        .slice(0, playerAmount)
+        .map(stat => stat.fga_total),
+      backgroundColor: backgroundColor,
+      hoverOffset: 4
+    }]
+  }
+  return dataTotalFga
+}
 
+const totalFgm = (stats, playerAmount) => {
+  const dataTotalFgm = {
+    labels: stats
+      .sort((a, b) => b.fgm_total - a.fgm_total)
+      .slice(0, playerAmount)
+      .map(stat => stat.name),
+    datasets: [{
+      label: 'Total fgm',
+      data: stats
+        .sort((a, b) => b.fgm_total - a.fgm_total)
+        .slice(0, playerAmount)
+        .map(stat => stat.fgm_total),
+      backgroundColor: backgroundColor,
+      hoverOffset: 4
+    }]
+  }
+  return dataTotalFgm
+}
 
+const totalFg3a = (stats, playerAmount) => {
+  const dataTotalFg3a = {
+    labels: stats
+      .sort((a, b) => b.fg3a_total - a.fg3a_total)
+      .slice(0, playerAmount)
+      .map(stat => stat.name),
+    datasets: [{
+      label: 'Total fg3a',
+      data: stats
+        .sort((a, b) => b.fg3a_total - a.fg3a_total)
+        .slice(0, playerAmount)
+        .map(stat => stat.fg3a_total),
+      backgroundColor: backgroundColor,
+      hoverOffset: 4
+    }]
+  }
+  return dataTotalFg3a
+}
+
+const totalFg3m = (stats, playerAmount) => {
+  const dataTotalFg3m = {
+    labels: stats
+      .sort((a, b) => b.fg3m_total - a.fg3m_total)
+      .slice(0, playerAmount)
+      .map(stat => stat.name),
+    datasets: [{
+      label: 'Total fg3m',
+      data: stats
+        .sort((a, b) => b.fg3m_total - a.fg3m_total)
+        .slice(0, playerAmount)
+        .map(stat => stat.fg3m_total),
+      backgroundColor: backgroundColor,
+      hoverOffset: 4
+    }]
+  }
+  return dataTotalFg3m
+}
+
+const totalFta = (stats, playerAmount) => {
+  const dataTotalFta = {
+    labels: stats
+      .sort((a, b) => b.fta_total - a.fta_total)
+      .slice(0, playerAmount)
+      .map(stat => stat.name),
+    datasets: [{
+      label: 'Total fta',
+      data: stats
+        .sort((a, b) => b.fta_total - a.fta_total)
+        .slice(0, playerAmount)
+        .map(stat => stat.fta_total),
+      backgroundColor: backgroundColor,
+      hoverOffset: 4
+    }]
+  }
+  return dataTotalFta
+}
+
+const totalFtm = (stats, playerAmount) => {
+  const dataTotalFtm = {
+    labels: stats
+      .sort((a, b) => b.ftm_total - a.ftm_total)
+      .slice(0, playerAmount)
+      .map(stat => stat.name),
+    datasets: [{
+      label: 'Total ftm',
+      data: stats
+        .sort((a, b) => b.ftm_total - a.ftm_total)
+        .slice(0, playerAmount)
+        .map(stat => stat.ftm_total),
+      backgroundColor: backgroundColor,
+      hoverOffset: 4
+    }]
+  }
+  return dataTotalFtm
+}
 
 // Per game //////////////////////////////////////////////////////////
 const perGamePoints = (stats, playerAmount) => {
@@ -1040,6 +1155,120 @@ const perGameMinutes = (stats, playerAmount) => {
   return dataPerGameMinutes
 }
 
+const perGameFga = (stats, playerAmount) => {
+  const dataTotalFga = {
+    labels: stats
+      .sort((a, b) => b.fga_pergame - a.fga_pergame)
+      .slice(0, playerAmount)
+      .map(stat => stat.name),
+    datasets: [{
+      label: 'Fga per game',
+      data: stats
+        .sort((a, b) => b.fga_pergame - a.fga_pergame)
+        .slice(0, playerAmount)
+        .map(stat => stat.fga_pergame),
+      backgroundColor: backgroundColor,
+      hoverOffset: 4
+    }]
+  }
+  return dataTotalFga
+}
+
+const perGameFgm = (stats, playerAmount) => {
+  const dataTotalFgm = {
+    labels: stats
+      .sort((a, b) => b.fgm_pergame - a.fgm_pergame)
+      .slice(0, playerAmount)
+      .map(stat => stat.name),
+    datasets: [{
+      label: 'Fgm per game',
+      data: stats
+        .sort((a, b) => b.fgm_pergame - a.fgm_pergame)
+        .slice(0, playerAmount)
+        .map(stat => stat.fgm_pergame),
+      backgroundColor: backgroundColor,
+      hoverOffset: 4
+    }]
+  }
+  return dataTotalFgm
+}
+
+const perGameFg3a = (stats, playerAmount) => {
+  const dataTotalFg3a = {
+    labels: stats
+      .sort((a, b) => b.fg3a_pergame - a.fg3a_pergame)
+      .slice(0, playerAmount)
+      .map(stat => stat.name),
+    datasets: [{
+      label: 'Fg3a per game',
+      data: stats
+        .sort((a, b) => b.fg3a_pergame - a.fg3a_pergame)
+        .slice(0, playerAmount)
+        .map(stat => stat.fg3a_pergame),
+      backgroundColor: backgroundColor,
+      hoverOffset: 4
+    }]
+  }
+  return dataTotalFg3a
+}
+
+const perGameFg3m = (stats, playerAmount) => {
+  const dataTotalFg3m = {
+    labels: stats
+      .sort((a, b) => b.fg3m_pergame - a.fg3m_pergame)
+      .slice(0, playerAmount)
+      .map(stat => stat.name),
+    datasets: [{
+      label: 'Fg3m per game',
+      data: stats
+        .sort((a, b) => b.fg3m_pergame - a.fg3m_pergame)
+        .slice(0, playerAmount)
+        .map(stat => stat.fg3m_pergame),
+      backgroundColor: backgroundColor,
+      hoverOffset: 4
+    }]
+  }
+  return dataTotalFg3m
+}
+
+const perGameFta = (stats, playerAmount) => {
+  const dataTotalFta = {
+    labels: stats
+      .sort((a, b) => b.fta_pergame - a.fta_pergame)
+      .slice(0, playerAmount)
+      .map(stat => stat.name),
+    datasets: [{
+      label: 'Fta per game',
+      data: stats
+        .sort((a, b) => b.fta_pergame - a.fta_pergame)
+        .slice(0, playerAmount)
+        .map(stat => stat.fta_pergame),
+      backgroundColor: backgroundColor,
+      hoverOffset: 4
+    }]
+  }
+  return dataTotalFta
+}
+
+const perGameFtm = (stats, playerAmount) => {
+  const dataTotalFtm = {
+    labels: stats
+      .sort((a, b) => b.ftm_pergame - a.ftm_pergame)
+      .slice(0, playerAmount)
+      .map(stat => stat.name),
+    datasets: [{
+      label: 'Ftm per game',
+      data: stats
+        .sort((a, b) => b.ftm_pergame - a.ftm_pergame)
+        .slice(0, playerAmount)
+        .map(stat => stat.ftm_pergame),
+      backgroundColor: backgroundColor,
+      hoverOffset: 4
+    }]
+  }
+  return dataTotalFtm
+}
+
 // Per 36 minutes //////////////////////////////////////////////////////////
 const per36Points = (stats, playerAmount) => {
   const dataPer36Points = {
@@ -1174,7 +1403,119 @@ const per36PF = (stats, playerAmount) => {
   return dataPer36PF
 }
 
+const per36Fga = (stats, playerAmount) => {
+  const dataTotalFga = {
+    labels: stats
+      .sort((a, b) => b.fga_per36 - a.fga_per36)
+      .slice(0, playerAmount)
+      .map(stat => stat.name),
+    datasets: [{
+      label: 'Fga per game',
+      data: stats
+        .sort((a, b) => b.fga_per36 - a.fga_per36)
+        .slice(0, playerAmount)
+        .map(stat => stat.fga_per36),
+      backgroundColor: backgroundColor,
+      hoverOffset: 4
+    }]
+  }
+  return dataTotalFga
+}
 
+const per36Fgm = (stats, playerAmount) => {
+  const dataTotalFgm = {
+    labels: stats
+      .sort((a, b) => b.fgm_per36 - a.fgm_per36)
+      .slice(0, playerAmount)
+      .map(stat => stat.name),
+    datasets: [{
+      label: 'Fgm per game',
+      data: stats
+        .sort((a, b) => b.fgm_per36 - a.fgm_per36)
+        .slice(0, playerAmount)
+        .map(stat => stat.fgm_per36),
+      backgroundColor: backgroundColor,
+      hoverOffset: 4
+    }]
+  }
+  return dataTotalFgm
+}
+
+const per36Fg3a = (stats, playerAmount) => {
+  const dataTotalFg3a = {
+    labels: stats
+      .sort((a, b) => b.fg3a_per36 - a.fg3a_per36)
+      .slice(0, playerAmount)
+      .map(stat => stat.name),
+    datasets: [{
+      label: 'Fg3a per game',
+      data: stats
+        .sort((a, b) => b.fg3a_per36 - a.fg3a_per36)
+        .slice(0, playerAmount)
+        .map(stat => stat.fg3a_per36),
+      backgroundColor: backgroundColor,
+      hoverOffset: 4
+    }]
+  }
+  return dataTotalFg3a
+}
+
+const per36Fg3m = (stats, playerAmount) => {
+  const dataTotalFg3m = {
+    labels: stats
+      .sort((a, b) => b.fg3m_per36 - a.fg3m_per36)
+      .slice(0, playerAmount)
+      .map(stat => stat.name),
+    datasets: [{
+      label: 'Fg3m per game',
+      data: stats
+        .sort((a, b) => b.fg3m_per36 - a.fg3m_per36)
+        .slice(0, playerAmount)
+        .map(stat => stat.fg3m_per36),
+      backgroundColor: backgroundColor,
+      hoverOffset: 4
+    }]
+  }
+  return dataTotalFg3m
+}
+
+const per36Fta = (stats, playerAmount) => {
+  const dataTotalFta = {
+    labels: stats
+      .sort((a, b) => b.fta_per36 - a.fta_per36)
+      .slice(0, playerAmount)
+      .map(stat => stat.name),
+    datasets: [{
+      label: 'Fta per game',
+      data: stats
+        .sort((a, b) => b.fta_per36 - a.fta_per36)
+        .slice(0, playerAmount)
+        .map(stat => stat.fta_per36),
+      backgroundColor: backgroundColor,
+      hoverOffset: 4
+    }]
+  }
+  return dataTotalFta
+}
+
+const per36Ftm = (stats, playerAmount) => {
+  const dataTotalFtm = {
+    labels: stats
+      .sort((a, b) => b.ftm_per36 - a.ftm_per36)
+      .slice(0, playerAmount)
+      .map(stat => stat.name),
+    datasets: [{
+      label: 'Ftm per game',
+      data: stats
+        .sort((a, b) => b.ftm_per36 - a.ftm_per36)
+        .slice(0, playerAmount)
+        .map(stat => stat.ftm_per36),
+      backgroundColor: backgroundColor,
+      hoverOffset: 4
+    }]
+  }
+  return dataTotalFtm
+}
 
 const barChartDataService = {
   fgPct,
@@ -1203,7 +1544,25 @@ const barChartDataService = {
   per36Blocks,
   per36Steals,
   per36Turnovers,
-  per36PF
+  per36PF,
+  totalFga,
+  totalFgm,
+  totalFg3a,
+  totalFg3m,
+  totalFta,
+  totalFtm,
+  perGameFga,
+  perGameFgm,
+  perGameFg3a,
+  perGameFg3m,
+  perGameFta,
+  perGameFtm,
+  per36Fga,
+  per36Fgm,
+  per36Fg3a,
+  per36Fg3m,
+  per36Fta,
+  per36Ftm
 }
 
 export default barChartDataService
