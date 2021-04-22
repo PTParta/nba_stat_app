@@ -1273,12 +1273,14 @@ const perGameFtm = (stats, playerAmount) => {
 const per36Points = (stats, playerAmount) => {
   const dataPer36Points = {
     labels: stats
+      .filter(stat => stat.pts_per36 !== undefined /* && stat.pts_per36 !== 0 && stat.name !== undefined */)
       .sort((a, b) => b.pts_per36 - a.pts_per36)
       .slice(0, playerAmount)
       .map(stat => stat.name),
     datasets: [{
       label: 'Points per 36 min',
       data: stats
+        .filter(stat => stat.pts_per36 !== undefined /* && stat.pts_per36 !== 0 && stat.name !== undefined */)
         .sort((a, b) => b.pts_per36 - a.pts_per36)
         .slice(0, playerAmount)
         .map(stat => stat.pts_per36),
@@ -1292,12 +1294,14 @@ const per36Points = (stats, playerAmount) => {
 const per36Assists = (stats, playerAmount) => {
   const dataPer36Assists = {
     labels: stats
+      .filter(stat => stat.ast_per36 !== undefined)
       .sort((a, b) => b.ast_per36 - a.ast_per36)
       .slice(0, playerAmount)
       .map(stat => stat.name),
     datasets: [{
       label: 'Assists per 36 min',
       data: stats
+        .filter(stat => stat.ast_per36 !== undefined)
         .sort((a, b) => b.ast_per36 - a.ast_per36)
         .slice(0, playerAmount)
         .map(stat => stat.ast_per36),
@@ -1311,12 +1315,14 @@ const per36Assists = (stats, playerAmount) => {
 const per36Rebounds = (stats, playerAmount) => {
   const dataPer36Rebounds = {
     labels: stats
+      .filter(stat => stat.reb_per36 !== undefined)
       .sort((a, b) => b.reb_per36 - a.reb_per36)
       .slice(0, playerAmount)
       .map(stat => stat.name),
     datasets: [{
       label: 'Rebounds per 36 min',
       data: stats
+        .filter(stat => stat.reb_per36 !== undefined)
         .sort((a, b) => b.reb_per36 - a.reb_per36)
         .slice(0, playerAmount)
         .map(stat => stat.reb_per36),
@@ -1330,12 +1336,14 @@ const per36Rebounds = (stats, playerAmount) => {
 const per36Blocks = (stats, playerAmount) => {
   const dataPer36Blocks = {
     labels: stats
+      .filter(stat => stat.blk_per36 !== undefined && stat.blk_per36 !== 0)
       .sort((a, b) => b.blk_per36 - a.blk_per36)
       .slice(0, playerAmount)
       .map(stat => stat.name),
     datasets: [{
       label: 'Blocks per 36 min',
       data: stats
+        .filter(stat => stat.blk_per36 !== undefined && stat.blk_per36 !== 0)
         .sort((a, b) => b.blk_per36 - a.blk_per36)
         .slice(0, playerAmount)
         .map(stat => stat.blk_per36),
@@ -1349,12 +1357,14 @@ const per36Blocks = (stats, playerAmount) => {
 const per36Steals = (stats, playerAmount) => {
   const dataPer36Steals = {
     labels: stats
+      .filter(stat => stat.stl_per36 !== undefined && stat.stl_per36 !== 0)
       .sort((a, b) => b.stl_per36 - a.stl_per36)
       .slice(0, playerAmount)
       .map(stat => stat.name),
     datasets: [{
       label: 'Steals per 36 min',
       data: stats
+        .filter(stat => stat.stl_per36 !== undefined && stat.stl_per36 !== 0)
         .sort((a, b) => b.stl_per36 - a.stl_per36)
         .slice(0, playerAmount)
         .map(stat => stat.stl_per36),
@@ -1368,12 +1378,14 @@ const per36Steals = (stats, playerAmount) => {
 const per36Turnovers = (stats, playerAmount) => {
   const dataPer36Turnovers = {
     labels: stats
+      .filter(stat => stat.turnover_per36 !== undefined && stat.turnover_per36 !== 0)
       .sort((a, b) => b.turnover_per36 - a.turnover_per36)
       .slice(0, playerAmount)
       .map(stat => stat.name),
     datasets: [{
       label: 'Turnovers per 36 min',
       data: stats
+        .filter(stat => stat.turnover_per36 !== undefined && stat.turnover_per36 !== 0)
         .sort((a, b) => b.turnover_per36 - a.turnover_per36)
         .slice(0, playerAmount)
         .map(stat => stat.turnover_per36),
@@ -1387,12 +1399,14 @@ const per36Turnovers = (stats, playerAmount) => {
 const per36PF = (stats, playerAmount) => {
   const dataPer36PF = {
     labels: stats
+      .filter(stat => stat.pf_per36 !== undefined && stat.pf_per36 !== 0)
       .sort((a, b) => b.pf_per36 - a.pf_per36)
       .slice(0, playerAmount)
       .map(stat => stat.name),
     datasets: [{
       label: 'Personal fouls per 36 min',
       data: stats
+        .filter(stat => stat.pf_per36 !== undefined && stat.pf_per36 !== 0)
         .sort((a, b) => b.pf_per36 - a.pf_per36)
         .slice(0, playerAmount)
         .map(stat => stat.pf_per36),
@@ -1406,12 +1420,14 @@ const per36PF = (stats, playerAmount) => {
 const per36Fga = (stats, playerAmount) => {
   const dataTotalFga = {
     labels: stats
+      .filter(stat => stat.fga_per36 !== undefined && stat.fga_per36 !== 0)
       .sort((a, b) => b.fga_per36 - a.fga_per36)
       .slice(0, playerAmount)
       .map(stat => stat.name),
     datasets: [{
       label: 'Fga per game',
       data: stats
+        .filter(stat => stat.fga_per36 !== undefined && stat.fga_per36 !== 0)
         .sort((a, b) => b.fga_per36 - a.fga_per36)
         .slice(0, playerAmount)
         .map(stat => stat.fga_per36),
@@ -1425,12 +1441,14 @@ const per36Fga = (stats, playerAmount) => {
 const per36Fgm = (stats, playerAmount) => {
   const dataTotalFgm = {
     labels: stats
+      .filter(stat => stat.fgm_per36 !== undefined && stat.fgm_per36 !== 0)
       .sort((a, b) => b.fgm_per36 - a.fgm_per36)
       .slice(0, playerAmount)
       .map(stat => stat.name),
     datasets: [{
       label: 'Fgm per game',
       data: stats
+        .filter(stat => stat.fgm_per36 !== undefined && stat.fgm_per36 !== 0)
         .sort((a, b) => b.fgm_per36 - a.fgm_per36)
         .slice(0, playerAmount)
         .map(stat => stat.fgm_per36),
@@ -1444,12 +1462,14 @@ const per36Fgm = (stats, playerAmount) => {
 const per36Fg3a = (stats, playerAmount) => {
   const dataTotalFg3a = {
     labels: stats
+      .filter(stat => stat.fg3a_per36 !== undefined && stat.fg3a_per36 !== 0)
       .sort((a, b) => b.fg3a_per36 - a.fg3a_per36)
       .slice(0, playerAmount)
       .map(stat => stat.name),
     datasets: [{
       label: 'Fg3a per game',
       data: stats
+        .filter(stat => stat.fg3a_per36 !== undefined && stat.fg3a_per36 !== 0)
         .sort((a, b) => b.fg3a_per36 - a.fg3a_per36)
         .slice(0, playerAmount)
         .map(stat => stat.fg3a_per36),
@@ -1463,12 +1483,14 @@ const per36Fg3a = (stats, playerAmount) => {
 const per36Fg3m = (stats, playerAmount) => {
   const dataTotalFg3m = {
     labels: stats
+      .filter(stat => stat.fg3m_per36 !== undefined && stat.fg3m_per36 !== 0)
       .sort((a, b) => b.fg3m_per36 - a.fg3m_per36)
       .slice(0, playerAmount)
       .map(stat => stat.name),
     datasets: [{
       label: 'Fg3m per game',
       data: stats
+        .filter(stat => stat.fg3m_per36 !== undefined && stat.fg3m_per36 !== 0)
         .sort((a, b) => b.fg3m_per36 - a.fg3m_per36)
         .slice(0, playerAmount)
         .map(stat => stat.fg3m_per36),
@@ -1482,12 +1504,14 @@ const per36Fg3m = (stats, playerAmount) => {
 const per36Fta = (stats, playerAmount) => {
   const dataTotalFta = {
     labels: stats
+      .filter(stat => stat.fta_per36 !== undefined && stat.fta_per36 !== 0)
       .sort((a, b) => b.fta_per36 - a.fta_per36)
       .slice(0, playerAmount)
       .map(stat => stat.name),
     datasets: [{
       label: 'Fta per game',
       data: stats
+        .filter(stat => stat.fta_per36 !== undefined && stat.fta_per36 !== 0)
         .sort((a, b) => b.fta_per36 - a.fta_per36)
         .slice(0, playerAmount)
         .map(stat => stat.fta_per36),
@@ -1501,12 +1525,14 @@ const per36Fta = (stats, playerAmount) => {
 const per36Ftm = (stats, playerAmount) => {
   const dataTotalFtm = {
     labels: stats
+      .filter(stat => stat.ftm_per36 !== undefined && stat.ftm_per36 !== 0)
       .sort((a, b) => b.ftm_per36 - a.ftm_per36)
       .slice(0, playerAmount)
       .map(stat => stat.name),
     datasets: [{
       label: 'Ftm per game',
       data: stats
+        .filter(stat => stat.ftm_per36 !== undefined && stat.ftm_per36 !== 0)
         .sort((a, b) => b.ftm_per36 - a.ftm_per36)
         .slice(0, playerAmount)
         .map(stat => stat.ftm_per36),
