@@ -1,7 +1,7 @@
 
 const DescriptionPlayers = () => {
   return (
-    <div style={{color:'white', textAlign:'left',}}>
+    <div style={{color:'white', textAlign:'center',}}>
       <br></br>
       {/* <br></br> */}
       <p>This page shows player stats throughout his career in line chart form.
