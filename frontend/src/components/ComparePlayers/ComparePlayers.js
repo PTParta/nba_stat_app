@@ -5,7 +5,7 @@ import PlayerComparisonStats from './ComparePlayersStats'
 import DescriptionPlayerComparison from './DescriptionComparePlayers'
 import SelectPerTotal from '../common/SelectPerTotal'
 import SelectRegularPost from '../common/SelectRegularPost'
-import Reset from './Reset'
+//import Reset from './Reset'
 import Logo from '../common/Logo'
 import Title from '../common/Title'
 import Description from '../common/Description'
@@ -17,16 +17,15 @@ require('dotenv').config()
 
 const PlayerComparison = ({ players, fetchingData, setFetchingData }) => {
   const [selectedSeason, setSelectedSeason] = useState('')
-  const [playersForSelectedSeason, setPlayersForSelectedSeason] = useState([])
-  const [/* selectedPlayer */, setSelectedPlayer] = useState('')
-  const [statsForSelectedPlayers, setStatsForSelectedPlayers] = useState([])
+  const [summaryStats, setSummaryStats] = useState([])
+  const [filteredSummaryStats, setFilteredSummaryStats] = useState([])
+  const [selectedPlayersNames, setSelectedPlayersNames] = useState([])
   const [regularSeasonSelected, setRegularSeasonSelected] = useState(true)
   const [postSeasonSelected, setPostSeasonSelected] = useState(false)
   const [perGameSelected, setPerGameSelected] = useState(true)
   const [totalSelected, setTotalSelected] = useState(false)
   const [per36Selected, setPer36Selected] = useState(false)
   const [pctSelected, setPctSelected] = useState(false)
-  const [numberOfSelectedPlayers, setNumberOfSelectedPlayers] = useState(0)
 
   useEffect(() => {
 
@@ -35,99 +34,24 @@ const PlayerComparison = ({ players, fetchingData, setFetchingData }) => {
   }, [])
 
   return (
-    <div>
-
-      <Row>
-        <Col sm={4} style={{ textAlign: 'center' }}>
-        </Col>
-        {playersForSelectedSeason.length === 0
-          ? < Col sm={4}>
-            <SelectSeason
-              selectedSeason={selectedSeason}
-              setSelectedSeason={setSelectedSeason}
-              setFetchingData={setFetchingData}
-              setPlayersForSelectedSeason={setPlayersForSelectedSeason}
-              players={players}
-            />
-          </Col>
-          : <Col sm={4}>
-            <Reset
-              setPlayersForSelectedSeason={setPlayersForSelectedSeason}
-              setSelectedSeason={setSelectedSeason}
-              setStatsForSelectedPlayers={setStatsForSelectedPlayers} />
-            <div style={{ color: 'white' }}>season {selectedSeason}</div>
-          </Col>}
-        <Col sm={4}>
-          {playersForSelectedSeason.length > 0
-            ? <SelectPerTotal
-              setPerGameSelected={setPerGameSelected}
-              setTotalSelected={setTotalSelected}
-              setPer36Selected={setPer36Selected}
-              setPctSelected={setPctSelected}
-            />
-            : <></>}
-        </Col>
-      </Row>
-      {
-        playersForSelectedSeason.length === 0 && !fetchingData
-          ? <>
-            <br></br>
-            <br></br>
-            <Row style={{ textAlign: 'center' }}>
-              <Col sm={4}></Col>
-              <Col sm={4}>
-                <Logo />
-              </Col>
-              <Col sm={4}></Col>
-            </Row>
-            <br></br>
-            <br></br>
-            <Row style={{ textAlign: 'center' }}>
-              <Col sm={4} xs={1}></Col>
-              <Col sm={4} xs={10}>
-                <Title />
-              </Col>
-              <Col sm={4} xs={1}></Col>
-            </Row>
-            <Row style={{ textAlign: 'center' }}>
-              <Col sm={4} xs={1}></Col>
-              <Col sm={4} xs={10}>
-                <Description />
-              </Col>
-              <Col sm={4} xs={1}></Col>
-            </Row>
-            <Row style={{ textAlign: 'center' }}>
-              <Col sm={4} xs={1}></Col>
-              <Col sm={4} xs={10}>
-                <DescriptionPlayerComparison />
-              </Col>
-              <Col sm={4} xs={1}></Col>
-            </Row>
-          </>
-          : <></>
-      }
-      {
-        playersForSelectedSeason.length > 0 && numberOfSelectedPlayers < 20
-          ?
+    <>
+      {selectedSeason !== ''
+        ? <>
           <Row>
-            <Col sm={4} style={{ textAlign: 'center' }}>
-            </Col>
-            <Col sm={4}>
-              <SelectPlayer
-                players={playersForSelectedSeason}
-                setSelectedPlayer={setSelectedPlayer}
-                /* setPlayerStats={setPlayerStats} */
-                fetchingData={fetchingData}
-                setFetchingData={setFetchingData}
-                playersForSelectedSeason={playersForSelectedSeason}
-                selectedSeason={selectedSeason}
-                setStatsForSelectedPlayers={setStatsForSelectedPlayers}
-                statsForSelectedPlayers={statsForSelectedPlayers}
-                setNumberOfSelectedPlayers={setNumberOfSelectedPlayers}
-                numberOfSelectedPlayers={numberOfSelectedPlayers}
+            <Col sm={2} xs={1}></Col>
+            <Col sm={8} xs={10} style={{ textAlign: 'center' }}>
+              <SelectPerTotal
+                setPerGameSelected={setPerGameSelected}
+                setTotalSelected={setTotalSelected}
+                setPer36Selected={setPer36Selected}
+                setPctSelected={setPctSelected}
               />
             </Col>
-            <Col sm={4}>
+            <Col sm={2} xs={1}></Col>
+          </Row>
+          <Row>
+            <Col sm={2} xs={1}></Col>
+            <Col sm={8} xs={10} style={{ textAlign: 'center' }}>
               <SelectRegularPost
                 regularSeasonSelected={regularSeasonSelected}
                 postSeasonSelected={postSeasonSelected}
@@ -135,9 +59,82 @@ const PlayerComparison = ({ players, fetchingData, setFetchingData }) => {
                 setPostSeasonSelected={setPostSeasonSelected}
               />
             </Col>
+            <Col sm={2} xs={1}></Col>
           </Row>
-          : <></>
-      }
+          <br></br>
+        </>
+        : <></>}
+      <Row>
+        <Col sm={4} style={{ textAlign: 'center' }}>
+        </Col>
+        <Col sm={4}>
+          <SelectSeason
+            selectedSeason={selectedSeason}
+            setSelectedSeason={setSelectedSeason}
+            setFetchingData={setFetchingData}
+            setSummaryStats={setSummaryStats}
+            selectedPlayersNames={selectedPlayersNames}
+            filteredSummaryStats={filteredSummaryStats}
+            setFilteredSummaryStats={setFilteredSummaryStats}
+            summaryStats={summaryStats}
+          />
+        </Col>
+      </Row>
+      {summaryStats.length > 0
+        ? <>
+          <Row>
+            <Col sm={4} style={{ textAlign: 'center' }}>
+            </Col>
+            <Col sm={4}>
+              <SelectPlayer
+                selectedPlayersNames={selectedPlayersNames}
+                setSelectedPlayersNames={setSelectedPlayersNames}
+                summaryStats={summaryStats}
+                filteredSummaryStats={filteredSummaryStats}
+                setFilteredSummaryStats={setFilteredSummaryStats}
+              />
+            </Col>
+          </Row>
+        </>
+        : <></>}
+
+      {selectedSeason === ''
+        ? <>
+          <br></br>
+          <br></br>
+          <Row style={{ textAlign: 'center' }}>
+            <Col sm={4}></Col>
+            <Col sm={4}>
+              <Logo />
+            </Col>
+            <Col sm={4}></Col>
+          </Row>
+          <br></br>
+          <br></br>
+          <Row style={{ textAlign: 'center' }}>
+            <Col sm={4} xs={1}></Col>
+            <Col sm={4} xs={10}>
+              <Title />
+            </Col>
+            <Col sm={4} xs={1}></Col>
+          </Row>
+          <Row style={{ textAlign: 'center' }}>
+            <Col sm={4} xs={1}></Col>
+            <Col sm={4} xs={10}>
+              <Description />
+            </Col>
+            <Col sm={4} xs={1}></Col>
+          </Row>
+          <Row style={{ textAlign: 'center' }}>
+            <Col sm={4} xs={1}></Col>
+            <Col sm={4} xs={10}>
+              <DescriptionPlayerComparison />
+            </Col>
+            <Col sm={4} xs={1}></Col>
+          </Row>
+        </>
+        : <>
+        </>}
       {fetchingData ? <>
         <Row style={{ textAlign: 'center' }}>
           <Col sm={4}></Col>
@@ -150,15 +147,15 @@ const PlayerComparison = ({ players, fetchingData, setFetchingData }) => {
       </>
         : <></>}
       <PlayerComparisonStats
-        regularSeasonSelected={regularSeasonSelected}
+        filteredSummaryStats={filteredSummaryStats}
         postSeasonSelected={postSeasonSelected}
         perGameSelected={perGameSelected}
         totalSelected={totalSelected}
         per36Selected={per36Selected}
         pctSelected={pctSelected}
-        statsForSelectedPlayers={statsForSelectedPlayers}
       />
-    </div >
+
+    </>
   )
 }
 

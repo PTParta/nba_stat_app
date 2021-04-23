@@ -1,6 +1,5 @@
 import React from 'react'
 import BarCharts from '../common/BarCharts'
-import 'chartjs-plugin-labels'
 
 const TopTenStats = (
   {

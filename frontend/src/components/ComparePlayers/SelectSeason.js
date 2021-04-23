@@ -1,14 +1,15 @@
 import Select from 'react-select'
-import playerService from '../../services/players'
+import playerStatService from '../../services/playerStats'
 
 
 const SelectSeason = ({
-  selectedSeason,
   setSelectedSeason,
-  fetchingData,
   setFetchingData,
-  setPlayersForSelectedSeason,
-  players
+  setSummaryStats,
+  selectedPlayersNames,
+  filteredSummaryStats,
+  setFilteredSummaryStats,
+  summaryStats
 }) => {
 
   let seasonDescending = 2020
@@ -21,16 +22,14 @@ const SelectSeason = ({
   const handleSelectedSeasonChange = (event) => {
     setSelectedSeason(event.value)
     setFetchingData(true)
-    //const searchedTeam = teams.find(team => team.name === selectedTeam)
-    playerService.getPlayersForASeason(event.value)
+    playerStatService.getSummaryStatsFromDBForASeason(event.value)
       .then((response) => {
-        //console.log(response)
-        const filteredPlayers = players.filter(player => response.includes(player.apiId))
-        setPlayersForSelectedSeason(filteredPlayers.map(player => ({ ...player, fullName: `${player.firstName} ${player.lastName}` }))
-          .sort((a, b) => (a.lastName > b.lastName) ? 1 : ((b.lastName > a.lastName) ? -1 : 0)))
+        setSummaryStats(response.data)
+        const updatedFilteredSummaryStats = response.data.filter(stat => selectedPlayersNames.includes(stat.name))
+        setFilteredSummaryStats(updatedFilteredSummaryStats)
         setFetchingData(false)
-        //console.log('filteredPlayers', filteredPlayers)
       })
+
   }
 
   return (
