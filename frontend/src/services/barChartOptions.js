@@ -18,13 +18,21 @@ const scales = {
       beginAtZero: true,
       fontColor: 'white',
       fontSize: 14
-    }
+    },
+    gridLines: {
+      display: true ,
+      color: "grey"
+    },
   }],
   xAxes: [{
     ticks: {
       fontColor: 'white',
       fontSize: 14
-    }
+    },
+    gridLines: {
+      display: false ,
+      color: "grey"
+    },
   }]
 }
 

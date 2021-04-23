@@ -120,7 +120,7 @@ function App() {
                 />
               </Route>
               <Route path='/'>
-                <Redirect to='/players' />
+                <Redirect to='/playercareer' />
               </Route>
             </Switch>
             <br></br>
