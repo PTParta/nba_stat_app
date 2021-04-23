@@ -11,10 +11,21 @@ const NavigationBar = () => {
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
           <Nav.Link href="#" as="span">
-            <Link style={padding} to="/players">players</Link>
+            <Link style={padding} to="/playercareer">player career</Link>
+          </Nav.Link>
+          <Nav.Link href="#" as="span">
+            <Link style={padding} to="/topplayers">top players</Link>
+          </Nav.Link>
+
+
+          <Nav.Link href="#" as="span">
+            <Link style={padding} to="/compareplayers">compare players</Link>
           </Nav.Link>
           <Nav.Link href="#" as="span">
             <Link style={padding} to="/teams">teams</Link>
+          </Nav.Link>
+          <Nav.Link href="#" as="span">
+            <Link style={padding} to="/contactus">contact us</Link>
           </Nav.Link>
         </Nav>
       </Navbar.Collapse>

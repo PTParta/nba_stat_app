@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
-//import NavigationBar from './components/NavigationBar'
+import NavigationBar from './components/common/NavigationBar'
 import Players from './components/players/Players'
 import Teams from './components/teams/Teams'
 import TopTen from './components/topTen/TopTen'
 import Contact from './components/contact/Contact'
-//import ComparePlayers from './components/ComparePlayers/ComparePlayers'
+import ComparePlayers from './components/ComparePlayers/ComparePlayers'
 import playerService from './services/players'
 import teamService from './services/teams'
 
@@ -53,15 +53,15 @@ function App() {
       }}>
         <div className="container" style={{ paddingTop: '2vh', backgroundColor: "#17202A" }} >
           <Container>
-            {/* <Row>
+            <Row>
               <Col sm={2}></Col>
               <Col sm={8}>
                 <NavigationBar />
               </Col>
               <Col sm={2}></Col>
-            </Row> */}
+            </Row>
             {/* <div style={{ backgroundColor:'white' }}> */}
-            <Row align="left">
+           {/*  <Row align="left">
               <Col sm={2}></Col>
               <Col sm={2} xs={3}>
                 <Link to='/players'>player career</Link>
@@ -70,9 +70,9 @@ function App() {
               <Col sm={2} xs={3}>
                 <Link to='/topplayers'>top players</Link>
               </Col>
-              {/* <Col sm={2} xs={3}>
+              <Col sm={2} xs={3}>
                 <Link to='/compareplayers'>compare players</Link>
-              </Col> */}
+              </Col>
               <Col sm={2} xs={3} align="left">
                 <Link to='/teams'>teams</Link>
               </Col>
@@ -81,7 +81,7 @@ function App() {
                 <Link to='/contactus'>contact us</Link>
               </Col>
               <Col sm={2}></Col>
-            </Row>
+            </Row> */}
             {/* </div> */}
             <br></br>
             <Switch>
@@ -113,13 +113,13 @@ function App() {
                   setFetchingData={setFetchingData}
                 />
               </Route>
-              {/* <Route path='/compareplayers'>
+              <Route path='/compareplayers'>
                 <ComparePlayers
                   fetchingData={fetchingData}
                   setFetchingData={setFetchingData}
                   players={players}
                 />
-              </Route> */}
+              </Route>
               <Route path='/'>
                 <Redirect to='/players' />
               </Route>
