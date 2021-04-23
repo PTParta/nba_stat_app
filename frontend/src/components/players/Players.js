@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { smSide, xsSide, smCenter, xsCenter } from '../../styling/columnWidths'
 import { Row, Col } from 'react-bootstrap'
 import PlayerStats from './PlayerStats'
 import SelectPlayer from './SelectPlayer'
@@ -52,8 +53,8 @@ const Players = ({ fetchingData, setFetchingData, players, setPlayers, teams }) 
   return (
     <>
       <Row>
-        <Col sm={4}></Col>
-        <Col sm={4}>
+        <Col sm={smSide}></Col>
+        <Col sm={smCenter}>
           <SelectPlayer
             players={players}
             setSelectedPlayer={setSelectedPlayer}
@@ -62,7 +63,7 @@ const Players = ({ fetchingData, setFetchingData, players, setPlayers, teams }) 
             setFetchingData={setFetchingData}
           />
         </Col>
-        <Col sm={4}></Col>
+        <Col sm={smSide}></Col>
       </Row>
       {selectedPlayer !== ''
         ? <>
@@ -78,41 +79,41 @@ const Players = ({ fetchingData, setFetchingData, players, setPlayers, teams }) 
       {playerStats.length === 0 && !fetchingData
         ? <>
           <Row style={{ textAlign: 'center' }}>
-            <Col sm={5} xs={1}></Col>
-            <Col sm={2} xs={10}>
+            <Col sm={smSide} xs={xsSide}></Col>
+            <Col sm={smCenter} xs={xsCenter}>
               <br></br>
               <Logo />
             </Col>
-            <Col sm={5} xs={1}></Col>
+            <Col sm={smSide} xs={xsSide}></Col>
           </Row>
           <br></br>
           <br></br>
           <Row style={{ textAlign: 'center' }}>
-            <Col sm={4} xs={1}></Col>
-            <Col sm={4} xs={10}>
+            <Col sm={smSide} xs={xsSide}></Col>
+            <Col sm={smCenter} xs={xsCenter}>
               <Title />
             </Col>
-            <Col sm={4} xs={1}></Col>
+            <Col sm={smSide} xs={xsSide}></Col>
           </Row>
           <Row style={{ textAlign: 'center' }}>
-            <Col sm={4} xs={1}></Col>
-            <Col sm={4} xs={10}>
+            <Col sm={smSide} xs={xsSide}></Col>
+            <Col sm={smCenter} xs={xsCenter}>
               <Description />
             </Col>
-            <Col sm={4} xs={1}></Col>
+            <Col sm={smSide} xs={xsSide}></Col>
           </Row>
           <Row style={{ textAlign: 'center' }}>
-            <Col sm={4} xs={1}></Col>
-            <Col sm={4} xs={10}>
+            <Col sm={smSide} xs={xsSide}></Col>
+            <Col sm={smCenter} xs={xsCenter}>
               <DescriptionPlayers />
             </Col>
-            <Col sm={4} xs={1}></Col>
+            <Col sm={smSide} xs={xsSide}></Col>
           </Row>
         </>
         : <></>}
       <Row style={{ textAlign: 'center' }}>
-        <Col sm={5} xs={4}></Col>
-        <Col sm={2} xs={4}>
+        <Col sm={smSide} xs={xsSide}></Col>
+        <Col sm={smCenter} xs={xsCenter}>
           {fetchingData && playerStats.length === 0
             ? <>
               <br></br>
@@ -122,7 +123,7 @@ const Players = ({ fetchingData, setFetchingData, players, setPlayers, teams }) 
             </>
             : <></>}
         </Col>
-        <Col sm={5} xs={4}></Col>
+        <Col sm={smSide} xs={xsSide}></Col>
       </Row>
       {selectedPlayer !== ''
         ? <>
@@ -162,8 +163,8 @@ const Players = ({ fetchingData, setFetchingData, players, setPlayers, teams }) 
           </Row>
           <br></br>
           <Row >
-            <Col sm={4} ></Col>
-            <Col sm={4} >
+            <Col sm={smSide} ></Col>
+            <Col sm={smCenter} >
               <SelectStats
                 ptsSelected={ptsSelected}
                 setPtsSelected={setPtsSelected}
@@ -204,21 +205,21 @@ const Players = ({ fetchingData, setFetchingData, players, setPlayers, teams }) 
                 minSelected={minSelected}
                 setMinSelected={setMinSelected} />
             </Col>
-            <Col sm={4}></Col>
+            <Col sm={smSide}></Col>
           </Row>
           <Row>
-            <Col sm={4}></Col>
-            <Col sm={4}>
+            <Col sm={smSide}></Col>
+            <Col sm={smCenter}>
               <div style={{ color: 'white' }}>trailing average</div>
               <SelectTrailingAverage
                 setTrailingAverage={setTrailingAverage} />
             </Col>
-            <Col sm={4}></Col>
+            <Col sm={smSide}></Col>
           </Row>
           <br></br>
           <Row>
-            <Col sm={4}></Col>
-            <Col sm={4}>
+            <Col sm={smSide}></Col>
+            <Col sm={smCenter}>
               <SelectRegularPost
                 regularSeasonSelected={regularSeasonSelected}
                 postSeasonSelected={postSeasonSelected}
@@ -226,7 +227,7 @@ const Players = ({ fetchingData, setFetchingData, players, setPlayers, teams }) 
                 setPostSeasonSelected={setPostSeasonSelected}
               />
             </Col>
-            <Col sm={4}></Col>
+            <Col sm={smSide}></Col>
           </Row>
         </>
         : <></>}

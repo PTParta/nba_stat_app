@@ -1,4 +1,5 @@
 import Select from 'react-select'
+import { smSide, xsSide, smCenter, xsCenter } from '../../styling/columnWidths'
 import { Row, Col } from 'react-bootstrap'
 
 const SelectSeasons = ({
@@ -46,8 +47,8 @@ const SelectSeasons = ({
   return (
     <>
       <Row>
-        <Col sm={4}></Col>
-        <Col sm={4}>
+        <Col sm={smSide}></Col>
+        <Col sm={smCenter}>
           <Select
             options={seasonSelectAscending}
             onChange={(event) => handleSelectedFirstSeasonChange(event)}
@@ -55,11 +56,11 @@ const SelectSeasons = ({
             placeholder={selectedFirstSeason.toString()}
           />
         </Col>
-        <Col sm={4}></Col>
+        <Col sm={smSide}></Col>
       </Row>
       <Row>
-        <Col sm={4}></Col>
-        <Col sm={4}>
+        <Col sm={smSide}></Col>
+        <Col sm={smCenter}>
           <Select
             options={seasonSelectDescending}
             onChange={(event) => handleSelectedLastSeasonChange(event)}
@@ -67,7 +68,7 @@ const SelectSeasons = ({
             placeholder={selectedLastSeason}
           />
         </Col>
-        <Col sm={4}></Col>
+        <Col sm={smSide}></Col>
       </Row>
     </>
   )

@@ -1,7 +1,7 @@
 
 const DescriptionPlayerComparison = () => {
   return (
-    <div style={{ color: 'white', textAlign: 'left', }}>
+    <div style={{ color: 'white', textAlign: 'center', }}>
       <br></br>
       {/* <br></br> */}
       <p>

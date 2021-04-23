@@ -84,7 +84,7 @@ function App() {
             {/* </div> */}
             <br></br>
             <Switch>
-              <Route path='/players'>
+              <Route path='/playercareer'>
                 <Players
                   fetchingData={fetchingData}
                   setFetchingData={setFetchingData}

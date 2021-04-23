@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { smSide, xsSide, smCenter, xsCenter } from '../../styling/columnWidths'
 import { Row, Col } from 'react-bootstrap'
 import SelectTeam from './SelectTeam'
 import TeamStats from './TeamStats'
@@ -37,8 +38,8 @@ const Teams = ({ fetchingData, setFetchingData, teams }) => {
       {selectedTeam !== ''
         ? <>
           <Row>
-            <Col sm={2} xs={1}></Col>
-            <Col sm={8} xs={10} style={{ textAlign: 'center' }}>
+            <Col sm={smSide} xs={xsSide}></Col>
+            <Col sm={smCenter} xs={xsCenter} style={{ textAlign: 'center' }}>
               <SelectPerTotal
                 setPerGameSelected={setPerGameSelected}
                 setTotalSelected={setTotalSelected}
@@ -46,11 +47,11 @@ const Teams = ({ fetchingData, setFetchingData, teams }) => {
                 setPctSelected={setPctSelected}
               />
             </Col>
-            <Col sm={2} xs={1}></Col>
+            <Col sm={smSide} xs={xsSide}></Col>
           </Row>
           <Row>
-            <Col sm={2} xs={1}></Col>
-            <Col sm={8} xs={10} style={{ textAlign: 'center' }}>
+            <Col sm={smSide} xs={xsSide}></Col>
+            <Col sm={smCenter} xs={xsCenter} style={{ textAlign: 'center' }}>
               <SelectRegularPost
                 regularSeasonSelected={regularSeasonSelected}
                 postSeasonSelected={postSeasonSelected}
@@ -58,15 +59,15 @@ const Teams = ({ fetchingData, setFetchingData, teams }) => {
                 setPostSeasonSelected={setPostSeasonSelected}
               />
             </Col>
-            <Col sm={2} xs={1}></Col>
+            <Col sm={smSide} xs={xsSide}></Col>
           </Row>
           <br></br>
         </>
         : <></>}
       <Row>
-        <Col sm={4} style={{ textAlign: 'center' }}>
+        <Col sm={smSide} style={{ textAlign: 'center' }}>
         </Col>
-        <Col sm={4}>
+        <Col sm={smCenter}>
           <SelectTeam
             teams={teams}
             setSelectedTeam={setSelectedTeam}
@@ -82,41 +83,41 @@ const Teams = ({ fetchingData, setFetchingData, teams }) => {
           <br></br>
           <br></br>
           <Row style={{ textAlign: 'center' }}>
-            <Col sm={4}></Col>
-            <Col sm={4}>
+            <Col sm={smSide}></Col>
+            <Col sm={smCenter}>
               <Logo />
             </Col>
-            <Col sm={4}></Col>
+            <Col sm={smSide}></Col>
           </Row>
           <br></br>
           <br></br>
           <Row style={{ textAlign: 'center' }}>
-            <Col sm={4} xs={1}></Col>
-            <Col sm={4} xs={10}>
+            <Col sm={smSide} xs={xsSide}></Col>
+            <Col sm={smCenter} xs={xsCenter}>
               <Title />
             </Col>
-            <Col sm={4} xs={1}></Col>
+            <Col sm={smSide} xs={xsSide}></Col>
           </Row>
           <Row style={{ textAlign: 'center' }}>
-            <Col sm={4} xs={1}></Col>
-            <Col sm={4} xs={10}>
+            <Col sm={smSide} xs={xsSide}></Col>
+            <Col sm={smCenter} xs={xsCenter}>
               <Description />
             </Col>
-            <Col sm={4} xs={1}></Col>
+            <Col sm={smSide} xs={xsSide}></Col>
           </Row>
           <Row style={{ textAlign: 'center' }}>
-            <Col sm={4} xs={1}></Col>
-            <Col sm={4} xs={10}>
+            <Col sm={smSide} xs={xsSide}></Col>
+            <Col sm={smCenter} xs={xsCenter}>
               <DescriptionTeams />
             </Col>
-            <Col sm={4} xs={1}></Col>
+            <Col sm={smSide} xs={xsSide}></Col>
           </Row>
         </>
         : <>
           <Row>
-            <Col sm={4} style={{ textAlign: 'center' }}>
+            <Col sm={smSide} style={{ textAlign: 'center' }}>
             </Col>
-            <Col sm={4}>
+            <Col sm={smCenter}>
               <SelectSeason
                 selectedSeason={selectedSeason}
                 setSelectedSeason={setSelectedSeason}
@@ -130,12 +131,12 @@ const Teams = ({ fetchingData, setFetchingData, teams }) => {
         </>}
       {fetchingData ? <>
         <Row style={{ textAlign: 'center' }}>
-          <Col sm={4}></Col>
-          <Col sm={4}>
+          <Col sm={smSide}></Col>
+          <Col sm={smCenter}>
             <br></br>
             <Loader type="Grid" color="white" height="25" width="25" />
           </Col>
-          <Col sm={4}></Col>
+          <Col sm={smSide}></Col>
         </Row>
       </>
         : <></>}

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { smSide, xsSide, smCenter, xsCenter } from '../../styling/columnWidths'
 import { Row, Col } from 'react-bootstrap'
 import 'chartjs-plugin-labels'
 import Title from '../common/Title'
@@ -36,8 +37,8 @@ const TopTen = ({ fetchingData, setFetchingData }) => {
       {selectedSeason !== ''
         ? <>
           <Row>
-            <Col sm={2} xs={1}></Col>
-            <Col sm={8} xs={10} style={{ textAlign: 'center' }}>
+            <Col sm={smSide} xs={xsSide}></Col>
+            <Col sm={smCenter} xs={xsCenter} style={{ textAlign: 'center' }}>
               <SelectPerTotal
                 setPerGameSelected={setPerGameSelected}
                 setTotalSelected={setTotalSelected}
@@ -45,20 +46,20 @@ const TopTen = ({ fetchingData, setFetchingData }) => {
                 setPctSelected={setPctSelected}
               />
             </Col>
-            <Col sm={2} xs={1}></Col>
+            <Col sm={smSide} xs={xsSide}></Col>
           </Row>
           <Row>
-            <Col sm={2} xs={1}></Col>
-            <Col sm={8} xs={10} style={{ textAlign: 'center' }}>
+            <Col sm={smSide} xs={xsSide}></Col>
+            <Col sm={smCenter} xs={xsCenter} style={{ textAlign: 'center' }}>
               <SelectPlayerAmount
                 setPlayerAmount={setPlayerAmount}
               />
             </Col>
-            <Col sm={2} xs={1}></Col>
+            <Col sm={smSide} xs={xsSide}></Col>
           </Row>
           <Row>
-            <Col sm={2} xs={1}></Col>
-            <Col sm={8} xs={10} style={{ textAlign: 'center' }}>
+            <Col sm={smSide} xs={xsSide}></Col>
+            <Col sm={smCenter} xs={xsCenter} style={{ textAlign: 'center' }}>
               <SelectRegularPost
                 regularSeasonSelected={regularSeasonSelected}
                 postSeasonSelected={postSeasonSelected}
@@ -66,15 +67,15 @@ const TopTen = ({ fetchingData, setFetchingData }) => {
                 setPostSeasonSelected={setPostSeasonSelected}
               />
             </Col>
-            <Col sm={2} xs={1}></Col>
+            <Col sm={smSide} xs={xsSide}></Col>
           </Row>
           <br></br>
         </>
         : <></>}
       <Row>
-        <Col sm={4} style={{ textAlign: 'center' }}>
+        <Col sm={smSide} style={{ textAlign: 'center' }}>
         </Col>
-        <Col sm={4}>
+        <Col sm={smCenter}>
           <SelectSeason
             selectedSeason={selectedSeason}
             setSelectedSeason={setSelectedSeason}
@@ -82,62 +83,54 @@ const TopTen = ({ fetchingData, setFetchingData }) => {
             setTopTenStats={setTopTenStats}
           />
         </Col>
-        {/* <Col sm={4}>
-          {selectedSeason !== ''
-            ? <SelectPerTotal
-              setPerGameSelected={setPerGameSelected}
-              setTotalSelected={setTotalSelected}
-              setPer36Selected={setPer36Selected}
-              setPctSelected={setPctSelected}
-            />
-            : <></>}
-        </Col> */}
+        <Col sm={smSide}>
+        </Col>
       </Row>
       {selectedSeason === ''
         ? <>
           <br></br>
           <br></br>
           <Row style={{ textAlign: 'center' }}>
-            <Col sm={4}></Col>
-            <Col sm={4}>
+            <Col sm={smSide}></Col>
+            <Col sm={smCenter}>
               <Logo />
             </Col>
-            <Col sm={4}></Col>
+            <Col sm={smSide}></Col>
           </Row>
           <br></br>
           <br></br>
           <Row style={{ textAlign: 'center' }}>
-            <Col sm={4} xs={1}></Col>
-            <Col sm={4} xs={10}>
+            <Col sm={smSide} xs={xsSide}></Col>
+            <Col sm={smCenter} xs={xsCenter}>
               <Title />
             </Col>
-            <Col sm={4} xs={1}></Col>
+            <Col sm={smSide} xs={xsSide}></Col>
           </Row>
           <Row style={{ textAlign: 'center' }}>
-            <Col sm={4} xs={1}></Col>
-            <Col sm={4} xs={10}>
+            <Col sm={smSide} xs={xsSide}></Col>
+            <Col sm={smCenter} xs={xsCenter}>
               <Description />
             </Col>
-            <Col sm={4} xs={1}></Col>
+            <Col sm={smSide} xs={xsSide}></Col>
           </Row>
           <Row style={{ textAlign: 'center' }}>
-            <Col sm={4} xs={1}></Col>
-            <Col sm={4} xs={10}>
+            <Col sm={smSide} xs={xsSide}></Col>
+            <Col sm={smCenter} xs={xsCenter}>
               <DescriptionTop20 />
             </Col>
-            <Col sm={4} xs={1}></Col>
+            <Col sm={smSide} xs={xsSide}></Col>
           </Row>
         </>
         : <>
         </>}
       {fetchingData ? <>
         <Row style={{ textAlign: 'center' }}>
-          <Col sm={4}></Col>
-          <Col sm={4}>
+          <Col sm={smSide}></Col>
+          <Col sm={smCenter}>
             <br></br>
             <Loader type="Grid" color="white" height="25" width="25" />
           </Col>
-          <Col sm={4}></Col>
+          <Col sm={smSide}></Col>
         </Row>
       </>
         : <></>}
@@ -150,20 +143,8 @@ const TopTen = ({ fetchingData, setFetchingData }) => {
         pctSelected={pctSelected}
         playerAmount={playerAmount}
       />
-
     </>
   )
-
-
-
-
-
-
-
-
-
-
-
 }
 
 export default TopTen

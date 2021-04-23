@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { smSide, xsSide, smCenter, xsCenter } from '../../styling/columnWidths'
 import DescriptionContact from './DescriptionContact'
 import { Row, Col, Form, Button } from 'react-bootstrap'
 import contactService from '../../services/contact'
@@ -45,8 +46,8 @@ const Contact = () => {
         ? <>
           <Form onSubmit={(event) => handleSubmit(event)}>
             <Row>
-              <Col sm={4}></Col>
-              <Col sm={4}>
+              <Col sm={smSide}></Col>
+              <Col sm={smCenter}>
                 <Form.Group controlId="exampleForm.ControlInput1">
                   <Form.Control
                     type="email"
@@ -54,11 +55,11 @@ const Contact = () => {
                     onChange={(event) => handleEmailChange(event)} />
                 </Form.Group>
               </Col>
-              <Col sm={4}></Col>
+              <Col sm={smSide}></Col>
             </Row>
             <Row>
-              <Col sm={4}></Col>
-              <Col sm={4}>
+              <Col sm={smSide}></Col>
+              <Col sm={smCenter}>
                 <Form.Group controlId="exampleForm.ControlTextarea1">
                   <Form.Control
                     as="textarea"
@@ -67,39 +68,39 @@ const Contact = () => {
                     onChange={(event) => handleMessageChange(event)} />
                 </Form.Group>
               </Col>
-              <Col sm={4}></Col>
+              <Col sm={smSide}></Col>
             </Row>
             {sentEmptyMessage
               ? <>
                 <Row>
-                  <Col sm={4}></Col>
-                  <Col sm={4}>
+                  <Col sm={smSide}></Col>
+                  <Col sm={smCenter}>
                     <div style={{ color: 'white' }}>
                       <p>Before sending, please write your message.</p>
                     </div>
 
                   </Col>
-                  <Col sm={4}></Col>
+                  <Col sm={smSide}></Col>
                 </Row>
               </>
               : <></>}
 
             <Row>
-              <Col sm={4}></Col>
-              <Col sm={4}>
+              <Col sm={smSide}></Col>
+              <Col sm={smCenter}>
                 <Button type='submit'>
                   Send
                 </Button>
               </Col>
-              <Col sm={4}></Col>
+              <Col sm={smSide}></Col>
             </Row>
           </Form>
           <Row >
-            <Col sm={4} xs={1}></Col>
-            <Col sm={4} xs={10}>
+            <Col sm={smSide} xs={xsSide}></Col>
+            <Col sm={smCenter} xs={xsCenter}>
               <DescriptionContact />
             </Col>
-            <Col sm={4} xs={1}></Col>
+            <Col sm={smSide} xs={xsSide}></Col>
           </Row>
         </>
         : <>
@@ -107,11 +108,11 @@ const Contact = () => {
           <br></br>
           <br></br>
           <Row style={{ textAlign: 'center' }}>
-            <Col sm={4}></Col>
-            <Col sm={4}>
+            <Col sm={smSide}></Col>
+            <Col sm={smCenter}>
               <p style={{ color: 'white' }}>Thank you for your message.</p>
             </Col>
-            <Col sm={4}></Col>
+            <Col sm={smSide}></Col>
           </Row>
         </>
       }
