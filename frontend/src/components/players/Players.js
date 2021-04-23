@@ -162,9 +162,9 @@ const Players = ({ fetchingData, setFetchingData, players, setPlayers, teams }) 
                 : <></>}</Col>
           </Row>
           <br></br>
-          <Row >
-            <Col sm={smSide} ></Col>
-            <Col sm={smCenter} >
+          <Row /* style={{ textAlign: 'center' }} */>
+            <Col sm={3} ></Col>
+            <Col sm={7} >
               <SelectStats
                 ptsSelected={ptsSelected}
                 setPtsSelected={setPtsSelected}
@@ -205,9 +205,9 @@ const Players = ({ fetchingData, setFetchingData, players, setPlayers, teams }) 
                 minSelected={minSelected}
                 setMinSelected={setMinSelected} />
             </Col>
-            <Col sm={smSide}></Col>
+            <Col sm={2}></Col>
           </Row>
-          <Row>
+          <Row style={{ textAlign: 'center' }}>
             <Col sm={smSide}></Col>
             <Col sm={smCenter}>
               <div style={{ color: 'white' }}>trailing average</div>
@@ -217,7 +217,7 @@ const Players = ({ fetchingData, setFetchingData, players, setPlayers, teams }) 
             <Col sm={smSide}></Col>
           </Row>
           <br></br>
-          <Row>
+          <Row style={{ textAlign: 'center' }}>
             <Col sm={smSide}></Col>
             <Col sm={smCenter}>
               <SelectRegularPost
