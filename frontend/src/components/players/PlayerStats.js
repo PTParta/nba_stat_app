@@ -45,14 +45,22 @@ const PlayerStats = (
       xAxes: [{
         ticks: {
           display: false
-        }
+        },
+        gridLines: {
+          display: false ,
+          color: "grey"
+        },
       }],
       yAxes: [{
         ticks: {
           beginAtZero: true,
           fontColor: 'white',
           fontSize: 14,
-        }
+        },
+        gridLines: {
+          display: true ,
+          color: "grey"
+        },
       }]
     }
   }
