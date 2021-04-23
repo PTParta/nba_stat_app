@@ -12,7 +12,6 @@ const PlayerComparisonStats = (
   }
 ) => {
 
-
   return (
     <div>
       <BarCharts

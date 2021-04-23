@@ -3,14 +3,11 @@ import { Row, Col } from 'react-bootstrap'
 import SelectTeam from './SelectTeam'
 import TeamStats from './TeamStats'
 import SelectSeason from './SelectSeason'
-/* import SelectRegularPost from './SelectRegularPost'
-import SelectPerTotal from './SelectPerTotal' */
 import SelectRegularPost from '../common/SelectRegularPost'
 import SelectPerTotal from '../common/SelectPerTotal'
 import DescriptionTeams from './DescriptionTeams'
 import Title from '../common/Title'
 import Description from '../common/Description'
-//import teamService from '../../services/teams'
 import Loader from 'react-loader-spinner'
 import Logo from '../common/Logo'
 import ReactGa from 'react-ga'
@@ -18,7 +15,6 @@ require('dotenv').config()
 
 const Teams = ({ fetchingData, setFetchingData, teams }) => {
 
-  //const [teams, setTeams] = useState([])
   const [selectedTeam, setSelectedTeam] = useState('')
   const [teamStats, setTeamStats] = useState([])
   const [selectedSeason, setSelectedSeason] = useState(2020)

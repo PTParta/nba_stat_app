@@ -7,9 +7,7 @@ const SelectSeason = ({
   setFetchingData,
   setSummaryStats,
   selectedPlayersNames,
-  filteredSummaryStats,
   setFilteredSummaryStats,
-  summaryStats
 }) => {
 
   let seasonDescending = 2020
@@ -36,7 +34,6 @@ const SelectSeason = ({
     <>
       <Select
         options={seasonSelectDescending}
-        //onChange={(event) => setSelectedSeason(event.value)}
         onChange={(event) => handleSelectedSeasonChange(event)}
         closeMenuOnSelect={true}
         placeholder='Select season'

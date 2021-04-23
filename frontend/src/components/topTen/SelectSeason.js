@@ -3,7 +3,6 @@ import playerStatService from '../../services/playerStats'
 
 
 const SelectSeason = ({
-  selectedSeason,
   setSelectedSeason,
   setFetchingData,
   setTopTenStats
@@ -30,12 +29,10 @@ const SelectSeason = ({
     <>
       <Select
         options={seasonSelectDescending}
-        //onChange={(event) => setSelectedSeason(event.value)}
         onChange={(event) => handleSelectedSeasonChange(event)}
         closeMenuOnSelect={true}
         placeholder='Select season'
       />
-
     </>
   )
 }

@@ -5,7 +5,6 @@ import PlayerComparisonStats from './ComparePlayersStats'
 import DescriptionPlayerComparison from './DescriptionComparePlayers'
 import SelectPerTotal from '../common/SelectPerTotal'
 import SelectRegularPost from '../common/SelectRegularPost'
-//import Reset from './Reset'
 import Logo from '../common/Logo'
 import Title from '../common/Title'
 import Description from '../common/Description'
@@ -97,7 +96,6 @@ const PlayerComparison = ({ players, fetchingData, setFetchingData }) => {
           </Row>
         </>
         : <></>}
-
       {selectedSeason === ''
         ? <>
           <br></br>
@@ -154,7 +152,6 @@ const PlayerComparison = ({ players, fetchingData, setFetchingData }) => {
         per36Selected={per36Selected}
         pctSelected={pctSelected}
       />
-
     </>
   )
 }

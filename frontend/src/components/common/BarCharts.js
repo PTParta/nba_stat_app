@@ -16,16 +16,12 @@ const BarCharts = (
     postSeasonFilteringDone
   }) => {
 
-  //console.log(topTenStats)
   let statsFilteredByPostseason = []
   if (!postSeasonFilteringDone) {
     statsFilteredByPostseason = stats.filter(stat => stat.postseason === postSeasonSelected)
   } else {
     statsFilteredByPostseason = stats.filter(stat => stat.played_games > 0)
   }
-
-  //filter out bad data where player is not defined
-  //topTenStatsFiltered = topTenStatsFiltered.filter(topTenStat => topTenStat.player !== undefined)
 
   //Pct
   const dataFgPct = barChartDataService.fgPct(statsFilteredByPostseason, playerAmount)

@@ -1,5 +1,5 @@
 import Select from 'react-select'
-import { /* Container,  */Row, Col } from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
 
 const SelectSeasons = ({
   selectedFirstSeason,
@@ -50,7 +50,6 @@ const SelectSeasons = ({
         <Col sm={4}>
           <Select
             options={seasonSelectAscending}
-            /* onChange={(event) => setSelectedFirstSeason(event.value)} */
             onChange={(event) => handleSelectedFirstSeasonChange(event)}
             closeMenuOnSelect={true}
             placeholder={selectedFirstSeason.toString()}
@@ -63,7 +62,6 @@ const SelectSeasons = ({
         <Col sm={4}>
           <Select
             options={seasonSelectDescending}
-            /* onChange={(event) => setSelectedLastSeason(event.value)} */
             onChange={(event) => handleSelectedLastSeasonChange(event)}
             closeMenuOnSelect={true}
             placeholder={selectedLastSeason}

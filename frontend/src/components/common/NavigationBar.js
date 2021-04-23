@@ -6,7 +6,7 @@ const NavigationBar = () => {
     padding: 5
   }
   return (
-    <Navbar collapseOnSelect expand="lg" /* bg="dark" variant="light" */>
+    <Navbar collapseOnSelect expand="lg">
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
@@ -16,8 +16,6 @@ const NavigationBar = () => {
           <Nav.Link href="#" as="span">
             <Link style={padding} to="/topplayers">top players</Link>
           </Nav.Link>
-
-
           <Nav.Link href="#" as="span">
             <Link style={padding} to="/compareplayers">compare players</Link>
           </Nav.Link>
@@ -34,11 +32,3 @@ const NavigationBar = () => {
 }
 
 export default NavigationBar
-
-
-/* <Nav.Link href="#" as="span">
-              {user
-                ? <em>{user} logged in</em>
-                : <Link to="/login">login</Link>
-              }
-            </Nav.Link> */

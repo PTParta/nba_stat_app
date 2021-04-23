@@ -1,7 +1,4 @@
 import React, { useState, useEffect } from 'react'
-/* import Logo from '../common/Logo'
-import Title from '../common/Title'
-import Description from '../common/Description' */
 import DescriptionContact from './DescriptionContact'
 import { Row, Col, Form, Button } from 'react-bootstrap'
 import contactService from '../../services/contact'
@@ -23,12 +20,10 @@ const Contact = () => {
 
   const handleMessageChange = (event) => {
     setMessage(event.target.value)
-    //console.log(message)
   }
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value)
-    //console.log(email)
   }
 
   const handleSubmit = (event) => {

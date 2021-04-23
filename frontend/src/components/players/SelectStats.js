@@ -1,7 +1,6 @@
 import { Form } from 'react-bootstrap'
 import React from 'react'
 import colors from '../../styling/colors'
-//import { AllCheckerCheckbox, Checkbox, CheckboxGroup } from '@createnl/grouped-checkboxes'
 
 const SelectStats = (
   {
@@ -86,7 +85,6 @@ const SelectStats = (
           </tbody>
         </table>
       </Form>
-      {/* <br></br> */}
       <Form>
         <table>
           <tbody>
@@ -123,7 +121,6 @@ const SelectStats = (
           </tbody>
         </table>
       </Form>
-      {/* <br></br> */}
       <Form>
         <table>
           <tbody>
@@ -154,7 +151,6 @@ const SelectStats = (
           </tbody>
         </table>
       </Form>
-      {/* <br></br> */}
       <Form>
         <table>
           <tbody>
@@ -185,7 +181,6 @@ const SelectStats = (
           </tbody>
         </table>
       </Form>
-      {/* <br></br> */}
       <Form>
         <table>
           <tbody>
@@ -216,7 +211,6 @@ const SelectStats = (
           </tbody>
         </table>
       </Form>
-      {/* <br></br> */}
       <Form>
         <table>
           <tbody>

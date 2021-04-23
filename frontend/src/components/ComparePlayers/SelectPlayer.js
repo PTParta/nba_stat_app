@@ -15,12 +15,10 @@ const SelectPlayer = ({
     const updatedSelectedPlayersNames = selectedPlayersNames
     updatedSelectedPlayersNames.push(playerFullName)
     setSelectedPlayersNames(updatedSelectedPlayersNames)
-    //console.log(selectedPlayersNames)
 
     const updatedFilteredSummaryStats = summaryStats.filter(stat => selectedPlayersNames.includes(stat.name))
     setFilteredSummaryStats(updatedFilteredSummaryStats)
     console.log(filteredSummaryStats)
-    // playerSelect = playerSelect.filter(player => player.value !== playerFullName)
   }
 
   return (

@@ -4,7 +4,6 @@ import { Line } from 'react-chartjs-2'
 import trailingMeanService from '../../services/trailingMeans'
 import colors from '../../styling/colors'
 import Loader from 'react-loader-spinner'
-//import Logo from '../components/Logo'
 
 const PlayerStats = (
   {
@@ -38,9 +37,6 @@ const PlayerStats = (
 ) => {
 
   const options = {
-    //responsive: true,
-    /* maintainAspectRatio: false, */
-    //aspectRatio: 1,
     legend: {
       onClick: (e) => e.stopPropagation(),
       display: false

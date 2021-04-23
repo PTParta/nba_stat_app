@@ -40,11 +40,6 @@ const SelectRegularPost = ({ setRegularSeasonSelected, setPostSeasonSelected }) 
           </ToggleButton>
         ))}
       </ButtonGroup>
-      {/* test to check that states change correctly */}
-      {/* <div style={{ color: 'white' }}>
-        <p>reg: {regularSeasonSelected.toString()}</p>
-        <p>post: {postSeasonSelected.toString()}</p>
-      </div> */}
     </>
   )
 }
