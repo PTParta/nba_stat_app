@@ -18,7 +18,6 @@ const SelectPlayer = ({
 
     const updatedFilteredSummaryStats = summaryStats.filter(stat => selectedPlayersNames.includes(stat.name))
     setFilteredSummaryStats(updatedFilteredSummaryStats)
-    console.log(filteredSummaryStats)
   }
 
   return (

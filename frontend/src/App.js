@@ -14,8 +14,8 @@ import {
   Switch,
   Route,
   Redirect,
-  Link
-  /*  Redirect,
+  /*Link
+    Redirect,
    useRouteMatch,
    Redirect,
    useHistory */
@@ -48,8 +48,7 @@ function App() {
         height: '1500vh',
         display: 'flex',
         flexDirection: 'column',
-        alignContent: 'center'/* ,
-        textAlign: 'center' */
+        alignContent: 'center'
       }}>
         <div className="container" style={{ paddingTop: '2vh', backgroundColor: "#17202A" }} >
           <Container>
@@ -61,7 +60,7 @@ function App() {
               <Col sm={2}></Col>
             </Row>
             {/* <div style={{ backgroundColor:'white' }}> */}
-           {/*  <Row align="left">
+            {/*  <Row align="left">
               <Col sm={2}></Col>
               <Col sm={2} xs={3}>
                 <Link to='/players'>player career</Link>
