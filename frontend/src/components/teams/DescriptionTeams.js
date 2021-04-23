@@ -3,7 +3,7 @@ const DescriptionTeams = () => {
   return (
     <div style={{color:'white', textAlign:'left',}}>
       <br></br>
-      <br></br>
+      {/* <br></br> */}
       <p>
         This page shows how stats are distributed among players in a team.
         Only stats that a player has gotten in the selected team are shown,
