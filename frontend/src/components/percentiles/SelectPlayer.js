@@ -6,7 +6,11 @@ const SelectPlayer = ({
   setSelectedPlayersNames,
 }) => {
 
-  let playerSelect = percentileStats.map(stat => ({ label: stat.name, value: stat.name }))
+  let playerNames = percentileStats.map(stat => stat.name)
+  //Remove duplicate names
+  playerNames = playerNames.filter((v, i, a) => a.indexOf(v) === i)
+
+  let playerSelect = playerNames.map(stat => ({ label: stat, value: stat }))
 
   const handleSelectedPlayerChange = (playerFullName) => {
     const updatedSelectedPlayersNames = selectedPlayersNames

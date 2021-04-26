@@ -9,7 +9,7 @@ const SelectPlayer = ({
 
 }) => {
 
-  let playerSelect = summaryStats.map(stat => ({ label: stat.name, value: stat.name }))
+  let playerSelect = summaryStats.sort((a,b)=>b.split(' ')[1]).map(stat => ({ label: stat.name, value: stat.name }))
 
   const handleSelectedPlayerChange = (playerFullName) => {
     const updatedSelectedPlayersNames = selectedPlayersNames

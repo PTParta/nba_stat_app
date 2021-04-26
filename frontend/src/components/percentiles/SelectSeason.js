@@ -20,7 +20,9 @@ const SelectSeason = ({
     setFetchingData(true)
     playerStatService.getSummaryStatsFromDBForASeason(event.value)
       .then((response) => {
-        setPercentileStats(response.data)
+        setPercentileStats(response.data
+          .filter(stat => stat.name !== undefined)
+          .sort((a, b) => (a.name.split(' ')[1] > b.name.split(' ')[1]) ? 1 : ((b.name.split(' ')[1] > a.name.split(' ')[1]) ? -1 : 0)))
         setFetchingData(false)
       })
   }
