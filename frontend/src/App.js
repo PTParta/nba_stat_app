@@ -6,6 +6,7 @@ import Teams from './components/teams/Teams'
 import TopTen from './components/topTen/TopTen'
 import Contact from './components/contact/Contact'
 import ComparePlayers from './components/ComparePlayers/ComparePlayers'
+import Percentiles from './components/percentiles/Percentiles'
 import playerService from './services/players'
 import teamService from './services/teams'
 
@@ -117,6 +118,12 @@ function App() {
                   fetchingData={fetchingData}
                   setFetchingData={setFetchingData}
                   players={players}
+                />
+              </Route>
+              <Route path='/percentiles'>
+                <Percentiles
+                  fetchingData={fetchingData}
+                  setFetchingData={setFetchingData}
                 />
               </Route>
               <Route path='/'>

@@ -23,6 +23,9 @@ const NavigationBar = () => {
             <Link style={padding} to="/teams">teams</Link>
           </Nav.Link>
           <Nav.Link href="#" as="span">
+            <Link style={padding} to="/percentiles">percentiles</Link>
+          </Nav.Link>
+          <Nav.Link href="#" as="span">
             <Link style={padding} to="/contactus">contact us</Link>
           </Nav.Link>
         </Nav>
