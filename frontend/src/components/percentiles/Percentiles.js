@@ -72,6 +72,7 @@ const TopTen = ({ fetchingData, setFetchingData }) => {
             setSelectedSeason={setSelectedSeason}
             setFetchingData={setFetchingData}
             setPercentileStats={setPercentileStats}
+            percentileStats={percentileStats}
           />
         </Col>
         <Col sm={smSide}>
@@ -142,16 +143,34 @@ const TopTen = ({ fetchingData, setFetchingData }) => {
         </Row>
       </>
         : <></>}
-      <PercentileStats
-        percentileStats={percentileStats}
-        postSeasonSelected={postSeasonSelected}
-        perGameSelected={perGameSelected}
-        totalSelected={totalSelected}
-        per36Selected={per36Selected}
-        pctSelected={pctSelected}
-      />
+
+      <br></br>
+      {percentileStats.length > 0 /* && selectedPlayersNames.length > 0 */
+        ?
+        <PercentileStats
+          percentileStats={percentileStats}
+          postSeasonSelected={postSeasonSelected}
+          perGameSelected={perGameSelected}
+          totalSelected={totalSelected}
+          per36Selected={per36Selected}
+          pctSelected={pctSelected}
+        />
+        : <div style={{ color: 'white' }}>No percentileStats</div>}
+
     </>
   )
 }
 
 export default TopTen
+
+
+/* {percentileStats.length > 0 && selectedPlayersNames.length > 0
+  ? <PercentileStats
+    percentileStats={percentileStats}
+    postSeasonSelected={postSeasonSelected}
+    perGameSelected={perGameSelected}
+    totalSelected={totalSelected}
+    per36Selected={per36Selected}
+    pctSelected={pctSelected}
+  />
+  : <></>} */

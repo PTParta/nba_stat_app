@@ -9,7 +9,11 @@ const SelectPlayer = ({
 
 }) => {
 
-  let playerSelect = summaryStats.sort((a,b)=>b.split(' ')[1]).map(stat => ({ label: stat.name, value: stat.name }))
+  let playerNames = summaryStats.map(stat => stat.name)
+  //Remove duplicate names
+  playerNames = playerNames.filter((v, i, a) => a.indexOf(v) === i)
+
+  let playerSelect = playerNames.map(stat => ({ label: stat, value: stat }))
 
   const handleSelectedPlayerChange = (playerFullName) => {
     const updatedSelectedPlayersNames = selectedPlayersNames

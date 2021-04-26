@@ -5,7 +5,8 @@ import playerStatService from '../../services/playerStats'
 const SelectSeason = ({
   setSelectedSeason,
   setFetchingData,
-  setPercentileStats
+  setPercentileStats,
+  percentileStats
 }) => {
 
   let seasonDescending = 2020
@@ -20,11 +21,13 @@ const SelectSeason = ({
     setFetchingData(true)
     playerStatService.getSummaryStatsFromDBForASeason(event.value)
       .then((response) => {
+        //console.log(response.data)
         setPercentileStats(response.data
           .filter(stat => stat.name !== undefined)
           .sort((a, b) => (a.name.split(' ')[1] > b.name.split(' ')[1]) ? 1 : ((b.name.split(' ')[1] > a.name.split(' ')[1]) ? -1 : 0)))
         setFetchingData(false)
       })
+      console.log(percentileStats)
   }
 
   return (
