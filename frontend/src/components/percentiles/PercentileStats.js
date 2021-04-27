@@ -25,7 +25,7 @@ const PercentileStats = ({
 
   const options = {
     legend: {
-      onClick: (e) => e.stopPropagation(),
+      /* onClick: (e) => e.stopPropagation(), */
       display: true
     },
     scales: {
@@ -42,7 +42,7 @@ const PercentileStats = ({
       }],
       yAxes: [{
         ticks: {
-          beginAtZero: true,
+          /* beginAtZero: true, */
           fontColor: 'white',
           fontSize: 14,
         },
@@ -93,21 +93,79 @@ const PercentileStats = ({
     }
 
     percentileStatsToShow.push(newPlayerPercentiles)
-    /* percentileStatsToShow.push(ptsPerGamePercentile) */
   })
   console.log(percentileStatsToShow)
-  /* const player0 = percentileStatsFiltered.filter(stat => stat.name === selectedPlayersNames[0])[0]
-  const player1 = percentileStatsFiltered.filter(stat => stat.name === 'Steven Adams')[0]
-  const player2 = percentileStatsFiltered.filter(stat => stat.name === selectedPlayersNames[2])
-  const player3 = percentileStatsFiltered.filter(stat => stat.name === selectedPlayersNames[3])
-  const player4 = percentileStatsFiltered.filter(stat => stat.name === selectedPlayersNames[4]) */
 
-  //console.log(player0)
+  //Create datasets for line chart
+  let datasets = []
+  for (let i = 0; i < percentileStatsToShow.length; i++) {
+    let borderColor
+    let pointBackgroundColor
+    switch (i) {
+      case 0:
+        borderColor = colors.orangeLine
+        pointBackgroundColor = colors.orangeLine
+        break
+      case 1:
+        borderColor = colors.yellowLine
+        pointBackgroundColor = colors.yellowLine
+        break
+      case 2:
+        borderColor = colors.greenLine
+        pointBackgroundColor = colors.greenLine
+        break
+      case 3:
+        borderColor = colors.magentaLine
+        pointBackgroundColor = colors.magentaLine
+        break
+      case 4:
+        borderColor = colors.cyanLine
+        pointBackgroundColor = colors.cyanLine
+        break
+      default:
+        borderColor = null
+        pointBackgroundColor = null
+    }
 
+    const dataset = {
+      label: percentileStatsToShow[i].name,
+      data: [
+        percentileStatsToShow[i].pts_pergame,
+        percentileStatsToShow[i].ast_pergame,
+        percentileStatsToShow[i].reb_pergame,
+        percentileStatsToShow[i].blk_pergame,
+        percentileStatsToShow[i].stl_pergame
+      ],
+      fill: false,
+      borderColor: borderColor,
+      pointBackgroundColor: pointBackgroundColor,
+      showline: true,
+      hidden: false
+    }
+    datasets.push(dataset)
+  }
   const data = {
     labels: ['pts', 'ast', 'reb', 'blk', 'stl'/* , 'turnover', 'pf', 'min' */],
-    datasets: [
-      /*  {
+    datasets: datasets
+  }
+
+  return (
+    <>
+      <div className='chart'>
+        <Line
+          data={data}
+          options={options}
+        />
+      </div>
+    </>
+  )
+}
+
+export default PercentileStats
+
+
+
+ /*  {
          label: 'LeBron James',
          //data: [20, 10, 12, 2, 2],
          data: [percentileStats.find(s => s.name === 'LeBron James').pts_pergame,
@@ -150,20 +208,3 @@ const PercentileStats = ({
         hidden: false
       }
   */
-
-    ]
-  }
-
-  return (
-    <>
-      <div className='chart'>
-        <Line
-          data={data}
-          options={options}
-        />
-      </div>
-    </>
-  )
-}
-
-export default PercentileStats
