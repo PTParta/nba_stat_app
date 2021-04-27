@@ -19,7 +19,7 @@ const SelectPlayer = ({
     updatedSelectedPlayersNames.push(playerFullName)
     setSelectedPlayersNames(updatedSelectedPlayersNames)
     setAmountPlayersSelected(amountPlayersSelected + 1)
-    console.log(selectedPlayersNames.length)
+    //console.log(selectedPlayersNames.length)
   }
 
   return (

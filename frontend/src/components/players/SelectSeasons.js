@@ -1,5 +1,5 @@
 import Select from 'react-select'
-import { smSide, xsSide, smCenter, xsCenter } from '../../styling/columnWidths'
+import { smSide, smCenter } from '../../styling/columnWidths'
 import { Row, Col } from 'react-bootstrap'
 
 const SelectSeasons = ({

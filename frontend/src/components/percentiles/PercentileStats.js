@@ -1,5 +1,4 @@
 import React from 'react'
-import { Container, Row, Col } from 'react-bootstrap'
 import { Line } from 'react-chartjs-2'
 import colors from '../../styling/colors'
 
@@ -80,7 +79,7 @@ const PercentileStats = ({
   const statsSortedFg3PctPerGame = statsForFg3PctPerGame.sort((a, b) => a.fg3_pct - b.fg3_pct)
   const statsSortedFtPctPerGame = statsForFtPctPerGame.sort((a, b) => a.ft_pct - b.ft_pct)
 
-  console.log(statsSortedPtsPerGame)
+  //console.log(statsSortedPtsPerGame)
 
   let percentileStatsToShow = []
 
@@ -110,7 +109,7 @@ const PercentileStats = ({
 
     percentileStatsToShow.push(newPlayerPercentiles)
   })
-  console.log(percentileStatsToShow)
+  //console.log(percentileStatsToShow)
 
   //Create datasets for line chart
   let datasets = []
