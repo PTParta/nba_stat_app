@@ -65,6 +65,7 @@ const PercentileStats = ({
   const statsForRebPerGame = [...percentileStatsFiltered]
   const statsForBlkPerGame = [...percentileStatsFiltered]
   const statsForStlPerGame = [...percentileStatsFiltered]
+  const statsForAstToTurnover = [...percentileStatsFiltered]
   const statsForFgPctPerGame = [...percentileStatsFiltered]
   const statsForFg3PctPerGame = [...percentileStatsFiltered]
   const statsForFtPctPerGame = [...percentileStatsFiltered]
@@ -74,6 +75,7 @@ const PercentileStats = ({
   const statsSortedRebPerGame = statsForRebPerGame.sort((a, b) => a.reb_pergame - b.reb_pergame)
   const statsSortedBlkPerGame = statsForBlkPerGame.sort((a, b) => a.blk_pergame - b.blk_pergame)
   const statsSortedStlPerGame = statsForStlPerGame.sort((a, b) => a.stl_pergame - b.stl_pergame)
+  const statsSortedAstToTurnover = statsForAstToTurnover.sort((a, b) => a.ast_to_turnover - b.ast_to_turnover)
   const statsSortedFgPctPerGame = statsForFgPctPerGame.sort((a, b) => a.fg_pct - b.fg_pct)
   const statsSortedFg3PctPerGame = statsForFg3PctPerGame.sort((a, b) => a.fg3_pct - b.fg3_pct)
   const statsSortedFtPctPerGame = statsForFtPctPerGame.sort((a, b) => a.ft_pct - b.ft_pct)
@@ -88,6 +90,7 @@ const PercentileStats = ({
     const rebPerGamePercentile = Math.floor(statsSortedRebPerGame.findIndex(stat => stat.name === playerName) / numberOfPlayers * 100 * 10) / 10
     const blkPerGamePercentile = Math.floor(statsSortedBlkPerGame.findIndex(stat => stat.name === playerName) / numberOfPlayers * 100 * 10) / 10
     const stlPerGamePercentile = Math.floor(statsSortedStlPerGame.findIndex(stat => stat.name === playerName) / numberOfPlayers * 100 * 10) / 10
+    const astToTurnoverPercentile = Math.floor(statsSortedAstToTurnover.findIndex(stat => stat.name === playerName) / numberOfPlayers * 100 * 10) / 10
     const fgPctPercentile = Math.floor(statsSortedFgPctPerGame.findIndex(stat => stat.name === playerName) / numberOfPlayers * 100 * 10) / 10
     const fg3PctPercentile = Math.floor(statsSortedFg3PctPerGame.findIndex(stat => stat.name === playerName) / numberOfPlayers * 100 * 10) / 10
     const ftPctPercentile = Math.floor(statsSortedFtPctPerGame.findIndex(stat => stat.name === playerName) / numberOfPlayers * 100 * 10) / 10
@@ -99,6 +102,7 @@ const PercentileStats = ({
       reb_pergame: rebPerGamePercentile,
       blk_pergame: blkPerGamePercentile,
       stl_pergame: stlPerGamePercentile,
+      ast_to_turnover: astToTurnoverPercentile,
       fg_pct: fgPctPercentile,
       fg3_pct: fg3PctPercentile,
       ft_pct: ftPctPercentile,
@@ -167,6 +171,7 @@ const PercentileStats = ({
         percentileStatsToShow[i].reb_pergame,
         percentileStatsToShow[i].blk_pergame,
         percentileStatsToShow[i].stl_pergame,
+        percentileStatsToShow[i].ast_to_turnover,
         percentileStatsToShow[i].fg_pct,
         percentileStatsToShow[i].fg3_pct,
         percentileStatsToShow[i].ft_pct,
@@ -180,7 +185,7 @@ const PercentileStats = ({
     datasets.push(dataset)
   }
   const data = {
-    labels: ['pts', 'ast', 'reb', 'blk', 'stl', 'fg %', 'fg3 %', 'ft %'],
+    labels: ['pts', 'ast', 'reb', 'blk', 'stl', 'ast/to', 'fg %', 'fg3 %', 'ft %'],
     datasets: datasets
   }
 

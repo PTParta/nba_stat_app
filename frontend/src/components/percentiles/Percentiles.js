@@ -161,7 +161,7 @@ const TopTen = ({ fetchingData, setFetchingData }) => {
             amountPlayersSelected={amountPlayersSelected}
           />
         </>
-        : <div style={{ color: 'white' }}>No percentileStats</div>}
+        : <></>}
 
     </>
   )
