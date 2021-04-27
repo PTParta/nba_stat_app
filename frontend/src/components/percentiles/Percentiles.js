@@ -26,6 +26,7 @@ const TopTen = ({ fetchingData, setFetchingData }) => {
   const [totalSelected, setTotalSelected] = useState(false)
   const [per36Selected, setPer36Selected] = useState(false)
   const [pctSelected, setPctSelected] = useState(false)
+  const [amountPlayersSelected, setAmountPlayersSelected] = useState(0)
 
   useEffect(() => {
     ReactGa.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS_TRACKING_CODE)
@@ -88,6 +89,8 @@ const TopTen = ({ fetchingData, setFetchingData }) => {
                 selectedPlayersNames={selectedPlayersNames}
                 setSelectedPlayersNames={setSelectedPlayersNames}
                 percentileStats={percentileStats}
+                setAmountPlayersSelected={setAmountPlayersSelected}
+                amountPlayersSelected={amountPlayersSelected}
               /*  filteredSummaryStats={filteredSummaryStats}
                setFilteredSummaryStats={setFilteredSummaryStats} */
               />
@@ -145,16 +148,19 @@ const TopTen = ({ fetchingData, setFetchingData }) => {
         : <></>}
 
       <br></br>
-      {percentileStats.length > 0 /* && selectedPlayersNames.length > 0 */
-        ?
-        <PercentileStats
-          percentileStats={percentileStats}
-          postSeasonSelected={postSeasonSelected}
-          perGameSelected={perGameSelected}
-          totalSelected={totalSelected}
-          per36Selected={per36Selected}
-          pctSelected={pctSelected}
-        />
+      {percentileStats.length > 0 && amountPlayersSelected > 0
+        ? <>
+          <PercentileStats
+            percentileStats={percentileStats}
+            selectedPlayersNames={selectedPlayersNames}
+            postSeasonSelected={postSeasonSelected}
+            perGameSelected={perGameSelected}
+            totalSelected={totalSelected}
+            per36Selected={per36Selected}
+            pctSelected={pctSelected}
+            amountPlayersSelected={amountPlayersSelected}
+          />
+        </>
         : <div style={{ color: 'white' }}>No percentileStats</div>}
 
     </>

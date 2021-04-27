@@ -4,6 +4,8 @@ const SelectPlayer = ({
   percentileStats,
   selectedPlayersNames,
   setSelectedPlayersNames,
+  setAmountPlayersSelected,
+  amountPlayersSelected
 }) => {
 
   let playerNames = percentileStats.map(stat => stat.name)
@@ -16,7 +18,8 @@ const SelectPlayer = ({
     const updatedSelectedPlayersNames = selectedPlayersNames
     updatedSelectedPlayersNames.push(playerFullName)
     setSelectedPlayersNames(updatedSelectedPlayersNames)
-    console.log(selectedPlayersNames)
+    setAmountPlayersSelected(amountPlayersSelected + 1)
+    console.log(selectedPlayersNames.length)
   }
 
   return (
