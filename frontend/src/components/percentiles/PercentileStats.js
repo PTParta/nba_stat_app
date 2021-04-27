@@ -65,12 +65,18 @@ const PercentileStats = ({
   const statsForRebPerGame = [...percentileStatsFiltered]
   const statsForBlkPerGame = [...percentileStatsFiltered]
   const statsForStlPerGame = [...percentileStatsFiltered]
+  const statsForFgPctPerGame = [...percentileStatsFiltered]
+  const statsForFg3PctPerGame = [...percentileStatsFiltered]
+  const statsForFtPctPerGame = [...percentileStatsFiltered]
 
   const statsSortedPtsPerGame = statsForPtsPerGame.sort((a, b) => a.pts_pergame - b.pts_pergame)
   const statsSortedAstPerGame = statsForAstPerGame.sort((a, b) => a.ast_pergame - b.ast_pergame)
   const statsSortedRebPerGame = statsForRebPerGame.sort((a, b) => a.reb_pergame - b.reb_pergame)
   const statsSortedBlkPerGame = statsForBlkPerGame.sort((a, b) => a.blk_pergame - b.blk_pergame)
   const statsSortedStlPerGame = statsForStlPerGame.sort((a, b) => a.stl_pergame - b.stl_pergame)
+  const statsSortedFgPctPerGame = statsForFgPctPerGame.sort((a, b) => a.fg_pct - b.fg_pct)
+  const statsSortedFg3PctPerGame = statsForFg3PctPerGame.sort((a, b) => a.fg3_pct - b.fg3_pct)
+  const statsSortedFtPctPerGame = statsForFtPctPerGame.sort((a, b) => a.ft_pct - b.ft_pct)
 
   console.log(statsSortedPtsPerGame)
 
@@ -82,6 +88,9 @@ const PercentileStats = ({
     const rebPerGamePercentile = Math.floor(statsSortedRebPerGame.findIndex(stat => stat.name === playerName) / numberOfPlayers * 100 * 10) / 10
     const blkPerGamePercentile = Math.floor(statsSortedBlkPerGame.findIndex(stat => stat.name === playerName) / numberOfPlayers * 100 * 10) / 10
     const stlPerGamePercentile = Math.floor(statsSortedStlPerGame.findIndex(stat => stat.name === playerName) / numberOfPlayers * 100 * 10) / 10
+    const fgPctPercentile = Math.floor(statsSortedFgPctPerGame.findIndex(stat => stat.name === playerName) / numberOfPlayers * 100 * 10) / 10
+    const fg3PctPercentile = Math.floor(statsSortedFg3PctPerGame.findIndex(stat => stat.name === playerName) / numberOfPlayers * 100 * 10) / 10
+    const ftPctPercentile = Math.floor(statsSortedFtPctPerGame.findIndex(stat => stat.name === playerName) / numberOfPlayers * 100 * 10) / 10
 
     const newPlayerPercentiles = {
       name: playerName,
@@ -90,6 +99,9 @@ const PercentileStats = ({
       reb_pergame: rebPerGamePercentile,
       blk_pergame: blkPerGamePercentile,
       stl_pergame: stlPerGamePercentile,
+      fg_pct: fgPctPercentile,
+      fg3_pct: fg3PctPercentile,
+      ft_pct: ftPctPercentile,
     }
 
     percentileStatsToShow.push(newPlayerPercentiles)
@@ -122,6 +134,26 @@ const PercentileStats = ({
         borderColor = colors.cyanLine
         pointBackgroundColor = colors.cyanLine
         break
+      case 5:
+        borderColor = colors.maroonLine
+        pointBackgroundColor = colors.maroonLine
+        break
+      case 6:
+        borderColor = colors.oliveLine
+        pointBackgroundColor = colors.oliveLine
+        break
+      case 7:
+        borderColor = colors.limeLine
+        pointBackgroundColor = colors.limeLine
+        break
+      case 8:
+        borderColor = colors.pinkLine
+        pointBackgroundColor = colors.pinkLine
+        break
+      case 9:
+        borderColor = colors.beigeLine
+        pointBackgroundColor = colors.beigeLine
+        break
       default:
         borderColor = null
         pointBackgroundColor = null
@@ -134,7 +166,10 @@ const PercentileStats = ({
         percentileStatsToShow[i].ast_pergame,
         percentileStatsToShow[i].reb_pergame,
         percentileStatsToShow[i].blk_pergame,
-        percentileStatsToShow[i].stl_pergame
+        percentileStatsToShow[i].stl_pergame,
+        percentileStatsToShow[i].fg_pct,
+        percentileStatsToShow[i].fg3_pct,
+        percentileStatsToShow[i].ft_pct,
       ],
       fill: false,
       borderColor: borderColor,
@@ -145,7 +180,7 @@ const PercentileStats = ({
     datasets.push(dataset)
   }
   const data = {
-    labels: ['pts', 'ast', 'reb', 'blk', 'stl'/* , 'turnover', 'pf', 'min' */],
+    labels: ['pts', 'ast', 'reb', 'blk', 'stl', 'fg %', 'fg3 %', 'ft %'],
     datasets: datasets
   }
 
@@ -162,49 +197,3 @@ const PercentileStats = ({
 }
 
 export default PercentileStats
-
-
-
- /*  {
-         label: 'LeBron James',
-         //data: [20, 10, 12, 2, 2],
-         data: [percentileStats.find(s => s.name === 'LeBron James').pts_pergame,
-         percentileStats.find(s => s.name === 'LeBron James').ast_pergame],
-         fill: false,
-         borderColor: colors.lightGreyLine,
-         pointBackgroundColor: colors.lightGreyLine,
-         showLine: true,
-         hidden: false
-       }, */
-      /* {
-        label: player0.name,
-        data: [
-          player0.pts_pergame,
-          player0.ast_pergame,
-          player0.reb_pergame,
-          player0.blk_pergame,
-          player0.stl_pergame
-        ],
-        fill: false,
-        borderColor: colors.lightGreyLine,
-        pointBackgroundColor: colors.lightGreyLine,
-        showLine: true,
-        hidden: false
-      },
-  
-      {
-        label: player1.name,
-        data: [
-          player1.pts_pergame,
-          player1.ast_pergame,
-          player1.reb_pergame,
-          player1.blk_pergame,
-          player1.stl_pergame
-        ],
-        fill: false,
-        borderColor: colors.brownLine,
-        pointBackgroundColor: colors.brownLine,
-        showLine: true,
-        hidden: false
-      }
-  */
