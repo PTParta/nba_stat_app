@@ -79,7 +79,7 @@ const TopTen = ({ fetchingData, setFetchingData }) => {
         <Col sm={smSide}>
         </Col>
       </Row>
-      {percentileStats.length > 0
+      {percentileStats.length > 0 && amountPlayersSelected < 10
         ? <>
           <Row>
             <Col sm={smSide} style={{ textAlign: 'center' }}>
@@ -91,77 +91,91 @@ const TopTen = ({ fetchingData, setFetchingData }) => {
                 percentileStats={percentileStats}
                 setAmountPlayersSelected={setAmountPlayersSelected}
                 amountPlayersSelected={amountPlayersSelected}
-              /*  filteredSummaryStats={filteredSummaryStats}
-               setFilteredSummaryStats={setFilteredSummaryStats} */
               />
             </Col>
           </Row>
         </>
-        : <></>}
-      {selectedSeason === ''
-        ? <>
-          <br></br>
-          <br></br>
+        : <>
+        <br></br>
+          <Row>
+            <Col sm={smSide} style={{ textAlign: 'center' }}>
+            </Col>
+            <Col sm={smCenter}>
+              <p style={{ color: 'white' }}>Maximum number of 10 players selected</p>
+            </Col>
+          </Row>
+        </>
+      }
+      {
+        selectedSeason === ''
+          ? <>
+            <br></br>
+            <br></br>
+            <Row style={{ textAlign: 'center' }}>
+              <Col sm={smSide}></Col>
+              <Col sm={smCenter}>
+                <Logo />
+              </Col>
+              <Col sm={smSide}></Col>
+            </Row>
+            <br></br>
+            <br></br>
+            <Row style={{ textAlign: 'center' }}>
+              <Col sm={smSide} xs={xsSide}></Col>
+              <Col sm={smCenter} xs={xsCenter}>
+                <Title />
+              </Col>
+              <Col sm={smSide} xs={xsSide}></Col>
+            </Row>
+            <Row style={{ textAlign: 'center' }}>
+              <Col sm={smSide} xs={xsSide}></Col>
+              <Col sm={smCenter} xs={xsCenter}>
+                <Description />
+              </Col>
+              <Col sm={smSide} xs={xsSide}></Col>
+            </Row>
+            <Row style={{ textAlign: 'center' }}>
+              <Col sm={smSide} xs={xsSide}></Col>
+              <Col sm={smCenter} xs={xsCenter}>
+                <DescriptionPercentiles />
+              </Col>
+              <Col sm={smSide} xs={xsSide}></Col>
+            </Row>
+          </>
+          : <>
+          </>
+      }
+      {
+        fetchingData ? <>
           <Row style={{ textAlign: 'center' }}>
             <Col sm={smSide}></Col>
             <Col sm={smCenter}>
-              <Logo />
+              <br></br>
+              <Loader type="Grid" color="white" height="25" width="25" />
             </Col>
             <Col sm={smSide}></Col>
           </Row>
-          <br></br>
-          <br></br>
-          <Row style={{ textAlign: 'center' }}>
-            <Col sm={smSide} xs={xsSide}></Col>
-            <Col sm={smCenter} xs={xsCenter}>
-              <Title />
-            </Col>
-            <Col sm={smSide} xs={xsSide}></Col>
-          </Row>
-          <Row style={{ textAlign: 'center' }}>
-            <Col sm={smSide} xs={xsSide}></Col>
-            <Col sm={smCenter} xs={xsCenter}>
-              <Description />
-            </Col>
-            <Col sm={smSide} xs={xsSide}></Col>
-          </Row>
-          <Row style={{ textAlign: 'center' }}>
-            <Col sm={smSide} xs={xsSide}></Col>
-            <Col sm={smCenter} xs={xsCenter}>
-              <DescriptionPercentiles />
-            </Col>
-            <Col sm={smSide} xs={xsSide}></Col>
-          </Row>
         </>
-        : <>
-        </>}
-      {fetchingData ? <>
-        <Row style={{ textAlign: 'center' }}>
-          <Col sm={smSide}></Col>
-          <Col sm={smCenter}>
-            <br></br>
-            <Loader type="Grid" color="white" height="25" width="25" />
-          </Col>
-          <Col sm={smSide}></Col>
-        </Row>
-      </>
-        : <></>}
+          : <></>
+      }
 
       <br></br>
-      {percentileStats.length > 0 && amountPlayersSelected > 0
-        ? <>
-          <PercentileStats
-            percentileStats={percentileStats}
-            selectedPlayersNames={selectedPlayersNames}
-            postSeasonSelected={postSeasonSelected}
-            perGameSelected={perGameSelected}
-            totalSelected={totalSelected}
-            per36Selected={per36Selected}
-            pctSelected={pctSelected}
-            amountPlayersSelected={amountPlayersSelected}
-          />
-        </>
-        : <></>}
+      {
+        percentileStats.length > 0 && amountPlayersSelected > 0
+          ? <>
+            <PercentileStats
+              percentileStats={percentileStats}
+              selectedPlayersNames={selectedPlayersNames}
+              postSeasonSelected={postSeasonSelected}
+              perGameSelected={perGameSelected}
+              totalSelected={totalSelected}
+              per36Selected={per36Selected}
+              pctSelected={pctSelected}
+              amountPlayersSelected={amountPlayersSelected}
+            />
+          </>
+          : <></>
+      }
     </>
   )
 }
