@@ -36,7 +36,8 @@ const PercentileStats = ({
       }],
       yAxes: [{
         ticks: {
-          /* beginAtZero: true, */
+          suggestedMax: 100,
+          beginAtZero: true,
           fontColor: 'white',
           fontSize: 14,
         },
@@ -58,7 +59,7 @@ const PercentileStats = ({
   const statsForRebPerGame = [...percentileStatsFiltered]
   const statsForBlkPerGame = [...percentileStatsFiltered]
   const statsForStlPerGame = [...percentileStatsFiltered]
-  const statsForTurnoverPerGame = [...percentileStatsFiltered]
+  //const statsForTurnoverPerGame = [...percentileStatsFiltered]
   const statsForAstToTurnover = [...percentileStatsFiltered]
 
   const statsForFgPctPerGame = [...percentileStatsFiltered]
@@ -70,21 +71,21 @@ const PercentileStats = ({
   const statsForRebPer36 = [...percentileStatsFiltered]
   const statsForBlkPer36 = [...percentileStatsFiltered]
   const statsForStlPer36 = [...percentileStatsFiltered]
-  const statsForTurnoverPer36 = [...percentileStatsFiltered]
+  //const statsForTurnoverPer36 = [...percentileStatsFiltered]
 
   const statsForPtsTotal = [...percentileStatsFiltered]
   const statsForAstTotal = [...percentileStatsFiltered]
   const statsForRebTotal = [...percentileStatsFiltered]
   const statsForBlkTotal = [...percentileStatsFiltered]
   const statsForStlTotal = [...percentileStatsFiltered]
-  const statsForTurnoverTotal = [...percentileStatsFiltered]
+  //const statsForTurnoverTotal = [...percentileStatsFiltered]
 
   const statsSortedPtsPerGame = statsForPtsPerGame.sort((a, b) => a.pts_pergame - b.pts_pergame)
   const statsSortedAstPerGame = statsForAstPerGame.sort((a, b) => a.ast_pergame - b.ast_pergame)
   const statsSortedRebPerGame = statsForRebPerGame.sort((a, b) => a.reb_pergame - b.reb_pergame)
   const statsSortedBlkPerGame = statsForBlkPerGame.sort((a, b) => a.blk_pergame - b.blk_pergame)
   const statsSortedStlPerGame = statsForStlPerGame.sort((a, b) => a.stl_pergame - b.stl_pergame)
-  const statsSortedTurnoverPerGame = statsForTurnoverPerGame.sort((a, b) => b.turnover_pergame - a.turnover_pergame)
+  //const statsSortedTurnoverPerGame = statsForTurnoverPerGame.sort((a, b) => b.turnover_pergame - a.turnover_pergame)
   const statsSortedAstToTurnover = statsForAstToTurnover.sort((a, b) => a.ast_to_turnover - b.ast_to_turnover)
 
   const statsSortedFgPctPerGame = statsForFgPctPerGame.sort((a, b) => a.fg_pct - b.fg_pct)
@@ -96,14 +97,14 @@ const PercentileStats = ({
   const statsSortedRebPer36 = statsForRebPer36.filter(stat => stat.pts_per36 !== undefined).sort((a, b) => a.reb_per36 - b.reb_per36)
   const statsSortedBlkPer36 = statsForBlkPer36.filter(stat => stat.pts_per36 !== undefined).sort((a, b) => a.blk_per36 - b.blk_per36)
   const statsSortedStlPer36 = statsForStlPer36.filter(stat => stat.pts_per36 !== undefined).sort((a, b) => a.stl_per36 - b.stl_per36)
-  const statsSortedTurnoverPer36 = statsForTurnoverPer36.filter(stat => stat.pts_per36 !== undefined).sort((a, b) => b.turnover_per36 - a.turnover_per36)
+  //const statsSortedTurnoverPer36 = statsForTurnoverPer36.filter(stat => stat.pts_per36 !== undefined).sort((a, b) => b.turnover_per36 - a.turnover_per36)
 
   const statsSortedPtsTotal = statsForPtsTotal.sort((a, b) => a.pts_total - b.pts_total)
   const statsSortedAstTotal = statsForAstTotal.sort((a, b) => a.ast_total - b.ast_total)
   const statsSortedRebTotal = statsForRebTotal.sort((a, b) => a.reb_total - b.reb_total)
   const statsSortedBlkTotal = statsForBlkTotal.sort((a, b) => a.blk_total - b.blk_total)
   const statsSortedStlTotal = statsForStlTotal.sort((a, b) => a.stl_total - b.stl_total)
-  const statsSortedTurnoverTotal = statsForTurnoverTotal.sort((a, b) => b.turnover_total - a.turnover_total)
+  //const statsSortedTurnoverTotal = statsForTurnoverTotal.sort((a, b) => b.turnover_total - a.turnover_total)
 
   //console.log(statsSortedPtsPerGame)
 
@@ -118,7 +119,7 @@ const PercentileStats = ({
     const rebPerGamePercentile = Math.floor(statsSortedRebPerGame.findIndex(stat => stat.name === playerName) / numberOfPlayers * 100 * 10) / 10
     const blkPerGamePercentile = Math.floor(statsSortedBlkPerGame.findIndex(stat => stat.name === playerName) / numberOfPlayers * 100 * 10) / 10
     const stlPerGamePercentile = Math.floor(statsSortedStlPerGame.findIndex(stat => stat.name === playerName) / numberOfPlayers * 100 * 10) / 10
-    const turnoverPerGamePercentile = Math.floor(statsSortedTurnoverPerGame.findIndex(stat => stat.name === playerName) / numberOfPlayers * 100 * 10) / 10
+    //const turnoverPerGamePercentile = Math.floor(statsSortedTurnoverPerGame.findIndex(stat => stat.name === playerName) / numberOfPlayers * 100 * 10) / 10
     const astToTurnoverPercentile = Math.floor(statsSortedAstToTurnover.findIndex(stat => stat.name === playerName) / numberOfPlayers * 100 * 10) / 10
 
     const fgPctPercentile = Math.floor(statsSortedFgPctPerGame.findIndex(stat => stat.name === playerName) / numberOfPlayers * 100 * 10) / 10
@@ -130,14 +131,14 @@ const PercentileStats = ({
     const rebPer36Percentile = Math.floor(statsSortedRebPer36.findIndex(stat => stat.name === playerName) / numberOfPlayersPer36 * 100 * 10) / 10
     const blkPer36Percentile = Math.floor(statsSortedBlkPer36.findIndex(stat => stat.name === playerName) / numberOfPlayersPer36 * 100 * 10) / 10
     const stlPer36Percentile = Math.floor(statsSortedStlPer36.findIndex(stat => stat.name === playerName) / numberOfPlayersPer36 * 100 * 10) / 10
-    const turnoverPer36Percentile = Math.floor(statsSortedTurnoverPer36.findIndex(stat => stat.name === playerName) / numberOfPlayers * 100 * 10) / 10
+    //const turnoverPer36Percentile = Math.floor(statsSortedTurnoverPer36.findIndex(stat => stat.name === playerName) / numberOfPlayers * 100 * 10) / 10
 
     const ptsTotalPercentile = Math.floor(statsSortedPtsTotal.findIndex(stat => stat.name === playerName) / numberOfPlayers * 100 * 10) / 10
     const astTotalPercentile = Math.floor(statsSortedAstTotal.findIndex(stat => stat.name === playerName) / numberOfPlayers * 100 * 10) / 10
     const rebTotalPercentile = Math.floor(statsSortedRebTotal.findIndex(stat => stat.name === playerName) / numberOfPlayers * 100 * 10) / 10
     const blkTotalPercentile = Math.floor(statsSortedBlkTotal.findIndex(stat => stat.name === playerName) / numberOfPlayers * 100 * 10) / 10
     const stlTotalPercentile = Math.floor(statsSortedStlTotal.findIndex(stat => stat.name === playerName) / numberOfPlayers * 100 * 10) / 10
-    const turnoverTotalPercentile = Math.floor(statsSortedTurnoverTotal.findIndex(stat => stat.name === playerName) / numberOfPlayers * 100 * 10) / 10
+    //const turnoverTotalPercentile = Math.floor(statsSortedTurnoverTotal.findIndex(stat => stat.name === playerName) / numberOfPlayers * 100 * 10) / 10
 
     const newPlayerPercentilesPerGame = {
       name: playerName,
@@ -146,7 +147,7 @@ const PercentileStats = ({
       reb_pergame: rebPerGamePercentile,
       blk_pergame: blkPerGamePercentile,
       stl_pergame: stlPerGamePercentile,
-      turnover_pergame: turnoverPerGamePercentile,
+      //turnover_pergame: turnoverPerGamePercentile,
       ast_to_turnover: astToTurnoverPercentile,
       fg_pct: fgPctPercentile,
       fg3_pct: fg3PctPercentile,
@@ -161,7 +162,7 @@ const PercentileStats = ({
       reb_per36: rebPer36Percentile,
       blk_per36: blkPer36Percentile,
       stl_per36: stlPer36Percentile,
-      turnover_per36: turnoverPer36Percentile,
+      //turnover_per36: turnoverPer36Percentile,
       ast_to_turnover: astToTurnoverPercentile
     }
     percentileStatsToShowPer36.push(newPlayerPercentilesPer36)
@@ -173,7 +174,7 @@ const PercentileStats = ({
       reb_total: rebTotalPercentile,
       blk_total: blkTotalPercentile,
       stl_total: stlTotalPercentile,
-      turnover_total: turnoverTotalPercentile,
+      //turnover_total: turnoverTotalPercentile,
       ast_to_turnover: astToTurnoverPercentile
     }
     percentileStatsToShowTotal.push(newPlayerPercentilesTotal)
@@ -245,8 +246,8 @@ const PercentileStats = ({
         percentileStatsToShowPerGame[i].reb_pergame,
         percentileStatsToShowPerGame[i].blk_pergame,
         percentileStatsToShowPerGame[i].stl_pergame,
-        percentileStatsToShowPerGame[i].ast_to_turnover,
-        percentileStatsToShowPerGame[i].turnover_pergame
+        percentileStatsToShowPerGame[i].ast_to_turnover
+        //percentileStatsToShowPerGame[i].turnover_pergame
       ],
       fill: false,
       borderColor: borderColor,
@@ -257,7 +258,7 @@ const PercentileStats = ({
     datasetsPerGame.push(datasetPerGame)
   }
   const dataPerGame = {
-    labels: ['pts', 'ast', 'reb', 'blk', 'stl', 'ast/to', 'turnover'],
+    labels: ['pts', 'ast', 'reb', 'blk', 'stl', 'ast/to'/* , 'turnover' */],
     datasets: datasetsPerGame
   }
 
@@ -319,8 +320,8 @@ const PercentileStats = ({
         percentileStatsToShowPer36[i].reb_per36,
         percentileStatsToShowPer36[i].blk_per36,
         percentileStatsToShowPer36[i].stl_per36,
-        percentileStatsToShowPer36[i].ast_to_turnover,
-        percentileStatsToShowPer36[i].turnover_per36
+        percentileStatsToShowPer36[i].ast_to_turnover
+        //percentileStatsToShowPer36[i].turnover_per36
 
       ],
       fill: false,
@@ -332,7 +333,7 @@ const PercentileStats = ({
     datasetsPer36.push(datasetPer36)
   }
   const dataPer36 = {
-    labels: ['pts', 'ast', 'reb', 'blk', 'stl', 'ast/to', 'turnover'],
+    labels: ['pts', 'ast', 'reb', 'blk', 'stl', 'ast/to'/* , 'turnover' */],
     datasets: datasetsPer36
   }
 
@@ -395,9 +396,8 @@ const PercentileStats = ({
         percentileStatsToShowTotal[i].reb_total,
         percentileStatsToShowTotal[i].blk_total,
         percentileStatsToShowTotal[i].stl_total,
-
         percentileStatsToShowTotal[i].ast_to_turnover,
-        percentileStatsToShowTotal[i].turnover_total
+        //percentileStatsToShowTotal[i].turnover_total
       ],
       fill: false,
       borderColor: borderColor,
@@ -408,7 +408,7 @@ const PercentileStats = ({
     datasetsTotal.push(datasetTotal)
   }
   const dataTotal = {
-    labels: ['pts', 'ast', 'reb', 'blk', 'stl', 'ast/to', 'turnover'],
+    labels: ['pts', 'ast', 'reb', 'blk', 'stl', 'ast/to'/* , 'turnover' */],
     datasets: datasetsTotal
   }
 
