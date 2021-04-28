@@ -36,7 +36,7 @@ const PercentileStats = ({
       }],
       yAxes: [{
         ticks: {
-          suggestedMax: 100,
+          max: 100,
           beginAtZero: true,
           fontColor: 'white',
           fontSize: 14,
