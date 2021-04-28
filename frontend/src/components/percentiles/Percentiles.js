@@ -96,7 +96,11 @@ const TopTen = ({ fetchingData, setFetchingData }) => {
           </Row>
         </>
         : <>
-        <br></br>
+        </>
+      }
+      {amountPlayersSelected === 10
+        ? <>
+          <br></br>
           <Row>
             <Col sm={smSide} style={{ textAlign: 'center' }}>
             </Col>
@@ -105,7 +109,7 @@ const TopTen = ({ fetchingData, setFetchingData }) => {
             </Col>
           </Row>
         </>
-      }
+        : <></>}
       {
         selectedSeason === ''
           ? <>
