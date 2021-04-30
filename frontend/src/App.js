@@ -46,9 +46,10 @@ function App() {
     <Router>
       <div style={{
         backgroundColor: "#17202A",
-        height: '1500vh',
+        /* height: '1500vh', */
+        minHeight: '100vh',
         display: 'flex',
-        flexDirection: 'column',
+        /* flexDirection: 'column', */
         alignContent: 'center'
       }}>
         <div className="container" style={{ paddingTop: '2vh', backgroundColor: "#17202A" }} >
