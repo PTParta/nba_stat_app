@@ -22,7 +22,12 @@ const SelectSeason = ({
     setFetchingData(true)
     playerStatService.getSummaryStatsFromDBForASeason(event.value)
       .then((response) => {
-        setSummaryStats(response.data)
+        setSummaryStats(response.data
+          .filter(stat => stat.name !== undefined)
+          .sort((a, b) => (a.name.split(' ')[1] > b.name.split(' ')[1]) ? 1
+            : ((b.name.split(' ')[1] > a.name.split(' ')[1]) ? -1
+              : 0)))
+
         const updatedFilteredSummaryStats = response.data.filter(stat => selectedPlayersNames.includes(stat.name))
         setFilteredSummaryStats(updatedFilteredSummaryStats)
         setFetchingData(false)
