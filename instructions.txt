@@ -1,0 +1,63 @@
+The purpose of the app is to show NBA basketball statistics in a visual form using different kind of charts.
+Showing the stats in chart form helps the user to see trends in stats over time and to compare stats of
+different players to each other.
+
+Using the app is simple. There is a navbar at the top which shows different ways to present the stats.
+You can pretty much start using the app without instructions and see what happens when you click around.
+Below are simple instructions.
+
+Player career
+   - Select the player whose stats you want to see. You can select any player who has ever played in the NBA.
+   - After loading is ready an empty chart and different selections appear. You can select the following
+      - What stats are shown
+      - How many games are counted into the trailing average which is the line among data points
+      - If the stats are from regular season or playoff games
+
+Top players
+   - Select a season
+   - After loading is ready bar charts showing the top performers on eact stat appear
+   - At the top of the page you can select the following
+      - pg = points per game
+      - p36m = points per 36 min
+      - total = total stats
+      - % = percentages in different shooting categories
+      - Number ranging from 10 to all which selects how many players are shown
+      - If the stats are from regular season or playoff games
+
+Compare players
+   - Select a season
+   - After loading is ready a player selection menu appears
+   - Select players who you want to compare
+   - Bar charts for the selected players appear
+   - At the top of the page you can select the following
+      - pg = points per game
+      - p36m = points per 36 min
+      - total = total stats
+      - % = percentages in different shooting categories
+      - If the stats are from regular season or playoff games
+
+Teams
+   - Select a season
+   - After loading is ready bar charts with the team's players appear on each stat.
+   - By default season 2020 is loaded but you can select different seasons from the menu
+   - At the top of the page you can select the following
+      - pg = points per game
+      - p36m = points per 36 min
+      - total = total stats
+      - % = percentages in different shooting categories
+      - If the stats are from regular season or playoff games
+
+Percentiles
+   - Select a season
+   - After loading is ready a player selection menu appears
+   - Select players whose percentiles you want to see
+   - At the top of the page you can select the following
+      - pg = points per game
+      - p36m = points per 36 min
+      - total = total stats
+      - % = percentages in different shooting categories
+      - If the stats are from regular season or playoff games
+
+Contact us
+   - You can write a message and optionally your email to the developer.
+     The message goes to the developers email.
