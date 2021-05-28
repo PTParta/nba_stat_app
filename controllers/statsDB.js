@@ -4,8 +4,28 @@ const statDBRouter = require('express').Router()
 const Stat = require('../models/stat')
 const Summary = require('../models/summary')
 
+const nodeoutlook = require('nodejs-nodemailer-outlook')
+require('dotenv').config()
+
 //const axios = require('axios')
 //const baseUrl = 'https://www.balldontlie.io/api/v1/stats'
+
+const sendEmail = (subject, text) => {
+	nodeoutlook.sendEmail({
+		auth: {
+			user: process.env.EMAIL,
+			pass: process.env.PASSWORD
+		},
+		from: process.env.EMAIL,
+		to: process.env.EMAIL,
+		subject: subject,
+		text: text,
+		onError: (e) => console.log(e),
+		onSuccess: (i) => console.log(i)
+	}
+	);
+}
+
 
 statDBRouter.get('/statsfromdb/:playerid', async (request, response) => {
   console.log('getting stats from database')
@@ -313,10 +333,8 @@ statDBRouter.get('/allplayerstatsforaseasonfromdb', async (request, response) =>
           await Summary.updateOne(filter, updateDoc, options)
         } catch (err) {
           console.log('Error.', err)
+					sendEmail('Error: Summary data update unsuccessfully', 'Error: Summary data update unsuccessfully')
         }
-
-
-
 
         //Used for putting new data to database. Shouldn't be needed anymore.
         /*  try {
@@ -328,6 +346,7 @@ statDBRouter.get('/allplayerstatsforaseasonfromdb', async (request, response) =>
         i++
       }
     }
+		sendEmail('Success: Summary data updated', 'Success: Summary data updated')
     return 'Summary data updated'
   }
   response.send(await updateSummaryData())

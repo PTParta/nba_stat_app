@@ -1,0 +1,28 @@
+name: Periodic summary stats update
+
+on:
+  schedule:
+    # https://crontab.guru/examples.html
+    # * is a special character in YAML so you have to quote this string
+    # - cron:  '*/30 * * * *' every thirty minutes
+    # - cron:  '0 0 * * *' once a day
+    # - cron: '0 * * * *' once an hour
+    - cron:  '0 9 * * *' # daily at 09:00
+
+jobs:
+  get_stats_from_database_and_use_it_to_update_summary_stats:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Periodic summary stats update
+        uses: jtalk/url-health-check-action@v1.5
+        with:
+          # Check the following URLs one by one sequentially
+          url: http://www.bballchart.com/api/statsdb/allplayerstatsforaseasonfromdb
+          # Follow redirects, or just report success on 3xx status codes
+          follow-redirect: no # Optional, defaults to "no"
+          # Fail this action after this many failed attempts
+          max-attempts: 1 # Optional, defaults to 1
+          # Delay between retries
+          retry-delay: 180s # Optional, only applicable to max-attempts > 1
+          # Retry all errors, including 404
+          retry-all: no # Optional, defaults to "no"
