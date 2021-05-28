@@ -98,7 +98,8 @@ statDBRouter.get('/allplayerstatsforaseasonfromdb', async (request, response) =>
 
   const updateSummaryData = async () => {
 
-    const postseason = false
+	// During regular season postseason has to be false and during post season postseason has to be true.
+    const postseason = true
 
     //for (let season = 1983; season <= 2020; season++) {
     for (let season = 2020; season <= 2020; season++) {
