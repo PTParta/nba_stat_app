@@ -327,7 +327,7 @@ statDBRouter.get('/allplayerstatsforaseasonfromdb', async (request, response) =>
         console.log(i, playerStat.name, playerStat.playerId)
         //Used for updating summary stats for the ongoing season
         try {
-          const filter = { playerId: playerStat.playerId, season: 2020 }
+          const filter = { playerId: playerStat.playerId, season: 2020, postseason: postseason }
           const options = { upsert: true }
           const updateDoc = { $set: playerStat }
           await Summary.updateOne(filter, updateDoc, options)
