@@ -28,347 +28,354 @@ const sendEmail = (subject, text) => {
 
 
 statDBRouter.get('/statsfromdb/:playerid', async (request, response) => {
-  console.log('getting stats from database')
-  console.log(':playerid', request.params.playerid)
+	console.log('getting stats from database')
+	console.log(':playerid', request.params.playerid)
 
-  let startTime = new Date().getTime()
-  const stats = await Stat.find({
-    'player.id': request.params.playerid,
-    'min': { $ne: null },
-    'game.season': { $gt: 1982 }
-    /* 'min': { $ne: [null, '0'] } */ //This query is too slow and does not work
-  })
+	let startTime = new Date().getTime()
+	const stats = await Stat.find({
+		'player.id': request.params.playerid,
+		'min': { $ne: null },
+		'game.season': { $gt: 1982 }
+		/* 'min': { $ne: [null, '0'] } */ //This query is too slow and does not work
+	})
 
-  let endTime = new Date().getTime()
-  console.log('finished retrieving data from database')
-  console.log(`time ${endTime - startTime} ms`)
-  console.log('documents:', stats.length)
+	let endTime = new Date().getTime()
+	console.log('finished retrieving data from database')
+	console.log(`time ${endTime - startTime} ms`)
+	console.log('documents:', stats.length)
 
-  response.json(stats)
+	response.json(stats)
 })
 
 statDBRouter.get('/teamstatsfromdb/:teamid/:season', async (request, response) => {
-  console.log('getting stats from database')
-  console.log(':teamId', request.params.teamid)
-  console.log(':season', request.params.season)
+	console.log('getting stats from database')
+	console.log(':teamId', request.params.teamid)
+	console.log(':season', request.params.season)
 
-  let startTime = new Date().getTime()
+	let startTime = new Date().getTime()
 
-  const stats = await Stat.find({
-    'team.id': request.params.teamid,
-    'game.season': request.params.season,
-    'min': { $ne: null }
-  })
+	const stats = await Stat.find({
+		'team.id': request.params.teamid,
+		'game.season': request.params.season,
+		'min': { $ne: null }
+	})
 
-  let endTime = new Date().getTime()
-  console.log('finished retrieving data from database')
-  console.log(`time ${endTime - startTime} ms`)
-  console.log('documents:', stats.length)
+	let endTime = new Date().getTime()
+	console.log('finished retrieving data from database')
+	console.log(`time ${endTime - startTime} ms`)
+	console.log('documents:', stats.length)
 
-  response.json(stats)
+	response.json(stats)
 })
 
 statDBRouter.get('/playerstatsforaseasonfromdb/:playerid/:season', async (request, response) => {
-  console.log('getting season stats from database')
-  console.log(':playerid', request.params.playerid)
-  console.log(':season', request.params.season)
+	console.log('getting season stats from database')
+	console.log(':playerid', request.params.playerid)
+	console.log(':season', request.params.season)
 
-  let startTime = new Date().getTime()
+	let startTime = new Date().getTime()
 
-  const stats = await Stat.find({
-    'game.season': request.params.season,
-    'min': { $ne: null },
-    'player.id': request.params.playerid
-  })
+	const stats = await Stat.find({
+		'game.season': request.params.season,
+		'min': { $ne: null },
+		'player.id': request.params.playerid
+	})
 
-  let endTime = new Date().getTime()
-  console.log('finished retrieving data from database')
-  console.log(`time ${endTime - startTime} ms`)
-  console.log('documents:', stats.length)
+	let endTime = new Date().getTime()
+	console.log('finished retrieving data from database')
+	console.log(`time ${endTime - startTime} ms`)
+	console.log('documents:', stats.length)
 
-  response.json(stats)
+	response.json(stats)
 })
 
 statDBRouter.get('/selectedplayersidsforaseasonfromdb/:season', async (request, response) => {
-  console.log('getting selected player stats for a season from database')
-  console.log(':playerid', request.params.playerid)
-  console.log(':season', request.params.season)
+	console.log('getting selected player stats for a season from database')
+	console.log(':playerid', request.params.playerid)
+	console.log(':season', request.params.season)
 
-  let startTime = new Date().getTime()
+	let startTime = new Date().getTime()
 
-  const stats = await Stat.distinct(
-    'player.id',
-    {
-      'game.season': request.params.season,
-      'min': { $ne: null }
-    }
-  )
+	const stats = await Stat.distinct(
+		'player.id',
+		{
+			'game.season': request.params.season,
+			'min': { $ne: null }
+		}
+	)
 
-  let endTime = new Date().getTime()
-  console.log('finished retrieving data from database')
-  console.log(`time ${endTime - startTime} ms`)
-  console.log('documents:', stats.length)
+	let endTime = new Date().getTime()
+	console.log('finished retrieving data from database')
+	console.log(`time ${endTime - startTime} ms`)
+	console.log('documents:', stats.length)
 
-  response.json(stats)
+	response.json(stats)
 })
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 statDBRouter.get('/allplayerstatsforaseasonfromdb', async (request, response) => {
 
-  const updateSummaryData = async () => {
+	const updateSummaryData = async () => {
 
-	// During regular season postseason has to be false and during post season postseason has to be true.
-    const postseason = true
+		// During regular season postseason has to be false and during post season postseason has to be true.
+		const postseason = true
 
-    //for (let season = 1983; season <= 2020; season++) {
-    for (let season = 2020; season <= 2020; season++) {
-      console.log('getting all stats for a season from database')
-      console.log(':season', season)
+		//for (let season = 1983; season <= 2020; season++) {
+		for (let season = 2020; season <= 2020; season++) {
+			console.log('getting all stats for a season from database')
+			console.log(':season', season)
 
-      let startTime = new Date().getTime()
+			let startTime = new Date().getTime()
 
-      let statsFromDB = await Stat.find({
-        'game.season': season,
-        'game.postseason': postseason,
-        'min': { $ne: null }
-      })
+			let statsFromDB = await Stat.find({
+				'game.season': season,
+				'game.postseason': postseason,
+				'min': { $ne: null }
+			})
 
-      let endTime = new Date().getTime()
-      console.log('finished retrieving data from database')
-      console.log(`time ${endTime - startTime} ms`)
-      console.log('documents:', statsFromDB.length)
+			let endTime = new Date().getTime()
+			console.log('finished retrieving data from database')
+			console.log(`time ${endTime - startTime} ms`)
+			console.log('documents:', statsFromDB.length)
 
-      //filter out bad data where player is not defined
-      statsFromDB = statsFromDB.filter(stat => stat.player !== undefined)
+			//filter out bad data where player is not defined
+			statsFromDB = statsFromDB.filter(stat => stat.player !== undefined)
+			let playerStats = []
+			statsFromDB.forEach(stat => {
+				const playerFullName = `${stat.player.first_name} ${stat.player.last_name}`
+				if (playerStats.find(stat => stat.name === playerFullName) === undefined) {
+					const player = { name: playerFullName, playerId: stat.player.id }
+					//console.log(player.name)
+					if (player.name !== undefined) {
+						playerStats.push(player)
+					}
 
-      let playerStats = []
-      statsFromDB.forEach(stat => {
-        const playerFullName = `${stat.player.first_name} ${stat.player.last_name}`
-        if (playerStats.find(stat => stat.name === playerFullName) === undefined) {
-          const player = { name: playerFullName, playerId: stat.player.id }
-          playerStats.push(player)
-        }
-      })
-      console.log(playerStats)
-
-
-      const playerStatsFiltered = statsFromDB/* .filter(teamStat => teamStat.game.postseason === postseason) */
-      let j = 1
-      playerStats.forEach(playerStat => {
-        console.log(j)
-        j++
-        let playedGames = 0
-        const playerStatsHelper = playerStatsFiltered
-          .filter(teamStat => `${teamStat.player.first_name} ${teamStat.player.last_name}` === playerStat.name)
-
-        const totalPts = playerStatsHelper.reduce((accumulator, currentValue) => {
-          return accumulator + currentValue.pts
-        }, 0)
-        const totalAst = playerStatsHelper.reduce((accumulator, currentValue) => {
-          return accumulator + currentValue.ast
-        }, 0)
-        const totalReb = playerStatsHelper.reduce((accumulator, currentValue) => {
-          return accumulator + currentValue.reb
-        }, 0)
-        const totalStl = playerStatsHelper.reduce((accumulator, currentValue) => {
-          return accumulator + currentValue.stl
-        }, 0)
-        const totalBlk = playerStatsHelper.reduce((accumulator, currentValue) => {
-          return accumulator + currentValue.blk
-        }, 0)
-        const totalTurnover = playerStatsHelper.reduce((accumulator, currentValue) => {
-          return accumulator + currentValue.turnover
-        }, 0)
-        const totalPf = playerStatsHelper.reduce((accumulator, currentValue) => {
-          return accumulator + currentValue.pf
-        }, 0)
-        const totalMin = playerStatsHelper.reduce((accumulator, currentValue) => {
-          let minutes = 0
-          const timeSplit = currentValue.min.split(':')
-          if (timeSplit.length === 1) {
-            minutes = Number(currentValue.min)
-          } else {
-            const seconds = Number(timeSplit[0]) * 60 + Number(timeSplit[1])
-            //minutes = Math.floor(seconds / 60)
-            minutes = Math.round(seconds / 60 * 10) / 10
-          }
-          if (isNaN(minutes)) {
-            minutes = 0
-          }
-          if (minutes !== 0) {
-            playedGames++
-          }
-          return accumulator + minutes
-        }, 0)
-        const totalFga = playerStatsHelper.reduce((accumulator, currentValue) => {
-          return accumulator + currentValue.fga
-        }, 0)
-        const totalFgm = playerStatsHelper.reduce((accumulator, currentValue) => {
-          return accumulator + currentValue.fgm
-        }, 0)
-        const totalFg3a = playerStatsHelper.reduce((accumulator, currentValue) => {
-          return accumulator + currentValue.fg3a
-        }, 0)
-        const totalFg3m = playerStatsHelper.reduce((accumulator, currentValue) => {
-          return accumulator + currentValue.fg3m
-        }, 0)
-        const totalFta = playerStatsHelper.reduce((accumulator, currentValue) => {
-          return accumulator + currentValue.fta
-        }, 0)
-        const totalFtm = playerStatsHelper.reduce((accumulator, currentValue) => {
-          return accumulator + currentValue.ftm
-        }, 0)
-        const totalOreb = playerStatsHelper.reduce((accumulator, currentValue) => {
-          return accumulator + currentValue.oreb
-        }, 0)
-        const totalDreb = playerStatsHelper.reduce((accumulator, currentValue) => {
-          return accumulator + currentValue.dreb
-        }, 0)
-
-        //console.log(playerStat/* .playerId */)
-        let updatedPlayer = {}
-        if (playedGames > 0) {
-          //const updatedPlayer = playerStat
+				}
+			})
+			console.log(playerStats)
 
 
-          //updatedPlayer.playerId = playerStat.player.id
-          updatedPlayer.name = playerStat.name
-          updatedPlayer.playerId = playerStat.playerId
-          updatedPlayer.postseason = postseason
-          updatedPlayer.season = Number(season)
+			const playerStatsFiltered = statsFromDB/* .filter(teamStat => teamStat.game.postseason === postseason) */
+			let j = 1
+			playerStats.forEach(playerStat => {
+				console.log(j)
+				j++
+				let playedGames = 0
+				const playerStatsHelper = playerStatsFiltered
+					.filter(teamStat => `${teamStat.player.first_name} ${teamStat.player.last_name}` === playerStat.name)
 
-          updatedPlayer.pts_total = totalPts
-          updatedPlayer.ast_total = totalAst
-          updatedPlayer.reb_total = totalReb
-          updatedPlayer.stl_total = totalStl
-          updatedPlayer.blk_total = totalBlk
-          updatedPlayer.turnover_total = totalTurnover
-          updatedPlayer.pf_total = totalPf
-          updatedPlayer.min_total = Math.floor(totalMin)
+				const totalPts = playerStatsHelper.reduce((accumulator, currentValue) => {
+					return accumulator + currentValue.pts
+				}, 0)
+				const totalAst = playerStatsHelper.reduce((accumulator, currentValue) => {
+					return accumulator + currentValue.ast
+				}, 0)
+				const totalReb = playerStatsHelper.reduce((accumulator, currentValue) => {
+					return accumulator + currentValue.reb
+				}, 0)
+				const totalStl = playerStatsHelper.reduce((accumulator, currentValue) => {
+					return accumulator + currentValue.stl
+				}, 0)
+				const totalBlk = playerStatsHelper.reduce((accumulator, currentValue) => {
+					return accumulator + currentValue.blk
+				}, 0)
+				const totalTurnover = playerStatsHelper.reduce((accumulator, currentValue) => {
+					return accumulator + currentValue.turnover
+				}, 0)
+				const totalPf = playerStatsHelper.reduce((accumulator, currentValue) => {
+					return accumulator + currentValue.pf
+				}, 0)
+				const totalMin = playerStatsHelper.reduce((accumulator, currentValue) => {
+					let minutes = 0
+					const timeSplit = currentValue.min.split(':')
+					if (timeSplit.length === 1) {
+						minutes = Number(currentValue.min)
+					} else {
+						const seconds = Number(timeSplit[0]) * 60 + Number(timeSplit[1])
+						//minutes = Math.floor(seconds / 60)
+						minutes = Math.round(seconds / 60 * 10) / 10
+					}
+					if (isNaN(minutes)) {
+						minutes = 0
+					}
+					if (minutes !== 0) {
+						playedGames++
+					}
+					return accumulator + minutes
+				}, 0)
+				const totalFga = playerStatsHelper.reduce((accumulator, currentValue) => {
+					return accumulator + currentValue.fga
+				}, 0)
+				const totalFgm = playerStatsHelper.reduce((accumulator, currentValue) => {
+					return accumulator + currentValue.fgm
+				}, 0)
+				const totalFg3a = playerStatsHelper.reduce((accumulator, currentValue) => {
+					return accumulator + currentValue.fg3a
+				}, 0)
+				const totalFg3m = playerStatsHelper.reduce((accumulator, currentValue) => {
+					return accumulator + currentValue.fg3m
+				}, 0)
+				const totalFta = playerStatsHelper.reduce((accumulator, currentValue) => {
+					return accumulator + currentValue.fta
+				}, 0)
+				const totalFtm = playerStatsHelper.reduce((accumulator, currentValue) => {
+					return accumulator + currentValue.ftm
+				}, 0)
+				const totalOreb = playerStatsHelper.reduce((accumulator, currentValue) => {
+					return accumulator + currentValue.oreb
+				}, 0)
+				const totalDreb = playerStatsHelper.reduce((accumulator, currentValue) => {
+					return accumulator + currentValue.dreb
+				}, 0)
 
-          updatedPlayer.fga_total = totalFga
-          updatedPlayer.fgm_total = totalFgm
-          updatedPlayer.fg3a_total = totalFg3a
-          updatedPlayer.fg3m_total = totalFg3m
-          updatedPlayer.fta_total = totalFta
-          updatedPlayer.ftm_total = totalFtm
+				//console.log(playerStat/* .playerId */)
+				let updatedPlayer = {}
+				if (playedGames > 0) {
+					//const updatedPlayer = playerStat
 
-          updatedPlayer.oreb_total = totalOreb
-          updatedPlayer.dreb_total = totalDreb
 
-          if (totalFga > 0) {
-            updatedPlayer.fg_pct = Math.floor(totalFgm / totalFga * 100 * 10) / 10
-          } else {
-            updatedPlayer.fg_pct = 0
-          }
-          if (totalFg3a > 0) {
-            updatedPlayer.fg3_pct = Math.floor(totalFg3m / totalFg3a * 100 * 10) / 10
-          } else {
-            updatedPlayer.fg3_pct = 0
-          }
-          if (totalFta > 0) {
-            updatedPlayer.ft_pct = Math.floor(totalFtm / totalFta * 100 * 10) / 10
-          } else {
-            updatedPlayer.ft_pct = 0
-          }
-          if (totalTurnover > 0) {
-            updatedPlayer.ast_to_turnover = Math.floor(totalAst / totalTurnover * 10) / 10
-          } else {
-            updatedPlayer.ast_to_turnover = 0
-          }
+					//updatedPlayer.playerId = playerStat.player.id
+					updatedPlayer.name = playerStat.name
+					updatedPlayer.playerId = playerStat.playerId
+					updatedPlayer.postseason = postseason
+					updatedPlayer.season = Number(season)
 
-          updatedPlayer.pts_pergame = Math.round(totalPts / playedGames * 10) / 10
-          updatedPlayer.ast_pergame = Math.round(totalAst / playedGames * 10) / 10
-          updatedPlayer.reb_pergame = Math.round(totalReb / playedGames * 10) / 10
-          updatedPlayer.stl_pergame = Math.round(totalStl / playedGames * 10) / 10
-          updatedPlayer.blk_pergame = Math.round(totalBlk / playedGames * 10) / 10
-          updatedPlayer.turnover_pergame = Math.round(totalTurnover / playedGames * 10) / 10
-          updatedPlayer.pf_pergame = Math.round(totalPf / playedGames * 10) / 10
-          updatedPlayer.min_pergame = Math.round(totalMin / playedGames * 10) / 10
-          updatedPlayer.fga_pergame = Math.round(totalFga / playedGames * 10) / 10
-          updatedPlayer.fgm_pergame = Math.round(totalFgm / playedGames * 10) / 10
-          updatedPlayer.fg3a_pergame = Math.round(totalFg3a / playedGames * 10) / 10
-          updatedPlayer.fg3m_pergame = Math.round(totalFg3m / playedGames * 10) / 10
-          updatedPlayer.fta_pergame = Math.round(totalFta / playedGames * 10) / 10
-          updatedPlayer.ftm_pergame = Math.round(totalFtm / playedGames * 10) / 10
-          updatedPlayer.oreb_pergame = Math.round(totalOreb / playedGames * 10) / 10
-          updatedPlayer.dreb_pergame = Math.round(totalDreb / playedGames * 10) / 10
-          //Don't calculate per 36 min stats if minutes per game is too low
-          if (updatedPlayer.min_pergame >= 10) {
-            updatedPlayer.pts_per36 = Math.round(updatedPlayer.pts_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
-            updatedPlayer.ast_per36 = Math.round(updatedPlayer.ast_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
-            updatedPlayer.reb_per36 = Math.round(updatedPlayer.reb_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
-            updatedPlayer.stl_per36 = Math.round(updatedPlayer.stl_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
-            updatedPlayer.blk_per36 = Math.round(updatedPlayer.blk_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
-            updatedPlayer.turnover_per36 = Math.round(updatedPlayer.turnover_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
-            updatedPlayer.pf_per36 = Math.round(updatedPlayer.pf_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
-            updatedPlayer.fga_per36 = Math.round(updatedPlayer.fga_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
-            updatedPlayer.fgm_per36 = Math.round(updatedPlayer.fgm_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
-            updatedPlayer.fg3a_per36 = Math.round(updatedPlayer.fg3a_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
-            updatedPlayer.fg3m_per36 = Math.round(updatedPlayer.fg3m_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
-            updatedPlayer.fta_per36 = Math.round(updatedPlayer.fta_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
-            updatedPlayer.ftm_per36 = Math.round(updatedPlayer.ftm_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
-            updatedPlayer.oreb_per36 = Math.round(updatedPlayer.oreb_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
-            updatedPlayer.dreb_per36 = Math.round(updatedPlayer.dreb_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
-          }
-        } else {
-          updatedPlayer.playerId = playerStat.playerId
-        }
-        updatedPlayer.played_games = playedGames
-        playerStats = playerStats.map(s => s.name === playerStat.name ? updatedPlayer : s)
-      })
+					updatedPlayer.pts_total = totalPts
+					updatedPlayer.ast_total = totalAst
+					updatedPlayer.reb_total = totalReb
+					updatedPlayer.stl_total = totalStl
+					updatedPlayer.blk_total = totalBlk
+					updatedPlayer.turnover_total = totalTurnover
+					updatedPlayer.pf_total = totalPf
+					updatedPlayer.min_total = Math.floor(totalMin)
 
-      console.log('saving data to database...')
-      console.log('season:', season)
-      console.log('postseason:', postseason)
-      let i = 1
-      for (let playerStat of playerStats) {
-        console.log(i, playerStat.name, playerStat.playerId)
-        //Used for updating summary stats for the ongoing season
-        try {
-          const filter = { playerId: playerStat.playerId, season: 2020, postseason: postseason }
-          const options = { upsert: true }
-          const updateDoc = { $set: playerStat }
-          await Summary.updateOne(filter, updateDoc, options)
-        } catch (err) {
-          console.log('Error.', err)
-					sendEmail('Error: Summary data update unsuccessfully', 'Error: Summary data update unsuccessfully')
-        }
+					updatedPlayer.fga_total = totalFga
+					updatedPlayer.fgm_total = totalFgm
+					updatedPlayer.fg3a_total = totalFg3a
+					updatedPlayer.fg3m_total = totalFg3m
+					updatedPlayer.fta_total = totalFta
+					updatedPlayer.ftm_total = totalFtm
 
-        //Used for putting new data to database. Shouldn't be needed anymore.
-        /*  try {
-           let summary = new Summary({ ...playerStat, '_id': uuidv4() })
-           await summary.save()
-         } catch (err) {
-           console.log('Error.', err)
-         } */
-        i++
-      }
-    }
+					updatedPlayer.oreb_total = totalOreb
+					updatedPlayer.dreb_total = totalDreb
+
+					if (totalFga > 0) {
+						updatedPlayer.fg_pct = Math.floor(totalFgm / totalFga * 100 * 10) / 10
+					} else {
+						updatedPlayer.fg_pct = 0
+					}
+					if (totalFg3a > 0) {
+						updatedPlayer.fg3_pct = Math.floor(totalFg3m / totalFg3a * 100 * 10) / 10
+					} else {
+						updatedPlayer.fg3_pct = 0
+					}
+					if (totalFta > 0) {
+						updatedPlayer.ft_pct = Math.floor(totalFtm / totalFta * 100 * 10) / 10
+					} else {
+						updatedPlayer.ft_pct = 0
+					}
+					if (totalTurnover > 0) {
+						updatedPlayer.ast_to_turnover = Math.floor(totalAst / totalTurnover * 10) / 10
+					} else {
+						updatedPlayer.ast_to_turnover = 0
+					}
+
+					updatedPlayer.pts_pergame = Math.round(totalPts / playedGames * 10) / 10
+					updatedPlayer.ast_pergame = Math.round(totalAst / playedGames * 10) / 10
+					updatedPlayer.reb_pergame = Math.round(totalReb / playedGames * 10) / 10
+					updatedPlayer.stl_pergame = Math.round(totalStl / playedGames * 10) / 10
+					updatedPlayer.blk_pergame = Math.round(totalBlk / playedGames * 10) / 10
+					updatedPlayer.turnover_pergame = Math.round(totalTurnover / playedGames * 10) / 10
+					updatedPlayer.pf_pergame = Math.round(totalPf / playedGames * 10) / 10
+					updatedPlayer.min_pergame = Math.round(totalMin / playedGames * 10) / 10
+					updatedPlayer.fga_pergame = Math.round(totalFga / playedGames * 10) / 10
+					updatedPlayer.fgm_pergame = Math.round(totalFgm / playedGames * 10) / 10
+					updatedPlayer.fg3a_pergame = Math.round(totalFg3a / playedGames * 10) / 10
+					updatedPlayer.fg3m_pergame = Math.round(totalFg3m / playedGames * 10) / 10
+					updatedPlayer.fta_pergame = Math.round(totalFta / playedGames * 10) / 10
+					updatedPlayer.ftm_pergame = Math.round(totalFtm / playedGames * 10) / 10
+					updatedPlayer.oreb_pergame = Math.round(totalOreb / playedGames * 10) / 10
+					updatedPlayer.dreb_pergame = Math.round(totalDreb / playedGames * 10) / 10
+					//Don't calculate per 36 min stats if minutes per game is too low
+					if (updatedPlayer.min_pergame >= 10) {
+						updatedPlayer.pts_per36 = Math.round(updatedPlayer.pts_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
+						updatedPlayer.ast_per36 = Math.round(updatedPlayer.ast_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
+						updatedPlayer.reb_per36 = Math.round(updatedPlayer.reb_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
+						updatedPlayer.stl_per36 = Math.round(updatedPlayer.stl_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
+						updatedPlayer.blk_per36 = Math.round(updatedPlayer.blk_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
+						updatedPlayer.turnover_per36 = Math.round(updatedPlayer.turnover_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
+						updatedPlayer.pf_per36 = Math.round(updatedPlayer.pf_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
+						updatedPlayer.fga_per36 = Math.round(updatedPlayer.fga_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
+						updatedPlayer.fgm_per36 = Math.round(updatedPlayer.fgm_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
+						updatedPlayer.fg3a_per36 = Math.round(updatedPlayer.fg3a_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
+						updatedPlayer.fg3m_per36 = Math.round(updatedPlayer.fg3m_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
+						updatedPlayer.fta_per36 = Math.round(updatedPlayer.fta_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
+						updatedPlayer.ftm_per36 = Math.round(updatedPlayer.ftm_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
+						updatedPlayer.oreb_per36 = Math.round(updatedPlayer.oreb_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
+						updatedPlayer.dreb_per36 = Math.round(updatedPlayer.dreb_pergame / updatedPlayer.min_pergame * 36 * 10) / 10
+					}
+				} else {
+					updatedPlayer.playerId = playerStat.playerId
+				}
+				updatedPlayer.played_games = playedGames
+				playerStats = playerStats.map(s => s.name === playerStat.name ? updatedPlayer : s)
+			})
+
+			console.log('saving data to database...')
+			console.log('season:', season)
+			console.log('postseason:', postseason)
+			let i = 1
+			for (let playerStat of playerStats) {
+
+				//Used for updating summary stats for the ongoing season
+				if (playerStat.name !== undefined) {
+					console.log(i, playerStat.name, playerStat.playerId)
+					try {
+						const filter = { playerId: playerStat.playerId, season: 2020, postseason: postseason }
+						const options = { upsert: true }
+						const updateDoc = { $set: playerStat }
+						await Summary.updateOne(filter, updateDoc, options)
+					} catch (err) {
+						console.log('Error.', err)
+						sendEmail('Error: Summary data update unsuccessfully', 'Error: Summary data update unsuccessfully')
+					}
+				}
+
+
+				//Used for putting new data to database. Shouldn't be needed anymore.
+				/*  try {
+					 let summary = new Summary({ ...playerStat, '_id': uuidv4() })
+					 await summary.save()
+				 } catch (err) {
+					 console.log('Error.', err)
+				 } */
+				i++
+			}
+		}
 		sendEmail('Success: Summary data updated', 'Success: Summary data updated')
-    return 'Summary data updated'
-  }
-  response.send(await updateSummaryData())
+		return 'Summary data updated'
+	}
+	response.send(await updateSummaryData())
 })
 
 /////////////////////////////////////////////////////////////////////////////////////
 
 statDBRouter.get('/summarystatsforaseasonfromdb/:season', async (request, response) => {
-  console.log('getting season summary stats from database')
-  console.log(':season', request.params.season)
+	console.log('getting season summary stats from database')
+	console.log(':season', request.params.season)
 
-  let startTime = new Date().getTime()
+	let startTime = new Date().getTime()
 
-  const summaryStats = await Summary.find({
-    'season': request.params.season
-  })
+	const summaryStats = await Summary.find({
+		'season': request.params.season
+	})
 
-  let endTime = new Date().getTime()
-  console.log('finished retrieving data from database')
-  console.log(`time ${endTime - startTime} ms`)
-  console.log('documents:', summaryStats.length)
+	let endTime = new Date().getTime()
+	console.log('finished retrieving data from database')
+	console.log(`time ${endTime - startTime} ms`)
+	console.log('documents:', summaryStats.length)
 
-  response.json(summaryStats)
+	response.json(summaryStats)
 })
 module.exports = statDBRouter
