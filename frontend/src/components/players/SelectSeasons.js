@@ -24,9 +24,6 @@ const SelectSeasons = ({
   }
 
   const handleSelectedFirstSeasonChange = (event) => {
-    console.log('event.value:', event.value)
-    console.log('Number(event.value):', Number(event.value))
-    console.log('selectedLastSeason:', selectedLastSeason)
     if (Number(event.value) > selectedLastSeason) {
       setSelectedFirstSeason(selectedLastSeason)
       setSelectedLastSeason(Number(event.value))

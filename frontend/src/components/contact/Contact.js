@@ -35,9 +35,6 @@ const Contact = () => {
     }
     setMessageSent(true)
     contactService.sendMessage(email, message)
-    console.log('message send')
-    console.log(message)
-    console.log(email)
   }
 
   return (
