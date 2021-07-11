@@ -4,7 +4,7 @@ require('dotenv').config()
 
 contactRouter.post('/', (req, res) => {
 
-  console.log('contact router')
+  //console.log('contact router')
 
   const email = req.body.email
   const message = req.body.message

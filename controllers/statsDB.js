@@ -28,10 +28,10 @@ const sendEmail = (subject, text) => {
 
 
 statDBRouter.get('/statsfromdb/:playerid', async (request, response) => {
-	console.log('getting stats from database')
-	console.log(':playerid', request.params.playerid)
+	//console.log('getting stats from database')
+	//console.log(':playerid', request.params.playerid)
 
-	let startTime = new Date().getTime()
+	//let startTime = new Date().getTime()
 	const stats = await Stat.find({
 		'player.id': request.params.playerid,
 		'min': { $ne: null },
@@ -40,19 +40,19 @@ statDBRouter.get('/statsfromdb/:playerid', async (request, response) => {
 	})
 
 	let endTime = new Date().getTime()
-	console.log('finished retrieving data from database')
-	console.log(`time ${endTime - startTime} ms`)
-	console.log('documents:', stats.length)
+	//console.log('finished retrieving data from database')
+	//console.log(`time ${endTime - startTime} ms`)
+	//console.log('documents:', stats.length)
 
 	response.json(stats)
 })
 
 statDBRouter.get('/teamstatsfromdb/:teamid/:season', async (request, response) => {
-	console.log('getting stats from database')
-	console.log(':teamId', request.params.teamid)
-	console.log(':season', request.params.season)
+	//console.log('getting stats from database')
+	//console.log(':teamId', request.params.teamid)
+	//console.log(':season', request.params.season)
 
-	let startTime = new Date().getTime()
+	//let startTime = new Date().getTime()
 
 	const stats = await Stat.find({
 		'team.id': request.params.teamid,
@@ -61,19 +61,19 @@ statDBRouter.get('/teamstatsfromdb/:teamid/:season', async (request, response) =
 	})
 
 	let endTime = new Date().getTime()
-	console.log('finished retrieving data from database')
-	console.log(`time ${endTime - startTime} ms`)
-	console.log('documents:', stats.length)
+	//console.log('finished retrieving data from database')
+	//console.log(`time ${endTime - startTime} ms`)
+	//console.log('documents:', stats.length)
 
 	response.json(stats)
 })
 
 statDBRouter.get('/playerstatsforaseasonfromdb/:playerid/:season', async (request, response) => {
-	console.log('getting season stats from database')
-	console.log(':playerid', request.params.playerid)
-	console.log(':season', request.params.season)
+	//console.log('getting season stats from database')
+	//console.log(':playerid', request.params.playerid)
+	//console.log(':season', request.params.season)
 
-	let startTime = new Date().getTime()
+	//let startTime = new Date().getTime()
 
 	const stats = await Stat.find({
 		'game.season': request.params.season,
@@ -82,19 +82,19 @@ statDBRouter.get('/playerstatsforaseasonfromdb/:playerid/:season', async (reques
 	})
 
 	let endTime = new Date().getTime()
-	console.log('finished retrieving data from database')
-	console.log(`time ${endTime - startTime} ms`)
-	console.log('documents:', stats.length)
+	//console.log('finished retrieving data from database')
+	//console.log(`time ${endTime - startTime} ms`)
+	//console.log('documents:', stats.length)
 
 	response.json(stats)
 })
 
 statDBRouter.get('/selectedplayersidsforaseasonfromdb/:season', async (request, response) => {
-	console.log('getting selected player stats for a season from database')
-	console.log(':playerid', request.params.playerid)
-	console.log(':season', request.params.season)
+	//console.log('getting selected player stats for a season from database')
+	//console.log(':playerid', request.params.playerid)
+	//console.log(':season', request.params.season)
 
-	let startTime = new Date().getTime()
+	//let startTime = new Date().getTime()
 
 	const stats = await Stat.distinct(
 		'player.id',
@@ -105,9 +105,9 @@ statDBRouter.get('/selectedplayersidsforaseasonfromdb/:season', async (request, 
 	)
 
 	let endTime = new Date().getTime()
-	console.log('finished retrieving data from database')
-	console.log(`time ${endTime - startTime} ms`)
-	console.log('documents:', stats.length)
+	//console.log('finished retrieving data from database')
+	//console.log(`time ${endTime - startTime} ms`)
+	//console.log('documents:', stats.length)
 
 	response.json(stats)
 })
