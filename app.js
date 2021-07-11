@@ -1,5 +1,5 @@
 require('dotenv').config()
-import sslRedirect from 'heroku-ssl-redirect'
+//import sslRedirect from 'heroku-ssl-redirect'
 const { response } = require('express') // eslint-disable-line no-unused-vars
 const express = require('express')
 require('express-async-errors')
@@ -31,7 +31,7 @@ mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true, useFind
 
 const cors = require('cors')
 app.use(cors())
-app.use(sslRedirect()) // enable ssl redirect
+//app.use(sslRedirect()) // enable ssl redirect
 app.use(express.static('build'))
 app.use(express.json())
 app.use(middleware.requestLogger)
