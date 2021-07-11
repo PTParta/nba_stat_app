@@ -39,7 +39,7 @@ statDBRouter.get('/statsfromdb/:playerid', async (request, response) => {
 		/* 'min': { $ne: [null, '0'] } */ //This query is too slow and does not work
 	})
 
-	let endTime = new Date().getTime()
+	//let endTime = new Date().getTime()
 	//console.log('finished retrieving data from database')
 	//console.log(`time ${endTime - startTime} ms`)
 	//console.log('documents:', stats.length)
@@ -60,7 +60,7 @@ statDBRouter.get('/teamstatsfromdb/:teamid/:season', async (request, response) =
 		'min': { $ne: null }
 	})
 
-	let endTime = new Date().getTime()
+	//let endTime = new Date().getTime()
 	//console.log('finished retrieving data from database')
 	//console.log(`time ${endTime - startTime} ms`)
 	//console.log('documents:', stats.length)
@@ -81,7 +81,7 @@ statDBRouter.get('/playerstatsforaseasonfromdb/:playerid/:season', async (reques
 		'player.id': request.params.playerid
 	})
 
-	let endTime = new Date().getTime()
+	//let endTime = new Date().getTime()
 	//console.log('finished retrieving data from database')
 	//console.log(`time ${endTime - startTime} ms`)
 	//console.log('documents:', stats.length)
@@ -104,7 +104,7 @@ statDBRouter.get('/selectedplayersidsforaseasonfromdb/:season', async (request, 
 		}
 	)
 
-	let endTime = new Date().getTime()
+	//let endTime = new Date().getTime()
 	//console.log('finished retrieving data from database')
 	//console.log(`time ${endTime - startTime} ms`)
 	//console.log('documents:', stats.length)
@@ -362,19 +362,19 @@ statDBRouter.get('/allplayerstatsforaseasonfromdb', async (request, response) =>
 /////////////////////////////////////////////////////////////////////////////////////
 
 statDBRouter.get('/summarystatsforaseasonfromdb/:season', async (request, response) => {
-	console.log('getting season summary stats from database')
-	console.log(':season', request.params.season)
+	//console.log('getting season summary stats from database')
+	//console.log(':season', request.params.season)
 
-	let startTime = new Date().getTime()
+	//let startTime = new Date().getTime()
 
 	const summaryStats = await Summary.find({
 		'season': request.params.season
 	})
 
-	let endTime = new Date().getTime()
-	console.log('finished retrieving data from database')
-	console.log(`time ${endTime - startTime} ms`)
-	console.log('documents:', summaryStats.length)
+	//let endTime = new Date().getTime()
+	//console.log('finished retrieving data from database')
+	//console.log(`time ${endTime - startTime} ms`)
+	//console.log('documents:', summaryStats.length)
 
 	response.json(summaryStats)
 })
