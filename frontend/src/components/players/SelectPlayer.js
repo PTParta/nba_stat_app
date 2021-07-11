@@ -1,11 +1,16 @@
 import Select from 'react-select'
 import playerStatService from '../../services/playerStats'
+import ReactGa from 'react-ga'
 
 const SelectPlayer = ({ players, setSelectedPlayer, setPlayerStats, setFetchingData }) => {
 
   const playerSelect = players.map(player => ({ label: player.fullName, value: player.fullName }))
 
   const handleSelectedPlayerChange = (playerFullName) => {
+		ReactGa.event({
+			category:'Selected player',
+			action: `${playerFullName}`
+		})
     setSelectedPlayer(playerFullName)
     getPlayerStats(playerFullName)
   }
