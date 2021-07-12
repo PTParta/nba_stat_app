@@ -74,6 +74,7 @@ const TopTen = ({ fetchingData, setFetchingData }) => {
             setFetchingData={setFetchingData}
             setPercentileStats={setPercentileStats}
             percentileStats={percentileStats}
+						selectedPlayersNames={selectedPlayersNames}
           />
         </Col>
         <Col sm={smSide}>
@@ -91,6 +92,7 @@ const TopTen = ({ fetchingData, setFetchingData }) => {
                 percentileStats={percentileStats}
                 setAmountPlayersSelected={setAmountPlayersSelected}
                 amountPlayersSelected={amountPlayersSelected}
+								selectedSeason={selectedSeason}
               />
             </Col>
           </Row>

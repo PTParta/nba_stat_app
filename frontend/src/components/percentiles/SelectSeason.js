@@ -1,12 +1,13 @@
 import Select from 'react-select'
 import playerStatService from '../../services/playerStats'
+import ReactGa from 'react-ga'
 
 
 const SelectSeason = ({
   setSelectedSeason,
   setFetchingData,
   setPercentileStats,
-  percentileStats
+  selectedPlayersNames
 }) => {
 
   let seasonDescending = 2020
@@ -17,6 +18,14 @@ const SelectSeason = ({
   }
 
   const handleSelectedSeasonChange = (event) => {
+		let selectedPlayersGA = ''
+		selectedPlayersNames.forEach(s=>{
+			selectedPlayersGA += `${s}, ` 
+		})
+		ReactGa.event({
+			category:`Percentiles ${event.value}`,
+			action: selectedPlayersGA
+		})
     setSelectedSeason(event.value)
     setFetchingData(true)
     playerStatService.getSummaryStatsFromDBForASeason(event.value)

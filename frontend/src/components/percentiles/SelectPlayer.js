@@ -1,11 +1,13 @@
 import Select from 'react-select'
+import ReactGa from 'react-ga'
 
 const SelectPlayer = ({
   percentileStats,
   selectedPlayersNames,
   setSelectedPlayersNames,
   setAmountPlayersSelected,
-  amountPlayersSelected
+  amountPlayersSelected,
+	selectedSeason
 }) => {
 
   let playerNames = percentileStats.map(stat => stat.name)
@@ -15,6 +17,10 @@ const SelectPlayer = ({
   let playerSelect = playerNames.map(stat => ({ label: stat, value: stat }))
 
   const handleSelectedPlayerChange = (playerFullName) => {
+		ReactGa.event({
+			category:`Percentiles ${selectedSeason}`,
+			action: playerFullName
+		})
     const updatedSelectedPlayersNames = selectedPlayersNames
     updatedSelectedPlayersNames.push(playerFullName)
     setSelectedPlayersNames(updatedSelectedPlayersNames)
