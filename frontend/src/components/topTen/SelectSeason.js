@@ -1,6 +1,6 @@
 import Select from 'react-select'
 import playerStatService from '../../services/playerStats'
-
+import ReactGa from 'react-ga'
 
 const SelectSeason = ({
   setSelectedSeason,
@@ -16,6 +16,10 @@ const SelectSeason = ({
   }
 
   const handleSelectedSeasonChange = (event) => {
+		ReactGa.event({
+			category:'Top players',
+			action: event.value
+		})
     setSelectedSeason(event.value)
     setFetchingData(true)
     playerStatService.getSummaryStatsFromDBForASeason(event.value)
