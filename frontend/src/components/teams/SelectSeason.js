@@ -1,6 +1,6 @@
 import Select from 'react-select'
 import playerStatService from '../../services/playerStats'
-
+import ReactGa from 'react-ga'
 
 const SelectSeason = ({
   selectedSeason,
@@ -22,6 +22,10 @@ const SelectSeason = ({
 
 
   const handleSelectedSeasonChange = (event) => {
+		ReactGa.event({
+			category:`Teams ${selectedSeason}`,
+			action: selectedTeam
+		})
     setSelectedSeason(event.value)
     setFetchingData(true)
     const searchedTeam = teams.find(team => team.name === selectedTeam)

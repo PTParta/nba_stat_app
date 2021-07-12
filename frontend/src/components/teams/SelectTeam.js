@@ -1,5 +1,6 @@
 import Select from 'react-select'
 import playerStatService from '../../services/playerStats'
+import ReactGa from 'react-ga'
 
 const SelectTeam = ({ teams, setSelectedTeam, setTeamStats, setFetchingData, selectedSeason }) => {
 
@@ -8,6 +9,10 @@ const SelectTeam = ({ teams, setSelectedTeam, setTeamStats, setFetchingData, sel
   const teamSelect = teams.map(team => ({ label: `${team.city} ${team.name}`, value: team.name }))
 
   const handleSelectedTeamChange = (teamName) => {
+		ReactGa.event({
+			category:`Teams ${selectedSeason}`,
+			action: teamName
+		})
     setSelectedTeam(teamName)
     getTeamStats(teamName)
   }

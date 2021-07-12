@@ -21,7 +21,7 @@ const SelectSeason = ({
   const handleSelectedSeasonChange = (event) => {
 		let selectedPlayersGA = ''
 		selectedPlayersNames.forEach(s=>{
-			selectedPlayersGA += `${s} ` 
+			selectedPlayersGA += `${s}, ` 
 		})
 		ReactGa.event({
 			category:`Compare players ${event.value}`,
