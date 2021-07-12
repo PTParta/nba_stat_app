@@ -23,7 +23,7 @@ const SelectSeason = ({
 
   const handleSelectedSeasonChange = (event) => {
 		ReactGa.event({
-			category:`Teams ${selectedSeason}`,
+			category:`Teams ${event.value}`,
 			action: selectedTeam
 		})
     setSelectedSeason(event.value)
