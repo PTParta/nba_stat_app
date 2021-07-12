@@ -1,11 +1,13 @@
 import Select from 'react-select'
+import ReactGa from 'react-ga'
 
 const SelectPlayer = ({
   summaryStats,
   selectedPlayersNames,
   setSelectedPlayersNames,
   filteredSummaryStats,
-  setFilteredSummaryStats
+  setFilteredSummaryStats,
+	selectedSeason
 
 }) => {
 
@@ -16,6 +18,10 @@ const SelectPlayer = ({
   let playerSelect = playerNames.map(stat => ({ label: stat, value: stat }))
 
   const handleSelectedPlayerChange = (playerFullName) => {
+		ReactGa.event({
+			category:`Compare players ${selectedSeason}`,
+			action: playerFullName
+		})
     const updatedSelectedPlayersNames = selectedPlayersNames
     updatedSelectedPlayersNames.push(playerFullName)
     setSelectedPlayersNames(updatedSelectedPlayersNames)

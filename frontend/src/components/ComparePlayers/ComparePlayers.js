@@ -92,6 +92,7 @@ const PlayerComparison = ({ players, fetchingData, setFetchingData }) => {
                 summaryStats={summaryStats}
                 filteredSummaryStats={filteredSummaryStats}
                 setFilteredSummaryStats={setFilteredSummaryStats}
+								selectedSeason={selectedSeason}
               />
             </Col>
           </Row>
