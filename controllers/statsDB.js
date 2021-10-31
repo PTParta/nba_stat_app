@@ -122,7 +122,7 @@ statDBRouter.get('/allplayerstatsforaseasonfromdb', async (request, response) =>
 		const postseason = false
 
 		//for (let season = 1983; season <= 2020; season++) {
-		for (let season = 2020; season <= 2020; season++) {
+		for (let season = new Date().getFullYear(); season <= new Date().getFullYear(); season++) {
 			console.log('getting all stats for a season from database')
 			console.log(':season', season)
 
@@ -332,7 +332,7 @@ statDBRouter.get('/allplayerstatsforaseasonfromdb', async (request, response) =>
 				if (playerStat.name !== undefined) {
 					console.log(i, playerStat.name, playerStat.playerId)
 					try {
-						const filter = { playerId: playerStat.playerId, season: 2020, postseason: postseason }
+						const filter = { playerId: playerStat.playerId, season: new Date().getFullYear(), postseason: postseason }
 						const options = { upsert: true }
 						const updateDoc = { $set: playerStat }
 						await Summary.updateOne(filter, updateDoc, options)
@@ -377,5 +377,19 @@ statDBRouter.get('/summarystatsforaseasonfromdb/:season', async (request, respon
 	//console.log('documents:', summaryStats.length)
 
 	response.json(summaryStats)
+})
+
+statDBRouter.get('/deletedata', async (_request, response) => {
+	/* try{
+		const response = await Stat.deleteMany({"game.date":"2021-10-04T00:00:00.000Z"})
+	}catch(e){
+		console.log(e)
+	} */
+	try{
+		const response = await Summary.deleteMany({"season":"2021"})
+	}catch(e){
+		console.log(e)
+	}
+
 })
 module.exports = statDBRouter
