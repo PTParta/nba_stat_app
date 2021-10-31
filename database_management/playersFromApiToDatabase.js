@@ -7,7 +7,7 @@ const getPlayers = async () => {
   let apiPageNumber = 1
   const apiPerPage = 100
   //let total_pages = 100
-  while (apiPageNumber <= 2) {
+  while (apiPageNumber <= 40) {
     console.log(`getting players, page ${apiPageNumber}`)
     let playersOnOnePage = await axios.get(`${baseUrl}?per_page=${apiPerPage}&page=${apiPageNumber}`)
     //total_pages = playersOnOnePage.meta.total_pages

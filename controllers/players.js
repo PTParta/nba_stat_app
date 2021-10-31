@@ -9,7 +9,7 @@ playersRouter.get('/playersfromapitodatabase', async (_request, _response) => {
     let players = []
     let apiPageNumber = 1
     const apiPerPage = 100
-    const total_pages = 35
+    const total_pages = 40
     while (apiPageNumber <= total_pages) {
       console.log(`getting players, page ${apiPageNumber}`)
       let playersOnOnePage = await axios.get(`${baseUrl}?per_page=${apiPerPage}&page=${apiPageNumber}`)

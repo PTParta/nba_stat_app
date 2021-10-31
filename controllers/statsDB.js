@@ -113,13 +113,13 @@ statDBRouter.get('/selectedplayersidsforaseasonfromdb/:season', async (request, 
 })
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+7
 statDBRouter.get('/allplayerstatsforaseasonfromdb', async (request, response) => {
 
 	const updateSummaryData = async () => {
 
 		// During regular season postseason has to be false and during post season postseason has to be true.
-		const postseason = true
+		const postseason = false
 
 		//for (let season = 1983; season <= 2020; season++) {
 		for (let season = 2020; season <= 2020; season++) {

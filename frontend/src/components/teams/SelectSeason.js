@@ -12,7 +12,7 @@ const SelectSeason = ({
   setFetchingData
 }) => {
 
-  let seasonDescending = 2020
+  let seasonDescending = new Date().getFullYear()
   const seasonSelectDescending = []
   while (seasonDescending >= 1983) {
     seasonSelectDescending.push({ label: seasonDescending.toString(), value: seasonDescending.toString() })

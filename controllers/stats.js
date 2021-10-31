@@ -51,8 +51,9 @@ statsRouter.get('/statsfromapitodatabase', async (_req, res) => {
     while (apiPageNumber <= totalPages) {
       console.log(`getting stats, page ${apiPageNumber}`)
       let statsOnOnePage = await axios.get(`${baseUrl}?per_page=${apiPerPage}&page=${apiPageNumber}`)
-      stats = stats.concat(statsOnOnePage.data.data)
-      if (apiPageNumber % 100 === 0 || apiPageNumber === totalPages) {
+      //stats = stats.concat(statsOnOnePage.data.data)
+      stats = statsOnOnePage
+      //if (apiPageNumber % 100 === 0 || apiPageNumber === totalPages) {
         console.log('saving stats to database...')
         for (const stat of stats) {
           const filter = { id: stat.id }
@@ -66,7 +67,7 @@ statsRouter.get('/statsfromapitodatabase', async (_req, res) => {
       apiPageNumber = apiPageNumber + 1
       //timer to prevent status code 429 (Too Many Requests)
       setTimeout(() => 1100)
-    }
+    //}
     const documentsCountInDatabaseAfterAdding = await Stat.count()
 
     if (documentsCountInDatabaseAfterAdding === totalAmountDocumentsInApi) {
