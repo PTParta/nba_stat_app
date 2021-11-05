@@ -26,6 +26,13 @@ statsRouter.get('/statsfromapitodatabase', async (_req, res) => {
 
   const getStats = async () => {
 
+    /**
+     * API data has preseason and play-in games which has to be taken into account when counting if
+     * the amount of data in the database matches the API. As of 05.11.2021 the API has 350 more
+     * data than the database. 2021 preseason games have been removed from the database but the
+     * previous seasons' database has not been corrected.
+     */
+    const amountOfDataMoreInApiThanDatabase = 350
     let statusMessage = ''
     const apiPerPage = 100
 
@@ -44,7 +51,7 @@ statsRouter.get('/statsfromapitodatabase', async (_req, res) => {
     }
 
     const totalPages = statsOnFirstPage.data.meta.total_pages + 1
-    let startingPageNumber = totalPages - Math.floor((totalAmountDocumentsInApi - documentsCountInDatabaseBeforeAdding) / 100) - 100
+    let startingPageNumber = totalPages - Math.floor((totalAmountDocumentsInApi - documentsCountInDatabaseBeforeAdding) / 100) - 20
     let stats = []
 
     let apiPageNumber = startingPageNumber
@@ -69,7 +76,7 @@ statsRouter.get('/statsfromapitodatabase', async (_req, res) => {
     }
     const documentsCountInDatabaseAfterAdding = await Stat.count()
 
-    if (documentsCountInDatabaseAfterAdding === totalAmountDocumentsInApi) {
+    if (documentsCountInDatabaseAfterAdding === totalAmountDocumentsInApi - amountOfDataMoreInApiThanDatabase) {
       statusMessage = 'Data successfully moved from API to database. Document count in API and database are the same.'
     } else {
       statusMessage = 'Error in moving data from API to database. Document count in API and database is not the same.'

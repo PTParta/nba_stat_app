@@ -122,7 +122,7 @@ statDBRouter.get('/allplayerstatsforaseasonfromdb', async (request, response) =>
 		const postseason = false
 
 		//for (let season = 1983; season <= 2020; season++) {
-		for (let season = new Date().getFullYear(); season <= new Date().getFullYear(); season++) {
+		for (let season = 2021; season <= 2021; season++) {
 			console.log('getting all stats for a season from database')
 			console.log(':season', season)
 
@@ -231,7 +231,9 @@ statDBRouter.get('/allplayerstatsforaseasonfromdb', async (request, response) =>
 
 				//console.log(playerStat/* .playerId */)
 				let updatedPlayer = {}
-				if (playedGames > 0) {
+				//If there is weird data in the summary where never heard of players are on top of for example
+				//block of steals then rise the value below to filter them out
+				if (playedGames > 5) {
 					//const updatedPlayer = playerStat
 
 
@@ -332,7 +334,7 @@ statDBRouter.get('/allplayerstatsforaseasonfromdb', async (request, response) =>
 				if (playerStat.name !== undefined) {
 					console.log(i, playerStat.name, playerStat.playerId)
 					try {
-						const filter = { playerId: playerStat.playerId, season: new Date().getFullYear(), postseason: postseason }
+						const filter = { playerId: playerStat.playerId, season: season, postseason: postseason }
 						const options = { upsert: true }
 						const updateDoc = { $set: playerStat }
 						await Summary.updateOne(filter, updateDoc, options)
@@ -376,20 +378,22 @@ statDBRouter.get('/summarystatsforaseasonfromdb/:season', async (request, respon
 	//console.log(`time ${endTime - startTime} ms`)
 	//console.log('documents:', summaryStats.length)
 
-	response.json(summaryStats)
+
 })
 
 statDBRouter.get('/deletedata', async (_request, response) => {
 	/* try{
 		const response = await Stat.deleteMany({"game.date":"2021-10-04T00:00:00.000Z"})
+		console.log("data deleted")
 	}catch(e){
 		console.log(e)
 	} */
-	try{
-		const response = await Summary.deleteMany({"season":"2021"})
-	}catch(e){
+	try {
+		const response = await Summary.deleteMany({ "season": "2021" })
+		console.log("data deleted")
+	} catch (e) {
 		console.log(e)
 	}
-
+	response.send("data deleted")
 })
 module.exports = statDBRouter
