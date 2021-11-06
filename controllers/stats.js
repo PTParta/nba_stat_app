@@ -51,7 +51,7 @@ statsRouter.get('/statsfromapitodatabase', async (_req, res) => {
     }
 
     const totalPages = statsOnFirstPage.data.meta.total_pages + 1
-    let startingPageNumber = totalPages - Math.floor((totalAmountDocumentsInApi - documentsCountInDatabaseBeforeAdding) / 100) - 20
+    let startingPageNumber = totalPages - Math.floor((totalAmountDocumentsInApi - documentsCountInDatabaseBeforeAdding) / 100) - 2
     let stats = []
 
     let apiPageNumber = startingPageNumber

@@ -3,6 +3,7 @@ const { v4: uuidv4 } = require('uuid')
 const statDBRouter = require('express').Router()
 const Stat = require('../models/stat')
 const Summary = require('../models/summary')
+const fs = require('fs')
 
 const nodeoutlook = require('nodejs-nodemailer-outlook')
 require('dotenv').config()
@@ -26,69 +27,51 @@ const sendEmail = (subject, text) => {
 	);
 }
 
-
 statDBRouter.get('/statsfromdb/:playerid', async (request, response) => {
-	//console.log('getting stats from database')
-	//console.log(':playerid', request.params.playerid)
-
-	//let startTime = new Date().getTime()
 	const stats = await Stat.find({
 		'player.id': request.params.playerid,
 		'min': { $ne: null },
 		'game.season': { $gt: 1982 }
 		/* 'min': { $ne: [null, '0'] } */ //This query is too slow and does not work
 	})
+	sendEmail(`Career stats ${stats[0].player.first_name} ${stats[0].player.last_name} retrieved from database`)
 
-	//let endTime = new Date().getTime()
-	//console.log('finished retrieving data from database')
-	//console.log(`time ${endTime - startTime} ms`)
-	//console.log('documents:', stats.length)
-
-	sendEmail(`Career stats for ${stats[0].player.first_name} ${stats[0].player.last_name} retrieved from database`)
-
+	const date =new Date()
+	const timeString = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
+	const dateString = `${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`
+	fs.appendFile('data_log.txt', `Career stats ${stats[0].player.first_name} ${stats[0].player.last_name}\t${timeString}\t${dateString}\n`, (err)=>{
+		if (err) throw err
+		console.log('Saved!')
+	} )
 	response.json(stats)
 })
 
 statDBRouter.get('/teamstatsfromdb/:teamid/:season', async (request, response) => {
-	//console.log('getting stats from database')
-	//console.log(':teamId', request.params.teamid)
-	//console.log(':season', request.params.season)
-
-	//let startTime = new Date().getTime()
-
 	const stats = await Stat.find({
 		'team.id': request.params.teamid,
 		'game.season': request.params.season,
 		'min': { $ne: null }
 	})
 
-	//let endTime = new Date().getTime()
-	//console.log('finished retrieving data from database')
-	//console.log(`time ${endTime - startTime} ms`)
-	//console.log('documents:', stats.length)
+	sendEmail(`Team stats ${stats[0].team.abbreviation} ${request.params.season} retrieved from database`)
 
-	sendEmail(`Team stats for ${stats[0].team.abbreviation} ${request.params.season} retrieved from database`)
+	const date =new Date()
+	const timeString = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
+	const dateString = `${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`
+	fs.appendFile('data_log.txt', `Team stats ${stats[0].team.abbreviation} ${request.params.season} \t${timeString}\t${dateString}\n`, (err)=>{
+		if (err) throw err
+		console.log('Saved!')
+	} )
 
 	response.json(stats)
 })
 
 statDBRouter.get('/playerstatsforaseasonfromdb/:playerid/:season', async (request, response) => {
-	//console.log('getting season stats from database')
-	//console.log(':playerid', request.params.playerid)
-	//console.log(':season', request.params.season)
-
-	//let startTime = new Date().getTime()
-
 	const stats = await Stat.find({
 		'game.season': request.params.season,
 		'min': { $ne: null },
 		'player.id': request.params.playerid
 	})
-
-	//let endTime = new Date().getTime()
-	//console.log('finished retrieving data from database')
-	//console.log(`time ${endTime - startTime} ms`)
-	//console.log('documents:', stats.length)
 
 	sendEmail(`Player stats for ${stats[0].player.first_name} ${stats[0].player.last_name} ${request.params.season} retrieved from database`)
 
@@ -96,12 +79,6 @@ statDBRouter.get('/playerstatsforaseasonfromdb/:playerid/:season', async (reques
 })
 
 statDBRouter.get('/selectedplayersidsforaseasonfromdb/:season', async (request, response) => {
-	//console.log('getting selected player stats for a season from database')
-	//console.log(':playerid', request.params.playerid)
-	//console.log(':season', request.params.season)
-
-	//let startTime = new Date().getTime()
-
 	const stats = await Stat.distinct(
 		'player.id',
 		{
@@ -109,11 +86,6 @@ statDBRouter.get('/selectedplayersidsforaseasonfromdb/:season', async (request, 
 			'min': { $ne: null }
 		}
 	)
-
-	//let endTime = new Date().getTime()
-	//console.log('finished retrieving data from database')
-	//console.log(`time ${endTime - startTime} ms`)
-	//console.log('documents:', stats.length)
 
 	response.json(stats)
 })
@@ -384,7 +356,15 @@ statDBRouter.get('/summarystatsforaseasonfromdb/:season', async (request, respon
 	//console.log(`time ${endTime - startTime} ms`)
 	//console.log('documents:', summaryStats.length)
 
-	sendEmail(`Summary stats for season ${request.params.season} retrieved from database`)
+	sendEmail(`Summary stats ${request.params.season} retrieved from database`)
+
+	const date =new Date()
+	const timeString = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
+	const dateString = `${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`
+	fs.appendFile('data_log.txt', `Summary stats ${request.params.season}\t${timeString}\t${dateString}\n`, (err)=>{
+		if (err) throw err
+		console.log('Saved!')
+	} )
 
 	response.send(summaryStats)
 })
