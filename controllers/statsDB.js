@@ -3,7 +3,6 @@ const { v4: uuidv4 } = require('uuid')
 const statDBRouter = require('express').Router()
 const Stat = require('../models/stat')
 const Summary = require('../models/summary')
-const fs = require('fs')
 
 const nodeoutlook = require('nodejs-nodemailer-outlook')
 require('dotenv').config()
@@ -36,13 +35,6 @@ statDBRouter.get('/statsfromdb/:playerid', async (request, response) => {
 	})
 	sendEmail(`Career stats ${stats[0].player.first_name} ${stats[0].player.last_name} retrieved from database`)
 
-	const date =new Date()
-	const timeString = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
-	const dateString = `${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`
-	fs.appendFile('data_log.txt', `Career stats ${stats[0].player.first_name} ${stats[0].player.last_name}\t${timeString}\t${dateString}\n`, (err)=>{
-		if (err) throw err
-		console.log('Saved!')
-	} )
 	response.json(stats)
 })
 
@@ -54,14 +46,6 @@ statDBRouter.get('/teamstatsfromdb/:teamid/:season', async (request, response) =
 	})
 
 	sendEmail(`Team stats ${stats[0].team.abbreviation} ${request.params.season} retrieved from database`)
-
-	const date =new Date()
-	const timeString = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
-	const dateString = `${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`
-	fs.appendFile('data_log.txt', `Team stats ${stats[0].team.abbreviation} ${request.params.season} \t${timeString}\t${dateString}\n`, (err)=>{
-		if (err) throw err
-		console.log('Saved!')
-	} )
 
 	response.json(stats)
 })
@@ -342,29 +326,12 @@ statDBRouter.get('/allplayerstatsforaseasonfromdb', async (request, response) =>
 /////////////////////////////////////////////////////////////////////////////////////
 
 statDBRouter.get('/summarystatsforaseasonfromdb/:season', async (request, response) => {
-	//console.log('getting season summary stats from database')
-	//console.log(':season', request.params.season)
-
-	//let startTime = new Date().getTime()
 
 	const summaryStats = await Summary.find({
 		'season': request.params.season
 	})
 
-	//let endTime = new Date().getTime()
-	//console.log('finished retrieving data from database')
-	//console.log(`time ${endTime - startTime} ms`)
-	//console.log('documents:', summaryStats.length)
-
 	sendEmail(`Summary stats ${request.params.season} retrieved from database`)
-
-	const date =new Date()
-	const timeString = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
-	const dateString = `${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`
-	fs.appendFile('data_log.txt', `Summary stats ${request.params.season}\t${timeString}\t${dateString}\n`, (err)=>{
-		if (err) throw err
-		console.log('Saved!')
-	} )
 
 	response.send(summaryStats)
 })
