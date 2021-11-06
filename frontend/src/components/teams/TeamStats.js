@@ -21,14 +21,17 @@ const TeamStats = (
   let playerTotalStats = []
 
   teamStats.forEach(teamStat => {
-    const playerFullName = `${teamStat.player.first_name} ${teamStat.player.last_name}`
-    if (playerTotalStats.find(playerTotalStat => playerTotalStat.name === playerFullName) === undefined) {
-      const player = { name: playerFullName }
-      playerTotalStats.push(player)
+    if(teamStat.player !== null){
+      const playerFullName = `${teamStat.player.first_name} ${teamStat.player.last_name}`
+      if (playerTotalStats.find(playerTotalStat => playerTotalStat.name === playerFullName) === undefined) {
+        const player = { name: playerFullName }
+        playerTotalStats.push(player)
+      }
     }
   })
 
-  const teamStatsFiltered = teamStats.filter(teamStat => teamStat.game.postseason === postSeasonSelected)
+
+  const teamStatsFiltered = teamStats.filter(teamStat => teamStat.game.postseason === postSeasonSelected && teamStat.player !== null)
 
   playerTotalStats.forEach(playerStat => {
     let playedGames = 0
