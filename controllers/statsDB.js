@@ -44,6 +44,8 @@ statDBRouter.get('/statsfromdb/:playerid', async (request, response) => {
 	//console.log(`time ${endTime - startTime} ms`)
 	//console.log('documents:', stats.length)
 
+	sendEmail(`Career stats for ${stats[0].player.first_name} ${stats[0].player.last_name} retrieved from database`)
+
 	response.json(stats)
 })
 
@@ -65,6 +67,8 @@ statDBRouter.get('/teamstatsfromdb/:teamid/:season', async (request, response) =
 	//console.log(`time ${endTime - startTime} ms`)
 	//console.log('documents:', stats.length)
 
+	sendEmail(`Team stats for ${stats[0].team.abbreviation} ${request.params.season} retrieved from database`)
+
 	response.json(stats)
 })
 
@@ -85,6 +89,8 @@ statDBRouter.get('/playerstatsforaseasonfromdb/:playerid/:season', async (reques
 	//console.log('finished retrieving data from database')
 	//console.log(`time ${endTime - startTime} ms`)
 	//console.log('documents:', stats.length)
+
+	sendEmail(`Player stats for ${stats[0].player.first_name} ${stats[0].player.last_name} ${request.params.season} retrieved from database`)
 
 	response.json(stats)
 })
@@ -378,7 +384,9 @@ statDBRouter.get('/summarystatsforaseasonfromdb/:season', async (request, respon
 	//console.log(`time ${endTime - startTime} ms`)
 	//console.log('documents:', summaryStats.length)
 
+	sendEmail(`Summary stats for season ${request.params.season} retrieved from database`)
 
+	response.send(summaryStats)
 })
 
 statDBRouter.get('/deletedata', async (_request, response) => {
