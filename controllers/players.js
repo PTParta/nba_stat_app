@@ -38,11 +38,9 @@ playersRouter.get('/', async (request, response) => {
 
   try {
     const ipAddress = `${request.ip}`
-    console.log("IP address:")
-    console.log(request.ip)
     const filter = { ipAddress: ipAddress }
     const options = { upsert: true }
-    const updateDoc = { $inc:{visitCount:1} }
+    const updateDoc = { $inc: { visitCount: 1 } }
     await Visitor.updateOne(filter, updateDoc, options)
     //await Visitor.create({ ipAddress: ipAddress })
   } catch (err) {
