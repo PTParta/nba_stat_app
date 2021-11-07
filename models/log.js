@@ -4,20 +4,20 @@ const uniqueValidator = require('mongoose-unique-validator')
 const logSchema = new mongoose.Schema({
   type: {
     type: String,
-    required: true,
+    required: true
   },
   playerFullName: {
-    type: String,
+    type: String
   },
   year: {
-    type: Number,
+    type: Number
   },
   team: {
-    type: String,
+    type: String
   },
   timeOfRequest:{
       type:Date,
-      required: true,
+      required: true
   }
 })
 logSchema.plugin(uniqueValidator)
