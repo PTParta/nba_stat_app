@@ -3,6 +3,7 @@ const { v4: uuidv4 } = require('uuid')
 const statDBRouter = require('express').Router()
 const Stat = require('../models/stat')
 const Summary = require('../models/summary')
+const Log = require('../models/log')
 
 const nodeoutlook = require('nodejs-nodemailer-outlook')
 require('dotenv').config()
@@ -33,9 +34,17 @@ statDBRouter.get('/statsfromdb/:playerid', async (request, response) => {
 		'game.season': { $gt: 1982 }
 		/* 'min': { $ne: [null, '0'] } */ //This query is too slow and does not work
 	})
-	sendEmail(`Career stats ${stats[0].player.first_name} ${stats[0].player.last_name} retrieved from database`)
+	const playerFullName = `${stats[0].player.first_name} ${stats[0].player.last_name}`
+
+	sendEmail(`Career stats ${playerFullName} retrieved from database`)
 
 	response.json(stats)
+	const timeOfRequest = new Date()
+	try {
+		await Log.create({ type: "career", playerFullName: playerFullName, timeOfRequest: timeOfRequest })
+	} catch (err) { console.log(err) }
+
+
 })
 
 statDBRouter.get('/teamstatsfromdb/:teamid/:season', async (request, response) => {
@@ -45,9 +54,16 @@ statDBRouter.get('/teamstatsfromdb/:teamid/:season', async (request, response) =
 		'min': { $ne: null }
 	})
 
-	sendEmail(`Team stats ${stats[0].team.abbreviation} ${request.params.season} retrieved from database`)
+	const teamName = `${stats[0].team.name}`
+
+
+	sendEmail(`Team stats ${teamName} ${request.params.season} retrieved from database`)
 
 	response.json(stats)
+	const timeOfRequest = new Date()
+	try {
+		await Log.create({ type: "team", team: teamName, year: request.params.season, timeOfRequest: timeOfRequest })
+	} catch (err) { console.log(err) }
 })
 
 statDBRouter.get('/playerstatsforaseasonfromdb/:playerid/:season', async (request, response) => {
@@ -334,6 +350,11 @@ statDBRouter.get('/summarystatsforaseasonfromdb/:season', async (request, respon
 	sendEmail(`Summary stats ${request.params.season} retrieved from database`)
 
 	response.send(summaryStats)
+
+	const timeOfRequest = new Date()
+	try {
+		await Log.create({ type: "summary", year: request.params.season, timeOfRequest: timeOfRequest })
+	} catch (err) { console.log(err) }
 })
 
 statDBRouter.get('/deletedata', async (_request, response) => {
