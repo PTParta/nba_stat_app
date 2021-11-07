@@ -40,8 +40,10 @@ statDBRouter.get('/statsfromdb/:playerid', async (request, response) => {
 
 	response.json(stats)
 	const timeOfRequest = new Date()
+	const date = `${timeOfRequest.getDate()}.${timeOfRequest.getMonth()}.${timeOfRequest.getFullYear()}`
+	const time = `${timeOfRequest.getHours()}:${timeOfRequest.getMinutes()}.${timeOfRequest.getSeconds()}`
 	try {
-		await Log.create({ type: "career", playerFullName: playerFullName, timeOfRequest: timeOfRequest })
+		await Log.create({ type: "career", playerFullName: playerFullName, timeOfRequest: time, dateOfRequest: date })
 	} catch (err) { console.log(err) }
 
 
@@ -61,8 +63,10 @@ statDBRouter.get('/teamstatsfromdb/:teamid/:season', async (request, response) =
 
 	response.json(stats)
 	const timeOfRequest = new Date()
+	const date = `${timeOfRequest.getDate()}.${timeOfRequest.getMonth()}.${timeOfRequest.getFullYear()}`
+	const time = `${timeOfRequest.getHours()}:${timeOfRequest.getMinutes()}.${timeOfRequest.getSeconds()}`
 	try {
-		await Log.create({ type: "team", team: teamName, year: request.params.season, timeOfRequest: timeOfRequest })
+		await Log.create({ type: "team", team: teamName, year: request.params.season, timeOfRequest: time, dateOfRequest: date })
 	} catch (err) { console.log(err) }
 })
 
@@ -352,8 +356,10 @@ statDBRouter.get('/summarystatsforaseasonfromdb/:season', async (request, respon
 	response.send(summaryStats)
 
 	const timeOfRequest = new Date()
+	const date = `${timeOfRequest.getDate()}.${timeOfRequest.getMonth()}.${timeOfRequest.getFullYear()}`
+	const time = `${timeOfRequest.getHours()}:${timeOfRequest.getMinutes()}.${timeOfRequest.getSeconds()}`
 	try {
-		await Log.create({ type: "summary", year: request.params.season, timeOfRequest: timeOfRequest })
+		await Log.create({ type: "summary", year: request.params.season, timeOfRequest: time, dateOfRequest: date })
 	} catch (err) { console.log(err) }
 })
 

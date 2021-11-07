@@ -16,9 +16,13 @@ const logSchema = new mongoose.Schema({
     type: String
   },
   timeOfRequest:{
-      type:Date,
+      type:String,
       required: true
-  }
+  },
+  dateOfRequest:{
+    type:String,
+    required: true
+}
 })
 logSchema.plugin(uniqueValidator)
 
