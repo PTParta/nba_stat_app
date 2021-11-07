@@ -6,6 +6,11 @@ const nodeoutlook = require('nodejs-nodemailer-outlook')
 require('dotenv').config()
 //const colors = require('colors')
 
+/**Seems like this also updates the Player table in MongoDB. Not sure why
+ * but the Players table has been updated with 2021 new players even
+ * though the specific endpoint for updating that table has not been
+ * called. Interesting...?
+ */
 statsRouter.get('/statsfromapitodatabase', async (_req, res) => {
 
   const sendEmail = (subject, text) => {
