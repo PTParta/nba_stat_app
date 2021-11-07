@@ -1,6 +1,7 @@
 const playersRouter = require('express').Router()
 const Player = require('../models/player')
 const Stat = require('../models/stat')
+const Visitor = require('../models/visitor')
 const axios = require('axios')
 const baseUrl = 'https://www.balldontlie.io/api/v1/players'
 
@@ -31,9 +32,23 @@ playersRouter.get('/playersfromapitodatabase', async (_request, _response) => {
   await putPlayersToDatabase(players)
 })
 
-playersRouter.get('/', async (_request, response) => {
+playersRouter.get('/', async (request, response) => {
   const players = await Player.find({})
   response.json(players)
+
+  try {
+    const ipAddress = `${request.ip}`
+    console.log("IP address:")
+    console.log(request.ip)
+    const filter = { ipAddress: ipAddress }
+    const options = { upsert: true }
+    const updateDoc = { $inc:{visitCount:1} }
+    await Visitor.updateOne(filter, updateDoc, options)
+    //await Visitor.create({ ipAddress: ipAddress })
+  } catch (err) {
+    console.log("Error in IP address handling", err)
+  }
+
 })
 
 playersRouter.get('/:season', async (request, response) => {
