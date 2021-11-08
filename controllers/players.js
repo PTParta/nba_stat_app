@@ -2,6 +2,7 @@ const playersRouter = require('express').Router()
 const Player = require('../models/player')
 const Stat = require('../models/stat')
 const Visitor = require('../models/visitor')
+const DailyVisitCounter = require('../models/dailyVisitCounter')
 const axios = require('axios')
 const baseUrl = 'https://www.balldontlie.io/api/v1/players'
 
@@ -45,6 +46,17 @@ playersRouter.get('/', async (request, response) => {
     //await Visitor.create({ ipAddress: ipAddress })
   } catch (err) {
     console.log("Error in IP address handling", err)
+  }
+
+  try {
+    const timeOfRequest = new Date()
+    const date = `${timeOfRequest.getDate()}.${timeOfRequest.getMonth()}.${timeOfRequest.getFullYear()}`
+    const filter = { date: date }
+    const options = { upsert: true }
+    const updateDoc = { $inc: { counter: 1 } }
+    await DailyVisitCounter.updateOne(filter, updateDoc, options)
+  } catch (err) {
+
   }
 
 })

@@ -215,7 +215,7 @@ statDBRouter.get('/allplayerstatsforaseasonfromdb', async (request, response) =>
 				let updatedPlayer = {}
 				//If there is weird data in the summary where never heard of players are on top of for example
 				//block of steals then rise the value below to filter them out
-				if (playedGames > 5) {
+				if (playedGames > 8) {
 					//const updatedPlayer = playerStat
 
 
@@ -370,12 +370,12 @@ statDBRouter.get('/deletedata', async (_request, response) => {
 	}catch(e){
 		console.log(e)
 	} */
-	try {
+	/* try {
 		const response = await Summary.deleteMany({ "season": "2021" })
 		console.log("data deleted")
 	} catch (e) {
 		console.log(e)
 	}
-	response.send("data deleted")
+	response.send("data deleted") */
 })
 module.exports = statDBRouter
