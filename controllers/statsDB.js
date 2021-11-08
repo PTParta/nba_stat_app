@@ -4,6 +4,7 @@ const statDBRouter = require('express').Router()
 const Stat = require('../models/stat')
 const Summary = require('../models/summary')
 const Log = require('../models/log')
+const PlayerLog = require('../models/playerLog')
 
 const nodeoutlook = require('nodejs-nodemailer-outlook')
 require('dotenv').config()
@@ -39,6 +40,15 @@ statDBRouter.get('/statsfromdb/:playerid', async (request, response) => {
 	sendEmail(`Career stats ${playerFullName} retrieved from database`)
 
 	response.json(stats)
+
+	try {
+		const filter = { name: playerFullName }
+		const options = { upsert: true }
+		const updateDoc = { $inc: { counter: 1 } }
+		await PlayerLog.updateOne(filter, updateDoc, options)
+	} catch (err) { console.log(err) }
+
+
 	const timeOfRequest = new Date()
 	const date = `${timeOfRequest.getDate()}.${timeOfRequest.getMonth()}.${timeOfRequest.getFullYear()}`
 	const time = `${timeOfRequest.getHours()}:${timeOfRequest.getMinutes()}.${timeOfRequest.getSeconds()}`
