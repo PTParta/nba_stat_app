@@ -22,8 +22,8 @@ const sendEmail = (subject, text) => {
 		to: process.env.EMAIL,
 		subject: subject,
 		text: text,
-		onError: (e) => console.log(e),
-		onSuccess: (i) => console.log(i)
+		//onError: (e) => console.log(e),
+		//onSuccess: (i) => console.log(i)
 	}
 	);
 }
