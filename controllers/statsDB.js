@@ -225,7 +225,7 @@ statDBRouter.get('/allplayerstatsforaseasonfromdb', async (request, response) =>
 				let updatedPlayer = {}
 				//If there is weird data in the summary where never heard of players are on top of for example
 				//block of steals then rise the value below to filter them out
-				if (playedGames > 8) {
+				if (playedGames > 7) {
 					//const updatedPlayer = playerStat
 
 
@@ -347,6 +347,7 @@ statDBRouter.get('/allplayerstatsforaseasonfromdb', async (request, response) =>
 				i++
 			}
 		}
+		console.log("Summary data updated")
 		sendEmail('Success: Summary data updated', 'Success: Summary data updated')
 		return 'Summary data updated'
 	}
