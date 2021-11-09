@@ -347,6 +347,9 @@ statDBRouter.get('/allplayerstatsforaseasonfromdb', async (request, response) =>
 				i++
 			}
 		}
+		statsFromDB = []
+		playerStatsFiltered = []
+		playerStatsHelper = []
 		console.log("Summary data updated")
 		sendEmail('Success: Summary data updated', 'Success: Summary data updated')
 		return 'Summary data updated'
