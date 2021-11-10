@@ -347,11 +347,19 @@ statDBRouter.get('/allplayerstatsforaseasonfromdb', async (request, response) =>
 				i++
 			}
 		}
-		console.log("Summary data updated")
-		sendEmail('Success: Summary data updated', 'Success: Summary data updated')
+
 		return 'Summary data updated'
 	}
-	response.send(await updateSummaryData())
+	response.send("Summary update command received")
+	try {
+		await updateSummaryData()
+		console.log("Summary data updated")
+		sendEmail('Success: Summary data updated', 'Success: Summary data updated')
+	} catch (err) {
+		console.log('Error.', err)
+		sendEmail('Error: Summary data update unsuccessfully', 'Error: Summary data update unsuccessfully')
+	}
+
 })
 
 /////////////////////////////////////////////////////////////////////////////////////
