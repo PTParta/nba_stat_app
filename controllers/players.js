@@ -50,7 +50,7 @@ playersRouter.get('/', async (request, response) => {
 
   try {
     const timeOfRequest = new Date()
-    const date = `${timeOfRequest.getDate()}.${timeOfRequest.getMonth()}.${timeOfRequest.getFullYear()}`
+    const date = `${timeOfRequest.getDate()}.${timeOfRequest.getMonth()+1}.${timeOfRequest.getFullYear()}`
     const filter = { date: date }
     const options = { upsert: true }
     const updateDoc = { $inc: { counter: 1 } }
