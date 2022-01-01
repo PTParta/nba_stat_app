@@ -8,7 +8,7 @@ const SelectSeason = ({
   setTopTenStats
 }) => {
 
-  let seasonDescending = new Date().getFullYear()
+  let seasonDescending = 2021
   const seasonSelectDescending = []
   while (seasonDescending >= 1983) {
     seasonSelectDescending.push({ label: seasonDescending.toString(), value: seasonDescending.toString() })
