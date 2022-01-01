@@ -18,7 +18,7 @@ const Teams = ({ fetchingData, setFetchingData, teams }) => {
 
   const [selectedTeam, setSelectedTeam] = useState('')
   const [teamStats, setTeamStats] = useState([])
-  const [selectedSeason, setSelectedSeason] = useState(new Date().getFullYear())
+  const [selectedSeason, setSelectedSeason] = useState(2021)
   const [regularSeasonSelected, setRegularSeasonSelected] = useState(true)
   const [postSeasonSelected, setPostSeasonSelected] = useState(false)
   const [perGameSelected, setPerGameSelected] = useState(true)
