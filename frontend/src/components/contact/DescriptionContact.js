@@ -5,8 +5,8 @@ const DescriptionPlayers = () => {
       <br></br>
       <br></br>
       <p>
-        Here you can contact us. Please write your feedback, comments, questions etc.
-        and click send. If you want you can give your email address for us to respond to.
+        Here you can contact me. Please write your feedback, comments, questions etc.
+        and click send. If you want you can give your email address for me to respond to.
       </p>
     </div>
   )

@@ -111,7 +111,7 @@ statDBRouter.get('/allplayerstatsforaseasonfromdb', async (request, response) =>
 	const updateSummaryData = async () => {
 
 		// During regular season postseason has to be false and during post season postseason has to be true.
-		const postseason = false
+		const postseason = true
 
 		//for (let season = 1983; season <= 2020; season++) {
 		for (let season = 2021; season <= 2021; season++) {
@@ -142,7 +142,6 @@ statDBRouter.get('/allplayerstatsforaseasonfromdb', async (request, response) =>
 					if (player.name !== undefined) {
 						playerStats.push(player)
 					}
-
 				}
 			})
 			console.log(playerStats)
@@ -225,7 +224,8 @@ statDBRouter.get('/allplayerstatsforaseasonfromdb', async (request, response) =>
 				let updatedPlayer = {}
 				//If there is weird data in the summary where never heard of players are on top of for example
 				//block of steals then rise the value below to filter them out
-				if (playedGames > 7) {
+				//Change played games accordingly when it is regular or postseason
+				if (playedGames >= 4) {
 					//const updatedPlayer = playerStat
 
 
